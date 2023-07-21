@@ -1,0 +1,544 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
+
+    <!-- Generated with Sphinx 6.1.3 and Furo 2023.05.20 -->
+        <title>BFMM package - BFMM</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">BFMM</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">BFMM</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="BFMM.type_aliases.html">type_aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BFMM.utils.html">utils</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BFMM.soil.html">soil</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of soil</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.soil.dead_wood_classes.html">dead_wood_classes</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of dead_wood_classes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="BFMM.soil.dead_wood_classes.C_model.html">C_model</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="BFMM.soil.dead_wood_classes.C_model.SoilCDeadWoodClasses.html">SoilCDeadWoodClasses</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.soil.dead_wood_classes.C_model_parameters.html">C_model_parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.soil.simple_soil_model.html">simple_soil_model</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of simple_soil_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="BFMM.soil.simple_soil_model.C_model.html">C_model</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="BFMM.soil.simple_soil_model.C_model.SimpleSoilCModel.html">SimpleSoilCModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.soil.simple_soil_model.C_model_parameters.html">C_model_parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.soil.soil_c_model_abc.html">soil_c_model_abc</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of soil_c_model_abc</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.soil.soil_c_model_abc.SoilCModelABC.html">SoilCModelABC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BFMM.wood_products.html">wood_products</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of wood_products</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.wood_products.simple_wood_product_model.html">simple_wood_product_model</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of simple_wood_product_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="BFMM.wood_products.simple_wood_product_model.C_model.html">C_model</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="BFMM.wood_products.simple_wood_product_model.C_model.SimpleWoodProductModel.html">SimpleWoodProductModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.wood_products.simple_wood_product_model.C_model_parameters.html">C_model_parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.wood_products.wood_product_model_abc.html">wood_product_model_abc</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of wood_product_model_abc</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.wood_products.wood_product_model_abc.WoodProductModelABC.html">WoodProductModelABC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Untitled.html">Test notebook</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="bfmm-package">
+<h1>BFMM package<a class="headerlink" href="#bfmm-package" title="Permalink to this heading">#</a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="BFMM.soil.html">soil</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.soil.dead_wood_classes.html">dead_wood_classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.soil.dead_wood_classes.C_model.html">C_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="BFMM.soil.dead_wood_classes.C_model.SoilCDeadWoodClasses.html">SoilCDeadWoodClasses</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.soil.dead_wood_classes.C_model_parameters.html">C_model_parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="BFMM.soil.dead_wood_classes.C_model_parameters.html#BFMM.soil.dead_wood_classes.C_model_parameters.params"><code class="docutils literal notranslate"><span class="pre">params</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="BFMM.soil.dead_wood_classes.C_model_parameters.html#BFMM.soil.dead_wood_classes.C_model_parameters.initialize_params"><code class="docutils literal notranslate"><span class="pre">initialize_params()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="BFMM.soil.dead_wood_classes.C_model_parameters.html#BFMM.soil.dead_wood_classes.C_model_parameters.params_to_latex_table"><code class="docutils literal notranslate"><span class="pre">params_to_latex_table()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.soil.simple_soil_model.html">simple_soil_model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.soil.simple_soil_model.C_model.html">C_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="BFMM.soil.simple_soil_model.C_model.SimpleSoilCModel.html">SimpleSoilCModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.soil.simple_soil_model.C_model_parameters.html">C_model_parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="BFMM.soil.simple_soil_model.C_model_parameters.html#BFMM.soil.simple_soil_model.C_model_parameters.params"><code class="docutils literal notranslate"><span class="pre">params</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="BFMM.soil.simple_soil_model.C_model_parameters.html#BFMM.soil.simple_soil_model.C_model_parameters.initialize_params"><code class="docutils literal notranslate"><span class="pre">initialize_params()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="BFMM.soil.simple_soil_model.C_model_parameters.html#BFMM.soil.simple_soil_model.C_model_parameters.params_to_latex_table"><code class="docutils literal notranslate"><span class="pre">params_to_latex_table()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.soil.soil_c_model_abc.html">soil_c_model_abc</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.soil.soil_c_model_abc.SoilCModelABC.html">SoilCModelABC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="BFMM.soil.soil_c_model_abc.SoilCModelABC.html#BFMM.soil.soil_c_model_abc.SoilCModelABC"><code class="docutils literal notranslate"><span class="pre">SoilCModelABC</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="BFMM.wood_products.html">wood_products</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.wood_products.simple_wood_product_model.html">simple_wood_product_model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.wood_products.simple_wood_product_model.C_model.html">C_model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="BFMM.wood_products.simple_wood_product_model.C_model.SimpleWoodProductModel.html">SimpleWoodProductModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.wood_products.simple_wood_product_model.C_model_parameters.html">C_model_parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="BFMM.wood_products.simple_wood_product_model.C_model_parameters.html#BFMM.wood_products.simple_wood_product_model.C_model_parameters.params"><code class="docutils literal notranslate"><span class="pre">params</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="BFMM.wood_products.simple_wood_product_model.C_model_parameters.html#BFMM.wood_products.simple_wood_product_model.C_model_parameters.initialize_params"><code class="docutils literal notranslate"><span class="pre">initialize_params()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="BFMM.wood_products.simple_wood_product_model.C_model_parameters.html#BFMM.wood_products.simple_wood_product_model.C_model_parameters.params_to_latex_table"><code class="docutils literal notranslate"><span class="pre">params_to_latex_table()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.wood_products.wood_product_model_abc.html">wood_product_model_abc</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.wood_products.wood_product_model_abc.WoodProductModelABC.html">WoodProductModelABC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="BFMM.wood_products.wood_product_model_abc.WoodProductModelABC.html#BFMM.wood_products.wood_product_model_abc.WoodProductModelABC"><code class="docutils literal notranslate"><span class="pre">WoodProductModelABC</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="BFMM.make_model_figs.html">BFMM.make_model_figs module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.make_model_figs.html#BFMM.make_model_figs.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="BFMM.type_aliases.html">type_aliases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.type_aliases.html#BFMM.type_aliases.Quantity"><code class="docutils literal notranslate"><span class="pre">Quantity</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.type_aliases.html#BFMM.type_aliases.TreeSoilInterface"><code class="docutils literal notranslate"><span class="pre">TreeSoilInterface</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.type_aliases.html#BFMM.type_aliases.WoodProductInterface"><code class="docutils literal notranslate"><span class="pre">WoodProductInterface</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.type_aliases.html#BFMM.type_aliases.InputFluxes"><code class="docutils literal notranslate"><span class="pre">InputFluxes</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.type_aliases.html#BFMM.type_aliases.OutputFluxesInt"><code class="docutils literal notranslate"><span class="pre">OutputFluxesInt</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.type_aliases.html#BFMM.type_aliases.TreeExternalOutputFluxes"><code class="docutils literal notranslate"><span class="pre">TreeExternalOutputFluxes</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.type_aliases.html#BFMM.type_aliases.CuttingFluxes"><code class="docutils literal notranslate"><span class="pre">CuttingFluxes</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.type_aliases.html#BFMM.type_aliases.OneSpeciesParams"><code class="docutils literal notranslate"><span class="pre">OneSpeciesParams</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.type_aliases.html#BFMM.type_aliases.SpeciesParams"><code class="docutils literal notranslate"><span class="pre">SpeciesParams</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.type_aliases.html#BFMM.type_aliases.MSData"><code class="docutils literal notranslate"><span class="pre">MSData</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.type_aliases.html#BFMM.type_aliases.MSDataList"><code class="docutils literal notranslate"><span class="pre">MSDataList</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.type_aliases.html#BFMM.type_aliases.SimulationProfile"><code class="docutils literal notranslate"><span class="pre">SimulationProfile</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.type_aliases.html#BFMM.type_aliases.TreeSetting"><code class="docutils literal notranslate"><span class="pre">TreeSetting</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.type_aliases.html#BFMM.type_aliases.SpeciesSettings"><code class="docutils literal notranslate"><span class="pre">SpeciesSettings</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="BFMM.utils.html">utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.utils.html#BFMM.utils.add_stocks_from_dmr_to_ds"><code class="docutils literal notranslate"><span class="pre">add_stocks_from_dmr_to_ds()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.utils.html#BFMM.utils.array_to_slice"><code class="docutils literal notranslate"><span class="pre">array_to_slice()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.utils.html#BFMM.utils.assert_accuracy"><code class="docutils literal notranslate"><span class="pre">assert_accuracy()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.utils.html#BFMM.utils.cached_property"><code class="docutils literal notranslate"><span class="pre">cached_property()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.utils.html#BFMM.utils.create_dmr_from_stocks_and_fluxes"><code class="docutils literal notranslate"><span class="pre">create_dmr_from_stocks_and_fluxes()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.utils.html#BFMM.utils.create_dmr_inputs_only"><code class="docutils literal notranslate"><span class="pre">create_dmr_inputs_only()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.utils.html#BFMM.utils.create_simulation_video"><code class="docutils literal notranslate"><span class="pre">create_simulation_video()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.utils.html#BFMM.utils.create_stand_cross_section_video"><code class="docutils literal notranslate"><span class="pre">create_stand_cross_section_video()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.utils.html#BFMM.utils.detrend_forcing"><code class="docutils literal notranslate"><span class="pre">detrend_forcing()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.utils.html#BFMM.utils.detrend_variable"><code class="docutils literal notranslate"><span class="pre">detrend_variable()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.utils.html#BFMM.utils.extend_forcing"><code class="docutils literal notranslate"><span class="pre">extend_forcing()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.utils.html#BFMM.utils.freeze"><code class="docutils literal notranslate"><span class="pre">freeze()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.utils.html#BFMM.utils.freeze_all"><code class="docutils literal notranslate"><span class="pre">freeze_all()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.utils.html#BFMM.utils.get_global_pool_nrs_from_entity_nrs"><code class="docutils literal notranslate"><span class="pre">get_global_pool_nrs_from_entity_nrs()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.utils.html#BFMM.utils.get_pars_comb"><code class="docutils literal notranslate"><span class="pre">get_pars_comb()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.utils.html#BFMM.utils.latexify_unit"><code class="docutils literal notranslate"><span class="pre">latexify_unit()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.utils.html#BFMM.utils.load_forcing"><code class="docutils literal notranslate"><span class="pre">load_forcing()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.utils.html#BFMM.utils.load_start_age_data_from_eq"><code class="docutils literal notranslate"><span class="pre">load_start_age_data_from_eq()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.utils.html#BFMM.utils.load_start_age_data_from_eq_for_soil_and_wood_products"><code class="docutils literal notranslate"><span class="pre">load_start_age_data_from_eq_for_soil_and_wood_products()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.utils.html#BFMM.utils.make_lru_cacheable"><code class="docutils literal notranslate"><span class="pre">make_lru_cacheable()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.utils.html#BFMM.utils.reindent"><code class="docutils literal notranslate"><span class="pre">reindent()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.utils.html#BFMM.utils.unfreeze_none"><code class="docutils literal notranslate"><span class="pre">unfreeze_none()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="module-BFMM">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-BFMM" title="Permalink to this heading">#</a></h2>
+<p>Main module, set up unit registry, new units, unit conversions, unit helper functions.</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="BFMM.BASE_PATH">
+<span class="sig-name descname"><span class="pre">BASE_PATH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PosixPath('/mnt/c/Users/hrme0001/GitHub/BFMM')</span></em><a class="headerlink" href="#BFMM.BASE_PATH" title="Permalink to this definition">#</a></dt>
+<dd><p>Package base path.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="BFMM.DATA_PATH">
+<span class="sig-name descname"><span class="pre">DATA_PATH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PosixPath('/mnt/c/Users/hrme0001/GitHub/BFMM/data')</span></em><a class="headerlink" href="#BFMM.DATA_PATH" title="Permalink to this definition">#</a></dt>
+<dd><p>Package data folder path.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="BFMM.SIMULATIONS_PATH">
+<span class="sig-name descname"><span class="pre">SIMULATIONS_PATH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PosixPath('/mnt/c/Users/hrme0001/GitHub/BFMM/data/simulations')</span></em><a class="headerlink" href="#BFMM.SIMULATIONS_PATH" title="Permalink to this definition">#</a></dt>
+<dd><p>Simulation output data path.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="BFMM.FIGS_PATH">
+<span class="sig-name descname"><span class="pre">FIGS_PATH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PosixPath('/mnt/c/Users/hrme0001/GitHub/BFMM/figs')</span></em><a class="headerlink" href="#BFMM.FIGS_PATH" title="Permalink to this definition">#</a></dt>
+<dd><p>Path for figures.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="BFMM.LOGS_PATH">
+<span class="sig-name descname"><span class="pre">LOGS_PATH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PosixPath('/mnt/c/Users/hrme0001/GitHub/BFMM/logfiles')</span></em><a class="headerlink" href="#BFMM.LOGS_PATH" title="Permalink to this definition">#</a></dt>
+<dd><p>Path for general log files.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="BFMM.Q_">
+<span class="sig-name descname"><span class="pre">Q_</span></span><a class="headerlink" href="#BFMM.Q_" title="Permalink to this definition">#</a></dt>
+<dd><p>Pint Quantity with custom units and additional methods.</p>
+<p>Custom units are <code class="docutils literal notranslate"><span class="pre">gC</span></code>, <code class="docutils literal notranslate"><span class="pre">g_gluc</span></code>, and <code class="docutils literal notranslate"><span class="pre">g_dw</span></code>. Custom methods
+are defined below in this module.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="BFMM.zeta_gluc">
+<span class="sig-name descname"><span class="pre">zeta_gluc</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Quantity(0.399666944,</span> <span class="pre">'g_carbon</span> <span class="pre">/</span> <span class="pre">g_gluc')&gt;</span></em><a class="headerlink" href="#BFMM.zeta_gluc" title="Permalink to this definition">#</a></dt>
+<dd><p>Grams of carbon per grams glucose.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="BFMM.zeta_dw">
+<span class="sig-name descname"><span class="pre">zeta_dw</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Quantity(0.5,</span> <span class="pre">'g_carbon</span> <span class="pre">/</span> <span class="pre">g_dw')&gt;</span></em><a class="headerlink" href="#BFMM.zeta_dw" title="Permalink to this definition">#</a></dt>
+<dd><p>Grams of carbon per grams dry weight.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="BFMM.integrate_with_units">
+<span class="sig-name descname"><span class="pre">integrate_with_units</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM.html#integrate_with_units"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.integrate_with_units" title="Permalink to this definition">#</a></dt>
+<dd><p>Integrate a function using units.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – integrand</p></li>
+<li><p><strong>a</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Quantity</span></code>) – lower integral boundary</p></li>
+<li><p><strong>b</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Quantity</span></code>) – upper integral boundary</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Quantity</span></code></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">quad(f,</span> <span class="pre">a,</span> <span class="pre">b)</span></code> with units</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="BFMM.from_list">
+<span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">l</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM.html#from_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.from_list" title="Permalink to this definition">#</a></dt>
+<dd><p>Create quantity array from a list of quantities.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>l</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>) – list of quantities with compatible units</p></li>
+<li><p><strong>unit</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – optional, force a unit</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Quantity</span></code></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Q_(np.array([e for e in l])) with correct units</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="BFMM.get_netcdf_unit">
+<span class="sig-name descname"><span class="pre">get_netcdf_unit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM.html#get_netcdf_unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.get_netcdf_unit" title="Permalink to this definition">#</a></dt>
+<dd><p>Get the netcdf unit from a Quantity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>q</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Quantity</span></code>) – The quantity to be translated.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The netcdf translation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Holger Metzler, Samuli Launiainen, Viulia Vico
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">BFMM package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-BFMM">Module contents</a><ul>
+<li><a class="reference internal" href="#BFMM.BASE_PATH"><code class="docutils literal notranslate"><span class="pre">BASE_PATH</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.DATA_PATH"><code class="docutils literal notranslate"><span class="pre">DATA_PATH</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.SIMULATIONS_PATH"><code class="docutils literal notranslate"><span class="pre">SIMULATIONS_PATH</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.FIGS_PATH"><code class="docutils literal notranslate"><span class="pre">FIGS_PATH</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.LOGS_PATH"><code class="docutils literal notranslate"><span class="pre">LOGS_PATH</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.Q_"><code class="docutils literal notranslate"><span class="pre">Q_</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.zeta_gluc"><code class="docutils literal notranslate"><span class="pre">zeta_gluc</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.zeta_dw"><code class="docutils literal notranslate"><span class="pre">zeta_dw</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.integrate_with_units"><code class="docutils literal notranslate"><span class="pre">integrate_with_units()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.from_list"><code class="docutils literal notranslate"><span class="pre">from_list()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.get_netcdf_unit"><code class="docutils literal notranslate"><span class="pre">get_netcdf_unit()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,13 @@
+matplotlib
+tqdm
+pandas
+scipy
+frozendict
+pint
+sympy
+ffmpeg
+openh264
+
+# doc
+graphviz
+nbsphinx
