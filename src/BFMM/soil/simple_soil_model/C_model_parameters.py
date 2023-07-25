@@ -5,7 +5,7 @@ Furthermore, there is a function to make a LaTeX table for the parameters.
 """
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Dict
 
 from sympy import Symbol, latex
 
@@ -57,7 +57,7 @@ params = {
 """Model parameters."""
 
 
-def initialize_params() -> dict[str, Any]:
+def initialize_params() -> Dict[str, Any]:
     """Initialize the parameter dictionary.
 
     Returns:
@@ -65,7 +65,7 @@ def initialize_params() -> dict[str, Any]:
 
         - name: value
     """
-    initialized_params: dict[str, Any] = dict()
+    initialized_params: Dict[str, Any] = dict()
     for name, d in params.items():
         initialized_params[name] = Q_(d["value"], d["unit"])
 

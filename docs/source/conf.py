@@ -51,7 +51,7 @@ autodoc_member_order = "bysource"
 add_module_names = False
 
 templates_path = ["_templates"]
-exclude_patterns = []
+exclude_patterns = ["BFMM.productivity.*.rst"]
 
 
 # -- Options for HTML output -------------------------------------------------

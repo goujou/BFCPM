@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import (TYPE_CHECKING, Any, Dict, List, NewType, Optional, Tuple,
                     TypedDict, Union)
 
-from ACGCA.__init__ import Q_
+from . import Q_
 
 if TYPE_CHECKING:
-    from ACGCA.management.management_strategy import ManagementStrategy
+    from .management.management_strategy import ManagementStrategy
 
 
 Quantity = NewType("Q_", Q_)  # type: ignore
@@ -19,14 +19,14 @@ TreeSoilInterface = Dict[str, Dict[str, float]]
 """Interface between a tree and a soil model.
 
 Shape: {tree_pool_from: {soil_pool_to_1: frac1}, ...}. See also values of
-:obj:`~ACGCA.simulation_parameters.tree_soil_interfaces`.
+:obj:`~.simulation_parameters.tree_soil_interfaces`.
 """
 
 
 WoodProductInterface = Dict[str, Any]
 """Interface between a tree and a wood product model.
 
-See values of :obj:`~ACGCA.simulation_parameters.wood_product_interfaces`.
+See values of :obj:`~.simulation_parameters.wood_product_interfaces`.
 """
 
 
@@ -42,9 +42,9 @@ TreeExternalOutputFluxes = Dict[Tuple[str, Union[str, None]], Quantity]
 """External output fluxes from a tree.
 
 External output fluxes from
-:class:`~ACGCA.alloc.ACGCA_marklund_tree_C_only.ACGCAMarklundTree_C_Only`.
+:class:`.trees.single_tree_C_model.SingleTreeCModel`.
 According to :obj:`TreeSoilInterface`,
-:class:`~ACGCA.productivity.stand.Stand` distributes them to the atmosphere or
+:class:`~.stand.Stand` distributes them to the atmosphere or
 to the soil or the atmosphere (pool_to=None).
 """
 
@@ -58,21 +58,21 @@ CuttingFluxes = Dict[Tuple[str, str], Quantity]
 
 OneSpeciesParams = Dict[str, Any]
 """Parameter dictionary for one species.
-Examples in :mod:`~ACGCA.alloc.ACGCA_marklund_tree_params`.
+Examples in :mod:`~trees.single_tree_params`.
 """
 
 
 SpeciesParams = Dict[str, OneSpeciesParams]
 """Parameter dictionary for all involved tree species.
 
-Example in :mod:`~ACGCA.alloc.ACGCA_marklund_tree_params`.
+Example in :mod:`~trees.single_tree_params`.
 """
 
 
 MSData = Tuple[str, str]
 """The tuple is a (Trigger, Action) pair for a MeanTree to plant.
 
-The strings must be found in :mod:`~ACGCA.management.library.py`.
+The strings must be found in :mod:`~.management.library.py`.
 """
 
 
@@ -97,7 +97,7 @@ TreeSetting = Tuple[int, Q_, Q_, "ManagementStrategy", Optional[str]]
 
 
 SpeciesSettings = Dict[str, List[TreeSetting]]
-"""The species setting of a new :class:`ACGCA.productivity.stand:Stand`.
+"""The species setting of a new :class:`~stand.Stand`.
 
 The key is supposed to give the tree species.
 """

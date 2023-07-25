@@ -3,12 +3,12 @@ Soil C model with 8 pools: Litter, 6 dead-wood classes, SOC.
 """
 from __future__ import annotations
 
-from typing import Callable
+from typing import Callable, Dict
 
 import numpy as np
-from bgc_md2.models.ACGCASoilModelDeadWoodClasses.source import (srm, u_1, u_2,
-                                                                 u_3, u_4, u_5,
-                                                                 u_6, u_Litter)
+from bgc_md2.models.BFMMSoilModelDeadWoodClasses.source import (srm, u_1, u_2,
+                                                                u_3, u_4, u_5,
+                                                                u_6, u_Litter)
 from CompartmentalSystems.helpers_reservoir import \
     numerical_function_from_expression
 
@@ -32,7 +32,7 @@ class SoilCDeadWoodClasses(SoilCModelABC):
         )
 
     # required by asbtract base class
-    def _create_U(self, input_fluxes: dict[str, Q_[float]]) -> np.ndarray:
+    def _create_U(self, input_fluxes: Dict[str, Q_[float]]) -> np.ndarray:
         nr_pools = self.srm.nr_pools
 
         _u_Litter = input_fluxes.get("Litter", Q_(0, self.flux_unit)).to(self.flux_unit)

@@ -6,16 +6,12 @@ from __future__ import annotations
 from functools import _CacheInfo, _lru_cache_wrapper, wraps
 from itertools import product
 from pathlib import Path
-from typing import Any, Callable, Dict, Hashable, Union
+from typing import Any, Callable, Dict, Hashable, List, Tuple, Union
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import xarray as xr
-from ACGCA.__init__ import Q_
-from ACGCA.productivity.constants import EPS, PAR_TO_UMOL
-# from ACGCA.productivity.stand import Stand # circular import
-from ACGCA.productivity.utils import e_sat, read_forcing
 from CompartmentalSystems.discrete_model_run import DiscreteModelRun as DMR
 from frozendict import frozendict  # type: ignore[attr-defined]
 from LAPM.discrete_linear_autonomous_pool_model import \
@@ -23,6 +19,10 @@ from LAPM.discrete_linear_autonomous_pool_model import \
 from matplotlib import animation
 from matplotlib.lines import Line2D
 from scipy.interpolate import interp1d, interp2d
+
+from . import Q_
+from .productivity.constants import EPS, PAR_TO_UMOL
+from .productivity.utils import e_sat, read_forcing
 
 # from autograd import grad
 # from scipy.optimize import root as root_
@@ -140,11 +140,11 @@ def freeze(obj: Any) -> Hashable:
     raise TypeError(msg)
 
 
-def freeze_all(*args, **kwargs) -> tuple[Hashable, Hashable]:
+def freeze_all(*args, **kwargs) -> Tuple[Hashable, Hashable]:
     """
     Freeze all ``args`` and ``kwargs`` to make them hashable.
 
-    Default function for ``freeze_func`` argument of :meth:`~ACGCA.utils.make_lru_cacheable`.
+    Default function for ``freeze_func`` argument of :meth:`~.utils.make_lru_cacheable`.
     Can be massively slower and should be replaced by a freeze function
     tailored to the arguments of the specific function to be cached.
 
@@ -161,11 +161,11 @@ def freeze_all(*args, **kwargs) -> tuple[Hashable, Hashable]:
     return frozen_args, frozen_kwargs  # type: ignore
 
 
-def unfreeze_none(*frozen_args, **frozen_kwargs) -> tuple[Hashable, Hashable]:
+def unfreeze_none(*frozen_args, **frozen_kwargs) -> Tuple[Hashable, Hashable]:
     """
     Do not 'unfreeze' any of ``frozen_args`` or ``frozen_kwargs``.
 
-    Default function for ``unfreeze_func`` argument of :meth:`~ACGCA.utils.make_lru_cacheable`.
+    Default function for ``unfreeze_func`` argument of :meth:`~.utils.make_lru_cacheable`.
     Should be replaced by a 'unfreeze' function suited to the input needs
     of the specific function ``f`` to be cached.
 
@@ -273,14 +273,14 @@ def latexify_unit(unit: str) -> str:
 
 
 def get_global_pool_nrs_from_entity_nrs(
-    entity_nrs: list[int], ds: xr.Dataset
+    entity_nrs: List[int], ds: xr.Dataset
 ) -> np.ndarray:
     """Return array of DMR pool numbers for entity.
 
     Args:
         entity_nrs: entity numbers in ``ds`` whose pool numbers are considered
         ds: ``Dataset`` from
-            :meth:`~ACGCA.simulation.simulation.Simulation.get_stocks_and_fluxes_dataset`
+            :meth:`~.simulation.simulation.Simulation.get_stocks_and_fluxes_dataset`
 
     Returns:
         pool numbers of the DMR belonging to the entity
@@ -309,7 +309,7 @@ def create_dmr_from_stocks_and_fluxes(
 
     Args:
         ds_origin: dataset of stocks and fluxes as returned by
-            :meth:`~ACGCA.simulation.simulation.Simulation.get_stocks_and_fluxes_dataset`
+            :meth:`~.simulation.simulation.Simulation.get_stocks_and_fluxes_dataset`
         divide_by: the timestep of the data in ``ds`` might be too coarse such
             ``DMR`` raises an exception telling that a negative value occurs
             on the diagonal of a discrete compartmental matrix :math:`\mathrm{B}`
@@ -787,7 +787,7 @@ def add_stocks_from_dmr_to_ds(ds: xr.Dataset, dmr: DMR) -> xr.Dataset:
 # create start age moments and distributions
 def load_start_age_data_from_eq_for_soil_and_wood_products(
     dmr: DMR, dmr_eq: DLAPM, up_to_order: int
-) -> dict[str, Union[np.ndarray, Callable]]:
+) -> Dict[str, Union[np.ndarray, Callable]]:
     """Create/load start age moments and densities.
 
     Overwrite all age values associated to trees with zeros.
@@ -816,7 +816,7 @@ def load_start_age_data_from_eq_for_soil_and_wood_products(
     index_set[dmr_active_pool_nrs] = False
     start_values[index_set] = 0.0
 
-    start_age_data: dict[str, Union[np.ndarray, Callable]] = dict()
+    start_age_data: Dict[str, Union[np.ndarray, Callable]] = dict()
 
     # compile start age moments, also for inputs_only system
     for k in range(1, up_to_order + 1, 1):
@@ -870,7 +870,7 @@ def load_start_age_data_from_eq_for_soil_and_wood_products(
 # create start age moments and distributions
 def load_start_age_data_from_eq(
     dmr: DMR, dmr_eq: DLAPM, up_to_order: int
-) -> dict[str, Union[np.ndarray, Callable]]:
+) -> Dict[str, Union[np.ndarray, Callable]]:
     """Create/load start age moments and densities.
 
     Args:
@@ -1285,7 +1285,7 @@ def create_simulation_video(
     var_names = ["tree_biomass", "soil_biomass", "wood_product_biomass"]
     variables = [ds[var] for var in var_names]
     total_biomass = sum([var for var in variables])
-    total_biomass = Q_(total_biomass.data, "gC/m^2").to("kgC/m^2")
+    total_biomass = Q_(total_biomass.data, "gC/m^2").to("kgC/m^2")  # type: ignore
 
     ys = total_biomass.magnitude
     f_total_biomass = interp1d(years, ys)
@@ -1371,7 +1371,7 @@ def create_simulation_video(
 #    return root_res
 
 
-def get_pars_comb(pars: dict[str, list[float]], pars_comb_nr: int) -> dict[str, float]:
+def get_pars_comb(pars: Dict[str, List[float]], pars_comb_nr: int) -> Dict[str, float]:
     r"""Make all possible combinations of parameter values and return one.
 
     Args:

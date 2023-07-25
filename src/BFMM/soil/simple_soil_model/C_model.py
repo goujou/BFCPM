@@ -4,10 +4,10 @@ coarse woody debris, and soil organic carbon.
 """
 from __future__ import annotations
 
-from typing import Callable
+from typing import Callable, Dict, Tuple
 
 import numpy as np
-from bgc_md2.models.ACGCASoilModel2.source import srm, u_CWD, u_L
+from bgc_md2.models.BFMMSimpleSoilModel.source import srm, u_CWD, u_L
 from CompartmentalSystems.helpers_reservoir import \
     numerical_function_from_expression
 
@@ -31,7 +31,7 @@ class SimpleSoilCModel(SoilCModelABC):
         )
 
     # required by asbtract base class
-    def _create_U(self, input_fluxes: dict[str, Q_[float]]) -> np.ndarray:
+    def _create_U(self, input_fluxes: Dict[str, Q_[float]]) -> np.ndarray:
         nr_pools = self.srm.nr_pools
 
         flux_unit = self.flux_unit

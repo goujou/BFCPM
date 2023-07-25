@@ -19,6 +19,7 @@ Top-level modules
     :recursive:
     :template: module.rst
 
+    ~BFMM.stand
     ~BFMM.type_aliases
     ~BFMM.utils
 
@@ -31,14 +32,38 @@ Global model components
     :recursive:
     :template: module.rst
 
+    ~BFMM.productivity
+    ~BFMM.trees
     ~BFMM.soil
     ~BFMM.wood_products
+
+    ~BFMM.management
+
+
+Run a simulation
+================
+
+.. autosummary::
+    :toctree:
+    :recursive:
+    :template: module.rst
+
+    ~BFMM.simulation
 
 
 Notebooks
 =========
 
 .. toctree:: notebooks/Untitled.ipynb
+
+
+Notes
+=====
+
+    .. [1] Launiainen, Samuli, et al. "Coupling boreal forest CO2, H2O 
+        and energy flows by a vertically structured forest canopy–Soil 
+        model with separate bryophyte layer." Ecological modelling 312 
+        (2015): 385-405.
 
 
 Indices and tables

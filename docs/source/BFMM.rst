@@ -7,7 +7,11 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
+   BFMM.management
+   BFMM.productivity
+   BFMM.simulation
    BFMM.soil
+   BFMM.trees
    BFMM.wood_products
 
 Submodules
@@ -16,7 +20,10 @@ Submodules
 .. toctree::
    :maxdepth: 4
 
-   BFMM.make_model_figs
+   BFMM.params
+   BFMM.prepare_stand
+   BFMM.simulation_parameters
+   BFMM.stand
    BFMM.type_aliases
    BFMM.utils
 

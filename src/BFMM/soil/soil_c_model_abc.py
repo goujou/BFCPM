@@ -7,7 +7,7 @@ to ensure the commutincation with the stand.
 from __future__ import annotations
 
 from abc import ABCMeta, abstractmethod, abstractproperty
-from typing import Callable
+from typing import Callable, Dict, List
 
 import numpy as np
 import xarray as xr
@@ -67,11 +67,11 @@ class SoilCModelABC(metaclass=ABCMeta):
 
         # create U_func
         self._U_func = self._create_U_func()
-        self._Us: list[np.ndarray] = []
+        self._Us: List[np.ndarray] = []
 
         # prepare parameters and functions
 
-        func_dict: dict[str, Callable] = dict()
+        func_dict: Dict[str, Callable] = dict()
         free_variables = tuple(self.srm.state_vector)
 
         # create internal flux functions
@@ -83,13 +83,13 @@ class SoilCModelABC(metaclass=ABCMeta):
                 expr, free_variables, par_dict, func_dict
             )
         self._internal_flux_funcs = internal_flux_funcs
-        self._Fs: list[np.ndarray] = []
+        self._Fs: List[np.ndarray] = []
 
         # create R_func
         self._R_func = numerical_function_from_expression(
             self.srm.external_outputs, free_variables, par_dict, func_dict
         )
-        self._Rs: list[np.ndarray] = []
+        self._Rs: List[np.ndarray] = []
 
     # properties and methods required by stand
 
@@ -109,27 +109,27 @@ class SoilCModelABC(metaclass=ABCMeta):
         return self.srm.nr_pools
 
     @property
-    def xs(self) -> list[np.ndarray]:
+    def xs(self) -> List[np.ndarray]:
         """List of state vectors."""
         return self._xs
 
     @property
-    def Us(self) -> list[np.ndarray]:
+    def Us(self) -> List[np.ndarray]:
         """List of external input vectors."""
         return self._Us
 
     @property
-    def Fs(self) -> list[np.ndarray]:
+    def Fs(self) -> List[np.ndarray]:
         """List of internal flux matrices."""
         return self._Fs
 
     @property
-    def Rs(self) -> list[np.ndarray]:
+    def Rs(self) -> List[np.ndarray]:
         """List of external output vectors."""
         return self._Rs
 
     @property
-    def pool_names(self) -> list[str]:
+    def pool_names(self) -> List[str]:
         """List of pool names."""
         return [sv.name for sv in self.srm.state_vector]
 
@@ -321,7 +321,7 @@ class SoilCModelABC(metaclass=ABCMeta):
         """Create the input flux function."""
 
     @abstractmethod
-    def _create_U(self, input_fluxes: dict[str, Q_[float]]) -> np.ndarray:
+    def _create_U(self, input_fluxes: Dict[str, Q_[float]]) -> np.ndarray:
         """Make numeric input vector from infput fluxes."""
 
     def _check_consistency(self):

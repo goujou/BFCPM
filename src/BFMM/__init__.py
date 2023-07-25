@@ -17,20 +17,26 @@ from scipy.integrate import quad
 BASE_PATH = Path(__file__).parent.parent.parent
 """Package base path."""
 
+FIGS_PATH = BASE_PATH.joinpath("figs")
+"""Path for figures."""
+FIGS_PATH.mkdir(parents=False, exist_ok=True)
+
 DATA_PATH = BASE_PATH.joinpath("data")
 """Package data folder path."""
+DATA_PATH.mkdir(parents=False, exist_ok=True)
+
+PRE_SPINUPS_PATH = BASE_PATH.joinpath("pre_spinups")
+"""Pre-spinups folder path."""
+PRE_SPINUPS_PATH.mkdir(parents=False, exist_ok=True)
 
 SIMULATIONS_PATH = DATA_PATH.joinpath("simulations")
 """Simulation output data path."""
+SIMULATIONS_PATH.mkdir(parents=False, exist_ok=True)
 
-FIGS_PATH = BASE_PATH.joinpath("figs")
-"""Path for figures."""
-
-LOGS_PATH = BASE_PATH.joinpath("logfiles")
+LOGS_PATH = DATA_PATH.joinpath("logfiles")
 """Path for general log files."""
+LOGS_PATH.mkdir(parents=False, exist_ok=True)
 
-# create data folder if it does not yet exist
-DATA_PATH.mkdir(parents=False, exist_ok=True)
 
 # define new units and their relations
 ureg = pint.UnitRegistry()

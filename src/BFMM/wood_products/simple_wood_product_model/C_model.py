@@ -5,12 +5,11 @@ Two pools: short- (:math:`WP_S`) and long-lived (:math:`WP_L`) material.
 """
 from __future__ import annotations
 
-from typing import Callable
+from typing import Callable, Dict, List
 
 import numpy as np
-from bgc_md2.models.ACGCAWoodProductModel.source import WP_L_input, WP_S_input
-from bgc_md2.models.ACGCAWoodProductModel.source import srm
-from bgc_md2.models.ACGCAWoodProductModel.source import srm as srm_SSM
+from bgc_md2.models.BFMMSimpleWoodProductModel.source import (WP_L_input,
+                                                              WP_S_input, srm)
 from CompartmentalSystems.helpers_reservoir import \
     numerical_function_from_expression
 
@@ -34,7 +33,7 @@ class SimpleWoodProductModel(WoodProductModelABC):
 
     # required by abstract base class
     @property
-    def pool_names(self) -> list[str]:
+    def pool_names(self) -> List[str]:
         return [sv.name for sv in self.srm.state_vector]
 
     ###########################################################################
@@ -46,7 +45,7 @@ class SimpleWoodProductModel(WoodProductModelABC):
         )
 
     # required by asbtract base class
-    def _create_U(self, input_fluxes: dict[str, Q_[float]]) -> np.ndarray:
+    def _create_U(self, input_fluxes: Dict[str, Q_[float]]) -> np.ndarray:
         nr_pools = self.srm.nr_pools
 
         flux_unit = self.flux_unit
