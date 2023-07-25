@@ -1,0 +1,442 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../../genindex.html" /><link rel="search" title="Search" href="../../../../search.html" />
+
+    <!-- Generated with Sphinx 6.1.3 and Furo 2023.05.20 -->
+        <title>BFMM.wood_products.simple_wood_product_model.C_model_parameters - BFMM</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../../index.html"><div class="brand">BFMM</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../../index.html">
+  
+  
+  <span class="sidebar-brand-text">BFMM</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../BFMM.stand.html">stand</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of stand</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../BFMM.stand.Stand.html">Stand</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../BFMM.type_aliases.html">type_aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../BFMM.utils.html">utils</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../BFMM.productivity.html">productivity</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../BFMM.trees.html">trees</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of trees</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../BFMM.trees.allometry.html">allometry</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../BFMM.trees.mean_tree.html">mean_tree</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of mean_tree</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.trees.mean_tree.MeanTree.html">MeanTree</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../BFMM.trees.single_tree_C_model.html">single_tree_C_model</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of single_tree_C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.trees.single_tree_C_model.SingleTreeCModel.html">SingleTreeCModel</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../BFMM.trees.single_tree_allocation.html">single_tree_allocation</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of single_tree_allocation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.trees.single_tree_allocation.SingleTree.html">SingleTree</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../BFMM.trees.single_tree_params.html">single_tree_params</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../BFMM.trees.single_tree_vars.html">single_tree_vars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../BFMM.trees.tree_utils.html">tree_utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../BFMM.soil.html">soil</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of soil</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../BFMM.soil.dead_wood_classes.html">dead_wood_classes</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of dead_wood_classes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../BFMM.soil.dead_wood_classes.C_model.html">C_model</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../BFMM.soil.dead_wood_classes.C_model.SoilCDeadWoodClasses.html">SoilCDeadWoodClasses</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.soil.dead_wood_classes.C_model_parameters.html">C_model_parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../BFMM.soil.simple_soil_model.html">simple_soil_model</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of simple_soil_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../BFMM.soil.simple_soil_model.C_model.html">C_model</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../BFMM.soil.simple_soil_model.C_model.SimpleSoilCModel.html">SimpleSoilCModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.soil.simple_soil_model.C_model_parameters.html">C_model_parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../BFMM.soil.soil_c_model_abc.html">soil_c_model_abc</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of soil_c_model_abc</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.soil.soil_c_model_abc.SoilCModelABC.html">SoilCModelABC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../BFMM.wood_products.html">wood_products</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of wood_products</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../BFMM.wood_products.simple_wood_product_model.html">simple_wood_product_model</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of simple_wood_product_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../BFMM.wood_products.simple_wood_product_model.C_model.html">C_model</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../BFMM.wood_products.simple_wood_product_model.C_model.SimpleWoodProductModel.html">SimpleWoodProductModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.wood_products.simple_wood_product_model.C_model_parameters.html">C_model_parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../BFMM.wood_products.wood_product_model_abc.html">wood_product_model_abc</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of wood_product_model_abc</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.wood_products.wood_product_model_abc.WoodProductModelABC.html">WoodProductModelABC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../BFMM.management.html">management</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of management</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../BFMM.management.library.html">library</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../BFMM.management.management_strategy.html">management_strategy</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of management_strategy</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.management.management_strategy.Cut.html">Cut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.management.management_strategy.CutAndReplant.html">CutAndReplant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.management.management_strategy.CutWaitAndReplant.html">CutWaitAndReplant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.management.management_strategy.ManagementActionABC.html">ManagementActionABC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.management.management_strategy.ManagementStrategy.html">ManagementStrategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.management.management_strategy.OnDBHLimit.html">OnDBHLimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.management.management_strategy.OnDTHLimit.html">OnDTHLimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.management.management_strategy.OnDelayOneTime.html">OnDelayOneTime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.management.management_strategy.OnNLimit.html">OnNLimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.management.management_strategy.OnPeriodically.html">OnPeriodically</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.management.management_strategy.OnSBALimit.html">OnSBALimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.management.management_strategy.OnSBAvsDTH.html">OnSBAvsDTH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.management.management_strategy.OnStandAges.html">OnStandAges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.management.management_strategy.OnTimeIntervals.html">OnTimeIntervals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.management.management_strategy.PCT.html">PCT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.management.management_strategy.Plant.html">Plant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.management.management_strategy.Thin.html">Thin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.management.management_strategy.ThinStand.html">ThinStand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.management.management_strategy.TriggerABC.html">TriggerABC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.management.management_strategy.WaitAndPlant.html">WaitAndPlant</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../BFMM.simulation.html">simulation</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of simulation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../BFMM.simulation.library.html">library</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../BFMM.simulation.recorded_simulation.html">recorded_simulation</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of recorded_simulation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.simulation.recorded_simulation.RecordedSimulation.html">RecordedSimulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../BFMM.simulation.simulation.html">simulation</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of simulation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../BFMM.simulation.simulation.Simulation.html">Simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../BFMM.simulation.utils.html">utils</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebooks/Untitled.html">Test notebook</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <h1>Source code for BFMM.wood_products.simple_wood_product_model.C_model_parameters</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Parameters for :class:`~.C_model.SimpleWoodProductModel`.</span>
+
+<span class="sd">Furthermore, there is a function to make a LaTeX table for the parameters.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span>
+
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Symbol</span><span class="p">,</span> <span class="n">latex</span>
+
+<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">Q_</span>
+<span class="kn">from</span> <span class="nn">...utils</span> <span class="kn">import</span> <span class="n">latexify_unit</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;k_S&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;1/yr&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;turnover time of short-term wood products&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table 4]</span><span class="si">{Pukkala2014FPE}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;k_L&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="mf">50.0</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;1/yr&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;turnover time of long-term wood products&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table 4]</span><span class="si">{Pukkala2014FPE}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+<span class="sd">&quot;&quot;&quot;Model parameters.&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="initialize_params"><a class="viewcode-back" href="../../../../BFMM.wood_products.simple_wood_product_model.C_model_parameters.html#BFMM.wood_products.simple_wood_product_model.C_model_parameters.initialize_params">[docs]</a><span class="k">def</span> <span class="nf">initialize_params</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize the parameter dictionary.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary</span>
+
+<span class="sd">        - name: value</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">initialized_params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">initialized_params</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;unit&quot;</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">initialized_params</span></div>
+
+
+<div class="viewcode-block" id="params_to_latex_table"><a class="viewcode-back" href="../../../../BFMM.wood_products.simple_wood_product_model.C_model_parameters.html#BFMM.wood_products.simple_wood_product_model.C_model_parameters.params_to_latex_table">[docs]</a><span class="k">def</span> <span class="nf">params_to_latex_table</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a LaTeX table from the parameters and print it to the screen.&quot;&quot;&quot;</span>
+    <span class="n">ignore_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;S_0&quot;</span><span class="p">,</span> <span class="s2">&quot;L_0&quot;</span><span class="p">]</span>
+
+    <span class="n">table_head</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="sa">r</span><span class="s2">&quot;\begin</span><span class="si">{table}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="sa">r</span><span class="s2">&quot;\tiny&quot;</span><span class="p">,</span>
+        <span class="sa">r</span><span class="s2">&quot;\begin</span><span class="si">{tabular}</span><span class="s2">{lllp</span><span class="si">{4cm}</span><span class="s2">p</span><span class="si">{4cm}</span><span class="s2">}&quot;</span><span class="p">,</span>
+        <span class="sa">r</span><span class="s2">&quot;\thead{ }</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="sa">r</span><span class="s2">&quot;\thead</span><span class="si">{Symbol}</span><span class="s2"> &amp; \thead</span><span class="si">{Value}</span><span class="s2"> &amp; \thead</span><span class="si">{Unit}</span><span class="s2"> &amp; \thead</span><span class="si">{Description}</span><span class="s2"> &amp; \thead</span><span class="si">{Source}</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">ignore_list</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;$&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">latex</span><span class="p">(</span><span class="n">Symbol</span><span class="p">(</span><span class="n">name</span><span class="p">))]</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;$&quot;</span><span class="p">]</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="n">latex_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span> <span class="ow">in</span> <span class="n">latex_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">)</span>
+
+        <span class="n">unit</span> <span class="o">=</span> <span class="n">latexify_unit</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;unit&quot;</span><span class="p">])</span>
+
+        <span class="n">val</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s2">&quot;e&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="ow">or</span> <span class="n">val</span> <span class="o">&lt;</span> <span class="mf">1e-02</span><span class="p">:</span>
+            <span class="n">val_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">val</span><span class="si">:</span><span class="s2">0.3e</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">elif</span> <span class="n">val</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+            <span class="n">val_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">val_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="s2">$&quot;</span>
+
+        <span class="n">row</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot; &amp; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">name</span><span class="p">,</span> <span class="n">val_str</span><span class="p">,</span> <span class="n">unit</span><span class="p">,</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;info&quot;</span><span class="p">][</span><span class="s2">&quot;descr&quot;</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;info&quot;</span><span class="p">][</span><span class="s2">&quot;source&quot;</span><span class="p">]])</span>
+            <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\\\</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
+    <span class="n">s</span> <span class="o">=</span> <span class="n">table_head</span> <span class="o">+</span> <span class="n">rows</span> <span class="o">+</span> <span class="p">[</span><span class="sa">r</span><span class="s2">&quot;\end</span><span class="si">{tabular}</span><span class="s2">&quot;</span><span class="p">]</span>
+    <span class="n">s</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">r</span><span class="s2">&quot;\caption{&quot;</span> <span class="o">+</span> <span class="s2">&quot;Wood product C module parameters.&quot;</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;}&quot;</span><span class="p">]</span>
+    <span class="n">s</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">r</span><span class="s2">&quot;\label{table:&quot;</span> <span class="o">+</span> <span class="s2">&quot;wood_product_C_params&quot;</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;}&quot;</span><span class="p">]</span>
+    <span class="n">s</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">r</span><span class="s2">&quot;\end</span><span class="si">{table}</span><span class="s2">&quot;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span><span class="p">))</span></div>
+
+
+<span class="c1">###############################################################################</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">params_to_latex_table</span><span class="p">()</span>
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Holger Metzler, Samuli Launiainen, Viulia Vico
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../_static/scripts/furo.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    </body>
+</html>

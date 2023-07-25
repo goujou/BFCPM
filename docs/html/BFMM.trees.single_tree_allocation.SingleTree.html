@@ -1,0 +1,1591 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="single_tree_params" href="BFMM.trees.single_tree_params.html" /><link rel="prev" title="single_tree_allocation" href="BFMM.trees.single_tree_allocation.html" />
+
+    <!-- Generated with Sphinx 6.1.3 and Furo 2023.05.20 -->
+        <title>SingleTree - BFMM</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">BFMM</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">BFMM</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BFMM.stand.html">stand</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of stand</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.stand.Stand.html">Stand</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="BFMM.type_aliases.html">type_aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BFMM.utils.html">utils</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="BFMM.productivity.html">productivity</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="BFMM.trees.html">trees</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of trees</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="BFMM.trees.allometry.html">allometry</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.trees.mean_tree.html">mean_tree</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of mean_tree</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.trees.mean_tree.MeanTree.html">MeanTree</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.trees.single_tree_C_model.html">single_tree_C_model</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of single_tree_C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.trees.single_tree_C_model.SingleTreeCModel.html">SingleTreeCModel</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="BFMM.trees.single_tree_allocation.html">single_tree_allocation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of single_tree_allocation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">SingleTree</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.trees.single_tree_params.html">single_tree_params</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.trees.single_tree_vars.html">single_tree_vars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.trees.tree_utils.html">tree_utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BFMM.soil.html">soil</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of soil</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.soil.dead_wood_classes.html">dead_wood_classes</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of dead_wood_classes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="BFMM.soil.dead_wood_classes.C_model.html">C_model</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="BFMM.soil.dead_wood_classes.C_model.SoilCDeadWoodClasses.html">SoilCDeadWoodClasses</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.soil.dead_wood_classes.C_model_parameters.html">C_model_parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.soil.simple_soil_model.html">simple_soil_model</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of simple_soil_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="BFMM.soil.simple_soil_model.C_model.html">C_model</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="BFMM.soil.simple_soil_model.C_model.SimpleSoilCModel.html">SimpleSoilCModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.soil.simple_soil_model.C_model_parameters.html">C_model_parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.soil.soil_c_model_abc.html">soil_c_model_abc</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of soil_c_model_abc</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.soil.soil_c_model_abc.SoilCModelABC.html">SoilCModelABC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BFMM.wood_products.html">wood_products</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of wood_products</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.wood_products.simple_wood_product_model.html">simple_wood_product_model</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of simple_wood_product_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="BFMM.wood_products.simple_wood_product_model.C_model.html">C_model</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="BFMM.wood_products.simple_wood_product_model.C_model.SimpleWoodProductModel.html">SimpleWoodProductModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.wood_products.simple_wood_product_model.C_model_parameters.html">C_model_parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.wood_products.wood_product_model_abc.html">wood_product_model_abc</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of wood_product_model_abc</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.wood_products.wood_product_model_abc.WoodProductModelABC.html">WoodProductModelABC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BFMM.management.html">management</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of management</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.management.library.html">library</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.management.management_strategy.html">management_strategy</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of management_strategy</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.Cut.html">Cut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.CutAndReplant.html">CutAndReplant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.CutWaitAndReplant.html">CutWaitAndReplant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.ManagementActionABC.html">ManagementActionABC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.ManagementStrategy.html">ManagementStrategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.OnDBHLimit.html">OnDBHLimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.OnDTHLimit.html">OnDTHLimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.OnDelayOneTime.html">OnDelayOneTime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.OnNLimit.html">OnNLimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.OnPeriodically.html">OnPeriodically</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.OnSBALimit.html">OnSBALimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.OnSBAvsDTH.html">OnSBAvsDTH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.OnStandAges.html">OnStandAges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.OnTimeIntervals.html">OnTimeIntervals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.PCT.html">PCT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.Plant.html">Plant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.Thin.html">Thin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.ThinStand.html">ThinStand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.TriggerABC.html">TriggerABC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.WaitAndPlant.html">WaitAndPlant</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BFMM.simulation.html">simulation</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of simulation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.simulation.library.html">library</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.simulation.recorded_simulation.html">recorded_simulation</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of recorded_simulation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.simulation.recorded_simulation.RecordedSimulation.html">RecordedSimulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.simulation.simulation.html">simulation</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of simulation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.simulation.simulation.Simulation.html">Simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.simulation.utils.html">utils</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Untitled.html">Test notebook</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="singletree">
+<h1>SingleTree<a class="headerlink" href="#singletree" title="Permalink to this heading">#</a></h1>
+<p>Qualified name: <code class="docutils literal notranslate"><span class="pre">BFMM.trees.single\_tree\_allocation.SingleTree</span></code></p>
+<p>CCCC</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SingleTree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">species</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Delta_t=&lt;Quantity(1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'year')&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_S=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_TS=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_TH=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_species_params=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tree_age=&lt;Quantity(0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'year')&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol=1e-08</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Single tree class comprising internal cycling and external allometries.</p>
+<p>An instance of this class can be used to initialize an instance of
+<code class="xref py py-class docutils literal notranslate"><span class="pre">SingleTreeCModel</span></code>
+which can then be used to initialize an instance of
+<a class="reference internal" href="BFMM.trees.mean_tree.MeanTree.html#BFMM.trees.mean_tree.MeanTree" title="BFMM.trees.mean_tree.MeanTree"><code class="xref py py-class docutils literal notranslate"><span class="pre">MeanTree</span></code></a> which in turn
+can be added to a <a class="reference internal" href="BFMM.stand.Stand.html#BFMM.stand.Stand" title="BFMM.stand.Stand"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stand</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>species</strong> – tree species, element of <code class="docutils literal notranslate"><span class="pre">[&quot;pine&quot;,</span> <span class="pre">&quot;spruce&quot;,</span> <span class="pre">&quot;birch&quot;]</span></code></p></li>
+<li><p><strong>r</strong> – radius at trunk base [m]</p></li>
+<li><p><strong>Delta_t</strong> – time step [yr]</p></li>
+<li><p><strong>C_S</strong> – initial value of <code class="docutils literal notranslate"><span class="pre">C_S</span> <span class="pre">pool</span></code>, required if tree is
+big enough to have heartwood, otherwise defaults to <code class="docutils literal notranslate"><span class="pre">Q_(&quot;0</span> <span class="pre">g_gluc&quot;)</span></code></p></li>
+<li><p><strong>B_TS</strong> – initial value of <code class="docutils literal notranslate"><span class="pre">B_TS</span></code> pool, optional</p></li>
+<li><p><strong>B_TH</strong> – initial value of <code class="docutils literal notranslate"><span class="pre">B_TH</span></code> pool, required if tree is
+big enough to have heartwood, otherwise defaults to <code class="docutils literal notranslate"><span class="pre">Q_(&quot;0</span> <span class="pre">g_dw&quot;)</span></code></p></li>
+<li><p><strong>custom_species_params</strong> – tree species parameters (for all species)</p></li>
+<li><p><strong>tree_age</strong> – age of the tree [yr]</p></li>
+<li><p><strong>tol</strong> – absolute tolerance in check for self-consistency</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.species">
+<span class="sig-name descname"><span class="pre">species</span></span><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.species" title="Permalink to this definition">#</a></dt>
+<dd><p>element of <code class="docutils literal notranslate"><span class="pre">[&quot;pine&quot;,</span> <span class="pre">&quot;spruce&quot;,</span> <span class="pre">&quot;birch&quot;]</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.r">
+<span class="sig-name descname"><span class="pre">r</span></span><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.r" title="Permalink to this definition">#</a></dt>
+<dd><p>radius at trunk base [m]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.Delta_t">
+<span class="sig-name descname"><span class="pre">Delta_t</span></span><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.Delta_t" title="Permalink to this definition">#</a></dt>
+<dd><p>time step [yr]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.params">
+<span class="sig-name descname"><span class="pre">params</span></span><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.params" title="Permalink to this definition">#</a></dt>
+<dd><p>tree parameters, mostly allometric</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.tol">
+<span class="sig-name descname"><span class="pre">tol</span></span><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.tol" title="Permalink to this definition">#</a></dt>
+<dd><p>absolute tolerance in check for self-consistency [-]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_L_func" title="BFMM.trees.single_tree_allocation.SingleTree.B_L_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B_L_func</span></code></a></p></td>
+<td><p>Leaf biomass [g_dw].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_OH_func" title="BFMM.trees.single_tree_allocation.SingleTree.B_OH_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B_OH_func</span></code></a></p></td>
+<td><p>Coarse roots and branches (other) heartwood biomass [g_dw].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_OS_func" title="BFMM.trees.single_tree_allocation.SingleTree.B_OS_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B_OS_func</span></code></a></p></td>
+<td><p>Coarse roots and branches (other) sapwood biomass [g_dw].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_R_func" title="BFMM.trees.single_tree_allocation.SingleTree.B_R_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B_R_func</span></code></a></p></td>
+<td><p>Fine root biomass [g_dw].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_S_func" title="BFMM.trees.single_tree_allocation.SingleTree.B_S_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B_S_func</span></code></a></p></td>
+<td><p>Sapwood biomass (coarse roots and branches + trunk) [g_dw].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_T_func" title="BFMM.trees.single_tree_allocation.SingleTree.B_T_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B_T_func</span></code></a></p></td>
+<td><p>Trunk biomass [g_dw].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.C_S_star_func" title="BFMM.trees.single_tree_allocation.SingleTree.C_S_star_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">C_S_star_func</span></code></a></p></td>
+<td><p>Max.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.H_TH_func" title="BFMM.trees.single_tree_allocation.SingleTree.H_TH_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">H_TH_func</span></code></a></p></td>
+<td><p>Height of trunk heartwood section [m].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.H_func" title="BFMM.trees.single_tree_allocation.SingleTree.H_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">H_func</span></code></a></p></td>
+<td><p>Tree height from diameter at breast height [m].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.LA_func" title="BFMM.trees.single_tree_allocation.SingleTree.LA_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LA_func</span></code></a></p></td>
+<td><p>Total leaf area [m2].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.SLA_func" title="BFMM.trees.single_tree_allocation.SingleTree.SLA_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SLA_func</span></code></a></p></td>
+<td><p>Specific leaf area [m2 kg_dw-1].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.SW_func" title="BFMM.trees.single_tree_allocation.SingleTree.SW_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SW_func</span></code></a></p></td>
+<td><p>Sapwood radius at trunk base [m].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.V_TH_func" title="BFMM.trees.single_tree_allocation.SingleTree.V_TH_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">V_TH_func</span></code></a></p></td>
+<td><p>Volume of trunk heartwood section [m3].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.V_TS_func" title="BFMM.trees.single_tree_allocation.SingleTree.V_TS_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">V_TS_func</span></code></a></p></td>
+<td><p>Volume of trunk sapwood [m3].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.V_T_func" title="BFMM.trees.single_tree_allocation.SingleTree.V_T_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">V_T_func</span></code></a></p></td>
+<td><p>Trunk volume as computed by ACGCA [m3].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.clear_cache" title="BFMM.trees.single_tree_allocation.SingleTree.clear_cache"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear_cache</span></code></a></p></td>
+<td><p>Clear the cache.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_delta_W" title="BFMM.trees.single_tree_allocation.SingleTree.compute_delta_W"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_delta_W</span></code></a></p></td>
+<td><p>Maximum labile C storage capacity of newly produced sapwood [g_gluc g_dw-1].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_f_L_times_E" title="BFMM.trees.single_tree_allocation.SingleTree.compute_f_L_times_E"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_f_L_times_E</span></code></a></p></td>
+<td><p>Flux from transient pool to leaves [g_gluc yr-1].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_f_O_times_E" title="BFMM.trees.single_tree_allocation.SingleTree.compute_f_O_times_E"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_f_O_times_E</span></code></a></p></td>
+<td><p>Flux from labile pool to coarse roots and branches [g_gluc yr-1].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_f_R_times_E" title="BFMM.trees.single_tree_allocation.SingleTree.compute_f_R_times_E"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_f_R_times_E</span></code></a></p></td>
+<td><p>Flux from transient pool to fine roots [g_gluc yr-1].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_f_T_times_E" title="BFMM.trees.single_tree_allocation.SingleTree.compute_f_T_times_E"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_f_T_times_E</span></code></a></p></td>
+<td><p>Flux from labile pool to trunk [g_gluc yr-1].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_rho_W" title="BFMM.trees.single_tree_allocation.SingleTree.compute_rho_W"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_rho_W</span></code></a></p></td>
+<td><p>Density of newly produced sapwood [g_dw m-3].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_rho_from_allometry" title="BFMM.trees.single_tree_allocation.SingleTree.compute_rho_from_allometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_rho_from_allometry</span></code></a></p></td>
+<td><p>Wood density as predicted by allometries [g_dw m-3].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_v_O" title="BFMM.trees.single_tree_allocation.SingleTree.compute_v_O"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_v_O</span></code></a></p></td>
+<td><p>Sapwood to heartwood conversion rate of coarse roots and branches [yr-1].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_v_T" title="BFMM.trees.single_tree_allocation.SingleTree.compute_v_T"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_v_T</span></code></a></p></td>
+<td><p>Sapwood to heartwood conversion rate of trunk [yr-1].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.from_dbh" title="BFMM.trees.single_tree_allocation.SingleTree.from_dbh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_dbh</span></code></a></p></td>
+<td><p>Constructor from dbh instead of r.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.from_mleaf" title="BFMM.trees.single_tree_allocation.SingleTree.from_mleaf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_mleaf</span></code></a></p></td>
+<td><p>Initialize a class instant based on leaf biomass.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.h_B_func" title="BFMM.trees.single_tree_allocation.SingleTree.h_B_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">h_B_func</span></code></a></p></td>
+<td><p>Height at which trunk transitions from a neiloid to a paraboloid [m].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.h_C_func" title="BFMM.trees.single_tree_allocation.SingleTree.h_C_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">h_C_func</span></code></a></p></td>
+<td><p>Height at which trunk transitions from a paraboloid to a cone [m].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.lad_normed" title="BFMM.trees.single_tree_allocation.SingleTree.lad_normed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lad_normed</span></code></a></p></td>
+<td><p>Normalized leaf area density [m2 m-1] over grid <code class="docutils literal notranslate"><span class="pre">z</span></code>, integrates to 1.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.lambda_H_func" title="BFMM.trees.single_tree_allocation.SingleTree.lambda_H_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lambda_H_func</span></code></a></p></td>
+<td><p>Ratio of other heartwood to trunk heartwood by external allometries.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.lambda_S_func" title="BFMM.trees.single_tree_allocation.SingleTree.lambda_S_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lambda_S_func</span></code></a></p></td>
+<td><p>Ratio of other sapwood to trunk sapwood by external allometries.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.lambda_func" title="BFMM.trees.single_tree_allocation.SingleTree.lambda_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lambda_func</span></code></a></p></td>
+<td><p>Ratio of other (branches + coarse roots) to trunk.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.minimum_E_to_resolve_C_budget" title="BFMM.trees.single_tree_allocation.SingleTree.minimum_E_to_resolve_C_budget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">minimum_E_to_resolve_C_budget</span></code></a></p></td>
+<td><p>Determine the minimum amount of glucose to resolve budget.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.mother_func" title="BFMM.trees.single_tree_allocation.SingleTree.mother_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mother_func</span></code></a></p></td>
+<td><p>Biomass of coarse roots and branches from external allometries [g_dw].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.mstump_func" title="BFMM.trees.single_tree_allocation.SingleTree.mstump_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mstump_func</span></code></a></p></td>
+<td><p>Stump biomass from external allometries [g_dw].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.mtrunk_func" title="BFMM.trees.single_tree_allocation.SingleTree.mtrunk_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mtrunk_func</span></code></a></p></td>
+<td><p>Trunk biomass from external allometries [g_dw].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.r_B_func" title="BFMM.trees.single_tree_allocation.SingleTree.r_B_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">r_B_func</span></code></a></p></td>
+<td><p>Radius at which trunk transitions from a neiloid to a paraboloid [m].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.r_C_func" title="BFMM.trees.single_tree_allocation.SingleTree.r_C_func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">r_C_func</span></code></a></p></td>
+<td><p>Radius at which trunk transitions from a paraboloid to a cone [m].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.solve_glucose_budget" title="BFMM.trees.single_tree_allocation.SingleTree.solve_glucose_budget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">solve_glucose_budget</span></code></a></p></td>
+<td><p>Optimization function based on the radius change <code class="docutils literal notranslate"><span class="pre">dr</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.update" title="BFMM.trees.single_tree_allocation.SingleTree.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a></p></td>
+<td><p>Update the tree according to the acccumulated incoming <code class="docutils literal notranslate"><span class="pre">E=A_net</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.update_C_S" title="BFMM.trees.single_tree_allocation.SingleTree.update_C_S"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_C_S</span></code></a></p></td>
+<td><p>Update C_S after carbon budget is solved for <code class="docutils literal notranslate"><span class="pre">Delta_r</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="rubric">Attributes</p>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_L" title="BFMM.trees.single_tree_allocation.SingleTree.B_L"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B_L</span></code></a></p></td>
+<td><p>Leaf biomass [g_dw].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_OH" title="BFMM.trees.single_tree_allocation.SingleTree.B_OH"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B_OH</span></code></a></p></td>
+<td><p>Coarse roots and branches heartwood biomass [g_dw].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_OS" title="BFMM.trees.single_tree_allocation.SingleTree.B_OS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B_OS</span></code></a></p></td>
+<td><p>Coarse roots and branches (other) sapwood biomass [g_dw].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_R" title="BFMM.trees.single_tree_allocation.SingleTree.B_R"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B_R</span></code></a></p></td>
+<td><p>Total fine root area [m2].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_S" title="BFMM.trees.single_tree_allocation.SingleTree.B_S"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B_S</span></code></a></p></td>
+<td><p>Sapwood biomass (coarse roots and branches + trunk) [g_dw].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_S_star" title="BFMM.trees.single_tree_allocation.SingleTree.B_S_star"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B_S_star</span></code></a></p></td>
+<td><p>Biomass of 'living' sapwood [g_dw].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_T" title="BFMM.trees.single_tree_allocation.SingleTree.B_T"><code class="xref py py-obj docutils literal notranslate"><span class="pre">B_T</span></code></a></p></td>
+<td><p>Trunk biomass (sapwood + heartwood) [g_dw].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.C_S_star" title="BFMM.trees.single_tree_allocation.SingleTree.C_S_star"><code class="xref py py-obj docutils literal notranslate"><span class="pre">C_S_star</span></code></a></p></td>
+<td><p>Max.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.H" title="BFMM.trees.single_tree_allocation.SingleTree.H"><code class="xref py py-obj docutils literal notranslate"><span class="pre">H</span></code></a></p></td>
+<td><p>Tree height [m].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.H_TH" title="BFMM.trees.single_tree_allocation.SingleTree.H_TH"><code class="xref py py-obj docutils literal notranslate"><span class="pre">H_TH</span></code></a></p></td>
+<td><p>Height of trunk heartwood section [m].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.LA" title="BFMM.trees.single_tree_allocation.SingleTree.LA"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LA</span></code></a></p></td>
+<td><p>Total leaf area [m2].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.R_M" title="BFMM.trees.single_tree_allocation.SingleTree.R_M"><code class="xref py py-obj docutils literal notranslate"><span class="pre">R_M</span></code></a></p></td>
+<td><p>Maintenance respiration [g_gluc yr-1].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.SLA" title="BFMM.trees.single_tree_allocation.SingleTree.SLA"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SLA</span></code></a></p></td>
+<td><p>Specific leaf area [m2 kg_dw-1].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.V_T" title="BFMM.trees.single_tree_allocation.SingleTree.V_T"><code class="xref py py-obj docutils literal notranslate"><span class="pre">V_T</span></code></a></p></td>
+<td><p>Trunk volume as computed by ACGCA [m3].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.V_TH" title="BFMM.trees.single_tree_allocation.SingleTree.V_TH"><code class="xref py py-obj docutils literal notranslate"><span class="pre">V_TH</span></code></a></p></td>
+<td><p>Volume of trunk heartwood section [m3].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.V_TS" title="BFMM.trees.single_tree_allocation.SingleTree.V_TS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">V_TS</span></code></a></p></td>
+<td><p>Volume of trunk sapwood [m3].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.dbh" title="BFMM.trees.single_tree_allocation.SingleTree.dbh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dbh</span></code></a></p></td>
+<td><p>Diameter at breast height [cm].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.delta_S" title="BFMM.trees.single_tree_allocation.SingleTree.delta_S"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delta_S</span></code></a></p></td>
+<td><p>Concentration of labile carbon storage of bulk sapwood [g_gluc g_dw-1].</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.from_dbh">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dbh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">species</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dbh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Delta_t=&lt;Quantity(1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'year')&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_S=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_TS=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_TH=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_species_params=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tree_age=&lt;Quantity(0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'year')&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol=1e-08</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.from_dbh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.from_dbh" title="Permalink to this definition">#</a></dt>
+<dd><p>Constructor from dbh instead of r.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>species</strong> – element of [“pine”, “spruce”, “birch”]</p></li>
+<li><p><strong>dbh</strong> – diameter at breast height [cm]</p></li>
+<li><p><strong>Delta_t</strong> – time step [yr]</p></li>
+<li><p><strong>C_S</strong> – initial value of <code class="docutils literal notranslate"><span class="pre">C_S</span> <span class="pre">pool</span></code>, required if tree is
+big enough to have heartwood, otherwise defaults to <code class="docutils literal notranslate"><span class="pre">Q_(&quot;0</span> <span class="pre">g_gluc&quot;)</span></code></p></li>
+<li><p><strong>B_TS</strong> – initial value of <code class="docutils literal notranslate"><span class="pre">B_TS</span></code> pool, optional</p></li>
+<li><p><strong>B_TH</strong> – initial value of <code class="docutils literal notranslate"><span class="pre">B_TH</span></code> pool, required if tree is
+big enough to have heartwood, otherwise defaults to <code class="docutils literal notranslate"><span class="pre">Q_(&quot;0</span> <span class="pre">g_dw&quot;)</span></code></p></li>
+<li><p><strong>custom_species_params</strong> – tree species parameters (for all species)</p></li>
+<li><p><strong>tree_age</strong> – age of the tree [yr]</p></li>
+<li><p><strong>tol</strong> – absolute tolerance in check for self-consistency [-]</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.from_mleaf">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_mleaf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">species</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mleaf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Delta_t=&lt;Quantity(1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'year')&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_S=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_TS=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_TH=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_species_params=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tree_age=&lt;Quantity(0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'year')&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol=1e-08</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.from_mleaf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.from_mleaf" title="Permalink to this definition">#</a></dt>
+<dd><p>Initialize a class instant based on leaf biomass.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>species</strong> – tree species, element of [“pine”, “spruce”, “birch”]</p></li>
+<li><p><strong>mleaf</strong> – leaf biomass [g_dw]</p></li>
+<li><p><strong>Delta_t</strong> – time step [yr]</p></li>
+<li><p><strong>C_S</strong> – initial value of <code class="docutils literal notranslate"><span class="pre">C_S</span> <span class="pre">pool</span></code>, required if tree is
+big enough to have heartwood, otherwise defaults to <code class="docutils literal notranslate"><span class="pre">Q_(&quot;0</span> <span class="pre">g_gluc&quot;)</span></code></p></li>
+<li><p><strong>B_TS</strong> – initial value of <code class="docutils literal notranslate"><span class="pre">B_TS</span></code> pool, optional</p></li>
+<li><p><strong>B_TH</strong> – initial value of <code class="docutils literal notranslate"><span class="pre">B_TH</span></code> pool, required if tree is
+big enough to have heartwood, otherwise defaults to <code class="docutils literal notranslate"><span class="pre">Q_(&quot;0</span> <span class="pre">g_dw&quot;)</span></code></p></li>
+<li><p><strong>custom_species_params</strong> – tree species parameters (for all species)</p></li>
+<li><p><strong>tree_age</strong> – age of the tree [yr]</p></li>
+<li><p><strong>tol</strong> – absolute tolerance in check for self-consistency [-]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>class instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree" title="BFMM.trees.single_tree_allocation.SingleTree">SingleTree</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.clear_cache">
+<span class="sig-name descname"><span class="pre">clear_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.clear_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.clear_cache" title="Permalink to this definition">#</a></dt>
+<dd><p>Clear the cache.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.lad_normed">
+<span class="sig-name descname"><span class="pre">lad_normed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.lad_normed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.lad_normed" title="Permalink to this definition">#</a></dt>
+<dd><p>Normalized leaf area density [m2 m-1] over grid <code class="docutils literal notranslate"><span class="pre">z</span></code>, integrates to 1.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>z</strong> – grid of tree height layer boundaries [m]</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>normalized leaf area density of grid <code class="docutils literal notranslate"><span class="pre">z</span></code>, [m-1]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Q_[np.ndarray]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.solve_glucose_budget">
+<span class="sig-name descname"><span class="pre">solve_glucose_budget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tree_status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'healthy'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tree_init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.solve_glucose_budget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.solve_glucose_budget" title="Permalink to this definition">#</a></dt>
+<dd><p>Optimization function based on the radius change <code class="docutils literal notranslate"><span class="pre">dr</span></code>.</p>
+<p>The goal is to choose <code class="docutils literal notranslate"><span class="pre">dr</span></code> such that <code class="docutils literal notranslate"><span class="pre">Anet_gluc</span></code> is used up
+during the tree’s structural update, based on its allometries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dr</strong> – potential change in tree radius <code class="docutils literal notranslate"><span class="pre">r</span></code> at trunk base [m]</p></li>
+<li><p><strong>E</strong> – parameter of available glucose to distribute [g_gluc yr-1]</p></li>
+<li><p><strong>tree_status</strong> – if “static” or “shrinking”, no trunk growth</p></li>
+<li><p><strong>tree_init</strong> – if True, we are still in the planting process</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>relative discrepancy in carbon budget [-]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>res</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.minimum_E_to_resolve_C_budget">
+<span class="sig-name descname"><span class="pre">minimum_E_to_resolve_C_budget</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.minimum_E_to_resolve_C_budget"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.minimum_E_to_resolve_C_budget" title="Permalink to this definition">#</a></dt>
+<dd><p>Determine the minimum amount of glucose to resolve budget.</p>
+<p>During initialization of the associated
+<a class="reference internal" href="BFMM.trees.single_tree_C_model.SingleTreeCModel.html#BFMM.trees.single_tree_C_model.SingleTreeCModel" title="BFMM.trees.single_tree_C_model.SingleTreeCModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">SingleTreeCModel</span></code></a>
+a minimum amount of <code class="docutils literal notranslate"><span class="pre">E</span></code> is necessary to resolve the glucose budget
+in the first time step when there are yet no inputs by photosynthesis.
+So this method is called to determine how much <code class="docutils literal notranslate"><span class="pre">E</span></code> (glucose) is needed
+such that the tree can resolve its C budget for its first radial growth.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>initially needed amount for first radial growth [g_gluc yr-1]</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">E[0]</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">E</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.update" title="Permalink to this definition">#</a></dt>
+<dd><p>Update the tree according to the acccumulated incoming <code class="docutils literal notranslate"><span class="pre">E=A_net</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>E</strong> – incoming accumulated net radiation as glucose [g_gluc/yr]</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>Tuple of fluxes and rates.</p>
+<ul class="simple">
+<li><p>f_L_times_E (Q_[float]): glucose allocated to leaves [g_gluc yr-1]</p></li>
+<li><p>f_R_times_E (Q_[float]): glucose allocated to fine roots [g_gluc yr-1]</p></li>
+<li><p>f_O_times_E (Q_[float]): glucose allocated to coarse roots and branches [g_gluc yr-1]</p></li>
+<li><p>f_T_times_E Q_[float]: glucose allocated to trunk [g_gluc]</p></li>
+<li><dl class="simple">
+<dt>v_O (Q_[float]): sapwood to heartwood conversion rate</dt><dd><p>of coarse roots and branches [yr-1]</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>v_T (Q_[float]): sapwood to heartwood conversion rate</dt><dd><p>of the trunk [yr-1]</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>delta_W Q_[float]): maximum labile C storage capacity of</dt><dd><p>newly produces sapwood [g_gluc/g_dw]</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>f_CS_times_CS (Q_[float]): in “static” and “shrinking” state amount of glucose used</dt><dd><p>from storage [g_gluc yr-1]</p>
+</dd>
+</dl>
+</li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.dbh">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dbh</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Quantity</span></em><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.dbh" title="Permalink to this definition">#</a></dt>
+<dd><p>Diameter at breast height [cm].</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.H">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">H</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Q_</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.H" title="Permalink to this definition">#</a></dt>
+<dd><p>Tree height [m].</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.V_T">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">V_T</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Q_</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.V_T" title="Permalink to this definition">#</a></dt>
+<dd><p>Trunk volume as computed by ACGCA [m3].</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.V_TS">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">V_TS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Q_</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.V_TS" title="Permalink to this definition">#</a></dt>
+<dd><p>Volume of trunk sapwood [m3].</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.V_TH">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">V_TH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Q_</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.V_TH" title="Permalink to this definition">#</a></dt>
+<dd><p>Volume of trunk heartwood section [m3].</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.H_TH">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">H_TH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Q_</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.H_TH" title="Permalink to this definition">#</a></dt>
+<dd><p>Height of trunk heartwood section [m].</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.LA">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LA</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Q_</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.LA" title="Permalink to this definition">#</a></dt>
+<dd><p>Total leaf area [m2].</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.SLA">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SLA</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Q_</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.SLA" title="Permalink to this definition">#</a></dt>
+<dd><p>Specific leaf area [m2 kg_dw-1].</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.B_L">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">B_L</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Q_</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.B_L" title="Permalink to this definition">#</a></dt>
+<dd><p>Leaf biomass [g_dw].</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.B_R">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">B_R</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Q_</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.B_R" title="Permalink to this definition">#</a></dt>
+<dd><p>Total fine root area [m2].</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.B_OS">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">B_OS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Q_</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.B_OS" title="Permalink to this definition">#</a></dt>
+<dd><p>Coarse roots and branches (other) sapwood biomass [g_dw].</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.B_S">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">B_S</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Q_</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.B_S" title="Permalink to this definition">#</a></dt>
+<dd><p>Sapwood biomass (coarse roots and branches + trunk) [g_dw].</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.B_T">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">B_T</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Q_</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.B_T" title="Permalink to this definition">#</a></dt>
+<dd><p>Trunk biomass (sapwood + heartwood) [g_dw].</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.B_OH">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">B_OH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Q_</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.B_OH" title="Permalink to this definition">#</a></dt>
+<dd><p>Coarse roots and branches heartwood biomass [g_dw].</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.R_M">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">R_M</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Q_</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.R_M" title="Permalink to this definition">#</a></dt>
+<dd><p>Maintenance respiration [g_gluc yr-1].</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.B_S_star">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">B_S_star</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Q_</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.B_S_star" title="Permalink to this definition">#</a></dt>
+<dd><p>Biomass of ‘living’ sapwood [g_dw].</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.C_S_star">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">C_S_star</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Q_</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.C_S_star" title="Permalink to this definition">#</a></dt>
+<dd><p>Max. potential amount of labile carbon storage of bulk sapwood [g_gluc].</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.delta_S">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delta_S</span></span><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.delta_S" title="Permalink to this definition">#</a></dt>
+<dd><p>Concentration of labile carbon storage of bulk sapwood [g_gluc g_dw-1].</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.compute_delta_W">
+<span class="sig-name descname"><span class="pre">compute_delta_W</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho_W</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.compute_delta_W"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_delta_W" title="Permalink to this definition">#</a></dt>
+<dd><p>Maximum labile C storage capacity of newly produced sapwood [g_gluc g_dw-1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rho_W</strong> – density of newly produced sapwood [g_dw m-3]</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.compute_rho_from_allometry">
+<span class="sig-name descname"><span class="pre">compute_rho_from_allometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">V_T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.compute_rho_from_allometry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_rho_from_allometry" title="Permalink to this definition">#</a></dt>
+<dd><p>Wood density as predicted by allometries [g_dw m-3].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dbh</strong> – diameter at breas height [cm]</p></li>
+<li><p><strong>H</strong> – tree height [m]</p></li>
+<li><p><strong>V_T</strong> (<em>optional</em>) – trunk volume [m3], default: self.V_T</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.compute_rho_W">
+<span class="sig-name descname"><span class="pre">compute_rho_W</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">next_dbh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Delta_r</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.compute_rho_W"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_rho_W" title="Permalink to this definition">#</a></dt>
+<dd><p>Density of newly produced sapwood [g_dw m-3].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>next_dbh</strong> – dbh AFTER tree growth has taken place [cm]</p></li>
+<li><p><strong>next_H</strong> – tree height AFTER tree growth has taken place [m]</p></li>
+<li><p><strong>Delta_r</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.compute_f_L_times_E">
+<span class="sig-name descname"><span class="pre">compute_f_L_times_E</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">next_B_L</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.compute_f_L_times_E"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_f_L_times_E" title="Permalink to this definition">#</a></dt>
+<dd><p>Flux from transient pool to leaves [g_gluc yr-1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>next_B_L</strong> – leaf biomass of tree AFTER growth has taken place [g_dw]</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.compute_f_R_times_E">
+<span class="sig-name descname"><span class="pre">compute_f_R_times_E</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">next_B_R</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.compute_f_R_times_E"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_f_R_times_E" title="Permalink to this definition">#</a></dt>
+<dd><p>Flux from transient pool to fine roots [g_gluc yr-1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>next_B_R</strong> – fine root biomass AFTER growth [g_dw]</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.compute_v_T">
+<span class="sig-name descname"><span class="pre">compute_v_T</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">next_V_TH</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.compute_v_T"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_v_T" title="Permalink to this definition">#</a></dt>
+<dd><p>Sapwood to heartwood conversion rate of trunk [yr-1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>next_V_TH</strong> – trunk volume AFTER growth [m3]</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">v_T</span></code></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.compute_f_T_times_E">
+<span class="sig-name descname"><span class="pre">compute_f_T_times_E</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v_T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_V_T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho_W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_W</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.compute_f_T_times_E"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_f_T_times_E" title="Permalink to this definition">#</a></dt>
+<dd><p>Flux from labile pool to trunk [g_gluc yr-1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v_T</strong> – sapwood to heartwood conversion rate of trunk [yr-1]</p></li>
+<li><p><strong>next_V_T</strong> – trunk volume AFTER growth [m3]</p></li>
+<li><p><strong>rho_W</strong> – density of newly produced sapwood [g_dw m-3]</p></li>
+<li><p><strong>delta_W</strong> – maximum labile C storage capacity of newly
+produced sapwood [g_gluc g_dw-1]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.compute_f_O_times_E">
+<span class="sig-name descname"><span class="pre">compute_f_O_times_E</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v_O</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_B_OS</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_W</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.compute_f_O_times_E"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_f_O_times_E" title="Permalink to this definition">#</a></dt>
+<dd><p>Flux from labile pool to coarse roots and branches [g_gluc yr-1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v_O</strong> – sapwood to heartwood conversion rate of other [yr-1]</p></li>
+<li><p><strong>next_B_OS</strong> – other sapwood biomass AFTER growth [g_dw]</p></li>
+<li><p><strong>delta_W</strong> – maximum labile C storage capacity of newly
+produced sapwood [g_gluc g_dw-1]</p></li>
+<li><p><strong>next_tree</strong> (<em>same class</em>) – Tree with allometries AFTER solving
+the carbon budget for <code class="docutils literal notranslate"><span class="pre">Delta_r</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.update_C_S">
+<span class="sig-name descname"><span class="pre">update_C_S</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">E</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_W</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_T_times_E</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_O_times_E</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_O</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_CS_times_CS</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.update_C_S"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.update_C_S" title="Permalink to this definition">#</a></dt>
+<dd><p>Update C_S after carbon budget is solved for <code class="docutils literal notranslate"><span class="pre">Delta_r</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Anet_gluc</strong> – incoming net radiaton [g_gluc yr-1]</p></li>
+<li><p><strong>delta_W</strong> – maximum labile C storage capacity of newly
+produced sapwood [g_gluc g_dw-1]</p></li>
+<li><p><strong>f_T_times_E</strong> – flux from labile pool to trunk [g_gluc yr-1]</p></li>
+<li><p><strong>f_O_times_E</strong> – flux from labile pool to other [g_gluc yr-1]</p></li>
+<li><p><strong>v_T</strong> – sapwood to heartwood conversion rate of trunk [yr-1]</p></li>
+<li><p><strong>v_O</strong> – sapwood to heartwood conversion rate of other [yr-1]</p></li>
+<li><p><strong>f_CS_times_CS</strong> – in “static” state amount of glucose to use from reserves</p></li>
+<li><p><strong>E</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.compute_v_O">
+<span class="sig-name descname"><span class="pre">compute_v_O</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">next_B_OH</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.compute_v_O"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_v_O" title="Permalink to this definition">#</a></dt>
+<dd><p>Sapwood to heartwood conversion rate of coarse roots and branches [yr-1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>next_B_OH</strong> – other heartwood biomass AFTER growth [g_dw]</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">v_O</span></code></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.SLA_func">
+<span class="sig-name descname"><span class="pre">SLA_func</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.SLA_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.SLA_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Specific leaf area [m2 kg_dw-1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.B_L_func">
+<span class="sig-name descname"><span class="pre">B_L_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.B_L_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.B_L_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Leaf biomass [g_dw].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dbh</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>H</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.mtrunk_func">
+<span class="sig-name descname"><span class="pre">mtrunk_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.mtrunk_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.mtrunk_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Trunk biomass from external allometries [g_dw].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dbh</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>H</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.mother_func">
+<span class="sig-name descname"><span class="pre">mother_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.mother_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.mother_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Biomass of coarse roots and branches from external allometries [g_dw].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dbh</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>H</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.mstump_func">
+<span class="sig-name descname"><span class="pre">mstump_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.mstump_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.mstump_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Stump biomass from external allometries [g_dw].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dbh</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>H</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.LA_func">
+<span class="sig-name descname"><span class="pre">LA_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">B_L</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.LA_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.LA_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Total leaf area [m2].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>B_L</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.B_R_func">
+<span class="sig-name descname"><span class="pre">B_R_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.B_R_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.B_R_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Fine root biomass [g_dw].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dbh</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>H</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.lambda_func">
+<span class="sig-name descname"><span class="pre">lambda_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.lambda_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.lambda_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Ratio of other (branches + coarse roots) to trunk.</p>
+<p>This ratio comes from external allometries based on
+given diameter at breast height <code class="docutils literal notranslate"><span class="pre">dbh</span></code> and tree height <code class="docutils literal notranslate"><span class="pre">H</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dbh</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>H</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.lambda_H_func">
+<span class="sig-name descname"><span class="pre">lambda_H_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.lambda_H_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.lambda_H_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Ratio of other heartwood to trunk heartwood by external allometries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dbh</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>H</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.lambda_S_func">
+<span class="sig-name descname"><span class="pre">lambda_S_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.lambda_S_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.lambda_S_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Ratio of other sapwood to trunk sapwood by external allometries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dbh</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>H</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.B_OS_func">
+<span class="sig-name descname"><span class="pre">B_OS_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_TS</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.B_OS_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.B_OS_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Coarse roots and branches (other) sapwood biomass [g_dw].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dbh</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>H</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>B_TS</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.B_S_func">
+<span class="sig-name descname"><span class="pre">B_S_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_TS</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.B_S_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.B_S_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Sapwood biomass (coarse roots and branches + trunk) [g_dw].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dbh</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>H</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>B_TS</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.B_OH_func">
+<span class="sig-name descname"><span class="pre">B_OH_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_TH</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.B_OH_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.B_OH_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Coarse roots and branches (other) heartwood biomass [g_dw].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dbh</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>H</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>B_TH</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.B_T_func">
+<span class="sig-name descname"><span class="pre">B_T_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">B_TS</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_TH</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_OS</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.B_T_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.B_T_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Trunk biomass [g_dw].</p>
+<p><code class="docutils literal notranslate"><span class="pre">B_T</span> <span class="pre">=</span> <span class="pre">B_TS</span> <span class="pre">+</span> <span class="pre">B_TH</span></code> plus <code class="docutils literal notranslate"><span class="pre">C_S</span></code> associated to trunk sapwood.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>B_TS</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>B_TH</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>C_S</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>B_OS</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.H_func">
+<span class="sig-name descname"><span class="pre">H_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.H_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.H_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Tree height from diameter at breast height [m].</p>
+<p>Based on Näslund equation parameterized using Hyytiälä stand inventory
+from 2008.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dbh</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.h_B_func">
+<span class="sig-name descname"><span class="pre">h_B_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">H</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.h_B_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.h_B_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Height at which trunk transitions from a neiloid to a paraboloid [m].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>H</strong> – tree height [m]</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.h_C_func">
+<span class="sig-name descname"><span class="pre">h_C_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">H</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.h_C_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.h_C_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Height at which trunk transitions from a paraboloid to a cone [m].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>H</strong> – tree height [m]</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.r_B_func">
+<span class="sig-name descname"><span class="pre">r_B_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.r_B_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.r_B_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Radius at which trunk transitions from a neiloid to a paraboloid [m].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r</strong> – tree radois at trunk base [m]</p></li>
+<li><p><strong>H</strong> – tree height [m]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.r_C_func">
+<span class="sig-name descname"><span class="pre">r_C_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.r_C_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.r_C_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Radius at which trunk transitions from a paraboloid to a cone [m].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r</strong> – tree radois at trunk base [m]</p></li>
+<li><p><strong>H</strong> – tree height [m]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.V_T_func">
+<span class="sig-name descname"><span class="pre">V_T_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.V_T_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.V_T_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Trunk volume as computed by ACGCA [m3].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dbh</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>H</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.H_TH_func">
+<span class="sig-name descname"><span class="pre">H_TH_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SW</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.H_TH_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.H_TH_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Height of trunk heartwood section [m].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>H</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>SW</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.V_TH_func">
+<span class="sig-name descname"><span class="pre">V_TH_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SW</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.V_TH_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.V_TH_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Volume of trunk heartwood section [m3].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dbh</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>H</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>SW</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.V_TS_func">
+<span class="sig-name descname"><span class="pre">V_TS_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SW</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.V_TS_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.V_TS_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Volume of trunk sapwood [m3].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dbh</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>H</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>SW</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.C_S_star_func">
+<span class="sig-name descname"><span class="pre">C_S_star_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B_TS</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SW</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.C_S_star_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.C_S_star_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Max. potential amount of labile carbon storage of bulk sapwood [g_gluc].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dbh</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>H</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>B_TS</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>SW</strong> (<em>Q_</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.trees.single_tree_allocation.SingleTree.SW_func">
+<span class="sig-name descname"><span class="pre">SW_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tree_age</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/trees/single_tree_allocation.html#SingleTree.SW_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.trees.single_tree_allocation.SingleTree.SW_func" title="Permalink to this definition">#</a></dt>
+<dd><p>Sapwood radius at trunk base [m].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r</strong> – radius at trunk base [m]</p></li>
+<li><p><strong>tree_age</strong> – age of the tree [yr]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="BFMM.trees.single_tree_params.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">single_tree_params</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="BFMM.trees.single_tree_allocation.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">single_tree_allocation</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Holger Metzler, Samuli Launiainen, Viulia Vico
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">SingleTree</a><ul>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree"><code class="docutils literal notranslate"><span class="pre">SingleTree</span></code></a><ul>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.species"><code class="docutils literal notranslate"><span class="pre">SingleTree.species</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.r"><code class="docutils literal notranslate"><span class="pre">SingleTree.r</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.Delta_t"><code class="docutils literal notranslate"><span class="pre">SingleTree.Delta_t</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.params"><code class="docutils literal notranslate"><span class="pre">SingleTree.params</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.tol"><code class="docutils literal notranslate"><span class="pre">SingleTree.tol</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.from_dbh"><code class="docutils literal notranslate"><span class="pre">SingleTree.from_dbh()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.from_mleaf"><code class="docutils literal notranslate"><span class="pre">SingleTree.from_mleaf()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.clear_cache"><code class="docutils literal notranslate"><span class="pre">SingleTree.clear_cache()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.lad_normed"><code class="docutils literal notranslate"><span class="pre">SingleTree.lad_normed()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.solve_glucose_budget"><code class="docutils literal notranslate"><span class="pre">SingleTree.solve_glucose_budget()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.minimum_E_to_resolve_C_budget"><code class="docutils literal notranslate"><span class="pre">SingleTree.minimum_E_to_resolve_C_budget()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.update"><code class="docutils literal notranslate"><span class="pre">SingleTree.update()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.dbh"><code class="docutils literal notranslate"><span class="pre">SingleTree.dbh</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.H"><code class="docutils literal notranslate"><span class="pre">SingleTree.H</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.V_T"><code class="docutils literal notranslate"><span class="pre">SingleTree.V_T</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.V_TS"><code class="docutils literal notranslate"><span class="pre">SingleTree.V_TS</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.V_TH"><code class="docutils literal notranslate"><span class="pre">SingleTree.V_TH</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.H_TH"><code class="docutils literal notranslate"><span class="pre">SingleTree.H_TH</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.LA"><code class="docutils literal notranslate"><span class="pre">SingleTree.LA</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.SLA"><code class="docutils literal notranslate"><span class="pre">SingleTree.SLA</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_L"><code class="docutils literal notranslate"><span class="pre">SingleTree.B_L</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_R"><code class="docutils literal notranslate"><span class="pre">SingleTree.B_R</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_OS"><code class="docutils literal notranslate"><span class="pre">SingleTree.B_OS</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_S"><code class="docutils literal notranslate"><span class="pre">SingleTree.B_S</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_T"><code class="docutils literal notranslate"><span class="pre">SingleTree.B_T</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_OH"><code class="docutils literal notranslate"><span class="pre">SingleTree.B_OH</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.R_M"><code class="docutils literal notranslate"><span class="pre">SingleTree.R_M</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_S_star"><code class="docutils literal notranslate"><span class="pre">SingleTree.B_S_star</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.C_S_star"><code class="docutils literal notranslate"><span class="pre">SingleTree.C_S_star</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.delta_S"><code class="docutils literal notranslate"><span class="pre">SingleTree.delta_S</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_delta_W"><code class="docutils literal notranslate"><span class="pre">SingleTree.compute_delta_W()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_rho_from_allometry"><code class="docutils literal notranslate"><span class="pre">SingleTree.compute_rho_from_allometry()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_rho_W"><code class="docutils literal notranslate"><span class="pre">SingleTree.compute_rho_W()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_f_L_times_E"><code class="docutils literal notranslate"><span class="pre">SingleTree.compute_f_L_times_E()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_f_R_times_E"><code class="docutils literal notranslate"><span class="pre">SingleTree.compute_f_R_times_E()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_v_T"><code class="docutils literal notranslate"><span class="pre">SingleTree.compute_v_T()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_f_T_times_E"><code class="docutils literal notranslate"><span class="pre">SingleTree.compute_f_T_times_E()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_f_O_times_E"><code class="docutils literal notranslate"><span class="pre">SingleTree.compute_f_O_times_E()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.update_C_S"><code class="docutils literal notranslate"><span class="pre">SingleTree.update_C_S()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.compute_v_O"><code class="docutils literal notranslate"><span class="pre">SingleTree.compute_v_O()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.SLA_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.SLA_func()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_L_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.B_L_func()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.mtrunk_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.mtrunk_func()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.mother_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.mother_func()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.mstump_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.mstump_func()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.LA_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.LA_func()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_R_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.B_R_func()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.lambda_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.lambda_func()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.lambda_H_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.lambda_H_func()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.lambda_S_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.lambda_S_func()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_OS_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.B_OS_func()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_S_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.B_S_func()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_OH_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.B_OH_func()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.B_T_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.B_T_func()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.H_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.H_func()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.h_B_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.h_B_func()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.h_C_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.h_C_func()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.r_B_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.r_B_func()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.r_C_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.r_C_func()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.V_T_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.V_T_func()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.H_TH_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.H_TH_func()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.V_TH_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.V_TH_func()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.V_TS_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.V_TS_func()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.C_S_star_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.C_S_star_func()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.trees.single_tree_allocation.SingleTree.SW_func"><code class="docutils literal notranslate"><span class="pre">SingleTree.SW_func()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    </body>
+</html>

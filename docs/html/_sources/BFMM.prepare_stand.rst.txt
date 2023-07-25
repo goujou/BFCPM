@@ -1,0 +1,7 @@
+BFMM.prepare\_stand module
+==========================
+
+.. automodule:: BFMM.prepare_stand
+   :members:
+   :undoc-members:
+   :show-inheritance:

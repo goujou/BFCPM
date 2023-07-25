@@ -1,0 +1,23 @@
+OnDelayOneTime
+==============
+
+Qualified name: ``BFMM.management.management\_strategy.OnDelayOneTime``
+
+CCCC
+
+.. currentmodule:: BFMM.management.management_strategy
+
+.. autoclass:: OnDelayOneTime
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+      ~OnDelayOneTime.triggered
+
+   
+   

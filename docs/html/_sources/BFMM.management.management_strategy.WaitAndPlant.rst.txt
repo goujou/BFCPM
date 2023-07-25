@@ -1,0 +1,23 @@
+WaitAndPlant
+============
+
+Qualified name: ``BFMM.management.management\_strategy.WaitAndPlant``
+
+CCCC
+
+.. currentmodule:: BFMM.management.management_strategy
+
+.. autoclass:: WaitAndPlant
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+      ~WaitAndPlant.do
+
+   
+   

@@ -1,0 +1,39 @@
+single\_tree\_vars
+==================
+
+MMMM
+
+.. currentmodule:: BFMM.trees.single_tree_vars
+
+.. automodule:: BFMM.trees.single_tree_vars
+
+    
+    
+    
+
+   
+   
+   .. rubric:: Module Attributes
+
+   
+   .. autodata:: BFMM.trees.single_tree_vars::var_infos
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   
+   .. autofunction:: assign
+   .. autofunction:: vars_to_latex_table
+   
+   
+
+   
+   
+   

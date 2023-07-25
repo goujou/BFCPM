@@ -1,0 +1,44 @@
+﻿productivity
+============
+
+MMMM
+
+.. currentmodule:: BFMM.productivity
+
+.. automodule:: BFMM.productivity
+
+    
+    
+    .. rubric:: Modules
+    
+    .. autosummary::
+       :toctree:
+       :recursive:
+       :template: module.rst
+
+       
+       ~BFMM.productivity.constants
+       ~BFMM.productivity.phenology
+       ~BFMM.productivity.photo
+       ~BFMM.productivity.radiation
+       ~BFMM.productivity.utils
+       ~BFMM.productivity.vegetation
+       ~BFMM.productivity.waterbalance
+    
+    
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   

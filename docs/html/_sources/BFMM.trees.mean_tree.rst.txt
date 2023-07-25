@@ -1,0 +1,39 @@
+mean\_tree
+==========
+
+MMMM
+
+.. currentmodule:: BFMM.trees.mean_tree
+
+.. automodule:: BFMM.trees.mean_tree
+
+    
+    
+    
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+      :template: class.rst
+
+      
+        MeanTree
+      
+   
+   
+
+   
+   
+   
+
+   
+   
+   

@@ -1,0 +1,7 @@
+BFMM.simulation\_parameters module
+==================================
+
+.. automodule:: BFMM.simulation_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:

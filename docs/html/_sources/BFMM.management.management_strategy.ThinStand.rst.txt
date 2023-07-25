@@ -1,0 +1,23 @@
+ThinStand
+=========
+
+Qualified name: ``BFMM.management.management\_strategy.ThinStand``
+
+CCCC
+
+.. currentmodule:: BFMM.management.management_strategy
+
+.. autoclass:: ThinStand
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+      ~ThinStand.do
+
+   
+   

@@ -1,0 +1,37 @@
+SoilCModelABC
+=============
+
+Qualified name: ``BFMM.soil.soil\_c\_model\_abc.SoilCModelABC``
+
+CCCC
+
+.. currentmodule:: BFMM.soil.soil_c_model_abc
+
+.. autoclass:: SoilCModelABC
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+      ~SoilCModelABC.get_stocks_and_fluxes_dataset
+      ~SoilCModelABC.update
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+     
+     ~SoilCModelABC.Fs
+     ~SoilCModelABC.Rs
+     ~SoilCModelABC.Us
+     ~SoilCModelABC.flux_unit
+     ~SoilCModelABC.nr_pools
+     ~SoilCModelABC.pool_names
+     ~SoilCModelABC.start_vector
+     ~SoilCModelABC.stock_unit
+     ~SoilCModelABC.xs
+   

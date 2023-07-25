@@ -1,0 +1,42 @@
+library
+=======
+
+MMMM
+
+.. currentmodule:: BFMM.management.library
+
+.. automodule:: BFMM.management.library
+
+    
+    
+    
+
+   
+   
+   .. rubric:: Module Attributes
+
+   
+   .. autodata:: BFMM.management.library::triggers
+   .. autodata:: BFMM.management.library::actions
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   
+   .. autofunction:: ma_data_to_ma
+   .. autofunction:: ms_data_to_ms_item
+   .. autofunction:: ms_list_to_management_strategy
+   .. autofunction:: species_setting_from_sim_profile
+   
+   
+
+   
+   
+   

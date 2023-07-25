@@ -1,0 +1,44 @@
+﻿trees
+=====
+
+MMMM
+
+.. currentmodule:: BFMM.trees
+
+.. automodule:: BFMM.trees
+
+    
+    
+    .. rubric:: Modules
+    
+    .. autosummary::
+       :toctree:
+       :recursive:
+       :template: module.rst
+
+       
+       ~BFMM.trees.allometry
+       ~BFMM.trees.mean_tree
+       ~BFMM.trees.single_tree_C_model
+       ~BFMM.trees.single_tree_allocation
+       ~BFMM.trees.single_tree_params
+       ~BFMM.trees.single_tree_vars
+       ~BFMM.trees.tree_utils
+    
+    
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   

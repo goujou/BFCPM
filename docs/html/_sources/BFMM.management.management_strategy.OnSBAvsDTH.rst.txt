@@ -1,0 +1,23 @@
+OnSBAvsDTH
+==========
+
+Qualified name: ``BFMM.management.management\_strategy.OnSBAvsDTH``
+
+CCCC
+
+.. currentmodule:: BFMM.management.management_strategy
+
+.. autoclass:: OnSBAvsDTH
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+      ~OnSBAvsDTH.triggered
+
+   
+   

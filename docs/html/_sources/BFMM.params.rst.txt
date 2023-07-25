@@ -1,0 +1,7 @@
+BFMM.params module
+==================
+
+.. automodule:: BFMM.params
+   :members:
+   :undoc-members:
+   :show-inheritance:

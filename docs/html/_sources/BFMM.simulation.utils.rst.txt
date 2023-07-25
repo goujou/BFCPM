@@ -1,0 +1,39 @@
+utils
+=====
+
+MMMM
+
+.. currentmodule:: BFMM.simulation.utils
+
+.. automodule:: BFMM.simulation.utils
+
+    
+    
+    
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   
+   .. autofunction:: add_additional_simulation_quantities_to_ds
+   .. autofunction:: add_simulation_data_to_ds
+   .. autofunction:: add_simulation_tree_data_to_ds
+   .. autofunction:: add_simulation_tree_dict_to_ds
+   .. autofunction:: compute_BTT_vars_and_add_to_ds
+   .. autofunction:: compute_C_balance_and_CS_and_add_to_ds
+   .. autofunction:: get_simulation_record_ds
+   
+   
+
+   
+   
+   

@@ -1,0 +1,25 @@
+RecordedSimulation
+==================
+
+Qualified name: ``BFMM.simulation.recorded\_simulation.RecordedSimulation``
+
+CCCC
+
+.. currentmodule:: BFMM.simulation.recorded_simulation
+
+.. autoclass:: RecordedSimulation
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+      ~RecordedSimulation.from_file
+      ~RecordedSimulation.from_simulation_run
+      ~RecordedSimulation.save_to_file
+
+   
+   

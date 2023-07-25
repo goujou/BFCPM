@@ -1,0 +1,23 @@
+PCT
+===
+
+Qualified name: ``BFMM.management.management\_strategy.PCT``
+
+CCCC
+
+.. currentmodule:: BFMM.management.management_strategy
+
+.. autoclass:: PCT
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+      ~PCT.triggered
+
+   
+   

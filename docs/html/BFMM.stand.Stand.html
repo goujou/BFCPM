@@ -1,0 +1,1154 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="type_aliases" href="BFMM.type_aliases.html" /><link rel="prev" title="stand" href="BFMM.stand.html" />
+
+    <!-- Generated with Sphinx 6.1.3 and Furo 2023.05.20 -->
+        <title>Stand - BFMM</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">BFMM</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">BFMM</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="BFMM.stand.html">stand</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of stand</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Stand</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="BFMM.type_aliases.html">type_aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BFMM.utils.html">utils</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="BFMM.productivity.html">productivity</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BFMM.trees.html">trees</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of trees</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.trees.allometry.html">allometry</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.trees.mean_tree.html">mean_tree</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of mean_tree</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.trees.mean_tree.MeanTree.html">MeanTree</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.trees.single_tree_C_model.html">single_tree_C_model</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of single_tree_C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.trees.single_tree_C_model.SingleTreeCModel.html">SingleTreeCModel</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.trees.single_tree_allocation.html">single_tree_allocation</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of single_tree_allocation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.trees.single_tree_allocation.SingleTree.html">SingleTree</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.trees.single_tree_params.html">single_tree_params</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.trees.single_tree_vars.html">single_tree_vars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.trees.tree_utils.html">tree_utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BFMM.soil.html">soil</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of soil</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.soil.dead_wood_classes.html">dead_wood_classes</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of dead_wood_classes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="BFMM.soil.dead_wood_classes.C_model.html">C_model</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="BFMM.soil.dead_wood_classes.C_model.SoilCDeadWoodClasses.html">SoilCDeadWoodClasses</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.soil.dead_wood_classes.C_model_parameters.html">C_model_parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.soil.simple_soil_model.html">simple_soil_model</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of simple_soil_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="BFMM.soil.simple_soil_model.C_model.html">C_model</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="BFMM.soil.simple_soil_model.C_model.SimpleSoilCModel.html">SimpleSoilCModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.soil.simple_soil_model.C_model_parameters.html">C_model_parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.soil.soil_c_model_abc.html">soil_c_model_abc</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of soil_c_model_abc</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.soil.soil_c_model_abc.SoilCModelABC.html">SoilCModelABC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BFMM.wood_products.html">wood_products</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of wood_products</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.wood_products.simple_wood_product_model.html">simple_wood_product_model</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of simple_wood_product_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="BFMM.wood_products.simple_wood_product_model.C_model.html">C_model</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="BFMM.wood_products.simple_wood_product_model.C_model.SimpleWoodProductModel.html">SimpleWoodProductModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.wood_products.simple_wood_product_model.C_model_parameters.html">C_model_parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.wood_products.wood_product_model_abc.html">wood_product_model_abc</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of wood_product_model_abc</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.wood_products.wood_product_model_abc.WoodProductModelABC.html">WoodProductModelABC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BFMM.management.html">management</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of management</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.management.library.html">library</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.management.management_strategy.html">management_strategy</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of management_strategy</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.Cut.html">Cut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.CutAndReplant.html">CutAndReplant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.CutWaitAndReplant.html">CutWaitAndReplant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.ManagementActionABC.html">ManagementActionABC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.ManagementStrategy.html">ManagementStrategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.OnDBHLimit.html">OnDBHLimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.OnDTHLimit.html">OnDTHLimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.OnDelayOneTime.html">OnDelayOneTime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.OnNLimit.html">OnNLimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.OnPeriodically.html">OnPeriodically</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.OnSBALimit.html">OnSBALimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.OnSBAvsDTH.html">OnSBAvsDTH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.OnStandAges.html">OnStandAges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.OnTimeIntervals.html">OnTimeIntervals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.PCT.html">PCT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.Plant.html">Plant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.Thin.html">Thin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.ThinStand.html">ThinStand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.TriggerABC.html">TriggerABC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.management.management_strategy.WaitAndPlant.html">WaitAndPlant</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BFMM.simulation.html">simulation</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of simulation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.simulation.library.html">library</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.simulation.recorded_simulation.html">recorded_simulation</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of recorded_simulation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.simulation.recorded_simulation.RecordedSimulation.html">RecordedSimulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.simulation.simulation.html">simulation</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of simulation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFMM.simulation.simulation.Simulation.html">Simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="BFMM.simulation.utils.html">utils</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Untitled.html">Test notebook</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="stand">
+<h1>Stand<a class="headerlink" href="#stand" title="Permalink to this heading">#</a></h1>
+<p>Qualified name: <code class="docutils literal notranslate"><span class="pre">BFMM.stand.Stand</span></code></p>
+<p>CCCC</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="BFMM.stand.Stand">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Stand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">water_p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">soil_p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">soil_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tree_soil_interface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wood_product_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wood_product_interface</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/stand.html#Stand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.stand.Stand" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A stand is a compilation of trees, a soil model and a wood product model.</p>
+<p>It is used as basis to model microclimatic regimes (light, wind),
+canopy and soil water budget and call tree A-gs computations.
+Trees return their external output fluxes to the stand who in turn
+forwards soil inputs to the soil model.</p>
+<p>The productivity part of the stand runs of half-hourly basis,
+whereas the trees and the soil models are updated annualy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>z</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>) – grid of tree height layer boundaries [m]</p></li>
+<li><p><strong>loc</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]) – <p>location dictionary</p>
+<ul>
+<li><p>”lat”, “lon”: latitude and longitude [deg]</p></li>
+</ul>
+</p></li>
+<li><p><strong>ctr</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>]) – <p>control dictionary</p>
+<ul>
+<li><p>”phenology”: include phenology?</p></li>
+<li><p>”leaf_area”: “seasonal LAI cycle?</p></li>
+<li><p>”water_stress”: include water stress?</p></li>
+</ul>
+</p></li>
+<li><p><strong>water_p</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]]) – <p>water_p dictionary</p>
+<ul>
+<li><dl class="simple">
+<dt>”interception”:</dt><dd><ul>
+<li><p>”LAI”: ??? [???]</p></li>
+<li><p>”wmax”: ??? [???]</p></li>
+<li><p>”alpha”: ??? [???]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>”snowpack”:</dt><dd><ul>
+<li><p>”Tm”: ??? [???]</p></li>
+<li><p>”Km”: ??? [???]</p></li>
+<li><p>”Kf”: ??? [???]</p></li>
+<li><p>”R”: ??? [???]</p></li>
+<li><p>”Tmax”: ??? [???]</p></li>
+<li><p>”Tmin”: ??? [???]</p></li>
+<li><p>”sliq”: ??? [???]</p></li>
+<li><p>”Sice”: ??? [???]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>”organic:layer”:</dt><dd><ul>
+<li><p>”DM”: ??? [???]</p></li>
+<li><p>”Wmax”: ??? [???]</p></li>
+<li><p>”Wmin”: ??? [???]</p></li>
+<li><p>”Wcrit”: ??? [???]</p></li>
+<li><p>”alpha”: ??? [???]</p></li>
+<li><p>”Wliq”: ??? [???]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</p></li>
+<li><p><strong>soil_p</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]) – <p>soil bucket dictionary, can come from
+<a class="reference internal" href="BFMM.params.html#module-BFMM.params" title="BFMM.params"><code class="xref py py-mod docutils literal notranslate"><span class="pre">params</span></code></a></p>
+<ul>
+<li><p>”depth”: ??? [???]</p></li>
+<li><p>”Ksat”: ??? [???]</p></li>
+<li><dl class="simple">
+<dt>”pF”: Hyytiala A-horizon pF curve</dt><dd><ul>
+<li><p>”ThetaS”: ??? [???]</p></li>
+<li><p>”ThetaR”: ??? [???]</p></li>
+<li><p>”alpha”: ??? [???]</p></li>
+<li><p>”n”: ??? [???]</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>”MaxPond”: ??? [???]</p></li>
+<li><p>”Wliq”: ??? [???]</p></li>
+</ul>
+</p></li>
+<li><p><strong>soil_model</strong> (<a class="reference internal" href="BFMM.soil.soil_c_model_abc.SoilCModelABC.html#BFMM.soil.soil_c_model_abc.SoilCModelABC" title="BFMM.soil.soil_c_model_abc.SoilCModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">SoilCModelABC</span></code></a>) – carbon soil model to be used</p></li>
+<li><p><strong>tree_soil_interface</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]]) – connection dictionary, connect
+key <code class="docutils literal notranslate"><span class="pre">tree_pool</span></code> to value <code class="docutils literal notranslate"><span class="pre">soil_pool</span></code></p></li>
+<li><p><strong>wood_product_model</strong> (<a class="reference internal" href="BFMM.wood_products.wood_product_model_abc.WoodProductModelABC.html#BFMM.wood_products.wood_product_model_abc.WoodProductModelABC" title="BFMM.wood_products.wood_product_model_abc.WoodProductModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">WoodProductModelABC</span></code></a>) – wood_product model to be used</p></li>
+<li><p><strong>wood_product_interface</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]) – <p>connection dictionary, connect</p>
+<ul>
+<li><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">tree_pool</span></code><span class="classifier">{<code class="docutils literal notranslate"><span class="pre">pool</span></code>: <code class="docutils literal notranslate"><span class="pre">fraction</span></code>, …} with <code class="docutils literal notranslate"><span class="pre">pool</span></code></span></dt><dd><p>from soil or wood product model</p>
+</dd>
+</dl>
+</li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.z">
+<span class="sig-name descname"><span class="pre">z</span></span><a class="headerlink" href="#BFMM.stand.Stand.z" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.dz">
+<span class="sig-name descname"><span class="pre">dz</span></span><a class="headerlink" href="#BFMM.stand.Stand.dz" title="Permalink to this definition">#</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">z[1]-z[0]</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.loc">
+<span class="sig-name descname"><span class="pre">loc</span></span><a class="headerlink" href="#BFMM.stand.Stand.loc" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.ctr">
+<span class="sig-name descname"><span class="pre">ctr</span></span><a class="headerlink" href="#BFMM.stand.Stand.ctr" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.soil_model">
+<span class="sig-name descname"><span class="pre">soil_model</span></span><a class="headerlink" href="#BFMM.stand.Stand.soil_model" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.tree_soil_interface">
+<span class="sig-name descname"><span class="pre">tree_soil_interface</span></span><a class="headerlink" href="#BFMM.stand.Stand.tree_soil_interface" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.wood_product_model">
+<span class="sig-name descname"><span class="pre">wood_product_model</span></span><a class="headerlink" href="#BFMM.stand.Stand.wood_product_model" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.wood_product_interface">
+<span class="sig-name descname"><span class="pre">wood_product_interface</span></span><a class="headerlink" href="#BFMM.stand.Stand.wood_product_interface" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.trees">
+<span class="sig-name descname"><span class="pre">trees</span></span><a class="headerlink" href="#BFMM.stand.Stand.trees" title="Permalink to this definition">#</a></dt>
+<dd><p>the trees in the stand</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<code class="xref py py-class docutils literal notranslate"><span class="pre">MeanTree</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.canopywater">
+<span class="sig-name descname"><span class="pre">canopywater</span></span><a class="headerlink" href="#BFMM.stand.Stand.canopywater" title="Permalink to this definition">#</a></dt>
+<dd><p>???</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">productivity.waterbalance.Canopywaterbudget</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.soil">
+<span class="sig-name descname"><span class="pre">soil</span></span><a class="headerlink" href="#BFMM.stand.Stand.soil" title="Permalink to this definition">#</a></dt>
+<dd><p>???</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">productivity.waterbalance.Bucket</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.times">
+<span class="sig-name descname"><span class="pre">times</span></span><a class="headerlink" href="#BFMM.stand.Stand.times" title="Permalink to this definition">#</a></dt>
+<dd><p>the times at which the stand structure was updated during            a simulation run</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.stand.Stand.add_final_felling" title="BFMM.stand.Stand.add_final_felling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_final_felling</span></code></a></p></td>
+<td><p>Add the final felling (trigger, action) pair to all trees in the stand.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.stand.Stand.add_trees_from_setting" title="BFMM.stand.Stand.add_trees_from_setting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_trees_from_setting</span></code></a></p></td>
+<td><p>Add a prescribed collection of trees to the stand.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.stand.Stand.assign_emergency_action" title="BFMM.stand.Stand.assign_emergency_action"><code class="xref py py-obj docutils literal notranslate"><span class="pre">assign_emergency_action</span></code></a></p></td>
+<td><p>Decide what to do when a tree cannot sustain itself.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.stand.Stand.clear_cache" title="BFMM.stand.Stand.clear_cache"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear_cache</span></code></a></p></td>
+<td><p>Clear the yearly and daily caches.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.stand.Stand.count_C_in_system" title="BFMM.stand.Stand.count_C_in_system"><code class="xref py py-obj docutils literal notranslate"><span class="pre">count_C_in_system</span></code></a></p></td>
+<td><p>Sum up all carbon in the system, ignore some tree statuses.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.stand.Stand.count_C_in_trees" title="BFMM.stand.Stand.count_C_in_trees"><code class="xref py py-obj docutils literal notranslate"><span class="pre">count_C_in_trees</span></code></a></p></td>
+<td><p>Sum up all carbon in trees, ignore some tree statuses.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.stand.Stand.create_empty" title="BFMM.stand.Stand.create_empty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_empty</span></code></a></p></td>
+<td><p>Create a stand without trees.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.stand.Stand.light_absorption" title="BFMM.stand.Stand.light_absorption"><code class="xref py py-obj docutils literal notranslate"><span class="pre">light_absorption</span></code></a></p></td>
+<td><p>Computes PAR (or NIR if added) absorption within multi-layer canopy</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.stand.Stand.post_process_management" title="BFMM.stand.Stand.post_process_management"><code class="xref py py-obj docutils literal notranslate"><span class="pre">post_process_management</span></code></a></p></td>
+<td><p>Check managament strategies, assign trees for actions next year.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.stand.Stand.process_cutting" title="BFMM.stand.Stand.process_cutting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process_cutting</span></code></a></p></td>
+<td><p>Cut trees that are assigned to cutting.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.stand.Stand.process_planting" title="BFMM.stand.Stand.process_planting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process_planting</span></code></a></p></td>
+<td><p>Replant trees that are assigned to replanting and plant new trees.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.stand.Stand.process_soil_and_WP_update" title="BFMM.stand.Stand.process_soil_and_WP_update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process_soil_and_WP_update</span></code></a></p></td>
+<td><p>Transfer carbon from trees to soil and wood products.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.stand.Stand.process_trees_update" title="BFMM.stand.Stand.process_trees_update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process_trees_update</span></code></a></p></td>
+<td><p>Update the carbon models of the trees.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.stand.Stand.run" title="BFMM.stand.Stand.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a></p></td>
+<td><p>The half-hourly run of the photosynthesis part.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.stand.Stand.simulate_year" title="BFMM.stand.Stand.simulate_year"><code class="xref py py-obj docutils literal notranslate"><span class="pre">simulate_year</span></code></a></p></td>
+<td><p>Run one year of model simulation, the stand is the connecting module.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.stand.Stand.wind_profile" title="BFMM.stand.Stand.wind_profile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wind_profile</span></code></a></p></td>
+<td><p>Exponential attenuation of wind within canopy of uniform leaf-area density</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="rubric">Attributes</p>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.stand.Stand.LAI" title="BFMM.stand.Stand.LAI"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LAI</span></code></a></p></td>
+<td><p>Stand's leaf area index [m2 (leaf) / m2 (ground)].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.stand.Stand.PARalbedo" title="BFMM.stand.Stand.PARalbedo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PARalbedo</span></code></a></p></td>
+<td><p>The stand's photosynthetically active radiation albedo [???].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.stand.Stand.Unorm" title="BFMM.stand.Stand.Unorm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Unorm</span></code></a></p></td>
+<td><p>The stand's ??? [???].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.stand.Stand.basal_area" title="BFMM.stand.Stand.basal_area"><code class="xref py py-obj docutils literal notranslate"><span class="pre">basal_area</span></code></a></p></td>
+<td><p>Stand basal area [m2 ha-1].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.stand.Stand.canopy_height" title="BFMM.stand.Stand.canopy_height"><code class="xref py py-obj docutils literal notranslate"><span class="pre">canopy_height</span></code></a></p></td>
+<td><p>The stand's canopy height.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.stand.Stand.dominant_tree_height" title="BFMM.stand.Stand.dominant_tree_height"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dominant_tree_height</span></code></a></p></td>
+<td><p>Average height of the tallest 100 trees [m].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.stand.Stand.lad" title="BFMM.stand.Stand.lad"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lad</span></code></a></p></td>
+<td><p>The stand's leaf area density over <code class="docutils literal notranslate"><span class="pre">self.z</span></code>, [m2 m-3].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.stand.Stand.living_trees" title="BFMM.stand.Stand.living_trees"><code class="xref py py-obj docutils literal notranslate"><span class="pre">living_trees</span></code></a></p></td>
+<td><p>Return all living MeanTrees.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.stand.Stand.mean_tree_height" title="BFMM.stand.Stand.mean_tree_height"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean_tree_height</span></code></a></p></td>
+<td><p>Mean tree height in the stand [m].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.stand.Stand.non_removed_trees" title="BFMM.stand.Stand.non_removed_trees"><code class="xref py py-obj docutils literal notranslate"><span class="pre">non_removed_trees</span></code></a></p></td>
+<td><p>Return all trees with status not equal to &quot;removed&quot;.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.stand.Stand.nr_soil_pools" title="BFMM.stand.Stand.nr_soil_pools"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nr_soil_pools</span></code></a></p></td>
+<td><p>The number of carbon pools in the soil carbon module.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.stand.Stand.nr_tree_pools" title="BFMM.stand.Stand.nr_tree_pools"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nr_tree_pools</span></code></a></p></td>
+<td><p>The number of carbon pools per MeanTree.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.stand.Stand.nr_trees" title="BFMM.stand.Stand.nr_trees"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nr_trees</span></code></a></p></td>
+<td><p>The number of MeanTrees in the stand, all statuses.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.stand.Stand.nr_wood_product_pools" title="BFMM.stand.Stand.nr_wood_product_pools"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nr_wood_product_pools</span></code></a></p></td>
+<td><p>The number of carbon pools in the wood product module.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.stand.Stand.soil_entity_nr" title="BFMM.stand.Stand.soil_entity_nr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soil_entity_nr</span></code></a></p></td>
+<td><p>The entity number associated to the soil module.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.stand.Stand.soil_pool_nrs" title="BFMM.stand.Stand.soil_pool_nrs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">soil_pool_nrs</span></code></a></p></td>
+<td><p>The integer numbers associated to the soil module.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.stand.Stand.tree_entity_nrs" title="BFMM.stand.Stand.tree_entity_nrs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tree_entity_nrs</span></code></a></p></td>
+<td><p>The entity numbers associated to MeanTrees.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.stand.Stand.tree_pool_nrs" title="BFMM.stand.Stand.tree_pool_nrs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tree_pool_nrs</span></code></a></p></td>
+<td><p>The integer numbers of the tree pools in the whole system.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#BFMM.stand.Stand.wood_product_entity_nr" title="BFMM.stand.Stand.wood_product_entity_nr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wood_product_entity_nr</span></code></a></p></td>
+<td><p>The entity number associated to the wood product module.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#BFMM.stand.Stand.wood_product_pool_nrs" title="BFMM.stand.Stand.wood_product_pool_nrs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wood_product_pool_nrs</span></code></a></p></td>
+<td><p>The integer numbers associated to the wood product module.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.create_empty">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_empty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stand_parameters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wood_product_interface_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/stand.html#Stand.create_empty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.stand.Stand.create_empty" title="Permalink to this definition">#</a></dt>
+<dd><p>Create a stand without trees.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stand_parameters</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]) – see <code class="xref py py-data docutils literal notranslate"><span class="pre">simulation_parameters.stand_params</span></code></p></li>
+<li><p><strong>wood_product_interface_name</strong> (<em>str</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#BFMM.stand.Stand" title="BFMM.stand.Stand"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stand</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.clear_cache">
+<span class="sig-name descname"><span class="pre">clear_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/stand.html#Stand.clear_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.stand.Stand.clear_cache" title="Permalink to this definition">#</a></dt>
+<dd><p>Clear the yearly and daily caches.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.nr_trees">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">nr_trees</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#BFMM.stand.Stand.nr_trees" title="Permalink to this definition">#</a></dt>
+<dd><p>The number of MeanTrees in the stand, all statuses.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.nr_tree_pools">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">nr_tree_pools</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#BFMM.stand.Stand.nr_tree_pools" title="Permalink to this definition">#</a></dt>
+<dd><p>The number of carbon pools per MeanTree.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.nr_soil_pools">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">nr_soil_pools</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#BFMM.stand.Stand.nr_soil_pools" title="Permalink to this definition">#</a></dt>
+<dd><p>The number of carbon pools in the soil carbon module.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.nr_wood_product_pools">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">nr_wood_product_pools</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#BFMM.stand.Stand.nr_wood_product_pools" title="Permalink to this definition">#</a></dt>
+<dd><p>The number of carbon pools in the wood product module.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.tree_pool_nrs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tree_pool_nrs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Iterable</span></em><a class="headerlink" href="#BFMM.stand.Stand.tree_pool_nrs" title="Permalink to this definition">#</a></dt>
+<dd><p>The integer numbers of the tree pools in the whole system.</p>
+<p>Since the data set is in dims (entity, time, pool), the pools are
+E, B_L, C_L, …, B_R, Litter, CWD, SOM, WP_S, WP_L.
+All entities have all the pools, for trees all non-tree pools contain
+nans, for soil, all non-soil pools contain nans, etc.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.soil_pool_nrs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">soil_pool_nrs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Iterable</span></em><a class="headerlink" href="#BFMM.stand.Stand.soil_pool_nrs" title="Permalink to this definition">#</a></dt>
+<dd><p>The integer numbers associated to the soil module.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.wood_product_pool_nrs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">wood_product_pool_nrs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Iterable</span></em><a class="headerlink" href="#BFMM.stand.Stand.wood_product_pool_nrs" title="Permalink to this definition">#</a></dt>
+<dd><p>The integer numbers associated to the wood product module.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.tree_entity_nrs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tree_entity_nrs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span></em><a class="headerlink" href="#BFMM.stand.Stand.tree_entity_nrs" title="Permalink to this definition">#</a></dt>
+<dd><p>The entity numbers associated to MeanTrees.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.soil_entity_nr">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">soil_entity_nr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#BFMM.stand.Stand.soil_entity_nr" title="Permalink to this definition">#</a></dt>
+<dd><p>The entity number associated to the soil module.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.wood_product_entity_nr">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">wood_product_entity_nr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#BFMM.stand.Stand.wood_product_entity_nr" title="Permalink to this definition">#</a></dt>
+<dd><p>The entity number associated to the wood product module.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.living_trees">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">living_trees</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="BFMM.trees.mean_tree.MeanTree.html#BFMM.trees.mean_tree.MeanTree" title="BFMM.trees.mean_tree.MeanTree"><span class="pre">MeanTree</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#BFMM.stand.Stand.living_trees" title="Permalink to this definition">#</a></dt>
+<dd><p>Return all living MeanTrees.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.non_removed_trees">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">non_removed_trees</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="BFMM.trees.mean_tree.MeanTree.html#BFMM.trees.mean_tree.MeanTree" title="BFMM.trees.mean_tree.MeanTree"><span class="pre">MeanTree</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#BFMM.stand.Stand.non_removed_trees" title="Permalink to this definition">#</a></dt>
+<dd><p>Return all trees with status not equal to “removed”.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.basal_area">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">basal_area</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Q_</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#BFMM.stand.Stand.basal_area" title="Permalink to this definition">#</a></dt>
+<dd><p>Stand basal area [m2 ha-1].</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.dominant_tree_height">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dominant_tree_height</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Q_</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#BFMM.stand.Stand.dominant_tree_height" title="Permalink to this definition">#</a></dt>
+<dd><p>Average height of the tallest 100 trees [m].</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.mean_tree_height">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mean_tree_height</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Q_</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#BFMM.stand.Stand.mean_tree_height" title="Permalink to this definition">#</a></dt>
+<dd><p>Mean tree height in the stand [m].</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.add_trees_from_setting">
+<span class="sig-name descname"><span class="pre">add_trees_from_setting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">species_settings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_species_params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/stand.html#Stand.add_trees_from_setting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.stand.Stand.add_trees_from_setting" title="Permalink to this definition">#</a></dt>
+<dd><p>Add a prescribed collection of trees to the stand.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>species_settings</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Quantity</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Quantity</span></code>, <a class="reference internal" href="BFMM.management.management_strategy.ManagementStrategy.html#BFMM.management.management_strategy.ManagementStrategy" title="BFMM.management.management_strategy.ManagementStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManagementStrategy</span></code></a>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]]]) – settings for different tree species</p></li>
+<li><p><strong>custom_species_params</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]]) – tree species parameters (for all species)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.add_final_felling">
+<span class="sig-name descname"><span class="pre">add_final_felling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_stand_age</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/stand.html#Stand.add_final_felling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.stand.Stand.add_final_felling" title="Permalink to this definition">#</a></dt>
+<dd><p>Add the final felling (trigger, action) pair to all trees in the stand.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>max_stand_age</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Quantity</span></code>) – age of stand at end of simulation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.simulate_year">
+<span class="sig-name descname"><span class="pre">simulate_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forcing_of_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sw_model_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logfile_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/stand.html#Stand.simulate_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.stand.Stand.simulate_year" title="Permalink to this definition">#</a></dt>
+<dd><p>Run one year of model simulation, the stand is the connecting module.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>[</strong><strong>yr</strong><strong>]</strong> (<em>year</em>) – </p></li>
+<li><p><strong>forcing_of_year</strong> – the forcing data frame of the simulation year</p></li>
+<li><p><strong>sw_model_name</strong> – light model, element of [“Spitters”, “Zhao”]</p></li>
+<li><p><strong>logfile_path</strong> – path to the logfile</p></li>
+<li><p><strong>year</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>tuple</p>
+<ul class="simple">
+<li><p>list with names of trees that could not be updated</p></li>
+<li><p>GPP of the year [gC m-2 yr-1]</p></li>
+<li><p>time: last time stamp from the forcing data</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple[List[str], Q_[float], float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.lad">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lad</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#BFMM.stand.Stand.lad" title="Permalink to this definition">#</a></dt>
+<dd><p>The stand’s leaf area density over <code class="docutils literal notranslate"><span class="pre">self.z</span></code>, [m2 m-3].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>sum of the stand’s trees leaf area densities            weighted by their abundance <code class="docutils literal notranslate"><span class="pre">N_per_m2</span></code>, [m2 m-3]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.canopy_height">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">canopy_height</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#BFMM.stand.Stand.canopy_height" title="Permalink to this definition">#</a></dt>
+<dd><p>The stand’s canopy height.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>highest point in the canopy where leaves can be found [m]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.LAI">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LAI</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#BFMM.stand.Stand.LAI" title="Permalink to this definition">#</a></dt>
+<dd><p>Stand’s leaf area index [m2 (leaf) / m2 (ground)].</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.PARalbedo">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PARalbedo</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#BFMM.stand.Stand.PARalbedo" title="Permalink to this definition">#</a></dt>
+<dd><p>The stand’s photosynthetically active radiation albedo [???].</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.Unorm">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Unorm</span></span><a class="headerlink" href="#BFMM.stand.Stand.Unorm" title="Permalink to this definition">#</a></dt>
+<dd><p>The stand’s ??? [???].</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forcing</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sw_model_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/stand.html#Stand.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.stand.Stand.run" title="Permalink to this definition">#</a></dt>
+<dd><p>The half-hourly run of the photosynthesis part.</p>
+<p>run for time step <code class="docutils literal notranslate"><span class="pre">dt</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dt</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – time step [s]</p></li>
+<li><p><strong>forcing</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]) – <p>forcing dictionary</p>
+<ul>
+<li><p>doy: day of year [-]</p></li>
+<li><p>Zen: zenith angle [rad]</p></li>
+<li><p>dirPar: direct PAR [umolm-2s-1]</p></li>
+<li><p>diffPar: diffuse PAR [umolm-2s-1]</p></li>
+<li><p>Tair: air temperature [degC]</p></li>
+<li><p>H2O: H2O mixing ratio [mol/mol]</p></li>
+<li><p>CO2: CO2 mixing ratio [ppm]</p></li>
+<li><p>U: wind speed at canopy top [ms-1]</p></li>
+<li><p>Prec: precipitation rate [kg m-2 s-1]</p></li>
+<li><p>P: air pressure [Pa]</p></li>
+</ul>
+</p></li>
+<li><p><strong>sw_model_name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – light model, element of [“Spitters”, “Zhao”]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><p>tuple</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>GPP: ???</p></li>
+<li><p>Gs: ???</p></li>
+<li><p>Gs: ???</p></li>
+<li><p>Ci: ???</p></li>
+<li><p>E: ???</p></li>
+<li><p>Ecan: ???</p></li>
+<li><p>Ebl: ???</p></li>
+<li><p>Trfall: ???</p></li>
+<li><p>Roff: ???</p></li>
+<li><p>Drain: ???</p></li>
+<li><p>Infil: ???</p></li>
+</ul>
+</div></blockquote>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.light_absorption">
+<span class="sig-name descname"><span class="pre">light_absorption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Zen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Qb0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Qd0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sw_model_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/stand.html#Stand.light_absorption"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.stand.Stand.light_absorption" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes PAR (or NIR if added) absorption within multi-layer canopy</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Zen</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – zenith angle [rad]</p></li>
+<li><p><strong>Qb0</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – direct light at canopy top, in our case [umol m-2 s-1]</p></li>
+<li><p><strong>Qd0</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – diffuse light at canopy top, in our case [umol m-2 s-1]</p></li>
+<li><p><strong>sw_model_name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – light model, element of [“Spitters”, “Zhao”]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><p>tuple</p>
+<ul class="simple">
+<li><p>aPAR (List[np.ndarray]): aPAR per each tree [umol m-2 (leaf) s-1]</p></li>
+<li><p>f_sl (np.ndarray): sunlit fraction [-]</p></li>
+<li><p>Q (float): incident PAR [umol m-2(ground) s-1]</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.wind_profile">
+<span class="sig-name descname"><span class="pre">wind_profile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Uo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/stand.html#Stand.wind_profile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.stand.Stand.wind_profile" title="Permalink to this definition">#</a></dt>
+<dd><p>Exponential attenuation of wind within canopy of uniform leaf-area density</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Uo</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – flow at canopy_height [ms-1]</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>flow at <code class="docutils literal notranslate"><span class="pre">self.z</span></code> [ms-1]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.process_cutting">
+<span class="sig-name descname"><span class="pre">process_cutting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logfile_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/stand.html#Stand.process_cutting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.stand.Stand.process_cutting" title="Permalink to this definition">#</a></dt>
+<dd><p>Cut trees that are assigned to cutting. Also do thinning.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>logfile_path</strong> (<em>Path</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.process_planting">
+<span class="sig-name descname"><span class="pre">process_planting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logfile_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/stand.html#Stand.process_planting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.stand.Stand.process_planting" title="Permalink to this definition">#</a></dt>
+<dd><p>Replant trees that are assigned to replanting and plant new trees.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>logfile_path</strong> (<em>Path</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.process_trees_update">
+<span class="sig-name descname"><span class="pre">process_trees_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logfile_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/stand.html#Stand.process_trees_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.stand.Stand.process_trees_update" title="Permalink to this definition">#</a></dt>
+<dd><p>Update the carbon models of the trees.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>logfile_path</strong> (<em>Path</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.assign_emergency_action">
+<span class="sig-name descname"><span class="pre">assign_emergency_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">emergency_action_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">emergency_direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">emergency_q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nr_of_escalation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logfile_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/stand.html#Stand.assign_emergency_action"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.stand.Stand.assign_emergency_action" title="Permalink to this definition">#</a></dt>
+<dd><p>Decide what to do when a tree cannot sustain itself.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tree_name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – the name of the MeanTree that failed to be updated</p></li>
+<li><p><strong>emergency_action_str</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – <p>element of [“Cut”, “CutWait3AndReplant”, “Thin”, “Die”]</p>
+<ul>
+<li><p>Cut: Cuts a number of trees from above or below</p></li>
+<li><p>CutWait3AndReplant: Like “Cut” but with delayed replanting.</p></li>
+<li><p>Thin: Thin the entire stand equally.</p></li>
+<li><p>Die: Remove the unsustaibale tree.</p></li>
+</ul>
+</p></li>
+<li><p><strong>emergency_direction</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – <code class="docutils literal notranslate"><span class="pre">above</span></code> or <code class="docutils literal notranslate"><span class="pre">below</span></code>, applies only for cutting</p></li>
+<li><p><strong>emergency_q</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – Fraction of trees to keep on <code class="docutils literal notranslate"><span class="pre">Thin</span></code></p></li>
+<li><p><strong>nr_of_escalation</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – If cutting one tree is not enough, cut two, and so on.</p></li>
+<li><p><strong>logfile_path</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code>) – path to the logfile</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.post_process_management">
+<span class="sig-name descname"><span class="pre">post_process_management</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logfile_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/stand.html#Stand.post_process_management"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.stand.Stand.post_process_management" title="Permalink to this definition">#</a></dt>
+<dd><p>Check managament strategies, assign trees for actions next year.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>logfile_path</strong> (<em>Path</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.process_soil_and_WP_update">
+<span class="sig-name descname"><span class="pre">process_soil_and_WP_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/stand.html#Stand.process_soil_and_WP_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.stand.Stand.process_soil_and_WP_update" title="Permalink to this definition">#</a></dt>
+<dd><p>Transfer carbon from trees to soil and wood products.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.count_C_in_trees">
+<span class="sig-name descname"><span class="pre">count_C_in_trees</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ignore</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/stand.html#Stand.count_C_in_trees"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.stand.Stand.count_C_in_trees" title="Permalink to this definition">#</a></dt>
+<dd><p>Sum up all carbon in trees, ignore some tree statuses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ignore</strong> – list of tree statuses to be ignored in the sum</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="BFMM.stand.Stand.count_C_in_system">
+<span class="sig-name descname"><span class="pre">count_C_in_system</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ignore</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/stand.html#Stand.count_C_in_system"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.stand.Stand.count_C_in_system" title="Permalink to this definition">#</a></dt>
+<dd><p>Sum up all carbon in the system, ignore some tree statuses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ignore</strong> – list of tree statuses to be ignored in the sum</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Q_[float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="BFMM.type_aliases.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">type_aliases</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="BFMM.stand.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">stand</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Holger Metzler, Samuli Launiainen, Viulia Vico
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Stand</a><ul>
+<li><a class="reference internal" href="#BFMM.stand.Stand"><code class="docutils literal notranslate"><span class="pre">Stand</span></code></a><ul>
+<li><a class="reference internal" href="#BFMM.stand.Stand.z"><code class="docutils literal notranslate"><span class="pre">Stand.z</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.dz"><code class="docutils literal notranslate"><span class="pre">Stand.dz</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.loc"><code class="docutils literal notranslate"><span class="pre">Stand.loc</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.ctr"><code class="docutils literal notranslate"><span class="pre">Stand.ctr</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.soil_model"><code class="docutils literal notranslate"><span class="pre">Stand.soil_model</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.tree_soil_interface"><code class="docutils literal notranslate"><span class="pre">Stand.tree_soil_interface</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.wood_product_model"><code class="docutils literal notranslate"><span class="pre">Stand.wood_product_model</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.wood_product_interface"><code class="docutils literal notranslate"><span class="pre">Stand.wood_product_interface</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.trees"><code class="docutils literal notranslate"><span class="pre">Stand.trees</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.canopywater"><code class="docutils literal notranslate"><span class="pre">Stand.canopywater</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.soil"><code class="docutils literal notranslate"><span class="pre">Stand.soil</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.times"><code class="docutils literal notranslate"><span class="pre">Stand.times</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.create_empty"><code class="docutils literal notranslate"><span class="pre">Stand.create_empty()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.clear_cache"><code class="docutils literal notranslate"><span class="pre">Stand.clear_cache()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.nr_trees"><code class="docutils literal notranslate"><span class="pre">Stand.nr_trees</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.nr_tree_pools"><code class="docutils literal notranslate"><span class="pre">Stand.nr_tree_pools</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.nr_soil_pools"><code class="docutils literal notranslate"><span class="pre">Stand.nr_soil_pools</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.nr_wood_product_pools"><code class="docutils literal notranslate"><span class="pre">Stand.nr_wood_product_pools</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.tree_pool_nrs"><code class="docutils literal notranslate"><span class="pre">Stand.tree_pool_nrs</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.soil_pool_nrs"><code class="docutils literal notranslate"><span class="pre">Stand.soil_pool_nrs</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.wood_product_pool_nrs"><code class="docutils literal notranslate"><span class="pre">Stand.wood_product_pool_nrs</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.tree_entity_nrs"><code class="docutils literal notranslate"><span class="pre">Stand.tree_entity_nrs</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.soil_entity_nr"><code class="docutils literal notranslate"><span class="pre">Stand.soil_entity_nr</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.wood_product_entity_nr"><code class="docutils literal notranslate"><span class="pre">Stand.wood_product_entity_nr</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.living_trees"><code class="docutils literal notranslate"><span class="pre">Stand.living_trees</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.non_removed_trees"><code class="docutils literal notranslate"><span class="pre">Stand.non_removed_trees</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.basal_area"><code class="docutils literal notranslate"><span class="pre">Stand.basal_area</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.dominant_tree_height"><code class="docutils literal notranslate"><span class="pre">Stand.dominant_tree_height</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.mean_tree_height"><code class="docutils literal notranslate"><span class="pre">Stand.mean_tree_height</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.add_trees_from_setting"><code class="docutils literal notranslate"><span class="pre">Stand.add_trees_from_setting()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.add_final_felling"><code class="docutils literal notranslate"><span class="pre">Stand.add_final_felling()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.simulate_year"><code class="docutils literal notranslate"><span class="pre">Stand.simulate_year()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.lad"><code class="docutils literal notranslate"><span class="pre">Stand.lad</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.canopy_height"><code class="docutils literal notranslate"><span class="pre">Stand.canopy_height</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.LAI"><code class="docutils literal notranslate"><span class="pre">Stand.LAI</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.PARalbedo"><code class="docutils literal notranslate"><span class="pre">Stand.PARalbedo</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.Unorm"><code class="docutils literal notranslate"><span class="pre">Stand.Unorm</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.run"><code class="docutils literal notranslate"><span class="pre">Stand.run()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.light_absorption"><code class="docutils literal notranslate"><span class="pre">Stand.light_absorption()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.wind_profile"><code class="docutils literal notranslate"><span class="pre">Stand.wind_profile()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.process_cutting"><code class="docutils literal notranslate"><span class="pre">Stand.process_cutting()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.process_planting"><code class="docutils literal notranslate"><span class="pre">Stand.process_planting()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.process_trees_update"><code class="docutils literal notranslate"><span class="pre">Stand.process_trees_update()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.assign_emergency_action"><code class="docutils literal notranslate"><span class="pre">Stand.assign_emergency_action()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.post_process_management"><code class="docutils literal notranslate"><span class="pre">Stand.post_process_management()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.process_soil_and_WP_update"><code class="docutils literal notranslate"><span class="pre">Stand.process_soil_and_WP_update()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.count_C_in_trees"><code class="docutils literal notranslate"><span class="pre">Stand.count_C_in_trees()</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.stand.Stand.count_C_in_system"><code class="docutils literal notranslate"><span class="pre">Stand.count_C_in_system()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    </body>
+</html>

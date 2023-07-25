@@ -1,0 +1,23 @@
+Plant
+=====
+
+Qualified name: ``BFMM.management.management\_strategy.Plant``
+
+CCCC
+
+.. currentmodule:: BFMM.management.management_strategy
+
+.. autoclass:: Plant
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+      ~Plant.do
+
+   
+   

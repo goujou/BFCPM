@@ -1,0 +1,62 @@
+Stand
+=====
+
+Qualified name: ``BFMM.stand.Stand``
+
+CCCC
+
+.. currentmodule:: BFMM.stand
+
+.. autoclass:: Stand
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+      ~Stand.add_final_felling
+      ~Stand.add_trees_from_setting
+      ~Stand.assign_emergency_action
+      ~Stand.clear_cache
+      ~Stand.count_C_in_system
+      ~Stand.count_C_in_trees
+      ~Stand.create_empty
+      ~Stand.light_absorption
+      ~Stand.post_process_management
+      ~Stand.process_cutting
+      ~Stand.process_planting
+      ~Stand.process_soil_and_WP_update
+      ~Stand.process_trees_update
+      ~Stand.run
+      ~Stand.simulate_year
+      ~Stand.wind_profile
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+     
+     ~Stand.LAI
+     ~Stand.PARalbedo
+     ~Stand.Unorm
+     ~Stand.basal_area
+     ~Stand.canopy_height
+     ~Stand.dominant_tree_height
+     ~Stand.lad
+     ~Stand.living_trees
+     ~Stand.mean_tree_height
+     ~Stand.non_removed_trees
+     ~Stand.nr_soil_pools
+     ~Stand.nr_tree_pools
+     ~Stand.nr_trees
+     ~Stand.nr_wood_product_pools
+     ~Stand.soil_entity_nr
+     ~Stand.soil_pool_nrs
+     ~Stand.tree_entity_nrs
+     ~Stand.tree_pool_nrs
+     ~Stand.wood_product_entity_nr
+     ~Stand.wood_product_pool_nrs
+   

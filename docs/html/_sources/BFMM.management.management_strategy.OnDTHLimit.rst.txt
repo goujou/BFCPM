@@ -1,0 +1,23 @@
+OnDTHLimit
+==========
+
+Qualified name: ``BFMM.management.management\_strategy.OnDTHLimit``
+
+CCCC
+
+.. currentmodule:: BFMM.management.management_strategy
+
+.. autoclass:: OnDTHLimit
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+      ~OnDTHLimit.triggered
+
+   
+   
