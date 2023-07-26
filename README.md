@@ -8,14 +8,16 @@
 
 ## Installation
 
-  conda create --name BFMM python=3.9
-  conda activate BFMM
+```
+conda create --name BFMM python=3.9
+conda activate BFMM
 
-  git clone --recurse-submodules https://github.com/MPIBGC-TEE/bgc_md2.git
-  cd bgc_md2
-  ./install_developer_conda.sh
+git clone --recurse-submodules https://github.com/MPIBGC-TEE/bgc_md2.git
+cd bgc_md2
+./install_developer_conda.sh
 
-  cd ..
-  https://github.com/goujou/BFMM.git
-  ./install_developer_conda.sh
+cd ..
+https://github.com/goujou/BFMM.git
+./install_developer_conda.sh
+```
  
