@@ -17,7 +17,8 @@ cd bgc_md2
 ./install_developer_conda.sh
 
 cd ..
-https://github.com/goujou/BFMM.git
+git clone https://github.com/goujou/BFMM.git
+cd BFMM
 ./install_developer_conda.sh
 ```
  
