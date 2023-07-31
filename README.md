@@ -45,7 +45,8 @@ cd BFCPM
 
 All the data and figures for the manuscript have can be reproduced by two notebooks:
 - notebooks/run_sims_for_paper_serial.ipynb
-  - reprpduces all the simulation data, can take hours to days
+  - reproduces all the simulation data, can take hours to days
+    - **NOTE:** If the variables `pre_spinup_date` and `sim_data` are not changed, then pre-computed (and provided) data as presented in the manuscript will be overwritten.
 - notebooks/figures_notebook.ipynb
   - reproduces the figures from simulation data
   - pre-computed simulation data can be found in
