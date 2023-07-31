@@ -16,7 +16,7 @@ However, mixed-aged forest management is superior to even-aged forest management
 First, create a new conda environment:
 
 ```
-conda create --name BFCPM python=3.9
+conda create --name BFCPM python=3
 conda activate BFCPM
 ```
 
