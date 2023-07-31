@@ -1,0 +1,40 @@
+﻿wood\_products
+==============
+
+MMMM
+
+.. currentmodule:: BFCPM.wood_products
+
+
+.. automodule:: BFCPM.wood_products
+
+    
+    
+    .. rubric:: Modules
+    
+    .. autosummary::
+       :toctree:
+       :recursive:
+       :template: module.rst
+
+       
+       ~BFCPM.wood_products.simple_wood_product_model
+       ~BFCPM.wood_products.wood_product_model_abc
+    
+    
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   

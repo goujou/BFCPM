@@ -1,0 +1,36 @@
+BFCPM package
+=============
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   BFCPM.management
+   BFCPM.productivity
+   BFCPM.simulation
+   BFCPM.soil
+   BFCPM.trees
+   BFCPM.wood_products
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   BFCPM.params
+   BFCPM.prepare_stand
+   BFCPM.simulation_parameters
+   BFCPM.stand
+   BFCPM.type_aliases
+   BFCPM.utils
+
+Module contents
+---------------
+
+.. automodule:: BFCPM
+   :members:
+   :undoc-members:
+   :show-inheritance:

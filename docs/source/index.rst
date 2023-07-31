@@ -62,8 +62,8 @@ Notebooks
 Notes
 =====
 
-    .. [1] Launiainen, Samuli, et al. "Coupling boreal forest CO2, H2O 
-        and energy flows by a vertically structured forest canopy–Soil 
+    .. [1] Launiainen, Samuli, et al. "Coupling boreal forest :math:`\mathrm{CO}_2`, :math:`\mathrm{H}_{2}\mathrm{O}` 
+        and energy flows by a vertically structured forest canopy–soil 
         model with separate bryophyte layer." Ecological modelling 312 
         (2015): 385-405.
 

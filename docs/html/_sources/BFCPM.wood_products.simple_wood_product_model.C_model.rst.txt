@@ -1,0 +1,40 @@
+C\_model
+========
+
+MMMM
+
+.. currentmodule:: BFCPM.wood_products.simple_wood_product_model.C_model
+
+
+.. automodule:: BFCPM.wood_products.simple_wood_product_model.C_model
+
+    
+    
+    
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+      :template: class.rst
+
+      
+        SimpleWoodProductModel
+      
+   
+   
+
+   
+   
+   
+
+   
+   
+   

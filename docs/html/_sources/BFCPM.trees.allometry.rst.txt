@@ -1,0 +1,43 @@
+allometry
+=========
+
+MMMM
+
+.. currentmodule:: BFCPM.trees.allometry
+
+
+.. automodule:: BFCPM.trees.allometry
+
+    
+    
+    
+
+   
+   
+   .. rubric:: Module Attributes
+
+   
+   .. autodata:: BFCPM.trees.allometry::params_allometry
+   .. autodata:: BFCPM.trees.allometry::params_young_allometry
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   
+   .. autofunction:: allometries_marklund
+   .. autofunction:: allometries_repola_2009
+   .. autofunction:: allometries_repola_2014
+   .. autofunction:: allometries_repola_and_lehtonen
+   
+   
+
+   
+   
+   

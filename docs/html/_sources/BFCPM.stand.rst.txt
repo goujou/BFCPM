@@ -1,0 +1,40 @@
+﻿stand
+=====
+
+MMMM
+
+.. currentmodule:: BFCPM.stand
+
+
+.. automodule:: BFCPM.stand
+
+    
+    
+    
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+      :template: class.rst
+
+      
+        Stand
+      
+   
+   
+
+   
+   
+   
+
+   
+   
+   

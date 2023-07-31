@@ -1,0 +1,40 @@
+C\_model
+========
+
+MMMM
+
+.. currentmodule:: BFCPM.soil.dead_wood_classes.C_model
+
+
+.. automodule:: BFCPM.soil.dead_wood_classes.C_model
+
+    
+    
+    
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+      :template: class.rst
+
+      
+        SoilCDeadWoodClasses
+      
+   
+   
+
+   
+   
+   
+
+   
+   
+   

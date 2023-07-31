@@ -1,0 +1,51 @@
+MeanTree
+========
+
+Qualified name: ``BFCPM.trees.mean\_tree.MeanTree``
+
+CCCC
+
+.. currentmodule:: BFCPM.trees.mean_tree
+
+.. autoclass:: MeanTree
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+      ~MeanTree.clear_cache
+      ~MeanTree.compute_Ags
+      ~MeanTree.get_stocks_and_fluxes_dataset
+      ~MeanTree.update_daily
+      ~MeanTree.update_structure
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+     
+     ~MeanTree.H
+     ~MeanTree.LA
+     ~MeanTree.N_per_m2
+     ~MeanTree.PARalbedo
+     ~MeanTree.basal_area
+     ~MeanTree.current_status
+     ~MeanTree.dbh
+     ~MeanTree.is_alive
+     ~MeanTree.lad
+     ~MeanTree.lad_normed
+     ~MeanTree.leaf_area
+     ~MeanTree.leaf_size
+     ~MeanTree.live_statuses
+     ~MeanTree.max_leaf_area
+     ~MeanTree.mleaf
+     ~MeanTree.nr_pools
+     ~MeanTree.pheno_state
+     ~MeanTree.r
+     ~MeanTree.relative_leaf_area
+     ~MeanTree.species
+   

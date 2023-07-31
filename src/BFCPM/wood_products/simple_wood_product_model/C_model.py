@@ -1,7 +1,7 @@
 """
 This module contains a simple wood-product model.
 
-Two pools: short- (:math:`WP_S`) and long-lived (:math:`WP_L`) material.
+Two pools: short- (:math:`\mathrm{WP}_S`) and long-lived (:math:`{\mathrm{WP}_L`) material.
 """
 from __future__ import annotations
 

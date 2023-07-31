@@ -1,0 +1,23 @@
+TriggerABC
+==========
+
+Qualified name: ``BFCPM.management.management\_strategy.TriggerABC``
+
+CCCC
+
+.. currentmodule:: BFCPM.management.management_strategy
+
+.. autoclass:: TriggerABC
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+      ~TriggerABC.triggered
+
+   
+   

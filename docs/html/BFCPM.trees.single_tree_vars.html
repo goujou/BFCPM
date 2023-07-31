@@ -1,0 +1,714 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="tree_utils" href="BFCPM.trees.tree_utils.html" /><link rel="prev" title="single_tree_params" href="BFCPM.trees.single_tree_params.html" />
+
+    <!-- Generated with Sphinx 7.1.1 and Furo 2023.07.26 -->
+        <title>single_tree_vars - BFCPM</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=362ab14a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">BFCPM</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">BFCPM</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="BFCPM.prepare_stand.html">prepare_stand</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BFCPM.stand.html">stand</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of stand</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="BFCPM.stand.Stand.html">Stand</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="BFCPM.type_aliases.html">type_aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BFCPM.utils.html">utils</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="BFCPM.productivity.html">productivity</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="BFCPM.trees.html">trees</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of trees</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="BFCPM.trees.allometry.html">allometry</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFCPM.trees.mean_tree.html">mean_tree</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of mean_tree</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.trees.mean_tree.MeanTree.html">MeanTree</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFCPM.trees.single_tree_C_model.html">single_tree_C_model</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of single_tree_C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.trees.single_tree_C_model.SingleTreeCModel.html">SingleTreeCModel</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFCPM.trees.single_tree_allocation.html">single_tree_allocation</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of single_tree_allocation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.trees.single_tree_allocation.SingleTree.html">SingleTree</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="BFCPM.trees.single_tree_params.html">single_tree_params</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">single_tree_vars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFCPM.trees.tree_utils.html">tree_utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BFCPM.soil.html">soil</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of soil</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFCPM.soil.dead_wood_classes.html">dead_wood_classes</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of dead_wood_classes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="BFCPM.soil.dead_wood_classes.C_model.html">C_model</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="BFCPM.soil.dead_wood_classes.C_model.SoilCDeadWoodClasses.html">SoilCDeadWoodClasses</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.soil.dead_wood_classes.C_model_parameters.html">C_model_parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFCPM.soil.simple_soil_model.html">simple_soil_model</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of simple_soil_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="BFCPM.soil.simple_soil_model.C_model.html">C_model</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="BFCPM.soil.simple_soil_model.C_model.SimpleSoilCModel.html">SimpleSoilCModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.soil.simple_soil_model.C_model_parameters.html">C_model_parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFCPM.soil.soil_c_model_abc.html">soil_c_model_abc</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of soil_c_model_abc</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.soil.soil_c_model_abc.SoilCModelABC.html">SoilCModelABC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BFCPM.wood_products.html">wood_products</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of wood_products</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFCPM.wood_products.simple_wood_product_model.html">simple_wood_product_model</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of simple_wood_product_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="BFCPM.wood_products.simple_wood_product_model.C_model.html">C_model</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="BFCPM.wood_products.simple_wood_product_model.C_model.SimpleWoodProductModel.html">SimpleWoodProductModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.wood_products.simple_wood_product_model.C_model_parameters.html">C_model_parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFCPM.wood_products.wood_product_model_abc.html">wood_product_model_abc</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of wood_product_model_abc</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.wood_products.wood_product_model_abc.WoodProductModelABC.html">WoodProductModelABC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BFCPM.management.html">management</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of management</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="BFCPM.management.library.html">library</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFCPM.management.management_strategy.html">management_strategy</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of management_strategy</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.management.management_strategy.Cut.html">Cut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.management.management_strategy.CutAndReplant.html">CutAndReplant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.management.management_strategy.CutWaitAndReplant.html">CutWaitAndReplant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.management.management_strategy.ManagementActionABC.html">ManagementActionABC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.management.management_strategy.ManagementStrategy.html">ManagementStrategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.management.management_strategy.OnDBHLimit.html">OnDBHLimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.management.management_strategy.OnDTHLimit.html">OnDTHLimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.management.management_strategy.OnDelayOneTime.html">OnDelayOneTime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.management.management_strategy.OnNLimit.html">OnNLimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.management.management_strategy.OnPeriodically.html">OnPeriodically</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.management.management_strategy.OnSBALimit.html">OnSBALimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.management.management_strategy.OnSBAvsDTH.html">OnSBAvsDTH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.management.management_strategy.OnStandAges.html">OnStandAges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.management.management_strategy.OnTimeIntervals.html">OnTimeIntervals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.management.management_strategy.PCT.html">PCT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.management.management_strategy.Plant.html">Plant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.management.management_strategy.Thin.html">Thin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.management.management_strategy.ThinStand.html">ThinStand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.management.management_strategy.TriggerABC.html">TriggerABC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.management.management_strategy.WaitAndPlant.html">WaitAndPlant</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="BFCPM.simulation.html">simulation</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of simulation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="BFCPM.simulation.library.html">library</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFCPM.simulation.recorded_simulation.html">recorded_simulation</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of recorded_simulation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.simulation.recorded_simulation.RecordedSimulation.html">RecordedSimulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="BFCPM.simulation.simulation.html">simulation</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of simulation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="BFCPM.simulation.simulation.Simulation.html">Simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="BFCPM.simulation.utils.html">utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="BFCPM.simulation_parameters.html">simulation_parameters</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/Untitled.html">Test notebook</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="single-tree-vars">
+<h1>single_tree_vars<a class="headerlink" href="#single-tree-vars" title="Permalink to this heading">#</a></h1>
+<p>MMMM</p>
+<span class="target" id="module-BFCPM.trees.single_tree_vars"></span><p>This module contains the relevant variables of the <a class="reference internal" href="BFCPM.trees.single_tree_allocation.SingleTree.html#BFCPM.trees.single_tree_allocation.SingleTree" title="BFCPM.trees.single_tree_allocation.SingleTree"><code class="xref py py-class docutils literal notranslate"><span class="pre">single_tree_allocation.SingleTree</span></code></a> class.</p>
+<p class="rubric">Module Attributes</p>
+<span class="sig-name descname">var_infos</span><dd><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;B_L&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;biomass of leaves&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC&#39;</span><span class="p">,</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_dw&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;B_OH&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;biomass of ``other&#39;&#39; heartwood&quot;</span><span class="p">,</span>
+<span class="w">                      </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\\citet[SI, &#39;</span>
+<span class="w">                                </span><span class="s1">&#39;Eq.~(20B)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">            </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_dw&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;B_OS&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;biomass of ``other&#39;&#39; sapwood&quot;</span><span class="p">,</span>
+<span class="w">                      </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\\citet[SI, Eq.~(20A)]{Ogle2009}&#39;</span><span class="p">},</span>
+<span class="w">            </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_dw&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;B_R&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;biomass of fine roots&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC&#39;</span><span class="p">,</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_dw&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;B_S&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;biomass of bulk sapwood&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;$B_\\text{OS}+B_\\text{TS}$&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC&#39;</span><span class="p">,</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_dw&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;B_S_star&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;biomass of &#39;living&#39; sapwood&quot;</span><span class="p">,</span>
+<span class="w">                          </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\\citet[SI, &#39;</span>
+<span class="w">                                    </span><span class="s1">&#39;Eq.~(29)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">                </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_dw&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;B_T&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;biomass of trunk&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;$B_{\\text{TH}} + B_{\\text{TS}} + &#39;</span>
+<span class="w">                               </span><span class="s1">&#39;\\frac{B_{\\text{TS}}}{B_S}\\,C_S$&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC&#39;</span><span class="p">,</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_dw&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;B_TH&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;biomass of trunk heartwood&#39;</span><span class="p">,</span>
+<span class="w">                      </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;adapted from \\citet[SI, &#39;</span>
+<span class="w">                                </span><span class="s1">&#39;Eq.~(1D)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">            </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_dw&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;B_TS&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;biomass of trunk sapwood&#39;</span><span class="p">,</span>
+<span class="w">                      </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;adapted from \\citet[SI, &#39;</span>
+<span class="w">                                </span><span class="s1">&#39;Eq.~(1C)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">            </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_dw&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;C_L&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;labile carbon in leaves&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;adapted from \\citet[SI, &#39;</span>
+<span class="w">                               </span><span class="s1">&#39;Eq.~(4)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC&#39;</span><span class="p">,</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_gluc&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;C_R&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;labile carbon in roots&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;adapted from \\citet[SI, &#39;</span>
+<span class="w">                               </span><span class="s1">&#39;Eq.~(4)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC&#39;</span><span class="p">,</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_gluc&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;C_S&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;labile carbon stored in bulk &#39;</span>
+<span class="w">                              </span><span class="s1">&#39;sapwood&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\\citet[SI, Eq.~(3)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC&#39;</span><span class="p">,</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_gluc&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;C_S_star&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;maximum amount of labile &#39;</span>
+<span class="w">                                   </span><span class="s1">&#39;carbon stored in sapwood&#39;</span><span class="p">,</span>
+<span class="w">                          </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\\citet[SI, &#39;</span>
+<span class="w">                                    </span><span class="s1">&#39;Eq.~(5)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">                </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_gluc&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;C_alloc&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;available gC/yr for allocation &#39;</span>
+<span class="w">                                  </span><span class="s1">&#39;to tree organs&#39;</span><span class="p">,</span>
+<span class="w">                         </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;$E/\\Delta t-R_M$&#39;</span><span class="p">},</span>
+<span class="w">               </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC/yr&#39;</span><span class="p">,</span>
+<span class="w">               </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_gluc/yr&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;Delta_r&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;change of tree radius at trunk &#39;</span>
+<span class="w">                                  </span><span class="s1">&#39;base&#39;</span><span class="p">,</span>
+<span class="w">                         </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;dynamically solved for&#39;</span><span class="p">},</span>
+<span class="w">               </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;m&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;E&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;transient carbon as glucose&#39;</span><span class="p">,</span>
+<span class="w">                   </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="p">},</span>
+<span class="w">         </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC&#39;</span><span class="p">,</span>
+<span class="w">         </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_gluc&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;GPP&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;carbon uptake by photosynthesis&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC/yr&#39;</span><span class="p">,</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_gluc/yr&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;G_L&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;growth respiration leaves&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Eq.~\\eqref{eqn:G_L}&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC/yr&#39;</span><span class="p">,</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_gluc/yr&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;G_OS_CS&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;growth respiration sapwood from &#39;</span>
+<span class="w">                                  </span><span class="s1">&#39;labile storage C&#39;</span><span class="p">,</span>
+<span class="w">                         </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Eq.~\\eqref{eqn:G_OS_CS}&#39;</span><span class="p">},</span>
+<span class="w">               </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC/yr&#39;</span><span class="p">,</span>
+<span class="w">               </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_gluc/yr&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;G_OS_E&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;growth respiration sapwood from &#39;</span>
+<span class="w">                                 </span><span class="s1">&#39;transient C&#39;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Eq.~\\eqref{eqn:G_OS_E}&#39;</span><span class="p">},</span>
+<span class="w">              </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC/yr&#39;</span><span class="p">,</span>
+<span class="w">              </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_gluc/yr&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;G_R&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;growth respiration fine roots&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;analogous to $G_L$&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC/yr&#39;</span><span class="p">,</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_gluc/yr&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;H&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;tree height&#39;</span><span class="p">,</span>
+<span class="w">                   </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Eq.~\\eqref{eqn:H}, &#39;</span>
+<span class="w">                             </span><span class="s1">&#39;\\citet{naslund1947funktioner, &#39;</span>
+<span class="w">                             </span><span class="s1">&#39;siipilehto2015naslundin}&#39;</span><span class="p">},</span>
+<span class="w">         </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;m&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;H_TH&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;height of trunk heartwood section&#39;</span><span class="p">,</span>
+<span class="w">                      </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\\citet[SI, Eq.~(9)]{Ogle2009TP}, &#39;</span>
+<span class="w">                                </span><span class="s1">&#39;corrected and introduced &#39;</span>
+<span class="w">                                </span><span class="s1">&#39;capturing of equalities&#39;</span><span class="p">},</span>
+<span class="w">            </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;m&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;LA&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;total leaf area&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;$\\text{SLA}\\,B_L$&#39;</span><span class="p">},</span>
+<span class="w">          </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;m^2&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;M_L&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;maintenance respiration leaves&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Eq.~\\eqref{eqn:M_L}&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC/yr&#39;</span><span class="p">,</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_gluc/yr&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;M_R&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;maintenance respiration fine roots&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;analogous to $M_L$&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC/yr&#39;</span><span class="p">,</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_gluc/yr&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;M_S&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;maintenance respiration sapwood&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Eq.~\\eqref{eqn:M_S}&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC/yr&#39;</span><span class="p">,</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_gluc/yr&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;R_M&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;whole plant maintenance respiration&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;$M_L+M_R+M_S$&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC/yr&#39;</span><span class="p">,</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_gluc/yr&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;SW&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;width (or depth) of sapwood at trunk &#39;</span>
+<span class="w">                             </span><span class="s1">&#39;base&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Section~\\ref{appendix:f_T}, &#39;</span>
+<span class="w">                              </span><span class="s1">&#39;\\citet{Helmisaari2007TP, &#39;</span>
+<span class="w">                              </span><span class="s1">&#39;Sellin1994CJFE}&#39;</span><span class="p">},</span>
+<span class="w">          </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;m&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;V_T&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;trunk volume&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\\citet[SI, Eq.~(9)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;m^3&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;V_TH&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;volume of trunk heartwood section&#39;</span><span class="p">,</span>
+<span class="w">                      </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\\citet[SI, &#39;</span>
+<span class="w">                                </span><span class="s1">&#39;Eq.~(14)]{Ogle2009TP}, introduced &#39;</span>
+<span class="w">                                </span><span class="s1">&#39;capturing of equalities&#39;</span><span class="p">},</span>
+<span class="w">            </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;m^3&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;V_TS&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;volume of trunk sapwood&#39;</span><span class="p">,</span>
+<span class="w">                      </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\\citet[SI, &#39;</span>
+<span class="w">                                </span><span class="s1">&#39;Eq.~(15)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">            </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;m^3&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;V_cone&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;trunk volume (top)&#39;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\\citet[SI, Eq.~(9, line &#39;</span>
+<span class="w">                                  </span><span class="s1">&#39;3)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">              </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;m^3&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;V_neiloid&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;trunk volume (base)&#39;</span><span class="p">,</span>
+<span class="w">                           </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\\citet[SI, Eq.~(9, line &#39;</span>
+<span class="w">                                     </span><span class="s1">&#39;1)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">                 </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;m^3&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;V_paraboloid&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;trunk volume (middle)&#39;</span><span class="p">,</span>
+<span class="w">                              </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\\citet[SI, Eq.~(9, line &#39;</span>
+<span class="w">                                        </span><span class="s1">&#39;2)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">                    </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;m^3&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;dbh&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;tree radius at breast height&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Section~\\ref{appendix:tree_allometries}&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;cm&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;delta_S&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;concentration of labile carbon &#39;</span>
+<span class="w">                                  </span><span class="s1">&#39;storage of bulk sapwood&#39;</span><span class="p">,</span>
+<span class="w">                         </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Eq.~\\eqref{eqn:delta_S}, &#39;</span>
+<span class="w">                                   </span><span class="s1">&#39;\\citet[SI, &#39;</span>
+<span class="w">                                   </span><span class="s1">&#39;Eq.~(7)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">               </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_gluc/g_dw&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;delta_W&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;maximum labile carbon storage &#39;</span>
+<span class="w">                                  </span><span class="s1">&#39;capacity of newly produced &#39;</span>
+<span class="w">                                  </span><span class="s1">&#39;sapwood&#39;</span><span class="p">,</span>
+<span class="w">                         </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Eq.~\\eqref{eqn:delta_W}, &#39;</span>
+<span class="w">                                   </span><span class="s1">&#39;\\citet[SI, &#39;</span>
+<span class="w">                                   </span><span class="s1">&#39;Eq.~(6)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">               </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_gluc/g_dw&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;eta_HW&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;CUE during heartwood production&#39;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;fixed to $1$&#39;</span><span class="p">},</span>
+<span class="w">              </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;eta_L&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;CUE during leaf tissue growth&#39;</span><span class="p">,</span>
+<span class="w">                       </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Eq.~\\eqref{eqn:eta_L}&#39;</span><span class="p">},</span>
+<span class="w">             </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;eta_R&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;CUE during fine root tissue &#39;</span>
+<span class="w">                                </span><span class="s1">&#39;growth&#39;</span><span class="p">,</span>
+<span class="w">                       </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;analogous to $\\eta_L$&#39;</span><span class="p">},</span>
+<span class="w">             </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;eta_W&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;CUE during sapwood production&#39;</span><span class="p">,</span>
+<span class="w">                       </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Eq.~\\eqref{eqn:eta_W}&#39;</span><span class="p">},</span>
+<span class="w">             </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;f_CS&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;fraction of $C_S$ used to regrow &#39;</span>
+<span class="w">                               </span><span class="s2">&quot;``other&#39;&#39; sapwood&quot;</span><span class="p">,</span>
+<span class="w">                      </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Eq.~\\eqref{eqn:f_C_S}&#39;</span><span class="p">},</span>
+<span class="w">            </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;f_CS_times_CS&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;flux from $C_S$ pool to &#39;</span>
+<span class="w">                                        </span><span class="s1">&#39;$B_{\\text{OS}}$ in &#39;</span>
+<span class="w">                                        </span><span class="s1">&#39;static and shrinking &#39;</span>
+<span class="w">                                        </span><span class="s1">&#39;state&#39;</span><span class="p">,</span>
+<span class="w">                               </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="p">},</span>
+<span class="w">                     </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC/yr&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_gluc/yr&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;f_L&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;partitioning from transient pool to &#39;</span>
+<span class="w">                              </span><span class="s1">&#39;leaves&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Section~\\ref{appendix:f_L}, &#39;</span>
+<span class="w">                               </span><span class="s1">&#39;\\citet[SI, Eq.~(1A)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;f_L_times_E&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;flux rate from transient &#39;</span>
+<span class="w">                                      </span><span class="s1">&#39;pool to leaves&#39;</span><span class="p">,</span>
+<span class="w">                             </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\\citet[SI, &#39;</span>
+<span class="w">                                       </span><span class="s1">&#39;Eq.~(1A)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">                   </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC/yr&#39;</span><span class="p">,</span>
+<span class="w">                   </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_gluc/yr&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;f_O&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;partitioning from transient pool to &#39;</span>
+<span class="w">                              </span><span class="s1">&#39;coarse roots and branches&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Section~\\ref{appendix:f_O}, &#39;</span>
+<span class="w">                               </span><span class="s1">&#39;\\citet[SI, Eq.~(1E)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;f_O_times_E&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;flux rate from transient &#39;</span>
+<span class="w">                                      </span><span class="s1">&#39;pool to coarse roots and &#39;</span>
+<span class="w">                                      </span><span class="s1">&#39;branches&#39;</span><span class="p">,</span>
+<span class="w">                             </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\\citet[SI, &#39;</span>
+<span class="w">                                       </span><span class="s1">&#39;Eq.~(1E)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">                   </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC/yr&#39;</span><span class="p">,</span>
+<span class="w">                   </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_gluc/yr&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;f_R&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;partitioning from transient pool to &#39;</span>
+<span class="w">                              </span><span class="s1">&#39;fine roots&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Section~\\ref{appendix:f_R}, &#39;</span>
+<span class="w">                               </span><span class="s1">&#39;\\citet[SI, Eq.~(1B)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;f_R_times_E&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;flux rate from transient &#39;</span>
+<span class="w">                                      </span><span class="s1">&#39;pool to fine roots&#39;</span><span class="p">,</span>
+<span class="w">                             </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\\citet[SI, &#39;</span>
+<span class="w">                                       </span><span class="s1">&#39;Eq.~(1B)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">                   </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC/yr&#39;</span><span class="p">,</span>
+<span class="w">                   </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_gluc/yr&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;f_T&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;partitioning from transient pool to &#39;</span>
+<span class="w">                              </span><span class="s1">&#39;trunk&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Section~\\ref{appendix:f_T}, &#39;</span>
+<span class="w">                               </span><span class="s1">&#39;\\citet[SI, &#39;</span>
+<span class="w">                               </span><span class="s1">&#39;Eq.~(31C)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;f_T_times_E&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;flux rate from transient &#39;</span>
+<span class="w">                                      </span><span class="s1">&#39;pool to trunk&#39;</span><span class="p">,</span>
+<span class="w">                             </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\\citet[SI, &#39;</span>
+<span class="w">                                       </span><span class="s1">&#39;Eq.~(31C)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">                   </span><span class="s1">&#39;manuscript_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;gC/yr&#39;</span><span class="p">,</span>
+<span class="w">                   </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_gluc/yr&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;h_B&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;height at which trunk transitions &#39;</span>
+<span class="w">                              </span><span class="s1">&#39;from a neiloid to a paraboloid&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\\citet[SI, p.10]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;m&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;h_C&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;height at which trunk transitions &#39;</span>
+<span class="w">                              </span><span class="s1">&#39;from a paraboloid to a cone&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\\citet[SI, p.10]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;m&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;lambda_H&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ratio of ``other&#39;&#39; heartwood &quot;</span>
+<span class="w">                                   </span><span class="s1">&#39;to trunk heartwood&#39;</span><span class="p">,</span>
+<span class="w">                          </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Eq.~\\eqref{eqn:lambda_S}&#39;</span><span class="p">},</span>
+<span class="w">                </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;lambda_S&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ratio of ``other&#39;&#39; sapwood to &quot;</span>
+<span class="w">                                   </span><span class="s1">&#39;trunk sapwood&#39;</span><span class="p">,</span>
+<span class="w">                          </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Eq.~\\eqref{eqn:lambda_S}&#39;</span><span class="p">},</span>
+<span class="w">                </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;m_X&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;allometrically derived biomass of &#39;</span>
+<span class="w">                              </span><span class="s1">&#39;tree organ $X$&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;based on &#39;</span>
+<span class="w">                               </span><span class="s1">&#39;Eq.~\\eqref{eqn:allometric_biomass}&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_dw&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;r&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;tree radius at trunk base&#39;</span><span class="p">,</span>
+<span class="w">                   </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Section~\\ref{appendix:tree_allometries}&#39;</span><span class="p">},</span>
+<span class="w">         </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;m&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;r_B&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;radius at which trunk transitions &#39;</span>
+<span class="w">                              </span><span class="s1">&#39;from a neiloid to a paraboloid&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\\citet[SI, &#39;</span>
+<span class="w">                               </span><span class="s1">&#39;Eq.~(10a)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;m&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;r_BH&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;radius at breast height&#39;</span><span class="p">,</span>
+<span class="w">                      </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\\citet[SI, &#39;</span>
+<span class="w">                                </span><span class="s1">&#39;Eq.~(24)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">            </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;m&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;r_C&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;radius at which trunk transitions &#39;</span>
+<span class="w">                              </span><span class="s1">&#39;from a paraboloid to a cone&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;\\citet[SI, &#39;</span>
+<span class="w">                               </span><span class="s1">&#39;Eq.~(10b)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;m&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;rho_W&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;density of newly produced sapwood&#39;</span><span class="p">,</span>
+<span class="w">                       </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Eq.~\\eqref{eqn:rho_W}&#39;</span><span class="p">},</span>
+<span class="w">             </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;g_dw/m^3&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;v_O&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;sapwood to heartwood conversion &#39;</span>
+<span class="w">                              </span><span class="s1">&#39;rate of coarse roots and branches&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Eq.~\\eqref{eqn:v_O}, \\citet[SI, &#39;</span>
+<span class="w">                               </span><span class="s1">&#39;Eq.~(1F)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;1/yr&#39;</span><span class="p">},</span>
+<span class="w">  </span><span class="s1">&#39;v_T&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;info&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;descr&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;sapwood to heartwood conversion &#39;</span>
+<span class="w">                              </span><span class="s1">&#39;rate of trunk&#39;</span><span class="p">,</span>
+<span class="w">                     </span><span class="s1">&#39;source&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Eq.~\\eqref{eqn:v_T}, \\citet[SI, &#39;</span>
+<span class="w">                               </span><span class="s1">&#39;Eq.~(2)]{Ogle2009TP}&#39;</span><span class="p">},</span>
+<span class="w">           </span><span class="s1">&#39;target_unit&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;1/yr&#39;</span><span class="p">}}</span>
+</pre></div>
+</div>
+</dd><p>Information on tree variables.</p>
+<p class="rubric">Functions</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="BFCPM.trees.single_tree_vars.assign">
+<span class="sig-name descname"><span class="pre">assign</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFCPM/trees/single_tree_vars.html#assign"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFCPM.trees.single_tree_vars.assign" title="Permalink to this definition">#</a></dt>
+<dd><p>Assign a value to a variable, use the correct unit.</p>
+<p>The unit is taken from <code class="xref py py-obj docutils literal notranslate"><span class="pre">var_infos</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – variable name (must be contained in <code class="docutils literal notranslate"><span class="pre">var_infos</span></code>)</p></li>
+<li><p><strong>v</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Quantity</span></code>) – value to assign to the variable</p></li>
+<li><p><strong>target_unit</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – if provided, forced on the return value,            otherwise unit is taken from <code class="docutils literal notranslate"><span class="pre">var_infos</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Quantity</span></code></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>variable with correct unit</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="BFCPM.trees.single_tree_vars.vars_to_latex_table">
+<span class="sig-name descname"><span class="pre">vars_to_latex_table</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFCPM/trees/single_tree_vars.html#vars_to_latex_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFCPM.trees.single_tree_vars.vars_to_latex_table" title="Permalink to this definition">#</a></dt>
+<dd><p>Create a LaTeX table from the variable information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="BFCPM.trees.tree_utils.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">tree_utils</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="BFCPM.trees.single_tree_params.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">single_tree_params</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Holger Metzler, Samuli Launiainen, Giulia Vico
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">single_tree_vars</a><ul>
+<li><a class="reference internal" href="#BFCPM.trees.single_tree_vars.assign"><code class="docutils literal notranslate"><span class="pre">assign()</span></code></a></li>
+<li><a class="reference internal" href="#BFCPM.trees.single_tree_vars.vars_to_latex_table"><code class="docutils literal notranslate"><span class="pre">vars_to_latex_table()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=359c27e9"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/scripts/furo.js?v=32e29ea5"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    </body>
+</html>

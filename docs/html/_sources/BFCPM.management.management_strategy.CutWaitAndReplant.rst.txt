@@ -1,0 +1,23 @@
+CutWaitAndReplant
+=================
+
+Qualified name: ``BFCPM.management.management\_strategy.CutWaitAndReplant``
+
+CCCC
+
+.. currentmodule:: BFCPM.management.management_strategy
+
+.. autoclass:: CutWaitAndReplant
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+      ~CutWaitAndReplant.do
+
+   
+   

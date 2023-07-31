@@ -1,0 +1,40 @@
+wood\_product\_model\_abc
+=========================
+
+MMMM
+
+.. currentmodule:: BFCPM.wood_products.wood_product_model_abc
+
+
+.. automodule:: BFCPM.wood_products.wood_product_model_abc
+
+    
+    
+    
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+      :template: class.rst
+
+      
+        WoodProductModelABC
+      
+   
+   
+
+   
+   
+   
+
+   
+   
+   

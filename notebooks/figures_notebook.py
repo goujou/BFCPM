@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.14.5
+#       jupytext_version: 1.15.0
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -31,10 +31,10 @@ from LAPM.discrete_linear_autonomous_pool_model import DiscreteLinearAutonomousP
 from CompartmentalSystems.discrete_model_run import DiscreteModelRun as DMR
 import CompartmentalSystems.helpers_reservoir as hr
 
-from ACGCA import utils
-from ACGCA.__init__ import DATA_PATH, FIGS_PATH, Q_, zeta_dw
-from ACGCA.alloc.ACGCA_marklund_tree import allometries
-from ACGCA.alloc.ACGCA_marklund_tree_params import species_params
+from BFCPM import utils
+from BFCPM import DATA_PATH, FIGS_PATH, Q_, zeta_dw
+from BFCPM.trees.single_tree_allocation import allometries
+from BFCPM.trees.single_tree_params import species_params
 
 # %autoreload 2
 
@@ -57,14 +57,15 @@ plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
 #plt.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
 # -
 
-# ## Load available simulations
+# ## Load available simulations and sort them
 
 # +
 all_sims_path = DATA_PATH.joinpath("simulations")
 
 #sim_date = "2023-05-20" # differenct emergency strategies
 #sim_date = "2023-06-08" # corrected wood density
-sim_date = "2023-06-19" # automatic thinning stand to SBA=18 on emergency cutting
+#sim_date = "2023-06-19" # automatic thinning stand to SBA=18 on emergency cutting
+sim_date = "2023-07-26" # publication
 
 # path to place the figures for the publication
 pub_figs_path = FIGS_PATH.joinpath(f"{sim_date}")
@@ -87,6 +88,7 @@ dss_long = dict()
 dss_benchmarking = dict()
 # -
 
+# reconcile filenames and simulation names
 eligible_sim_names = {
     "mixed-aged_pine_N1500": "mixed-aged_pine",
     "even-aged_pine": "even-aged_pine",
@@ -197,11 +199,7 @@ ax.set_ylabel("cm")
 ax.legend()
 ax.text(-0.05, 1.1, panel_name+")", transform=ax.transAxes, size=20, weight='bold')
 
-# [(age, sba)] # Nilsson prod., Table 2
-sba_dict = {
-    "even-aged_pine": [(28, Q_(21.5, "m^2/ha"))],
-}
-    
+  
 ax = next(axes)
 panel_name = next(panel_names)
 ax.set_title("Stand basal area")
@@ -212,18 +210,9 @@ for sim_name in sim_names:
     sba = ds.stand_basal_area
     sba = Q_(sba.data, sba.attrs["units"])
     l, = ax.plot(ds.time, sba, label=sim_name.replace("_", " "))
-    
-#    if sim_name in sba_dict.keys():
-#        data = sba_dict[sim_name]
-#        times = [ds.time[int(age)].data for (age, mass) in data]
-#        masses = [mass for (age, mass) in data]
-#        for t, m in zip(times, masses):
-#            ax.scatter(t, m, c=l.get_c())
-#            ax.axvline(x=t, color=l.get_c(), alpha=0.2)
-        
+           
 ax.set_ylabel(r"m$^2\,$ha$^{-1}$")
 ax.set_ylim([0, 35])
-#ax.set_xlim([0, 80])
 ax.text(-0.05, 1.1, panel_name+")", transform=ax.transAxes, size=20, weight='bold')
 ax.axhline(18, color="black", alpha=0.2)
 ax.axhline(25, color="black", alpha=0.2)
@@ -240,16 +229,8 @@ for sim_name in sim_names:
 ax.set_title("Total carbon stock")
 ax.set_ylabel(r"kgC$\,$m$^{-2}$")
 ax.text(-0.05, 1.1, panel_name+")", transform=ax.transAxes, size=20, weight='bold')
-#ax.set_ylim([7, 15])
-#ax.set_ylim([0, ax.get_ylim()[1]])
 ax.set_xlabel("")
 
-
-# [(age, tree biomass)] # Berggren 2008, Fig. 3a
-tree_biomass_dict = {
-    "even-aged_pine": [],
-    "even-aged_spruce": [(40, Q_(4, "kgC/m^2")), (40, Q_(8, "kgC/m^2"))]
-}
 
 ax = next(axes)
 panel_name = next(panel_names)
@@ -257,24 +238,13 @@ ax.set_title("Total tree carbon")
 for sim_name in sim_names:
     ds = dss[sim_name]
     tree_names = ds.entity.isel(entity=ds.tree_entity_nrs).data
-#    N_per_m2 = ds.N_per_m2.sel(tree=tree_names)
     
     tree_biomass = ds.tree_biomass_tree.sel(tree=tree_names).sum(dim="tree")
     tree_biomass = Q_(tree_biomass.data, ds.tree_biomass_tree.attrs["units"]).to("kgC/m^2")
     l, = ax.plot(ds.time, tree_biomass, label=sim_name.replace("_", " "))
     print("Total tree carbon (40 yr)", sim_name, tree_biomass[40])
     
-#    if sim_name in tree_biomass_dict.keys():
-#        data = tree_biomass_dict[sim_name]
-#        times = [ds.time[int(age)].data for (age, mass) in data]
-#        masses = [mass for (age, mass) in data]
-#        for t, m in zip(times, masses):
-#            ax.scatter(t, m, c=l.get_c())
-#            ax.axvline(x=t, color=l.get_c(), alpha=0.2)
-
 ax.set_ylabel(r"kgC$\,$m$^{-2}$")
-#ax.set_xlim([0, 80])
-#ax.set_ylim([0, 10])
 ax.set_ylim([0, ax.get_ylim()[-1]])
 ax.text(-0.05, 1.1, panel_name+")", transform=ax.transAxes, size=20, weight='bold')
 
@@ -317,7 +287,7 @@ for sim_name, ds in dss.items():
         print(sim_name, round_arr(x, 1), "%")
 # -
 
-# ### Overyielding in wood production
+# ### Overyielding in wood productivity
 
 # +
 fig, axes = plt.subplots(figsize=(12, 4*2), nrows=2)
@@ -510,7 +480,6 @@ x = np.arange(len(sim_names))
 width = 2 / (len(sim_names)+1) / make_space
 rects1 = ax.bar(x - width/2, yield_datas[-1, 0, :], width, label=r'short-lasting WPs ($Y_S$)')
 rects2 = ax.bar(x + width/2, yield_datas[-1, 1, :], width, label=r'long-lasting WPs ($Y_L$)')
-#ax.set_ylabel(f"{yield_datas[-1, 0].units:~P}")
 ax.set_ylabel(r"kgC$\,$m$^{-2}$")
 ax.legend(loc=4)
 ax.text(-0.05, 1.1, panel_name+")", transform=ax.transAxes, size=20, weight='bold')
@@ -692,7 +661,8 @@ filename
 
 # ## Ordering according to different CS metrics (entire system = 0 in the middle, stand only = 1)
 
-ti = 40
+# time index of interest: 40 = half rotation, -1 = full rotation
+ti = -1
 
 # ### INCB
 
@@ -1064,7 +1034,7 @@ filename
 # -
 
 
-# # Compute fluxes caused by cuttings in mixed-aged pine scenario (kgC/m^2)
+# # Compute amont of carbon transferred by cuttings in mixed-aged pine scenario (kgC/m$^2$)
 
 # +
 ds = dss["mixed-aged_pine"]
@@ -1085,42 +1055,12 @@ for (year, tree_names) in data:
 
 # -
 
-# ## Stand leaf area
-
-# +
-fig, axes = plt.subplots(figsize=(12, 4*2), nrows=2)
-
-ax = axes[0]
-ax.set_title("Stand leaf area (dashed lines are means through time)")
-for sim_name in sim_names:
-    ds = dss[sim_name]
-    var = ds.LA_tree.sum(dim="tree")
-    l, = ax.plot(ds.time, var, label=sim_name.replace("_", " "))
-    ax.axhline(var.mean(dim="time"), c=l.get_c(), ls = "--")
-    
-ax.legend()
-ax.set_ylabel(r"m$^2\,$m$^{-2}$")
-
-ax = axes[1]
-ax.set_title("Stand total tree number (N)")
-for sim_name in sim_names:
-    ds = dss[sim_name]
-    var = ds.N_per_m2.sum(dim="tree")
-    l, = ax.plot(ds.time, var, label=sim_name.replace("_", " "))
-    ax.axhline(var.mean(dim="time"), c=l.get_c(), ls = "--")
-    
-ax.set_ylabel(r"m$^{-2}$")
-
-fig.tight_layout()
-# -
-
 # ## Overyielding (WP_S + WP_L and INCB + IITT + ICS)
 
 sim_name = 'mixed-aged_pine'
 ds = dss[sim_name]
 
-dmr_path = sim_cohort_path.joinpath(sim_name + ".dmr")
-dmr = DMR.load_from_file(dmr_path)
+dmr = dmrs[sim_name]
 dmr.initialize_state_transition_operator_matrix_cache(10_000)
 dmr.nr_pools
 
@@ -1304,8 +1244,6 @@ for sim_name in sim_names[1:]:
 # ## Even-aged, single-species, total stand carbon use efficiency (CUE)
 
 # +
-#sim_names = ["pine", "spruce"]
-
 fig, ax = plt.subplots(figsize=(12, 4))
 
 ax.set_title("Total stand carbon use efficiency")
@@ -1344,19 +1282,16 @@ sim_names_tmp = ["even-aged_pine", "even-aged_spruce"]
 ax.set_title("Wood density: stem biomass / stem volume versus time")
 
 for sim_name in sim_names_tmp:
-#for sim_name in sim_names:
     ds = dss[sim_name]
     tree_names = ds.entity.isel(entity=ds.tree_entity_nrs).data[nr_spinup_trees:]
-#    tree_names = ds.entity.isel(entity=ds.tree_entity_nrs).data[-1:]
-#    species = str(ds.species.sel(tree=tree_name).data)
     
-    V_TS_ACGCA_tree = ds.V_TS_ACGCA_tree.sel(tree=tree_names)
-    V_TS_ACGCA_tree = Q_(V_TS_ACGCA_tree.data, V_TS_ACGCA_tree.attrs["units"])
+    V_TS_single_tree = ds.V_TS_single_tree.sel(tree=tree_names)
+    V_TS_single_tree = Q_(V_TS_single_tree.data, V_TS_single_tree.attrs["units"])
 
-    V_TH_ACGCA_tree = ds.V_TH_ACGCA_tree.sel(tree=tree_names)
-    V_TH_ACGCA_tree = Q_(V_TH_ACGCA_tree.data, V_TH_ACGCA_tree.attrs["units"])
+    V_TH_single_tree = ds.V_TH_single_tree.sel(tree=tree_names)
+    V_TH_single_tree = Q_(V_TH_single_tree.data, V_TH_single_tree.attrs["units"])
     
-    V_T_ACGCA_tree = V_TS_ACGCA_tree + V_TH_ACGCA_tree
+    V_T_single_tree = V_TS_single_tree + V_TH_single_tree
     
     B_TH = ds.stocks.sel(entity=tree_names, pool="B_TH")
     B_TH = Q_(B_TH.data, B_TH.attrs["units"])
@@ -1383,32 +1318,13 @@ for sim_name in sim_names_tmp:
     C_TS = C_TS.to("kg_dw")
     
     times = ds.time
-#    y = (B_TS + B_TH) / V_T_ACGCA_tree
-    y = (B_TS + B_TH + C_TS) / V_T_ACGCA_tree
+    y = (B_TS + B_TH + C_TS) / V_T_single_tree
     y = np.nansum(y * N_per_m2, axis=0) / np.nansum(N_per_m2, axis=0)
-#    print(y)
     print(sim_name, np.nanmean(y[:-2]), np.nanmin(y[:-2]), np.nanmax(y))
     l, = ax.plot(times, y, label=f"{sim_name.replace('_', ' ')}, stem wood")
-    
-#    y = (B_TS) / V_TS_ACGCA_tree
-#    print("SW")
-#    print(y)
-#    axes[0].plot(times, y, label=f"{species}, stem sapwood", c=l.get_c(), marker="o")
-
-#    Hs = Q_(ds.height.sel(tree=tree_name).data, ds.height.attrs["units"])
-#    axes[1].plot(Hs, y, label=f"{species}, stem sapwood", c=l.get_c(), marker="o")
-    
-#    y = (B_TH) / V_TH_ACGCA_tree
-#    print("HW")
-#    print(y)
-#    axes[0].plot(times, y, label=f"{species}, stem heartwood", c=l.get_c(), ls="-.")
-#    axes[1].plot(Hs, y, label=f"{species}, stem heartwood", c=l.get_c(), ls="-.")
-    
+        
 ax.legend()
 ax.set_xlim([times[0], times[-1]])
-#ax.set_xlim([ds.time[0], ds.time[-1]])
-#ax.set_ylim([0, ax.get_ylim()[-1]])
-#ax.set_ylabel(y.units)
 ax.set_ylabel("kg$_{\mathrm{dw}}$ / m$^3$")
 ax.set_xlabel(f"time [yr]")
 
@@ -1421,13 +1337,6 @@ fig.tight_layout()
 # ## Load available simulations
 
 # +
-sim_date = "2023-07-11"
-
-sim_cohort_path = all_sims_path.joinpath(sim_date)
-sim_cohort_path
-
-
-# +
 dss = dict()
 dmrs = dict()
 dmrs_eq = dict()
@@ -1438,8 +1347,10 @@ dss_benchmarking = dict()
 
 sim_names = list()
 for p in sim_cohort_path.iterdir():
-    if (p.suffix == ".nc") and (str(p).find("_long") == -1):
-        sim_name = p.stem
+    if (p.suffix == ".nc") and (str(p).find("_long") == -1) and (str(p).find("mixed-aged") != -1):
+        file_sim_name = p.stem
+
+        sim_name = file_sim_name
         print(len(sim_names), sim_name)
         sim_names.append(sim_name)
         dss[sim_name] = xr.open_dataset(str(p))
@@ -1532,8 +1443,6 @@ for sim_name in sim_names:
 ax.set_title("Total carbon stock")
 ax.set_ylabel(r"kgC$\,$m$^{-2}$")
 ax.text(-0.05, 1.1, panel_name+")", transform=ax.transAxes, size=20, weight='bold')
-#ax.set_ylim([7, 15])
-#ax.set_ylim([0, ax.get_ylim()[1]])
 ax.set_xlim([0, 80])
 ax.set_xlabel("")
 

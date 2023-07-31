@@ -1,0 +1,42 @@
+﻿simulation
+==========
+
+MMMM
+
+.. currentmodule:: BFCPM.simulation
+
+
+.. automodule:: BFCPM.simulation
+
+    
+    
+    .. rubric:: Modules
+    
+    .. autosummary::
+       :toctree:
+       :recursive:
+       :template: module.rst
+
+       
+       ~BFCPM.simulation.library
+       ~BFCPM.simulation.recorded_simulation
+       ~BFCPM.simulation.simulation
+       ~BFCPM.simulation.utils
+    
+    
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   

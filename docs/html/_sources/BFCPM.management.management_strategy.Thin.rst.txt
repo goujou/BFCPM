@@ -1,0 +1,23 @@
+Thin
+====
+
+Qualified name: ``BFCPM.management.management\_strategy.Thin``
+
+CCCC
+
+.. currentmodule:: BFCPM.management.management_strategy
+
+.. autoclass:: Thin
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+      ~Thin.do
+
+   
+   

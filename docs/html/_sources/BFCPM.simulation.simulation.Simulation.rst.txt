@@ -1,0 +1,24 @@
+Simulation
+==========
+
+Qualified name: ``BFCPM.simulation.simulation.Simulation``
+
+CCCC
+
+.. currentmodule:: BFCPM.simulation.simulation
+
+.. autoclass:: Simulation
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+      ~Simulation.get_stocks_and_fluxes_dataset
+      ~Simulation.run
+
+   
+   

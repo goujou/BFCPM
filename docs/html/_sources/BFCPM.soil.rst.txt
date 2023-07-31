@@ -1,0 +1,41 @@
+﻿soil
+====
+
+MMMM
+
+.. currentmodule:: BFCPM.soil
+
+
+.. automodule:: BFCPM.soil
+
+    
+    
+    .. rubric:: Modules
+    
+    .. autosummary::
+       :toctree:
+       :recursive:
+       :template: module.rst
+
+       
+       ~BFCPM.soil.dead_wood_classes
+       ~BFCPM.soil.simple_soil_model
+       ~BFCPM.soil.soil_c_model_abc
+    
+    
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   

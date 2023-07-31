@@ -1,0 +1,40 @@
+simulation
+==========
+
+MMMM
+
+.. currentmodule:: BFCPM.simulation.simulation
+
+
+.. automodule:: BFCPM.simulation.simulation
+
+    
+    
+    
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+      :template: class.rst
+
+      
+        Simulation
+      
+   
+   
+
+   
+   
+   
+
+   
+   
+   

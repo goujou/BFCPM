@@ -1,0 +1,45 @@
+single\_tree\_C\_model
+======================
+
+MMMM
+
+.. currentmodule:: BFCPM.trees.single_tree_C_model
+
+
+.. automodule:: BFCPM.trees.single_tree_C_model
+
+    
+    
+    
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+      :template: class.rst
+
+      
+        SingleTreeCModel
+      
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Exceptions
+
+   
+   .. autoexception:: BFCPM.trees.single_tree_C_model::NegativityError
+   
+   

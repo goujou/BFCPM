@@ -70,7 +70,7 @@ instance/
 
 # Sphinx documentation
 docs/_build/
-docs/source/BFMM*
+docs/source/BFCPM*
 
 # PyBuilder
 .pybuilder/

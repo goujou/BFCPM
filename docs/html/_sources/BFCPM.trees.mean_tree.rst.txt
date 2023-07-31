@@ -1,0 +1,40 @@
+mean\_tree
+==========
+
+MMMM
+
+.. currentmodule:: BFCPM.trees.mean_tree
+
+
+.. automodule:: BFCPM.trees.mean_tree
+
+    
+    
+    
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+      :template: class.rst
+
+      
+        MeanTree
+      
+   
+   
+
+   
+   
+   
+
+   
+   
+   

@@ -1,0 +1,1474 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
+
+    <!-- Generated with Sphinx 7.1.1 and Furo 2023.07.26 -->
+        <title>BFCPM.trees.single_tree_params - BFCPM</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=362ab14a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">BFCPM</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  
+  <span class="sidebar-brand-text">BFCPM</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../BFCPM.prepare_stand.html">prepare_stand</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../BFCPM.stand.html">stand</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of stand</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../BFCPM.stand.Stand.html">Stand</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../BFCPM.type_aliases.html">type_aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../BFCPM.utils.html">utils</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../BFCPM.productivity.html">productivity</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../BFCPM.trees.html">trees</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of trees</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../BFCPM.trees.allometry.html">allometry</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../BFCPM.trees.mean_tree.html">mean_tree</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of mean_tree</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.trees.mean_tree.MeanTree.html">MeanTree</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../BFCPM.trees.single_tree_C_model.html">single_tree_C_model</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of single_tree_C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.trees.single_tree_C_model.SingleTreeCModel.html">SingleTreeCModel</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../BFCPM.trees.single_tree_allocation.html">single_tree_allocation</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of single_tree_allocation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.trees.single_tree_allocation.SingleTree.html">SingleTree</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../BFCPM.trees.single_tree_params.html">single_tree_params</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../BFCPM.trees.single_tree_vars.html">single_tree_vars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../BFCPM.trees.tree_utils.html">tree_utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../BFCPM.soil.html">soil</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of soil</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../BFCPM.soil.dead_wood_classes.html">dead_wood_classes</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of dead_wood_classes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../BFCPM.soil.dead_wood_classes.C_model.html">C_model</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../BFCPM.soil.dead_wood_classes.C_model.SoilCDeadWoodClasses.html">SoilCDeadWoodClasses</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.soil.dead_wood_classes.C_model_parameters.html">C_model_parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../BFCPM.soil.simple_soil_model.html">simple_soil_model</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of simple_soil_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../BFCPM.soil.simple_soil_model.C_model.html">C_model</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../BFCPM.soil.simple_soil_model.C_model.SimpleSoilCModel.html">SimpleSoilCModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.soil.simple_soil_model.C_model_parameters.html">C_model_parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../BFCPM.soil.soil_c_model_abc.html">soil_c_model_abc</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of soil_c_model_abc</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.soil.soil_c_model_abc.SoilCModelABC.html">SoilCModelABC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../BFCPM.wood_products.html">wood_products</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of wood_products</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../BFCPM.wood_products.simple_wood_product_model.html">simple_wood_product_model</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of simple_wood_product_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../BFCPM.wood_products.simple_wood_product_model.C_model.html">C_model</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../BFCPM.wood_products.simple_wood_product_model.C_model.SimpleWoodProductModel.html">SimpleWoodProductModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.wood_products.simple_wood_product_model.C_model_parameters.html">C_model_parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../BFCPM.wood_products.wood_product_model_abc.html">wood_product_model_abc</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of wood_product_model_abc</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.wood_products.wood_product_model_abc.WoodProductModelABC.html">WoodProductModelABC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../BFCPM.management.html">management</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of management</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../BFCPM.management.library.html">library</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../BFCPM.management.management_strategy.html">management_strategy</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of management_strategy</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.Cut.html">Cut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.CutAndReplant.html">CutAndReplant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.CutWaitAndReplant.html">CutWaitAndReplant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.ManagementActionABC.html">ManagementActionABC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.ManagementStrategy.html">ManagementStrategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.OnDBHLimit.html">OnDBHLimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.OnDTHLimit.html">OnDTHLimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.OnDelayOneTime.html">OnDelayOneTime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.OnNLimit.html">OnNLimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.OnPeriodically.html">OnPeriodically</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.OnSBALimit.html">OnSBALimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.OnSBAvsDTH.html">OnSBAvsDTH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.OnStandAges.html">OnStandAges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.OnTimeIntervals.html">OnTimeIntervals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.PCT.html">PCT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.Plant.html">Plant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.Thin.html">Thin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.ThinStand.html">ThinStand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.TriggerABC.html">TriggerABC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.WaitAndPlant.html">WaitAndPlant</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../BFCPM.simulation.html">simulation</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of simulation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../BFCPM.simulation.library.html">library</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../BFCPM.simulation.recorded_simulation.html">recorded_simulation</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of recorded_simulation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.simulation.recorded_simulation.RecordedSimulation.html">RecordedSimulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../BFCPM.simulation.simulation.html">simulation</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of simulation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.simulation.simulation.Simulation.html">Simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../BFCPM.simulation.utils.html">utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../BFCPM.simulation_parameters.html">simulation_parameters</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../notebooks/Untitled.html">Test notebook</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <h1>Source code for BFCPM.trees.single_tree_params</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module contains all species-specific tree parameters.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Symbol</span><span class="p">,</span> <span class="n">latex</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">Q_</span><span class="p">,</span> <span class="n">zeta_dw</span><span class="p">,</span> <span class="n">zeta_gluc</span>
+<span class="kn">from</span> <span class="nn">..productivity.constants</span> <span class="kn">import</span> <span class="n">micromolCO2_TO_gC</span>
+<span class="kn">from</span> <span class="nn">..type_aliases</span> <span class="kn">import</span> <span class="n">OneSpeciesParams</span><span class="p">,</span> <span class="n">SpeciesParams</span>
+<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="n">latexify_unit</span>
+
+
+<span class="k">def</span> <span class="nf">_compute_construction_costs_from_growth_respiration_rate</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
+    <span class="c1"># here I assume that NPP has RM AND RG removed, possibly</span>
+    <span class="c1"># in Ryan 97 they assume here that NPP has ONLY RM removed</span>
+    <span class="c1"># maybe even delta should be ignored</span>
+    <span class="c1">#</span>
+    <span class="c1"># find r_L, r_W in Ryan 1997, p.878</span>
+    <span class="c1"># (1) GR_L = r_L * NPP_L,  NPP_L = GPP_L - RA_L, GPP_L = f_L*E + MR_L, RA_L = MR_L + GR_L</span>
+    <span class="c1"># (2) GR_L = f_L*E * C_gL/(C_gL+delta_L) * (1 - zeta_dw/(zeta_gluc*C_gL))</span>
+    <span class="c1"># solved for C_gL</span>
+    <span class="c1">#    return (1+r) * zeta_dw/zeta_gluc + r * delta</span>
+
+    <span class="c1"># (1) NPP = GPP - RM</span>
+    <span class="k">return</span> <span class="p">((</span><span class="n">zeta_dw</span> <span class="o">/</span> <span class="n">zeta_gluc</span> <span class="o">+</span> <span class="n">r</span> <span class="o">*</span> <span class="n">delta</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">r</span><span class="p">))</span><span class="o">.</span><span class="n">magnitude</span>
+
+
+<span class="k">def</span> <span class="nf">_compute_growth_respiration_rate_from_construction_costs</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">delta</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">zeta_dw</span> <span class="o">/</span> <span class="p">(</span><span class="n">zeta_gluc</span> <span class="o">*</span> <span class="n">c</span><span class="p">))</span> <span class="o">*</span> <span class="n">c</span> <span class="o">/</span> <span class="p">(</span><span class="n">c</span> <span class="o">+</span> <span class="n">delta</span><span class="p">)</span>
+
+
+<span class="c1"># species_params: dict[str, dict[str, Any]] = dict()</span>
+<span class="n">species_params</span><span class="p">:</span> <span class="n">SpeciesParams</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="sd">&quot;&quot;&quot;All species-specific parameters.&quot;&quot;&quot;</span>
+
+
+<span class="n">species_params</span><span class="p">[</span><span class="s2">&quot;pine&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># photosynthesis</span>
+    <span class="s2">&quot;alpha&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;additional limitation factor for carbon uptake&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;empirical, for balanced mixed-species simulation&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="c1"># specific leaf area</span>
+    <span class="s2">&quot;SLA&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">6.162</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;m^2/kg_dw&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;specific leaf area&quot;</span><span class="p">,</span> <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet</span><span class="si">{Goude2019EJFR}</span><span class="s2">&quot;</span><span class="p">},</span>
+    <span class="p">},</span>
+    <span class="c1"># respiration parameters</span>
+    <span class="s2">&quot;R_mL&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.95</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;g_gluc/g_dw/yr&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;maintenance respiration rate of leaves&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~2]</span><span class="si">{Ogle2009TP}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;R_mR&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">,</span>
+        <span class="c1">#        &quot;value&quot;: 1.125, # Ryan 1997?</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;g_gluc/g_dw/yr&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;maintenance respiration rate of fine roots&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~2]</span><span class="si">{Ogle2009TP}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;R_mS&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1">#        &quot;value&quot;: 0.025,</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="p">(</span>
+                <span class="n">Q_</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;ngC/gC/s&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;gC/gC/yr&quot;</span><span class="p">)</span>
+                <span class="o">/</span> <span class="n">zeta_gluc</span>
+                <span class="o">*</span> <span class="n">zeta_dw</span>
+                <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.89</span><span class="p">,</span> <span class="mf">2.31</span><span class="p">])</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">magnitude</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>  <span class="c1"># 0.063</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;g_gluc/g_dw/yr&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;maintenance respiration rate of sapwood&quot;</span><span class="p">,</span>
+            <span class="c1">#            &quot;source&quot;: &quot;Ogle2009TP, Table~2&quot;</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~5, northern]</span><span class="si">{Lavigne1997TP}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="c1"># senescence parameters</span>
+    <span class="s2">&quot;S_L&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1">#        &quot;value&quot;: 0.3,</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;1/yr&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;senescence rate of leaves&quot;</span><span class="p">,</span>
+            <span class="c1">#            &quot;source&quot;: r&quot;\citet[Table~2]{Pukkala2014FPE}&quot;,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~3]</span><span class="si">{Muukkonen2005Trees}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;S_R&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.811</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;1/yr&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;senescence rate of fine roots&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~2]</span><span class="si">{Pukkala2014FPE}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;S_O&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1">#        &quot;value&quot;: 0.0125,</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.04</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;1/yr&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;senescence rate of coarse roots and branches&quot;</span><span class="p">,</span>
+            <span class="c1">#            &quot;source&quot;: &quot;Pukkala2014FPE, Table~2&quot;</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">(</span>
+                <span class="sa">r</span><span class="s2">&quot;\citet[Table~1]</span><span class="si">{Vanninen2005TP}</span><span class="s2">; also following simulations &quot;</span>
+                <span class="sa">r</span><span class="s2">&quot;for coarse roots, Eq.~(10) leads to $0.06$ for branches, &quot;</span>
+                <span class="s2">&quot;we took one of the two&quot;</span>
+            <span class="p">),</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="c1"># root biomass to leaf biomass ratio</span>
+    <span class="s2">&quot;rho_RL&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># seems to heavily depend on stand fertility (high=0.66, low=0.36)</span>
+        <span class="c1"># Vanninnen2005TP, Table 1</span>
+        <span class="c1"># see also Helmisaari2007TP, Fig. 6</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.67</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;fine root to foliage biomass ratio&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~2]</span><span class="si">{Pukkala2014FPE}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="c1"># trunk shape parameters</span>
+    <span class="s2">&quot;eta_B&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.045</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="p">(</span>
+                <span class="s2">&quot;relative height at which trunk transitions from a neiloid &quot;</span>
+                <span class="s2">&quot;to a paraboloid&quot;</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~2]</span><span class="si">{Ogle2009TP}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;eta_C&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.71</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="p">(</span>
+                <span class="s2">&quot;relative height at which trunk transitions from a paraboloid &quot;</span>
+                <span class="s2">&quot;to a cone&quot;</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~2, called $\eta$]</span><span class="si">{Ogle2009TP}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="c1"># sapwood texture parameters</span>
+    <span class="s2">&quot;gamma_X&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.62</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;xylem conducting area to sapwood area ratio&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~2]</span><span class="si">{Ogle2009TP}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;gamma_C&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">265_000</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;g_gluc/m^3&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;maximum storage capacity of living sapwood cells&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~2]</span><span class="si">{Ogle2009TP}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;gamma_W&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">6.67e-07</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;m^3/g_dw&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;(inverse) density of sapwood structural tissue&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~2]</span><span class="si">{Ogle2009TP}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="c1"># sapwood depth/width paramters</span>
+    <span class="c1"># currently SW is computed as in spruce</span>
+    <span class="c1">#    &quot;SW_constant&quot;: {</span>
+    <span class="c1">#        &quot;value&quot;: 1.049,</span>
+    <span class="c1">#        &quot;unit&quot;: &quot;&quot;,</span>
+    <span class="c1">#        &quot;info&quot;: {</span>
+    <span class="c1">#            &quot;descr&quot;: &quot;intercept for linear sapwood width model&quot;,</span>
+    <span class="c1">#            &quot;source&quot;: r&quot;\citet[Table~3]{Vanninen2005TP}&quot;,</span>
+    <span class="c1">#        },</span>
+    <span class="c1">#    },</span>
+    <span class="c1">#    &quot;SW_H&quot;: {</span>
+    <span class="c1">#        &quot;value&quot;: -8.58e-05,</span>
+    <span class="c1">#        &quot;unit&quot;: &quot;&quot;,</span>
+    <span class="c1">#        &quot;info&quot;: {</span>
+    <span class="c1">#            &quot;descr&quot;: &quot;height parameter for linear sapwood width model&quot;,</span>
+    <span class="c1">#            &quot;source&quot;: r&quot;\citet[Table~3]{Vanninen2005TP}&quot;,</span>
+    <span class="c1">#        },</span>
+    <span class="c1">#    },</span>
+    <span class="c1">#    &quot;SW_A&quot;: {</span>
+    <span class="c1">#        &quot;value&quot;: -1.83e-03,</span>
+    <span class="c1">#        &quot;unit&quot;: &quot;&quot;,</span>
+    <span class="c1">#        &quot;info&quot;: {</span>
+    <span class="c1">#            &quot;descr&quot;: &quot;tree age parameter linear sapwood width model&quot;,</span>
+    <span class="c1">#            &quot;source&quot;: r&quot;\citet[Table~3]{Vanninen2005TP}&quot;,</span>
+    <span class="c1">#        },</span>
+    <span class="c1">#    },</span>
+    <span class="c1"># spruce parameters #TODO</span>
+    <span class="c1"># entries here just for manuscript table; in computation values are taken</span>
+    <span class="c1"># directly from spruce parameter set</span>
+    <span class="s2">&quot;SW_a&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">18.8</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;numerator parameter for sapwood width model&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Eq.~\(2\)]</span><span class="si">{Sellin1994CJFE}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;SW_b&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">60.0</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;denominator parameter for sapwood width model&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Eq.~\(2\)]</span><span class="si">{Sellin1994CJFE}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;HW_slope&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">24.0</span> <span class="o">/</span> <span class="mf">50.0</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;slope value for heartwood width line&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Fig.~1]</span><span class="si">{Sellin1994CJFE}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="c1">#    # wood density parameters</span>
+    <span class="c1">#    &quot;rho_W0&quot;: {</span>
+    <span class="c1">#        &quot;value&quot;: 460_000,</span>
+    <span class="c1">#        &quot;unit&quot;: &quot;g_dw/m^3&quot;,</span>
+    <span class="c1">#        &quot;info&quot;: {</span>
+    <span class="c1">#            &quot;descr&quot;: r&quot;initial wood density, used for $\dbh&lt;\dbh_M$&quot;,</span>
+    <span class="c1">#            &quot;source&quot;: r&quot;\citet[Table~1]{Pukkala2014FPE}&quot;,</span>
+    <span class="c1">#        },</span>
+    <span class="c1">#    },</span>
+    <span class="s2">&quot;rho_Wmax&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">550_000</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;g_dw/m^3&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;maximum density of newly produced sapwood&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;computed to keep $\delta_W$ positive&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;rho_Wmin&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">280_000</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;g_dw/m^3&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;minimum wood density&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;empirical parameter after some testing&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;dbh_M&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;cm&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="p">(</span>
+                <span class="sa">r</span><span class="s2">&quot;for $\dbh&lt;\dbh_M$ the allometrically derived &quot;</span>
+                <span class="sa">r</span><span class="s2">&quot;wood density is assumed to be useless&quot;</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;empirical parameter after some testing&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="c1"># labile carbon storage parameters</span>
+    <span class="s2">&quot;delta_L&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.11</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;g_gluc/g_dw&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;labile carbon storage capacity of leaves&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~2]</span><span class="si">{Ogle2009TP}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;delta_R&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.08</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;g_gluc/g_dw&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;labile carbon storage capacity of fine roots&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~2]</span><span class="si">{Ogle2009TP}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+
+<span class="n">delta_L</span> <span class="o">=</span> <span class="n">species_params</span><span class="p">[</span><span class="s2">&quot;pine&quot;</span><span class="p">][</span><span class="s2">&quot;delta_L&quot;</span><span class="p">]</span>
+<span class="n">delta_L</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">delta_L</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">],</span> <span class="n">delta_L</span><span class="p">[</span><span class="s2">&quot;unit&quot;</span><span class="p">])</span>
+<span class="n">delta_R</span> <span class="o">=</span> <span class="n">species_params</span><span class="p">[</span><span class="s2">&quot;pine&quot;</span><span class="p">][</span><span class="s2">&quot;delta_R&quot;</span><span class="p">]</span>
+<span class="n">delta_R</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">delta_R</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">],</span> <span class="n">delta_R</span><span class="p">[</span><span class="s2">&quot;unit&quot;</span><span class="p">])</span>
+<span class="n">delta_W</span> <span class="o">=</span> <span class="n">delta_L</span>  <span class="c1"># from simulation experience</span>
+
+<span class="n">species_params</span><span class="p">[</span><span class="s2">&quot;pine&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="c1"># tissue construction parameters</span>
+        <span class="s2">&quot;C_gL&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1">#        &quot;value&quot;: 1.51,</span>
+            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">_compute_construction_costs_from_growth_respiration_rate</span><span class="p">(</span>
+                <span class="mf">28.0</span> <span class="o">/</span> <span class="mi">15</span> <span class="o">*</span> <span class="mf">0.25</span><span class="p">,</span> <span class="n">delta_L</span>
+            <span class="p">),</span>  <span class="c1"># 2.44</span>
+            <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;g_gluc/g_dw&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;construction costs of producing leaves&quot;</span><span class="p">,</span>
+                <span class="c1">#            &quot;source&quot;: &quot;Ogle2009TP, Table~2&quot;</span>
+                <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">(</span>
+                    <span class="sa">r</span><span class="s2">&quot;\citet[p.878]</span><span class="si">{Ryan1997JGR}</span><span class="s2"> states that leaf construction &quot;</span>
+                    <span class="sa">r</span><span class="s2">&quot;costs were $28/15 \cdot 0.25$ (of leaf NPP)&quot;</span>
+                <span class="p">),</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;C_gR&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1">#        &quot;value&quot;: 1.30,</span>
+            <span class="c1"># Ryan 1997, Table 4</span>
+            <span class="c1"># the desired root respiration rate is 3 times as high as in</span>
+            <span class="c1"># current simulations, mR=0.75 g_gluc/g_dw/yr = 0.6/yr</span>
+            <span class="c1"># could be increased, but</span>
+            <span class="c1"># the construction respiration rate is 0.035/yr and so there is</span>
+            <span class="c1"># more potential. Since maintenance</span>
+            <span class="c1"># respired carbon and f_R_times_E are almost equal in size, we</span>
+            <span class="c1"># multiply the current growth respiration rate by 6 and compute</span>
+            <span class="c1"># the associated construction costs</span>
+            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">_compute_construction_costs_from_growth_respiration_rate</span><span class="p">(</span>
+                <span class="n">Q_</span><span class="p">((</span><span class="mf">3.6</span> <span class="o">+</span> <span class="mf">5.6</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">micromolCO2_TO_gC</span><span class="p">,</span> <span class="s2">&quot;gC/kgC/s&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;kgC/kgC/yr&quot;</span><span class="p">)</span>
+                <span class="o">*</span> <span class="n">Q_</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;yr&quot;</span><span class="p">)</span>
+                <span class="o">/</span> <span class="mf">0.6</span>
+                <span class="o">*</span> <span class="mi">2</span>
+                <span class="o">*</span> <span class="n">_compute_growth_respiration_rate_from_construction_costs</span><span class="p">(</span>
+                    <span class="n">Q_</span><span class="p">(</span><span class="mf">1.30</span><span class="p">,</span> <span class="s2">&quot;g_gluc/g_dw&quot;</span><span class="p">),</span> <span class="n">delta_R</span>
+                <span class="p">),</span>
+                <span class="n">delta_R</span><span class="p">,</span>
+            <span class="p">),</span>  <span class="c1"># 1.6</span>
+            <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;g_gluc/g_dw&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;construction costs of producing fine roots&quot;</span><span class="p">,</span>
+                <span class="c1">#            &quot;source&quot;: &quot;Ogle2009TP, Table~2&quot;</span>
+                <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~4]</span><span class="si">{Ryan1997JGR}</span><span class="s2"> and some empirical adaptation&quot;</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;C_gHW&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>  <span class="c1"># keep at 1!!!, we only need it to correct for units</span>
+            <span class="c1">#        &quot;value&quot;: 1.251, # ratio between g_dw and g_gluc, otherwise 1 g_gluc</span>
+            <span class="c1"># produces 1 g_dw in C, but there is more carbon in g_dw</span>
+            <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;g_gluc/g_dw&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="p">(</span>
+                    <span class="s2">&quot;construction costs of converting heartwood from &quot;</span>
+                    <span class="s2">&quot;labile sapwood (actually: no costs)&quot;</span>
+                <span class="p">),</span>
+                <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;missing in \citet</span><span class="si">{Ogle2009TP}</span><span class="s2"> (causing a unit mismatch)&quot;</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;C_gW&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1">#        &quot;value&quot;: 1.47,</span>
+            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">(</span>
+                <span class="n">Q_</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="mf">0.24</span> <span class="o">+</span> <span class="mf">0.25</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;gC/gC&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="n">zeta_gluc</span> <span class="o">*</span> <span class="n">zeta_dw</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">magnitude</span><span class="p">,</span>  <span class="c1"># 1.557</span>
+            <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;g_gluc/g_dw&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;construction costs of producing sapwood&quot;</span><span class="p">,</span>
+                <span class="c1">#            &quot;source&quot;: &quot;Ogle2009TP, Table~2&quot;</span>
+                <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">(</span>
+                    <span class="sa">r</span><span class="s2">&quot;\citet[Table~5, northern]</span><span class="si">{Lavigne1997TP}</span><span class="s2">, we add $1.0$ &quot;</span>
+                    <span class="sa">r</span><span class="s2">&quot;because for us growth is not part of the factor to multiply with&quot;</span>
+                <span class="p">),</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+
+<span class="n">species_params</span><span class="p">[</span><span class="s2">&quot;spruce&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># photosynthesis</span>
+    <span class="s2">&quot;alpha&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;additional limitation factor for carbon uptake&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;empirical, for balanced mixed-species simulation&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="c1"># specific leaf area</span>
+    <span class="s2">&quot;SLA&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">5.02</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;m^2/kg_dw&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;specific leaf area&quot;</span><span class="p">,</span> <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet</span><span class="si">{Goude2019EJFR}</span><span class="s2">&quot;</span><span class="p">},</span>
+    <span class="p">},</span>
+    <span class="c1"># respiration parameters</span>
+    <span class="s2">&quot;R_mL&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.95</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;g_gluc/g_dw/yr&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;maintenance respiration rate of leaves&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~2]</span><span class="si">{Ogle2009TP}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;R_mR&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">,</span>
+        <span class="c1">#        &quot;value&quot;: 1.125, # Ryan 1997?</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;g_gluc/g_dw/yr&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;maintenance respiration rate of fine roots&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~2]</span><span class="si">{Ogle2009TP}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;R_mS&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1">#        &quot;value&quot;: 0.025,</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="p">(</span><span class="n">Q_</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;ngC/gC/s&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;gC/gC/yr&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="n">zeta_gluc</span> <span class="o">*</span> <span class="n">zeta_dw</span> <span class="o">*</span> <span class="mf">1.96</span><span class="p">)</span><span class="o">.</span><span class="n">magnitude</span>
+        <span class="p">),</span>  <span class="c1"># 0.077</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;g_gluc/g_dw/yr&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;maintenance respiration rate of sapwood&quot;</span><span class="p">,</span>
+            <span class="c1">#            &quot;source&quot;: &quot;Ogle2009TP, Table~2&quot;</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~5, northern]</span><span class="si">{Lavigne1997TP}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="c1"># senescence parameters</span>
+    <span class="s2">&quot;S_L&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1">#        &quot;value&quot;: 0.2,</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;1/yr&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;senescence rate of leaves&quot;</span><span class="p">,</span>
+            <span class="c1">#            &quot;source&quot;: r&quot;\citet[Table~2]{Pukkala2014FPE}&quot;,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet</span><span class="si">{Muukkonen2004CJFR}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;S_R&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.868</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;1/yr&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;senescence rate of fine roots&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~2]</span><span class="si">{Pukkala2014FPE}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;S_O&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1">#        &quot;value&quot;: 0.0125,</span>
+        <span class="c1">#        &quot;value&quot;: 0.04,  # taken from pine</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.0125</span><span class="p">,</span>  <span class="c1"># taken from pine</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;1/yr&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;senescence rate of coarse roots and branches&quot;</span><span class="p">,</span>
+            <span class="c1">#            &quot;source&quot;: &quot;Pukkala2014FPE, Table~2&quot;</span>
+            <span class="c1">#            &quot;source&quot;: (</span>
+            <span class="c1">#                r&quot;\citet[Table~1]{Vanninen2005TP}; also following &quot;</span>
+            <span class="c1">#                r&quot;simulations for coarse roots, Eq.~(10) leads to $0.06$ &quot;</span>
+            <span class="c1">#                r&quot;for branches, we took one of the two&quot;</span>
+            <span class="c1">#            ),</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet</span><span class="si">{Muukkonen2004CJFR}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="c1"># fine root lo leaf biomass ratio</span>
+    <span class="s2">&quot;rho_RL&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># see also Helmisaari2007TP, Fig. 6</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;fine root to foliage biomass ratio&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~2]</span><span class="si">{Pukkala2014FPE}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="c1"># trunk shape parameters</span>
+    <span class="s2">&quot;eta_B&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.045</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="p">(</span>
+                <span class="s2">&quot;relative height at which trunk transitions from a neiloid &quot;</span>
+                <span class="s2">&quot;to a paraboloid&quot;</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~2]</span><span class="si">{Ogle2009TP}</span><span class="s2"> (pine parameter)&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;eta_C&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.71</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="p">(</span>
+                <span class="s2">&quot;relative height at which trunk transitions from a paraboloid &quot;</span>
+                <span class="s2">&quot;to a cone&quot;</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~2, called $\eta$]</span><span class="si">{Ogle2009TP}</span><span class="s2"> (pine parameter)&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="c1"># sapwood texture parameters</span>
+    <span class="s2">&quot;gamma_X&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.62</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;xylem conducting area to sapwood area ratio&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~2]</span><span class="si">{Ogle2009TP}</span><span class="s2"> (pine parameter)&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;gamma_C&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">265_000</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;g_gluc/m^3&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;maximum storage capacity of living sapwood cells&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~2]</span><span class="si">{Ogle2009TP}</span><span class="s2"> (pine parameter)&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;gamma_W&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">6.67e-07</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;m^3/g_dw&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;(inverse) density of sapwood structural tissue&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~2]</span><span class="si">{Ogle2009TP}</span><span class="s2"> (pine parameter)&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="c1"># sapwood depth/width paramters</span>
+    <span class="s2">&quot;SW_a&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">18.8</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;numerator parameter for sapwood width model&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Eq.~\(2\)]</span><span class="si">{Sellin1994CJFE}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;SW_b&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">60.0</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;denominator parameter for sapwood width model&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Eq.~\(2\)]</span><span class="si">{Sellin1994CJFE}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;HW_slope&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">24.0</span> <span class="o">/</span> <span class="mf">50.0</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;slope value for heartwood width line&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Fig.~1]</span><span class="si">{Sellin1994CJFE}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="c1"># wood density parameters</span>
+    <span class="c1">#    &quot;rho_W0&quot;: {</span>
+    <span class="c1">#        &quot;value&quot;: 600_000,</span>
+    <span class="c1">#        &quot;unit&quot;: &quot;g_dw/m^3&quot;,</span>
+    <span class="c1">#        &quot;info&quot;: {</span>
+    <span class="c1">#            &quot;descr&quot;: r&quot;initial wood density, used for $\dbh&lt;\dbh_M$&quot;,</span>
+    <span class="c1">#            &quot;source&quot;: r&quot;\citet[Table~1]{Pukkala2014FPE}&quot;,</span>
+    <span class="c1">#        },</span>
+    <span class="c1">#    },</span>
+    <span class="s2">&quot;rho_Wmax&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">550_000</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;g_dw/m^3&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;maximum density of newly produced sapwood&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;computed to keep $\delta_W$ positive&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;rho_Wmin&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">280_000</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;g_dw/m^3&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;minimum wood density&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;empirical parameter after some testing&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;dbh_M&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;cm&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="p">(</span>
+                <span class="sa">r</span><span class="s2">&quot;for $\dbh&lt;\dbh_M$ the allometrically derived wood density &quot;</span>
+                <span class="sa">r</span><span class="s2">&quot;is assumed to be useless&quot;</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;empirical parameter after some testing&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="c1"># labile carbon storage parameters</span>
+    <span class="s2">&quot;delta_L&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.11</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;g_gluc/g_dw&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;labile carbon storage capacity of leaves&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~2]</span><span class="si">{Ogle2009TP}</span><span class="s2"> (pine parameter)&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;delta_R&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">0.08</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;g_gluc/g_dw&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;labile carbon storage capacity of fine roots&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~2]</span><span class="si">{Ogle2009TP}</span><span class="s2"> (pine parameter)&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+
+<span class="n">delta_L</span> <span class="o">=</span> <span class="n">species_params</span><span class="p">[</span><span class="s2">&quot;spruce&quot;</span><span class="p">][</span><span class="s2">&quot;delta_L&quot;</span><span class="p">]</span>
+<span class="n">delta_L</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">delta_L</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">],</span> <span class="n">delta_L</span><span class="p">[</span><span class="s2">&quot;unit&quot;</span><span class="p">])</span>
+<span class="n">delta_R</span> <span class="o">=</span> <span class="n">species_params</span><span class="p">[</span><span class="s2">&quot;spruce&quot;</span><span class="p">][</span><span class="s2">&quot;delta_R&quot;</span><span class="p">]</span>
+<span class="n">delta_R</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">delta_R</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">],</span> <span class="n">delta_R</span><span class="p">[</span><span class="s2">&quot;unit&quot;</span><span class="p">])</span>
+<span class="n">delta_W</span> <span class="o">=</span> <span class="n">delta_L</span>  <span class="c1"># from simulation experience</span>
+
+<span class="n">species_params</span><span class="p">[</span><span class="s2">&quot;spruce&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="c1"># tissue construction parameters</span>
+        <span class="s2">&quot;C_gL&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1">#        &quot;value&quot;: 1.51,</span>
+            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">_compute_construction_costs_from_growth_respiration_rate</span><span class="p">(</span>
+                <span class="mf">28.0</span> <span class="o">/</span> <span class="mi">15</span> <span class="o">*</span> <span class="mf">0.25</span><span class="p">,</span> <span class="n">delta_L</span>
+            <span class="p">),</span>  <span class="c1"># 2.44</span>
+            <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;g_gluc/g_dw&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;construction costs of producing leaves&quot;</span><span class="p">,</span>
+                <span class="c1">#            &quot;source&quot;: &quot;Ogle2009TP, Table~2&quot;</span>
+                <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">(</span>
+                    <span class="sa">r</span><span class="s2">&quot;\citet[p.878]</span><span class="si">{Ryan1997JGR}</span><span class="s2"> states that leaf construction &quot;</span>
+                    <span class="sa">r</span><span class="s2">&quot;costs were $28/15 \cdot 0.25$ (of leaf NPP)&quot;</span>
+                <span class="p">),</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;C_gR&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1">#        &quot;value&quot;: 1.30,</span>
+            <span class="c1"># Ryan 1997, Table 4</span>
+            <span class="c1"># the desired root respiration rate is 3 times as high as in</span>
+            <span class="c1"># current simulations, mR=0.75 g_gluc/g_dw/yr = 0.6/yr</span>
+            <span class="c1"># could be increased, but</span>
+            <span class="c1"># the construction respiration rate is 0.035/yr and so there is</span>
+            <span class="c1"># more potential. Since maintenance</span>
+            <span class="c1"># respired carbon and f_R_times_E are almost equal in size, we</span>
+            <span class="c1"># multiply the current growth respiration rate by 6 and compute</span>
+            <span class="c1"># the associated construction costs</span>
+            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">_compute_construction_costs_from_growth_respiration_rate</span><span class="p">(</span>
+                <span class="n">Q_</span><span class="p">((</span><span class="mf">3.9</span> <span class="o">+</span> <span class="mf">5.4</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">micromolCO2_TO_gC</span><span class="p">,</span> <span class="s2">&quot;gC/kgC/s&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;kgC/kgC/yr&quot;</span><span class="p">)</span>
+                <span class="o">*</span> <span class="n">Q_</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;yr&quot;</span><span class="p">)</span>
+                <span class="o">/</span> <span class="mf">0.6</span>
+                <span class="o">*</span> <span class="mi">2</span>
+                <span class="o">*</span> <span class="n">_compute_growth_respiration_rate_from_construction_costs</span><span class="p">(</span>
+                    <span class="n">Q_</span><span class="p">(</span><span class="mf">1.30</span><span class="p">,</span> <span class="s2">&quot;g_gluc/g_dw&quot;</span><span class="p">),</span> <span class="n">delta_R</span>
+                <span class="p">),</span>
+                <span class="n">delta_R</span><span class="p">,</span>
+            <span class="p">),</span>  <span class="c1"># 1.6</span>
+            <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;g_gluc/g_dw&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;construction costs of producing fine roots&quot;</span><span class="p">,</span>
+                <span class="c1">#            &quot;source&quot;: &quot;Ogle2009TP, Table~2&quot;</span>
+                <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\citet[Table~4]</span><span class="si">{Ryan1997JGR}</span><span class="s2"> and some empirical adaptation&quot;</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;C_gHW&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>  <span class="c1"># keep at 1!!!, we only need it to correct for units</span>
+            <span class="c1">#        &quot;value&quot;: 1.251, # ratio between g_dw and g_gluc, otherwise 1 g_gluc</span>
+            <span class="c1"># produces 1 g_dw in C, but there is more carbon in g_dw</span>
+            <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;g_gluc/g_dw&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="p">(</span>
+                    <span class="s2">&quot;construction costs of converting heartwood from &quot;</span>
+                    <span class="s2">&quot;labile sapwood (actually: no costs)&quot;</span>
+                <span class="p">),</span>
+                <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;missing in \citet</span><span class="si">{Ogle2009TP}</span><span class="s2"> (causing a unit mismatch)&quot;</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;C_gW&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1">#        &quot;value&quot;: 1.47,</span>
+            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">Q_</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mf">0.76</span><span class="p">,</span> <span class="s2">&quot;gC/gC&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="n">zeta_gluc</span> <span class="o">*</span> <span class="n">zeta_dw</span><span class="p">)</span><span class="o">.</span><span class="n">magnitude</span><span class="p">,</span>  <span class="c1"># 2.2018</span>
+            <span class="c1">#            &quot;value&quot;: (</span>
+            <span class="c1">#                Q_(1 + (0.24 + 0.25) / 2, &quot;gC/gC&quot;) / zeta_gluc * zeta_dw</span>
+            <span class="c1">#            ).magnitude,  # 1.557</span>
+            <span class="c1">#            &quot;value&quot;: 2.2018,</span>
+            <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;g_gluc/g_dw&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;construction costs of producing sapwood&quot;</span><span class="p">,</span>
+                <span class="c1">#            &quot;source&quot;: &quot;Ogle2009TP, Table~2&quot;</span>
+                <span class="c1">#            &quot;source&quot;: (&quot;Lavigne1997TP, Table~5, northern values; we add 1 because &quot;</span>
+                <span class="c1">#                       &quot;for us growth is not part of the factor to multiply with&quot;)</span>
+                <span class="c1">#                &quot;source&quot;: (</span>
+                <span class="c1">#                    &quot;We use the pine value because the spruce value seems &quot;</span>
+                <span class="c1">#                    &quot;ridiculously high and makes growth respiration explode.&quot;</span>
+                <span class="c1">#                ),</span>
+                <span class="c1">#                &quot;source&quot;: r&quot;\citet{Lavigne1997TP}&quot;,</span>
+                <span class="c1">#            &quot;source&quot;: &quot;Ogle2009TP, Table~2&quot;</span>
+                <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">(</span>
+                    <span class="sa">r</span><span class="s2">&quot;\citet[Table~5, northern]</span><span class="si">{Lavigne1997TP}</span><span class="s2">, we add $1.0$ &quot;</span>
+                    <span class="sa">r</span><span class="s2">&quot;because for us growth is not part of the factor to multiply with&quot;</span>
+                <span class="p">),</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1">## spruce leaf respriation correction for SLA with respect to pine</span>
+<span class="c1"># q = species_params[&quot;pine&quot;][&quot;SLA&quot;][&quot;value&quot;] / species_params[&quot;spruce&quot;][&quot;SLA&quot;][&quot;value&quot;]</span>
+<span class="c1"># species_params[&quot;spruce&quot;][&quot;R_mL&quot;][&quot;value&quot;] *= q</span>
+<span class="c1"># species_params[&quot;spruce&quot;][&quot;C_gL&quot;][&quot;value&quot;] *= q</span>
+
+
+<span class="c1"># species_params[&quot;birch&quot;]: OnespeciesParams = {</span>
+<span class="c1">#    # respiration parameters</span>
+<span class="c1">#    &quot;R_mL&quot;:</span>
+<span class="c1">#    {</span>
+<span class="c1">#        &quot;value&quot;: 0.95,</span>
+<span class="c1">#        &quot;unit&quot;: &quot;g_gluc/g_dw/yr&quot;,</span>
+<span class="c1">#        &quot;info&quot;: {</span>
+<span class="c1">#            &quot;descr&quot;: &quot;maintenance respiration rate of leaves&quot;,</span>
+<span class="c1">#            &quot;source&quot;: r&quot;\citet[Table 2]{Ogle2009TP}&quot;</span>
+<span class="c1">#        }</span>
+<span class="c1">#    },</span>
+<span class="c1">#</span>
+<span class="c1">#    &quot;R_mR&quot;:</span>
+<span class="c1">#    {</span>
+<span class="c1">#        &quot;value&quot;: 0.75,</span>
+<span class="c1">#        &quot;unit&quot;: &quot;g_gluc/g_dw/yr&quot;,</span>
+<span class="c1">#        &quot;info&quot;: {</span>
+<span class="c1">#            &quot;descr&quot;: &quot;maintenance respiration rate of fine roots&quot;,</span>
+<span class="c1">#            &quot;source&quot;: r&quot;\citet[Table 2]{Ogle2009TP}&quot;</span>
+<span class="c1">#        }</span>
+<span class="c1">#    },</span>
+<span class="c1">#</span>
+<span class="c1">#   &quot;R_mS&quot;:</span>
+<span class="c1">#    {</span>
+<span class="c1">#        &quot;value&quot;: 0.025,</span>
+<span class="c1">#        &quot;unit&quot;: &quot;g_gluc/g_dw/yr&quot;,</span>
+<span class="c1">#        &quot;info&quot;: {</span>
+<span class="c1">#            &quot;descr&quot;: &quot;maintenance respiration rate of sapwood&quot;,</span>
+<span class="c1">#            &quot;source&quot;: &quot;Ogle2009TP, Table 2&quot;</span>
+<span class="c1">#        }</span>
+<span class="c1">#    },</span>
+<span class="c1">#</span>
+<span class="c1">#    # senescence parameters</span>
+<span class="c1">#    &quot;S_L&quot;:</span>
+<span class="c1">#    {</span>
+<span class="c1">#        &quot;value&quot;: 1.0,</span>
+<span class="c1">#        &quot;unit&quot;: &quot;1/yr&quot;,</span>
+<span class="c1">#        &quot;info&quot;: {</span>
+<span class="c1">#            &quot;descr&quot;: &quot;senescence rate of leaves&quot;,</span>
+<span class="c1">#            &quot;source&quot;: &quot;Pukkala2014FPE, Table 2&quot;</span>
+<span class="c1">#        }</span>
+<span class="c1">#    },</span>
+<span class="c1">#</span>
+<span class="c1">#    &quot;S_R&quot;:</span>
+<span class="c1">#    {</span>
+<span class="c1">#        &quot;value&quot;: 1.0,</span>
+<span class="c1">#        &quot;unit&quot;: &quot;1/yr&quot;,</span>
+<span class="c1">#        &quot;info&quot;: {</span>
+<span class="c1">#            &quot;descr&quot;: &quot;senescence rate of fine roots&quot;,</span>
+<span class="c1">#            &quot;source&quot;: &quot;Pukkala2014FPE, Table 2&quot;</span>
+<span class="c1">#        }</span>
+<span class="c1">#    },</span>
+<span class="c1">#</span>
+<span class="c1">#    &quot;S_O&quot;:</span>
+<span class="c1">#    {</span>
+<span class="c1">#        &quot;value&quot;: 0.0135,</span>
+<span class="c1">#        &quot;unit&quot;: &quot;1/yr&quot;,</span>
+<span class="c1">#        &quot;info&quot;: {</span>
+<span class="c1">#            &quot;descr&quot;: &quot;senescence rate of coarse roots and branches&quot;,</span>
+<span class="c1">#            &quot;source&quot;: &quot;Pukkala2014FPE, Table 2&quot;</span>
+<span class="c1">#        }</span>
+<span class="c1">#    },</span>
+<span class="c1">#</span>
+<span class="c1">#    # root shape and allometric parameters</span>
+<span class="c1">##    &quot;rho_R&quot;:</span>
+<span class="c1">##    {</span>
+<span class="c1">##        &quot;value&quot;: 200_000,</span>
+<span class="c1">##        &quot;unit&quot;: &quot;g_dw/m^3&quot;,</span>
+<span class="c1">##        &quot;info&quot;: {</span>
+<span class="c1">##            &quot;descr&quot;: &quot;tissue density of fine roots&quot;,</span>
+<span class="c1">##            &quot;source&quot;: &quot;Ogle2009TP, Table 2&quot;</span>
+<span class="c1">##        }</span>
+<span class="c1">##    },</span>
+<span class="c1">##</span>
+<span class="c1">##    &quot;r_R&quot;:</span>
+<span class="c1">##    {</span>
+<span class="c1">##        &quot;value&quot;: 0.00027,</span>
+<span class="c1">##        &quot;unit&quot;: &quot;m&quot;,</span>
+<span class="c1">##        &quot;info&quot;: {</span>
+<span class="c1">##            &quot;descr&quot;: &quot;average fine root radius&quot;,</span>
+<span class="c1">##            &quot;source&quot;: &quot;Ogle2009TP, Table 2&quot;</span>
+<span class="c1">##        }</span>
+<span class="c1">##    },</span>
+<span class="c1">##</span>
+<span class="c1">##    &quot;f_1&quot;:</span>
+<span class="c1">##    {</span>
+<span class="c1">##        &quot;value&quot;: 4.0,</span>
+<span class="c1">##        &quot;unit&quot;: &quot;&quot;,</span>
+<span class="c1">##        &quot;info&quot;: {</span>
+<span class="c1">##            &quot;descr&quot;: &quot;fine root to leaf area ratio&quot;,</span>
+<span class="c1">##            &quot;source&quot;: &quot;Ogle2009TP, Table 2&quot;</span>
+<span class="c1">##        }</span>
+<span class="c1">##    },</span>
+<span class="c1">#</span>
+<span class="c1">#    # fine root lo leaf biomass ratio</span>
+<span class="c1">#    &quot;rho_RL&quot;:</span>
+<span class="c1">#    {</span>
+<span class="c1">#        &quot;value&quot;: 0.67,</span>
+<span class="c1">#        &quot;unit&quot;: &quot;&quot;,</span>
+<span class="c1">#        &quot;info&quot;: {</span>
+<span class="c1">#            &quot;descr&quot;: &quot;fine root to foliage biomass ratio&quot;,</span>
+<span class="c1">#            &quot;source&quot;: &quot;Pukkala2014FPE, Table 2&quot;</span>
+<span class="c1">#        }</span>
+<span class="c1">#    },</span>
+<span class="c1">#</span>
+<span class="c1">#    # trunk shape parameters</span>
+<span class="c1">#    &quot;eta_B&quot;:</span>
+<span class="c1">#    {</span>
+<span class="c1">#        &quot;value&quot;: 0.045,</span>
+<span class="c1">#        &quot;unit&quot;: &quot;&quot;,</span>
+<span class="c1">#        &quot;info&quot;: {</span>
+<span class="c1">#            &quot;descr&quot;: (</span>
+<span class="c1">#                &quot;relative height at which trunk transitions from a neiloid &quot;</span>
+<span class="c1">#                &quot;to a paraboloid&quot;</span>
+<span class="c1">#            ),</span>
+<span class="c1">#            &quot;source&quot;: &quot;Ogle2009TP, Table 2 (pine parameter)&quot;</span>
+<span class="c1">#        }</span>
+<span class="c1">#    },</span>
+<span class="c1">#</span>
+<span class="c1">#    &quot;eta_C&quot;:</span>
+<span class="c1">#    {</span>
+<span class="c1">#        &quot;value&quot;: 0.71,</span>
+<span class="c1">#        &quot;unit&quot;: &quot;&quot;,</span>
+<span class="c1">#        &quot;info&quot;: {</span>
+<span class="c1">#            &quot;descr&quot;: (</span>
+<span class="c1">#                &quot;relative height at which trunk transitions from a paraboloid &quot;</span>
+<span class="c1">#                &quot;to a cone&quot;</span>
+<span class="c1">#            ),</span>
+<span class="c1">#            &quot;source&quot;: &quot;Ogle2009TP, Table 2 (called eta) (pine parameter)&quot;</span>
+<span class="c1">#        }</span>
+<span class="c1">#    },</span>
+<span class="c1">#</span>
+<span class="c1">#    # sapwood texture parameters</span>
+<span class="c1">#    &quot;gamma_X&quot;:</span>
+<span class="c1">#    {</span>
+<span class="c1">#        &quot;value&quot;: 0.62,</span>
+<span class="c1">#        &quot;unit&quot;: &quot;&quot;,</span>
+<span class="c1">#        &quot;info&quot;: {</span>
+<span class="c1">#            &quot;descr&quot;: &quot;xylem conducting area to sapwood area ratio&quot;,</span>
+<span class="c1">#            &quot;source&quot;: &quot;Ogle2009TP, Table 2&quot;</span>
+<span class="c1">#        }</span>
+<span class="c1">#    },</span>
+<span class="c1">#</span>
+<span class="c1">#    &quot;gamma_C&quot;:</span>
+<span class="c1">#    {</span>
+<span class="c1">#        &quot;value&quot;: 265_000,</span>
+<span class="c1">#        &quot;unit&quot;: &quot;g_gluc/m^3&quot;,</span>
+<span class="c1">#        &quot;info&quot;: {</span>
+<span class="c1">#            &quot;descr&quot;: &quot;maximum storage capacity of living sapwood cells&quot;,</span>
+<span class="c1">#            &quot;source&quot;: &quot;Ogle2009TP, Table 2&quot;</span>
+<span class="c1">#        }</span>
+<span class="c1">#    },</span>
+<span class="c1">#</span>
+<span class="c1">#    &quot;gamma_W&quot;:</span>
+<span class="c1">#    {</span>
+<span class="c1">#        &quot;value&quot;: 6.67e-07,</span>
+<span class="c1">#        &quot;unit&quot;: &quot;m^3/g_dw&quot;,</span>
+<span class="c1">#        &quot;info&quot;: {</span>
+<span class="c1">#            &quot;descr&quot;: &quot;(inverse) density of sapwood structural tissue&quot;,</span>
+<span class="c1">#            &quot;source&quot;: &quot;Ogle2009TP, Table 2&quot;</span>
+<span class="c1">#        }</span>
+<span class="c1">#    },</span>
+<span class="c1">#</span>
+<span class="c1">##    &quot;SW_max&quot;:</span>
+<span class="c1">##    {</span>
+<span class="c1">##        &quot;value&quot;: 0.06,</span>
+<span class="c1">##        &quot;unit&quot;: &quot;m&quot;,</span>
+<span class="c1">##        &quot;info&quot;: {</span>
+<span class="c1">##            &quot;descr&quot;: &quot;maximum sapwood width&quot;,</span>
+<span class="c1">##            &quot;source&quot;: &quot;Ogle2009TP, Table 2&quot;</span>
+<span class="c1">##        }</span>
+<span class="c1">##    },</span>
+<span class="c1">#</span>
+<span class="c1">#    # sapwood depth paramters</span>
+<span class="c1">#    &quot;SW_constant&quot;:</span>
+<span class="c1">#    {</span>
+<span class="c1">#        &quot;value&quot;: 1.049,</span>
+<span class="c1">#        &quot;unit&quot;: &quot;&quot;,</span>
+<span class="c1">#        &quot;info&quot;: {</span>
+<span class="c1">#            &quot;descr&quot;: &quot;intercept for linear sapwood width model (pine parameter)&quot;,</span>
+<span class="c1">#            &quot;source&quot;: &quot;Vanninen2005TP, Table 3&quot;</span>
+<span class="c1">#        }</span>
+<span class="c1">#    },</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1">#    &quot;SW_H&quot;:</span>
+<span class="c1">#    {</span>
+<span class="c1">#        &quot;value&quot;: -8.58e-05,</span>
+<span class="c1">#        &quot;unit&quot;: &quot;&quot;,</span>
+<span class="c1">#        &quot;info&quot;: {</span>
+<span class="c1">#            &quot;descr&quot;: &quot;height parameter for linear sapwood width model (pine parameter)&quot;,</span>
+<span class="c1">#            &quot;source&quot;: &quot;Vanninen2005TP, Table 3&quot;</span>
+<span class="c1">#        }</span>
+<span class="c1">#    },</span>
+<span class="c1">#</span>
+<span class="c1">#    &quot;SW_A&quot;:</span>
+<span class="c1">#    {</span>
+<span class="c1">#        &quot;value&quot;: -1.83e-03,</span>
+<span class="c1">#        &quot;unit&quot;: &quot;&quot;,</span>
+<span class="c1">#        &quot;info&quot;: {</span>
+<span class="c1">#            &quot;descr&quot;: &quot;tree age parameter linear sapwood width model (pine parameter)&quot;,</span>
+<span class="c1">#            &quot;source&quot;: &quot;Vanninen2005TP, Table 3&quot;</span>
+<span class="c1">#        }</span>
+<span class="c1">#    },</span>
+<span class="c1">#</span>
+<span class="c1">#    # wood density parameters</span>
+<span class="c1">#    &quot;rho_W0&quot;:</span>
+<span class="c1">#    {</span>
+<span class="c1">##        &quot;value&quot;: 580_000, # leads to negative B_S_star at init, #TODO</span>
+<span class="c1">#        &quot;value&quot;: 565_000,</span>
+<span class="c1">#        &quot;unit&quot;: &quot;g_dw/m^3&quot;,</span>
+<span class="c1">#        &quot;info&quot;: {</span>
+<span class="c1">#            &quot;descr&quot;: r&quot;initial wood density, used for $\dbh&lt;\dbh_M$&quot;,</span>
+<span class="c1">#            &quot;source&quot;: &quot;Pukkala2014FPE, Table 1&quot;</span>
+<span class="c1">#        }</span>
+<span class="c1">#    },</span>
+<span class="c1">#</span>
+<span class="c1">#    &quot;rho_Wmin&quot;:</span>
+<span class="c1">#    {</span>
+<span class="c1">#        &quot;value&quot;: 180_000,</span>
+<span class="c1">#        &quot;unit&quot;: &quot;g_dw/m^3&quot;,</span>
+<span class="c1">#        &quot;info&quot;: {</span>
+<span class="c1">#            &quot;descr&quot;: &quot;minimum wood density&quot;,</span>
+<span class="c1">#            &quot;source&quot;: &quot;fiction XXX&quot;</span>
+<span class="c1">#        }</span>
+<span class="c1">#    },</span>
+<span class="c1">#</span>
+<span class="c1">#    &quot;dbh_M&quot;:</span>
+<span class="c1">#    {</span>
+<span class="c1">#        &quot;value&quot;: 4.0,</span>
+<span class="c1">#        &quot;unit&quot;: &quot;cm&quot;,</span>
+<span class="c1">#        &quot;info&quot;: {</span>
+<span class="c1">#            &quot;descr&quot;: (r&quot;for $\dbh&lt;\dbh_M$ the allometrically derived &quot;</span>
+<span class="c1">#                      r&quot;wood density is assumed to be useless&quot;),</span>
+<span class="c1">#            &quot;source&quot;: &quot;made up by looking at graphs&quot; # TODO</span>
+<span class="c1">#        }</span>
+<span class="c1">#    },</span>
+<span class="c1">#</span>
+<span class="c1">#    # labile carbon storage parameters</span>
+<span class="c1">#    &quot;delta_L&quot;:</span>
+<span class="c1">#    {</span>
+<span class="c1">#        &quot;value&quot;: 0.11,</span>
+<span class="c1">#        &quot;unit&quot;: &quot;g_gluc/g_dw&quot;,</span>
+<span class="c1">#        &quot;info&quot;: {</span>
+<span class="c1">#            &quot;descr&quot;: &quot;labile carbon storage capacity of leaves&quot;,</span>
+<span class="c1">#            &quot;source&quot;: &quot;Ogle2009TP, Table 2&quot;</span>
+<span class="c1">#        }</span>
+<span class="c1">#    },</span>
+<span class="c1">#</span>
+<span class="c1">#    &quot;delta_R&quot;:</span>
+<span class="c1">#    {</span>
+<span class="c1">#        &quot;value&quot;: 0.08,</span>
+<span class="c1">#        &quot;unit&quot;: &quot;g_gluc/g_dw&quot;,</span>
+<span class="c1">#        &quot;info&quot;: {</span>
+<span class="c1">#            &quot;descr&quot;: &quot;labile carbon storage capacity of fine roots&quot;,</span>
+<span class="c1">#            &quot;source&quot;: &quot;Ogle2009TP, Table 2&quot;</span>
+<span class="c1">#        }</span>
+<span class="c1">#    },</span>
+<span class="c1">#</span>
+<span class="c1">#    # tissue construction parameters</span>
+<span class="c1">#    &quot;C_gL&quot;:</span>
+<span class="c1">#    {</span>
+<span class="c1">#        &quot;value&quot;: 1.51,</span>
+<span class="c1">#        &quot;unit&quot;: &quot;g_gluc/g_dw&quot;,</span>
+<span class="c1">#        &quot;info&quot;: {</span>
+<span class="c1">#            &quot;descr&quot;: &quot;construction costs of producing leaves&quot;,</span>
+<span class="c1">#            &quot;source&quot;: &quot;Ogle2009TP, Table 2&quot;</span>
+<span class="c1">#        }</span>
+<span class="c1">#    },</span>
+<span class="c1">#</span>
+<span class="c1">#    &quot;C_gR&quot;:</span>
+<span class="c1">#    {</span>
+<span class="c1">#        &quot;value&quot;: 1.30,</span>
+<span class="c1">#        &quot;unit&quot;: &quot;g_gluc/g_dw&quot;,</span>
+<span class="c1">#        &quot;info&quot;: {</span>
+<span class="c1">#            &quot;descr&quot;: &quot;construction costs of producing fine roots&quot;,</span>
+<span class="c1">#            &quot;source&quot;: &quot;Ogle2009TP, Table 2&quot;</span>
+<span class="c1">#        }</span>
+<span class="c1">#    },</span>
+<span class="c1">#</span>
+<span class="c1">#    &quot;C_gHW&quot;:</span>
+<span class="c1">#    {</span>
+<span class="c1">#        &quot;value&quot;: 1.0, # keep at 1!!!, we only need it to correct for units</span>
+<span class="c1">##        &quot;value&quot;: 1.251, # ratio between g_dw and g_gluc, otherwise 1 g_gluc</span>
+<span class="c1">#                        # produces 1 g_dw in C, but there is more carbon in g_dw</span>
+<span class="c1">#        &quot;unit&quot;: &quot;g_gluc/g_dw&quot;,</span>
+<span class="c1">#        &quot;info&quot;: {</span>
+<span class="c1">#            &quot;descr&quot;: (</span>
+<span class="c1">#                &quot;construction costs of converting heartwood from &quot;</span>
+<span class="c1">#                &quot;labile sapwood (actually: no costs)&quot;</span>
+<span class="c1">#            ),</span>
+<span class="c1">#            &quot;source&quot;: &quot;missing in Ogle2009TP (unit mismatch)&quot;</span>
+<span class="c1">#        }</span>
+<span class="c1">#    },</span>
+<span class="c1">#</span>
+<span class="c1">#    &quot;C_gW&quot;:</span>
+<span class="c1">#    {</span>
+<span class="c1">#        &quot;value&quot;: 1.47,</span>
+<span class="c1">#        &quot;unit&quot;: &quot;g_gluc/g_dw&quot;,</span>
+<span class="c1">#        &quot;info&quot;: {</span>
+<span class="c1">#            &quot;descr&quot;: &quot;construction costs of producing sapwood&quot;,</span>
+<span class="c1">#            &quot;source&quot;: &quot;Ogle2009TP, Table 2&quot;</span>
+<span class="c1">#        }</span>
+<span class="c1">#    },</span>
+<span class="c1"># }</span>
+
+
+<span class="c1"># TODO: find species-specific parameters for birch</span>
+<span class="c1"># species_params[&quot;birch&quot;] = species_params[&quot;pine&quot;]</span>
+
+
+<div class="viewcode-block" id="initialize_params"><a class="viewcode-back" href="../../../BFCPM.trees.single_tree_params.html#BFCPM.trees.single_tree_params.initialize_params">[docs]</a><span class="k">def</span> <span class="nf">initialize_params</span><span class="p">(</span><span class="n">one_species_params</span><span class="p">:</span> <span class="n">OneSpeciesParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize the parameter dictionary.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        one_species_params: tree species parameters (for one species)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary:</span>
+
+<span class="sd">        - name: value</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">one_species_params</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">params</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;unit&quot;</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">params</span></div>
+
+
+<div class="viewcode-block" id="species_params_to_latex_table"><a class="viewcode-back" href="../../../BFCPM.trees.single_tree_params.html#BFCPM.trees.single_tree_params.species_params_to_latex_table">[docs]</a><span class="k">def</span> <span class="nf">species_params_to_latex_table</span><span class="p">(</span>
+    <span class="n">species_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">custom_species_params</span><span class="p">:</span> <span class="n">SpeciesParams</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a LaTeX table from the parameters of one species.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        species_name: element of ``custom_species_params.keys()``</span>
+<span class="sd">        custom_species_params: tree species parameters (for all species)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        LaTeX parameter table</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ignore_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">]</span>
+
+    <span class="n">species_str</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;pine&quot;</span><span class="p">:</span> <span class="s2">&quot;Scots pine&quot;</span><span class="p">,</span> <span class="s2">&quot;spruce&quot;</span><span class="p">:</span> <span class="s2">&quot;Norway spruce&quot;</span><span class="p">,</span> <span class="s2">&quot;birch&quot;</span><span class="p">:</span> <span class="s2">&quot;Birch&quot;</span><span class="p">}</span>
+
+    <span class="n">table_head</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="sa">r</span><span class="s2">&quot;\begin</span><span class="si">{table}</span><span class="s2">[H]&quot;</span><span class="p">,</span>
+        <span class="sa">r</span><span class="s2">&quot;\tiny&quot;</span><span class="p">,</span>
+        <span class="sa">r</span><span class="s2">&quot;\begin</span><span class="si">{tabular}</span><span class="s2">{lllp</span><span class="si">{4cm}</span><span class="s2">p</span><span class="si">{4cm}</span><span class="s2">}&quot;</span><span class="p">,</span>
+        <span class="sa">r</span><span class="s2">&quot;\multicolumn</span><span class="si">{2}{l}</span><span class="s2">{\textbf{&quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">species_str</span><span class="p">[</span><span class="n">species_name</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;}}</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="sa">r</span><span class="s2">&quot;\thead{ }</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="sa">r</span><span class="s2">&quot;\thead</span><span class="si">{Symbol}</span><span class="s2"> &amp; \thead</span><span class="si">{Value}</span><span class="s2"> &amp; \thead</span><span class="si">{Unit}</span><span class="s2"> &amp; \thead</span><span class="si">{Description}</span><span class="s2"> &amp; \thead</span><span class="si">{Source}</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">custom_species_params</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">custom_species_params</span> <span class="o">=</span> <span class="n">species_params</span>
+
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">custom_species_params</span><span class="p">[</span><span class="n">species_name</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">ignore_list</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;$&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">latex</span><span class="p">(</span><span class="n">Symbol</span><span class="p">(</span><span class="n">name</span><span class="p">))]</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;$&quot;</span><span class="p">]</span>  <span class="c1"># type: ignore</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="n">latex_dict</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;epsilon&quot;</span><span class="p">:</span> <span class="s2">&quot;varepsilon&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;SW&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\text</span><span class="si">{SW}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;HW&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\text</span><span class="si">{HW}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;_</span><span class="si">{slope}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;_{\text</span><span class="si">{slope}</span><span class="s2">}&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;_</span><span class="si">{max}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;_{\text</span><span class="si">{max}</span><span class="s2">}&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;SLA&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\mathrm</span><span class="si">{SLA}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="c1">#            &quot;BH&quot;: r&quot;\mathrm{BH}&quot;</span>
+            <span class="s2">&quot;_</span><span class="si">{mL}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;_{\text</span><span class="si">{mL}</span><span class="s2">}&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;_</span><span class="si">{mR}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;_{\text</span><span class="si">{mR}</span><span class="s2">}&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;_</span><span class="si">{mS}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;_{\text</span><span class="si">{mS}</span><span class="s2">}&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;_</span><span class="si">{RL}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;_{\text</span><span class="si">{RL}</span><span class="s2">}&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;_</span><span class="si">{constant}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;_{\text</span><span class="si">{constant}</span><span class="s2">}&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;_</span><span class="si">{W0}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;_</span><span class="si">{W_0}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;_</span><span class="si">{Wmax}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;_{W_\text</span><span class="si">{max}</span><span class="s2">}&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;_</span><span class="si">{Wmin}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;_{W_\text</span><span class="si">{min}</span><span class="s2">}&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;_</span><span class="si">{gL}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;_{\text</span><span class="si">{gL}</span><span class="s2">}&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;_</span><span class="si">{gR}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;_{\text</span><span class="si">{gR}</span><span class="s2">}&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;_</span><span class="si">{gHW}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;_{\text</span><span class="si">{gHW}</span><span class="s2">}&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;_</span><span class="si">{gW}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;_{\text</span><span class="si">{gW}</span><span class="s2">}&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;dbh&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\dbh&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span> <span class="ow">in</span> <span class="n">latex_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">)</span>
+
+        <span class="n">unit</span> <span class="o">=</span> <span class="n">latexify_unit</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;unit&quot;</span><span class="p">])</span>
+
+        <span class="n">val</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s2">&quot;e&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">val</span> <span class="o">&lt;</span> <span class="mf">1e-02</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">val</span> <span class="o">&gt;</span> <span class="mf">1e05</span><span class="p">):</span>
+            <span class="n">val_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">val</span><span class="si">:</span><span class="s2">0.3e</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">elif</span> <span class="n">val</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+            <span class="n">val_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">val_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="s2">$&quot;</span>
+
+        <span class="n">row</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot; &amp; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">name</span><span class="p">,</span> <span class="n">val_str</span><span class="p">,</span> <span class="n">unit</span><span class="p">,</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;info&quot;</span><span class="p">][</span><span class="s2">&quot;descr&quot;</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;info&quot;</span><span class="p">][</span><span class="s2">&quot;source&quot;</span><span class="p">]])</span>
+            <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\\\</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
+    <span class="n">s</span> <span class="o">=</span> <span class="n">table_head</span> <span class="o">+</span> <span class="n">rows</span> <span class="o">+</span> <span class="p">[</span><span class="sa">r</span><span class="s2">&quot;\end</span><span class="si">{tabular}</span><span class="s2">&quot;</span><span class="p">]</span>
+    <span class="n">s</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">r</span><span class="s2">&quot;\caption{&quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">species_str</span><span class="p">[</span><span class="n">species_name</span><span class="p">]</span><span class="si">}</span><span class="s2"> parameters.&quot;</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;}&quot;</span><span class="p">]</span>
+    <span class="n">s</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">r</span><span class="s2">&quot;\label{table:&quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">species_name</span><span class="si">}</span><span class="s2">_params&quot;</span> <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;}&quot;</span><span class="p">]</span>
+    <span class="n">s</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">r</span><span class="s2">&quot;\end</span><span class="si">{table}</span><span class="s2">&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="params_to_latex_table"><a class="viewcode-back" href="../../../BFCPM.trees.single_tree_params.html#BFCPM.trees.single_tree_params.params_to_latex_table">[docs]</a><span class="k">def</span> <span class="nf">params_to_latex_table</span><span class="p">(</span>
+    <span class="n">speciess</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">custom_species_params</span><span class="p">:</span> <span class="n">SpeciesParams</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a LaTeX tables from the parameters of a list of species.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        speciess: elements of ``custom_species_params.keys()``</span>
+<span class="sd">        custom_species_params: tree species parameters (for all species)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        LaTeX parameter table</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">s</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">species</span> <span class="ow">in</span> <span class="n">speciess</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="p">[</span><span class="n">species_params_to_latex_table</span><span class="p">(</span><span class="n">species</span><span class="p">,</span> <span class="n">custom_species_params</span><span class="p">)]</span>
+
+    <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span><span class="p">)</span></div>
+
+
+<span class="c1">###############################################################################</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">params_to_latex_table</span><span class="p">([</span><span class="s2">&quot;pine&quot;</span><span class="p">,</span> <span class="s2">&quot;spruce&quot;</span><span class="p">]))</span>
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Holger Metzler, Samuli Launiainen, Giulia Vico
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=359c27e9"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    </body>
+</html>

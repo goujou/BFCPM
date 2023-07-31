@@ -1,0 +1,40 @@
+recorded\_simulation
+====================
+
+MMMM
+
+.. currentmodule:: BFCPM.simulation.recorded_simulation
+
+
+.. automodule:: BFCPM.simulation.recorded_simulation
+
+    
+    
+    
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+      :template: class.rst
+
+      
+        RecordedSimulation
+      
+   
+   
+
+   
+   
+   
+
+   
+   
+   

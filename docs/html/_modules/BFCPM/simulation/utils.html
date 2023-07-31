@@ -1,0 +1,1083 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
+
+    <!-- Generated with Sphinx 7.1.1 and Furo 2023.07.26 -->
+        <title>BFCPM.simulation.utils - BFCPM</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=362ab14a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">BFCPM</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  
+  <span class="sidebar-brand-text">BFCPM</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../BFCPM.prepare_stand.html">prepare_stand</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../BFCPM.stand.html">stand</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of stand</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../BFCPM.stand.Stand.html">Stand</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../BFCPM.type_aliases.html">type_aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../BFCPM.utils.html">utils</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../BFCPM.productivity.html">productivity</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../BFCPM.trees.html">trees</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of trees</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../BFCPM.trees.allometry.html">allometry</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../BFCPM.trees.mean_tree.html">mean_tree</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of mean_tree</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.trees.mean_tree.MeanTree.html">MeanTree</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../BFCPM.trees.single_tree_C_model.html">single_tree_C_model</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of single_tree_C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.trees.single_tree_C_model.SingleTreeCModel.html">SingleTreeCModel</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../BFCPM.trees.single_tree_allocation.html">single_tree_allocation</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of single_tree_allocation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.trees.single_tree_allocation.SingleTree.html">SingleTree</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../BFCPM.trees.single_tree_params.html">single_tree_params</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../BFCPM.trees.single_tree_vars.html">single_tree_vars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../BFCPM.trees.tree_utils.html">tree_utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../BFCPM.soil.html">soil</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of soil</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../BFCPM.soil.dead_wood_classes.html">dead_wood_classes</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of dead_wood_classes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../BFCPM.soil.dead_wood_classes.C_model.html">C_model</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../BFCPM.soil.dead_wood_classes.C_model.SoilCDeadWoodClasses.html">SoilCDeadWoodClasses</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.soil.dead_wood_classes.C_model_parameters.html">C_model_parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../BFCPM.soil.simple_soil_model.html">simple_soil_model</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of simple_soil_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../BFCPM.soil.simple_soil_model.C_model.html">C_model</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../BFCPM.soil.simple_soil_model.C_model.SimpleSoilCModel.html">SimpleSoilCModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.soil.simple_soil_model.C_model_parameters.html">C_model_parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../BFCPM.soil.soil_c_model_abc.html">soil_c_model_abc</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of soil_c_model_abc</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.soil.soil_c_model_abc.SoilCModelABC.html">SoilCModelABC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../BFCPM.wood_products.html">wood_products</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of wood_products</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../BFCPM.wood_products.simple_wood_product_model.html">simple_wood_product_model</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of simple_wood_product_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../BFCPM.wood_products.simple_wood_product_model.C_model.html">C_model</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../BFCPM.wood_products.simple_wood_product_model.C_model.SimpleWoodProductModel.html">SimpleWoodProductModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.wood_products.simple_wood_product_model.C_model_parameters.html">C_model_parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../BFCPM.wood_products.wood_product_model_abc.html">wood_product_model_abc</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of wood_product_model_abc</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.wood_products.wood_product_model_abc.WoodProductModelABC.html">WoodProductModelABC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../BFCPM.management.html">management</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of management</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../BFCPM.management.library.html">library</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../BFCPM.management.management_strategy.html">management_strategy</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of management_strategy</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.Cut.html">Cut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.CutAndReplant.html">CutAndReplant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.CutWaitAndReplant.html">CutWaitAndReplant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.ManagementActionABC.html">ManagementActionABC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.ManagementStrategy.html">ManagementStrategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.OnDBHLimit.html">OnDBHLimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.OnDTHLimit.html">OnDTHLimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.OnDelayOneTime.html">OnDelayOneTime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.OnNLimit.html">OnNLimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.OnPeriodically.html">OnPeriodically</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.OnSBALimit.html">OnSBALimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.OnSBAvsDTH.html">OnSBAvsDTH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.OnStandAges.html">OnStandAges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.OnTimeIntervals.html">OnTimeIntervals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.PCT.html">PCT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.Plant.html">Plant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.Thin.html">Thin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.ThinStand.html">ThinStand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.TriggerABC.html">TriggerABC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.management.management_strategy.WaitAndPlant.html">WaitAndPlant</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../BFCPM.simulation.html">simulation</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of simulation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../BFCPM.simulation.library.html">library</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../BFCPM.simulation.recorded_simulation.html">recorded_simulation</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of recorded_simulation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.simulation.recorded_simulation.RecordedSimulation.html">RecordedSimulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../BFCPM.simulation.simulation.html">simulation</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of simulation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../BFCPM.simulation.simulation.Simulation.html">Simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../BFCPM.simulation.utils.html">utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../BFCPM.simulation_parameters.html">simulation_parameters</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../notebooks/Untitled.html">Test notebook</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <h1>Source code for BFCPM.simulation.utils</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Some handy functions regarding a simulation.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">from</span> <span class="nn">CompartmentalSystems.discrete_model_run</span> <span class="kn">import</span> <span class="n">DiscreteModelRun</span> <span class="k">as</span> <span class="n">DMR</span>
+<span class="kn">from</span> <span class="nn">LAPM.discrete_linear_autonomous_pool_model</span> <span class="kn">import</span> \
+    <span class="n">DiscreteLinearAutonomousPoolModel</span> <span class="k">as</span> <span class="n">DLAPM</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">Q_</span><span class="p">,</span> <span class="n">utils</span>
+<span class="kn">from</span> <span class="nn">.simulation</span> <span class="kn">import</span> <span class="n">Simulation</span>
+
+
+<div class="viewcode-block" id="add_simulation_tree_dict_to_ds"><a class="viewcode-back" href="../../../BFCPM.simulation.utils.html#BFCPM.simulation.utils.add_simulation_tree_dict_to_ds">[docs]</a><span class="k">def</span> <span class="nf">add_simulation_tree_dict_to_ds</span><span class="p">(</span>
+    <span class="n">ds</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span> <span class="n">variables</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add tree data recorded during a simulation to the simulation dataset.</span>
+
+<span class="sd">    This function is called right after the simulation run with the</span>
+<span class="sd">    recorded data belonging to trees.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nr_tree_entities</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">tree_entity_nrs</span><span class="p">)</span>
+    <span class="n">tree_names</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">entity</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">tree_entity_nrs</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+
+    <span class="n">nr_times</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">])</span>
+    <span class="n">data_vars</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">nr_tree_entities</span><span class="p">,</span> <span class="n">nr_times</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">tree_nr</span><span class="p">,</span> <span class="n">tree_name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;tree&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">):</span>
+            <span class="n">q</span> <span class="o">=</span> <span class="n">Q_</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">variable</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="n">tree_name</span><span class="p">])</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">tree_nr</span><span class="p">,</span> <span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)]</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">magnitude</span>
+
+        <span class="n">data_vars</span><span class="p">[</span><span class="n">variable</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tree&quot;</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">],</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="n">q</span><span class="o">.</span><span class="n">get_netcdf_unit</span><span class="p">()}</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ds</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">data_vars</span><span class="p">)</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">({</span><span class="s2">&quot;tree&quot;</span><span class="p">:</span> <span class="n">tree_names</span><span class="p">})</span></div>
+
+
+<div class="viewcode-block" id="add_simulation_tree_data_to_ds"><a class="viewcode-back" href="../../../BFCPM.simulation.utils.html#BFCPM.simulation.utils.add_simulation_tree_data_to_ds">[docs]</a><span class="k">def</span> <span class="nf">add_simulation_tree_data_to_ds</span><span class="p">(</span>
+    <span class="n">ds</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span> <span class="n">variables</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add tree data recorded during a simulation to the simulation dataset.</span>
+
+<span class="sd">    This function is called when additional quantities have been computed who</span>
+<span class="sd">    themselves rely on the simulation dataset with ecorded data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nr_tree_entities</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">tree_entity_nrs</span><span class="p">)</span>
+    <span class="n">tree_names</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">entity</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">tree_entity_nrs</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+
+    <span class="n">nr_times</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">])</span>
+    <span class="n">data_vars</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">nr_tree_entities</span><span class="p">,</span> <span class="n">nr_times</span><span class="p">))</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">variable</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
+        <span class="n">data</span><span class="p">[:,</span> <span class="p">:</span> <span class="n">q</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">magnitude</span>
+
+        <span class="n">data_vars</span><span class="p">[</span><span class="n">variable</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tree&quot;</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">],</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="n">q</span><span class="o">.</span><span class="n">get_netcdf_unit</span><span class="p">()}</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ds</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">data_vars</span><span class="p">)</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">({</span><span class="s2">&quot;tree&quot;</span><span class="p">:</span> <span class="n">tree_names</span><span class="p">})</span></div>
+
+
+<div class="viewcode-block" id="add_simulation_data_to_ds"><a class="viewcode-back" href="../../../BFCPM.simulation.utils.html#BFCPM.simulation.utils.add_simulation_data_to_ds">[docs]</a><span class="k">def</span> <span class="nf">add_simulation_data_to_ds</span><span class="p">(</span>
+    <span class="n">ds</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span> <span class="n">variables</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add simulation stand data recorded during a simulation to the simulation dataset.&quot;&quot;&quot;</span>
+    <span class="n">nr_times</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">])</span>
+
+    <span class="n">data_vars</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">nr_times</span><span class="p">)</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">Q_</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">variable</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
+        <span class="n">data</span><span class="p">[:</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)]</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">magnitude</span>
+
+        <span class="n">data_vars</span><span class="p">[</span><span class="n">variable</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">],</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="n">q</span><span class="o">.</span><span class="n">get_netcdf_unit</span><span class="p">()}</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ds</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">data_vars</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="add_additional_simulation_quantities_to_ds"><a class="viewcode-back" href="../../../BFCPM.simulation.utils.html#BFCPM.simulation.utils.add_additional_simulation_quantities_to_ds">[docs]</a><span class="k">def</span> <span class="nf">add_additional_simulation_quantities_to_ds</span><span class="p">(</span><span class="n">ds</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Based on a simulation dataset, compute more data and add it.&quot;&quot;&quot;</span>
+    <span class="c1"># divisions of zero by zero make warnings, but the result is nan</span>
+    <span class="c1"># nan is okaym but the warnings look pretty disgusting</span>
+    <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+        <span class="n">new_ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="n">total_C_stock</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">stocks</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;entity&quot;</span><span class="p">,</span> <span class="s2">&quot;pool&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;gC/m^2&quot;</span><span class="p">)</span>
+        <span class="n">cum_WP_S_input</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+            <span class="n">ds</span><span class="o">.</span><span class="n">internal_fluxes</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">entity_to</span><span class="o">=</span><span class="s2">&quot;wood_product&quot;</span><span class="p">,</span> <span class="n">pool_to</span><span class="o">=</span><span class="s2">&quot;WP_S&quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;entity_from&quot;</span><span class="p">,</span> <span class="s2">&quot;pool_from&quot;</span><span class="p">])</span>
+            <span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">data</span><span class="p">,</span>
+            <span class="s2">&quot;gC/m^2&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">cum_WP_L_input</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+            <span class="n">ds</span><span class="o">.</span><span class="n">internal_fluxes</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">entity_to</span><span class="o">=</span><span class="s2">&quot;wood_product&quot;</span><span class="p">,</span> <span class="n">pool_to</span><span class="o">=</span><span class="s2">&quot;WP_L&quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;entity_from&quot;</span><span class="p">,</span> <span class="s2">&quot;pool_from&quot;</span><span class="p">])</span>
+            <span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">data</span><span class="p">,</span>
+            <span class="s2">&quot;gC/m^2&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">cum_R</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+            <span class="n">ds</span><span class="o">.</span><span class="n">output_fluxes</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;entity_from&quot;</span><span class="p">,</span> <span class="s2">&quot;pool_from&quot;</span><span class="p">])</span>
+            <span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">data</span><span class="p">,</span>
+            <span class="s2">&quot;gC/m^2&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">tree_biomass</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+            <span class="n">ds</span><span class="o">.</span><span class="n">stocks</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">tree</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tree&quot;</span><span class="p">,</span> <span class="s2">&quot;pool&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;gC/m^2&quot;</span>
+        <span class="p">)</span>
+        <span class="n">max_dbh</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">DBH</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s2">&quot;tree&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;cm&quot;</span><span class="p">)</span>
+        <span class="n">soil_biomass</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">stocks</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="s2">&quot;soil&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;pool&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;gC/m^2&quot;</span><span class="p">)</span>
+        <span class="n">wood_product_biomass</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+            <span class="n">ds</span><span class="o">.</span><span class="n">stocks</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="s2">&quot;wood_product&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;pool&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;gC/m^2&quot;</span>
+        <span class="p">)</span>
+
+        <span class="n">R_A</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+            <span class="n">ds</span><span class="o">.</span><span class="n">output_fluxes</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">entity_from</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">tree</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tree&quot;</span><span class="p">,</span> <span class="s2">&quot;pool_from&quot;</span><span class="p">])</span>
+            <span class="o">.</span><span class="n">data</span><span class="p">,</span>
+            <span class="s2">&quot;gC/m^2/yr&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">R_M</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">R_M_tree</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s2">&quot;tree&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">R_M_tree</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span>
+        <span class="n">R_G</span> <span class="o">=</span> <span class="n">R_A</span> <span class="o">-</span> <span class="n">R_M</span>
+        <span class="n">R_H</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+            <span class="n">ds</span><span class="o">.</span><span class="n">output_fluxes</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">entity_from</span><span class="o">=</span><span class="s2">&quot;soil&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s2">&quot;pool_from&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+            <span class="s2">&quot;gC/m^2/yr&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">GPP</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">GPP_year</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;gC/m^2/yr&quot;</span><span class="p">)</span>
+        <span class="n">NPP</span> <span class="o">=</span> <span class="n">GPP</span> <span class="o">-</span> <span class="n">R_A</span>
+        <span class="n">CUE</span> <span class="o">=</span> <span class="n">NPP</span> <span class="o">/</span> <span class="n">GPP</span>
+        <span class="n">mleaf</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+            <span class="n">ds</span><span class="o">.</span><span class="n">stocks</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">tree</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;B_L&quot;</span><span class="p">,</span> <span class="s2">&quot;C_L&quot;</span><span class="p">])</span>
+            <span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tree&quot;</span><span class="p">,</span> <span class="s2">&quot;pool&quot;</span><span class="p">])</span>
+            <span class="o">.</span><span class="n">data</span><span class="p">,</span>
+            <span class="s2">&quot;gC/m^2&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">GPP_per_leaf_biomass</span> <span class="o">=</span> <span class="n">GPP</span> <span class="o">/</span> <span class="n">mleaf</span>
+        <span class="n">NPP_per_leaf_biomass</span> <span class="o">=</span> <span class="n">NPP</span> <span class="o">/</span> <span class="n">mleaf</span>
+
+        <span class="c1"># tree data</span>
+        <span class="n">GPP_tree</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+            <span class="n">ds</span><span class="o">.</span><span class="n">input_fluxes</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">entity_to</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">tree</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s2">&quot;pool_to&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;gC/m^2/yr&quot;</span>
+        <span class="p">)</span>
+        <span class="n">R_A_tree</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+            <span class="n">ds</span><span class="o">.</span><span class="n">output_fluxes</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">entity_from</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">tree</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s2">&quot;pool_from&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+            <span class="s2">&quot;gC/m^2/yr&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">NPP_tree</span> <span class="o">=</span> <span class="n">GPP_tree</span> <span class="o">-</span> <span class="n">R_A_tree</span>
+        <span class="n">CUE_tree</span> <span class="o">=</span> <span class="n">NPP_tree</span> <span class="o">/</span> <span class="n">GPP_tree</span>
+
+        <span class="n">R_M_tree</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">R_M_tree</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">R_M_tree</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span>
+        <span class="n">R_G_tree</span> <span class="o">=</span> <span class="n">R_A_tree</span> <span class="o">-</span> <span class="n">R_M_tree</span>
+
+        <span class="n">RA_L_tree</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">((</span><span class="n">ds</span><span class="o">.</span><span class="n">GL_tree</span> <span class="o">+</span> <span class="n">ds</span><span class="o">.</span><span class="n">ML_tree</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">GL_tree</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span>
+        <span class="n">RA_R_tree</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">((</span><span class="n">ds</span><span class="o">.</span><span class="n">GR_tree</span> <span class="o">+</span> <span class="n">ds</span><span class="o">.</span><span class="n">MR_tree</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">GR_tree</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span>
+        <span class="n">RA_S_tree</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">((</span><span class="n">ds</span><span class="o">.</span><span class="n">GS_tree</span> <span class="o">+</span> <span class="n">ds</span><span class="o">.</span><span class="n">MS_tree</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">GS_tree</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span>
+
+        <span class="n">mleaf_tree</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+            <span class="n">ds</span><span class="o">.</span><span class="n">stocks</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">tree</span><span class="p">)</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;B_L&quot;</span><span class="p">,</span> <span class="s2">&quot;C_L&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s2">&quot;pool&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+            <span class="s2">&quot;gC/m^2&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">GPP_per_leaf_biomass_tree</span> <span class="o">=</span> <span class="n">GPP_tree</span> <span class="o">/</span> <span class="n">mleaf_tree</span>
+        <span class="n">NPP_per_leaf_biomass_tree</span> <span class="o">=</span> <span class="n">NPP_tree</span> <span class="o">/</span> <span class="n">mleaf_tree</span>
+
+        <span class="n">r_BH</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">DBH</span><span class="o">.</span><span class="n">data</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">DBH</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span>
+        <span class="n">r_BH_growth_5_yrs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="o">*</span> <span class="n">r_BH</span>
+        <span class="n">r_BH_growth_5_yrs</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">:]</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="n">r_BH</span><span class="o">.</span><span class="n">magnitude</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">r_BH</span><span class="o">.</span><span class="n">magnitude</span><span class="p">[:,</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">5</span><span class="p">]</span>
+                    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">r_BH</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                <span class="p">]</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span>
+            <span class="n">ds</span><span class="o">.</span><span class="n">DBH</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="n">tree_biomass_tree</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+            <span class="n">ds</span><span class="o">.</span><span class="n">stocks</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">entity</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">tree</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;pool&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;gC/m^2&quot;</span>
+        <span class="p">)</span>
+        <span class="n">thinning_or_cutting_tree</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">((</span><span class="n">ds</span><span class="o">.</span><span class="n">N_per_m2</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+        <span class="c1"># single tree data, i.e. per plant</span>
+        <span class="n">N_per_m2_tree</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">N_per_m2</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">N_per_m2</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span>
+        <span class="n">GPP_single_tree</span> <span class="o">=</span> <span class="n">GPP_tree</span> <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+        <span class="n">R_A_single_tree</span> <span class="o">=</span> <span class="n">R_A_tree</span> <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+        <span class="n">NPP_single_tree</span> <span class="o">=</span> <span class="n">GPP_single_tree</span> <span class="o">-</span> <span class="n">R_A_single_tree</span>
+        <span class="n">CUE_single_tree</span> <span class="o">=</span> <span class="n">NPP_single_tree</span> <span class="o">/</span> <span class="n">GPP_single_tree</span>
+        <span class="n">R_M_single_tree</span> <span class="o">=</span> <span class="n">R_M_tree</span> <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+        <span class="n">R_G_single_tree</span> <span class="o">=</span> <span class="n">R_G_tree</span> <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+
+        <span class="n">mleaf_single_tree</span> <span class="o">=</span> <span class="n">mleaf_tree</span> <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+        <span class="n">GPP_per_leaf_biomass_single_tree</span> <span class="o">=</span> <span class="n">GPP_per_leaf_biomass_tree</span> <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+        <span class="n">NPP_per_leaf_biomass_single_tree</span> <span class="o">=</span> <span class="n">NPP_per_leaf_biomass_tree</span> <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+
+        <span class="n">tree_biomass_single_tree</span> <span class="o">=</span> <span class="n">tree_biomass</span> <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+
+        <span class="n">LA_single_tree</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">LA_tree</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">LA_tree</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+        <span class="n">V_T_single_tree</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">V_T_tree</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">V_T_tree</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+        <span class="p">)</span>
+        <span class="n">V_TH_single_tree</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">V_TH_tree</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">V_TH_tree</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+        <span class="p">)</span>
+        <span class="n">V_TS_single_tree</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">V_TS_tree</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">V_TS_tree</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+        <span class="p">)</span>
+
+        <span class="n">LabileC_assimilated_single_tree</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">Q_</span><span class="p">(</span>
+                <span class="n">ds</span><span class="o">.</span><span class="n">LabileC_assimilated_tree</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+                <span class="n">ds</span><span class="o">.</span><span class="n">LabileC_assimilated_tree</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">],</span>
+            <span class="p">)</span>
+            <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+        <span class="p">)</span>
+        <span class="n">LabileC_respired_single_tree</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">LabileC_respired_tree</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">LabileC_respired_tree</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span>
+            <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+        <span class="p">)</span>
+
+        <span class="n">GL_single_tree</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">GL_tree</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">GL_tree</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+        <span class="n">GR_single_tree</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">GR_tree</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">GR_tree</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+        <span class="n">GS_single_tree</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">GS_tree</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">GS_tree</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+        <span class="n">ML_single_tree</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">ML_tree</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">ML_tree</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+        <span class="n">MR_single_tree</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">MR_tree</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">MR_tree</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+        <span class="n">MS_single_tree</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">MS_tree</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">MS_tree</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+
+        <span class="n">RA_L_single_tree</span> <span class="o">=</span> <span class="n">RA_L_tree</span> <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+        <span class="n">RA_R_single_tree</span> <span class="o">=</span> <span class="n">RA_R_tree</span> <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+        <span class="n">RA_S_single_tree</span> <span class="o">=</span> <span class="n">RA_S_tree</span> <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+
+        <span class="n">f_L_times_E_single_tree</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">f_L_times_E_tree</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">f_L_times_E_tree</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span>
+            <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+        <span class="p">)</span>
+        <span class="n">f_R_times_E_single_tree</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">f_R_times_E_tree</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">f_R_times_E_tree</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span>
+            <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+        <span class="p">)</span>
+        <span class="n">f_O_times_E_single_tree</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">f_O_times_E_tree</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">f_O_times_E_tree</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span>
+            <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+        <span class="p">)</span>
+        <span class="n">f_T_times_E_single_tree</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">f_T_times_E_tree</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">f_T_times_E_tree</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span>
+            <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+        <span class="p">)</span>
+        <span class="c1">#        f_CS_times_CS_single_tree = (</span>
+        <span class="c1">#            Q_(ds.f_CS_times_CS_tree.data, ds.f_CS_times_CS_tree.attrs[&quot;units&quot;])</span>
+        <span class="c1">#            / N_per_m2_tree</span>
+        <span class="c1">#        )</span>
+
+        <span class="n">R_M_correction_single_tree</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">R_M_correction_tree</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">R_M_correction_tree</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span>
+            <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+        <span class="p">)</span>
+
+        <span class="n">B_S_star_single_tree</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">Q_</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">B_S_star_tree</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">B_S_star_tree</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="n">N_per_m2_tree</span>
+        <span class="p">)</span>
+
+        <span class="n">data_vars</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;total_C_stock&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">total_C_stock</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;cumulative_WP_S_input&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">cum_WP_S_input</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;cumulative_WP_L_input&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">cum_WP_L_input</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;cumulative_release&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">cum_R</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;tree_biomass&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">tree_biomass</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;soil_biomass&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">soil_biomass</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;wood_product_biomass&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">wood_product_biomass</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;max_dbh&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">max_dbh</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;NPP&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">NPP</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;R_A&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">R_A</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;R_H&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">R_H</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;R_M&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">R_M</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;R_G&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">R_G</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;leaf_biomass&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">mleaf</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;GPP_per_leaf_biomass&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">GPP_per_leaf_biomass</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;NPP_per_leaf_biomass&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">NPP_per_leaf_biomass</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;CUE&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">CUE</span><span class="p">},</span>
+        <span class="p">]</span>
+        <span class="n">new_ds</span> <span class="o">=</span> <span class="n">add_simulation_data_to_ds</span><span class="p">(</span><span class="n">new_ds</span><span class="p">,</span> <span class="n">data_vars</span><span class="p">)</span>
+
+        <span class="n">tree_data_vars</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;GPP_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">GPP_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;NPP_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">NPP_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;R_A_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">R_A_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;R_G_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">R_G_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;CUE_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">CUE_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mleaf_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">mleaf_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;GPP_per_leaf_biomass_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">GPP_per_leaf_biomass_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;NPP_per_leaf_biomass_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">NPP_per_leaf_biomass_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;r_BH_growth_5_yrs&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">r_BH_growth_5_yrs</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;tree_biomass_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">tree_biomass_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;RA_L_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">RA_L_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;RA_R_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">RA_R_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;RA_S_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">RA_S_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;thinning_or_cutting_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">thinning_or_cutting_tree</span><span class="p">},</span>
+            <span class="c1"># single tree data vars</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;GPP_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">GPP_single_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;NPP_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">NPP_single_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;R_A_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">R_A_single_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;R_M_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">R_M_single_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;R_G_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">R_G_single_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;CUE_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">CUE_single_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mleaf_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">mleaf_single_tree</span><span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;GPP_per_leaf_biomass_single_tree&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">GPP_per_leaf_biomass_single_tree</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;NPP_per_leaf_biomass_single_tree&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">NPP_per_leaf_biomass_single_tree</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;tree_biomass_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">tree_biomass_single_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;LA_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">LA_single_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;V_T_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">V_T_single_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;V_TH_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">V_TH_single_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;V_TS_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">V_TS_single_tree</span><span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;LabileC_assimilated_single_tree&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">LabileC_assimilated_single_tree</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;LabileC_respired_single_tree&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">LabileC_respired_single_tree</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;GL_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">GL_single_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;GR_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">GR_single_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;GS_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">GS_single_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;ML_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">ML_single_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;MR_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">MR_single_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;MS_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">MS_single_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;RA_L_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">RA_L_single_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;RA_R_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">RA_R_single_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;RA_S_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">RA_S_single_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;f_L_times_E_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">f_L_times_E_single_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;f_R_times_E_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">f_R_times_E_single_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;f_O_times_E_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">f_O_times_E_single_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;f_T_times_E_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">f_T_times_E_single_tree</span><span class="p">},</span>
+            <span class="c1">#            {&quot;name&quot;: &quot;f_CS_times_CS_single_tree&quot;, &quot;data&quot;: f_CS_times_CS_single_tree},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;R_M_correction_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">R_M_correction_single_tree</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;B_S_star_single_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">B_S_star_single_tree</span><span class="p">},</span>
+        <span class="p">]</span>
+
+        <span class="n">new_ds</span> <span class="o">=</span> <span class="n">add_simulation_tree_data_to_ds</span><span class="p">(</span><span class="n">new_ds</span><span class="p">,</span> <span class="n">tree_data_vars</span><span class="p">)</span>
+
+        <span class="c1"># make time coordinate a simulation length in years</span>
+        <span class="n">new_ds</span> <span class="o">=</span> <span class="n">new_ds</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">({</span><span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">time</span><span class="p">))})</span>
+        <span class="n">attrs</span> <span class="o">=</span> <span class="n">new_ds</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">attrs</span>
+        <span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;yr&quot;</span>
+        <span class="n">new_ds</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">attrs</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">new_ds</span></div>
+
+
+<div class="viewcode-block" id="compute_BTT_vars_and_add_to_ds"><a class="viewcode-back" href="../../../BFCPM.simulation.utils.html#BFCPM.simulation.utils.compute_BTT_vars_and_add_to_ds">[docs]</a><span class="k">def</span> <span class="nf">compute_BTT_vars_and_add_to_ds</span><span class="p">(</span>
+    <span class="n">ds</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
+    <span class="n">dmr</span><span class="p">:</span> <span class="n">DMR</span><span class="p">,</span>
+    <span class="n">dmr_eq</span><span class="p">:</span> <span class="n">DLAPM</span><span class="p">,</span>
+    <span class="n">up_to_order</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">cache_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute DMR quantities and add them to the simulation dataset.</span>
+
+<span class="sd">    Quantities to compute:</span>
+<span class="sd">        - backward transit time mean and second moment</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">up_to_order</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Current implementation only for first and second moment.&quot;</span><span class="p">)</span>
+
+    <span class="n">new_ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># create dmr with inputs onlt based on dmr</span>
+    <span class="n">dmr_inputs_only</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">create_dmr_inputs_only</span><span class="p">(</span><span class="n">dmr</span><span class="p">)</span>
+
+    <span class="c1"># create dmrs (also inputs only) for trees only and for trees and soil (no WP)</span>
+    <span class="c1">#    dmr_trees = dmr.restrict_to_pools(dmr.tree_pool_nrs)</span>
+
+    <span class="n">tree_and_soil_pool_nrs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dmr</span><span class="o">.</span><span class="n">tree_pool_nrs</span><span class="p">,</span> <span class="n">dmr</span><span class="o">.</span><span class="n">soil_pool_nrs</span><span class="p">)</span>
+    <span class="n">dmr_trees_and_soil</span> <span class="o">=</span> <span class="n">dmr</span><span class="o">.</span><span class="n">restrict_to_pools</span><span class="p">(</span><span class="n">tree_and_soil_pool_nrs</span><span class="p">)</span>
+
+    <span class="c1">#    dmr_trees_inputs_only = dmr_inputs_only.restrict_to_pools(dmr.tree_pool_nrs)</span>
+    <span class="n">dmr_trees_and_soil_inputs_only</span> <span class="o">=</span> <span class="n">dmr_inputs_only</span><span class="o">.</span><span class="n">restrict_to_pools</span><span class="p">(</span>
+        <span class="n">tree_and_soil_pool_nrs</span>
+    <span class="p">)</span>
+
+    <span class="c1"># with cache the BTT computations are much faster</span>
+    <span class="k">if</span> <span class="n">cache_size</span><span class="p">:</span>
+        <span class="n">dmr</span><span class="o">.</span><span class="n">initialize_state_transition_operator_matrix_cache</span><span class="p">(</span><span class="n">cache_size</span><span class="p">)</span>
+        <span class="n">dmr_inputs_only</span><span class="o">.</span><span class="n">initialize_state_transition_operator_matrix_cache</span><span class="p">(</span><span class="n">cache_size</span><span class="p">)</span>
+        <span class="n">dmr_trees_and_soil</span><span class="o">.</span><span class="n">initialize_state_transition_operator_matrix_cache</span><span class="p">(</span><span class="n">cache_size</span><span class="p">)</span>
+        <span class="n">dmr_trees_and_soil_inputs_only</span><span class="o">.</span><span class="n">initialize_state_transition_operator_matrix_cache</span><span class="p">(</span>
+            <span class="n">cache_size</span>
+        <span class="p">)</span>
+
+    <span class="c1"># load start age data</span>
+    <span class="n">start_age_data</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">load_start_age_data_from_eq_for_soil_and_wood_products</span><span class="p">(</span>
+        <span class="n">dmr</span><span class="p">,</span> <span class="n">dmr_eq</span><span class="p">,</span> <span class="n">up_to_order</span><span class="o">=</span><span class="n">up_to_order</span>
+    <span class="p">)</span>
+
+    <span class="c1"># compute different mean transit times</span>
+    <span class="n">start_mean_age</span> <span class="o">=</span> <span class="n">start_age_data</span><span class="p">[</span><span class="s2">&quot;start_age_moments_1&quot;</span><span class="p">]</span>
+    <span class="n">start_mean_age_inputs_only</span> <span class="o">=</span> <span class="n">start_age_data</span><span class="p">[</span><span class="s2">&quot;start_age_moments_1_inputs_only&quot;</span><span class="p">]</span>
+
+    <span class="n">btt_mean</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">dmr</span><span class="o">.</span><span class="n">backward_transit_time_moment</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">start_mean_age</span><span class="p">),</span> <span class="s2">&quot;yr&quot;</span><span class="p">)</span>
+
+    <span class="n">btt_mean_trees_and_soil</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+        <span class="n">dmr_trees_and_soil</span><span class="o">.</span><span class="n">backward_transit_time_moment</span><span class="p">(</span>
+            <span class="mi">1</span><span class="p">,</span> <span class="n">start_mean_age</span><span class="p">[:,</span> <span class="n">tree_and_soil_pool_nrs</span><span class="p">]</span>  <span class="c1"># type: ignore</span>
+        <span class="p">),</span>
+        <span class="s2">&quot;yr&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">btt_mean_inputs_only</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+        <span class="n">dmr_inputs_only</span><span class="o">.</span><span class="n">backward_transit_time_moment</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">start_mean_age_inputs_only</span><span class="p">),</span>
+        <span class="s2">&quot;yr&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">btt_mean_trees_and_soil_inputs_only</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+        <span class="n">dmr_trees_and_soil_inputs_only</span><span class="o">.</span><span class="n">backward_transit_time_moment</span><span class="p">(</span>
+            <span class="mi">1</span><span class="p">,</span> <span class="n">start_mean_age_inputs_only</span><span class="p">[:,</span> <span class="n">tree_and_soil_pool_nrs</span><span class="p">]</span>  <span class="c1"># type: ignore</span>
+        <span class="p">),</span>
+        <span class="s2">&quot;yr&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># add BTT to new_ds</span>
+    <span class="n">stand_data_variables</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;btt_mean&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">btt_mean</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;btt_mean_trees_and_soil&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">btt_mean_trees_and_soil</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;btt_mean_inputs_only&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">btt_mean_inputs_only</span><span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;btt_mean_trees_and_soil_inputs_only&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">btt_mean_trees_and_soil_inputs_only</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">]</span>
+    <span class="n">new_ds</span> <span class="o">=</span> <span class="n">add_simulation_data_to_ds</span><span class="p">(</span><span class="n">new_ds</span><span class="p">,</span> <span class="n">stand_data_variables</span><span class="p">)</span>
+
+    <span class="c1"># compute different transit times standard deviations</span>
+    <span class="n">start_age_moments_2</span> <span class="o">=</span> <span class="n">start_age_data</span><span class="p">[</span><span class="s2">&quot;start_age_moments_2&quot;</span><span class="p">]</span>
+    <span class="n">start_age_moments_2_inputs_only</span> <span class="o">=</span> <span class="n">start_age_data</span><span class="p">[</span><span class="s2">&quot;start_age_moments_2_inputs_only&quot;</span><span class="p">]</span>
+
+    <span class="n">btt_moment_2</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">dmr</span><span class="o">.</span><span class="n">backward_transit_time_moment</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">start_age_moments_2</span><span class="p">),</span> <span class="s2">&quot;yr^2&quot;</span><span class="p">)</span>
+    <span class="n">btt_sd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">btt_moment_2</span> <span class="o">-</span> <span class="n">btt_mean</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">btt_moment_2_trees_and_soil</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+        <span class="n">dmr_trees_and_soil</span><span class="o">.</span><span class="n">backward_transit_time_moment</span><span class="p">(</span>
+            <span class="mi">2</span><span class="p">,</span> <span class="n">start_age_moments_2</span><span class="p">[:,</span> <span class="n">tree_and_soil_pool_nrs</span><span class="p">]</span>  <span class="c1"># type: ignore</span>
+        <span class="p">),</span>
+        <span class="s2">&quot;yr^2&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">btt_sd_trees_and_soil</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+        <span class="n">btt_moment_2_trees_and_soil</span> <span class="o">-</span> <span class="n">btt_mean_trees_and_soil</span><span class="o">**</span><span class="mi">2</span>
+    <span class="p">)</span>
+
+    <span class="n">btt_moment_2_inputs_only</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+        <span class="n">dmr_inputs_only</span><span class="o">.</span><span class="n">backward_transit_time_moment</span><span class="p">(</span>
+            <span class="mi">2</span><span class="p">,</span> <span class="n">start_age_moments_2_inputs_only</span>
+        <span class="p">),</span>
+        <span class="s2">&quot;yr^2&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">btt_sd_inputs_only</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">btt_moment_2_inputs_only</span> <span class="o">-</span> <span class="n">btt_mean_inputs_only</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">btt_moment_2_trees_and_soil_inputs_only</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+        <span class="n">dmr_trees_and_soil_inputs_only</span><span class="o">.</span><span class="n">backward_transit_time_moment</span><span class="p">(</span>
+            <span class="mi">2</span><span class="p">,</span> <span class="n">start_age_moments_2_inputs_only</span><span class="p">[:,</span> <span class="n">tree_and_soil_pool_nrs</span><span class="p">]</span>  <span class="c1"># type: ignore</span>
+        <span class="p">),</span>
+        <span class="s2">&quot;yr^2&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">btt_sd_trees_and_soil_inputs_only</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+        <span class="n">btt_moment_2_trees_and_soil_inputs_only</span>
+        <span class="o">-</span> <span class="n">btt_mean_trees_and_soil_inputs_only</span><span class="o">**</span><span class="mi">2</span>
+    <span class="p">)</span>
+
+    <span class="n">stand_data_variables</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;btt_sd&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">btt_sd</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;btt_sd_trees_and_soil&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">btt_sd_trees_and_soil</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;btt_sd_inputs_only&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">btt_sd_inputs_only</span><span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;btt_sd_trees_and_soil_inputs_only&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">btt_sd_trees_and_soil_inputs_only</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">]</span>
+    <span class="n">new_ds</span> <span class="o">=</span> <span class="n">add_simulation_data_to_ds</span><span class="p">(</span><span class="n">new_ds</span><span class="p">,</span> <span class="n">stand_data_variables</span><span class="p">)</span>
+
+    <span class="c1"># BTT quantiles</span>
+    <span class="n">P0</span> <span class="o">=</span> <span class="n">start_age_data</span><span class="p">[</span><span class="s2">&quot;P0&quot;</span><span class="p">]</span>
+    <span class="n">P0_inputs_only</span> <span class="o">=</span> <span class="n">start_age_data</span><span class="p">[</span><span class="s2">&quot;P0_inputs_only&quot;</span><span class="p">]</span>
+
+    <span class="n">P0_trees_and_soil</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">ai</span><span class="p">:</span> <span class="n">P0</span><span class="p">(</span><span class="n">ai</span><span class="p">)[</span><span class="n">tree_and_soil_pool_nrs</span><span class="p">]</span>
+    <span class="n">P0_trees_and_soil_inputs_only</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">ai</span><span class="p">:</span> <span class="n">P0_inputs_only</span><span class="p">(</span><span class="n">ai</span><span class="p">)[</span>
+        <span class="n">tree_and_soil_pool_nrs</span>
+    <span class="p">]</span>
+
+    <span class="n">q</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="n">btt_median</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">dmr</span><span class="o">.</span><span class="n">backward_transit_time_quantiles</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">P0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">),</span> <span class="s2">&quot;yr&quot;</span><span class="p">)</span>
+    <span class="n">btt_median_trees_and_soil</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+        <span class="n">dmr_trees_and_soil</span><span class="o">.</span><span class="n">backward_transit_time_quantiles</span><span class="p">(</span>
+            <span class="n">q</span><span class="p">,</span> <span class="n">P0_trees_and_soil</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span>
+        <span class="p">),</span>
+        <span class="s2">&quot;yr&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">btt_median_inputs_only</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+        <span class="n">dmr_inputs_only</span><span class="o">.</span><span class="n">backward_transit_time_quantiles</span><span class="p">(</span>
+            <span class="n">q</span><span class="p">,</span> <span class="n">P0_inputs_only</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span>
+        <span class="p">),</span>
+        <span class="s2">&quot;yr&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">btt_median_trees_and_soil_inputs_only</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+        <span class="n">dmr_trees_and_soil_inputs_only</span><span class="o">.</span><span class="n">backward_transit_time_quantiles</span><span class="p">(</span>
+            <span class="n">q</span><span class="p">,</span> <span class="n">P0_trees_and_soil_inputs_only</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span>
+        <span class="p">),</span>
+        <span class="s2">&quot;yr&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">q</span> <span class="o">=</span> <span class="mf">0.05</span>
+    <span class="n">btt_quantile_05</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+        <span class="n">dmr</span><span class="o">.</span><span class="n">backward_transit_time_quantiles</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">P0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">),</span> <span class="s2">&quot;yr&quot;</span>
+    <span class="p">)</span>
+    <span class="n">btt_quantile_05_trees_and_soil</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+        <span class="n">dmr_trees_and_soil</span><span class="o">.</span><span class="n">backward_transit_time_quantiles</span><span class="p">(</span>
+            <span class="n">q</span><span class="p">,</span> <span class="n">P0_trees_and_soil</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span>
+        <span class="p">),</span>
+        <span class="s2">&quot;yr&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">btt_quantile_05_inputs_only</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+        <span class="n">dmr_inputs_only</span><span class="o">.</span><span class="n">backward_transit_time_quantiles</span><span class="p">(</span>
+            <span class="n">q</span><span class="p">,</span> <span class="n">P0_inputs_only</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span>
+        <span class="p">),</span>
+        <span class="s2">&quot;yr&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">btt_quantile_05_trees_and_soil_inputs_only</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+        <span class="n">dmr_trees_and_soil_inputs_only</span><span class="o">.</span><span class="n">backward_transit_time_quantiles</span><span class="p">(</span>
+            <span class="n">q</span><span class="p">,</span> <span class="n">P0_trees_and_soil_inputs_only</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span>
+        <span class="p">),</span>
+        <span class="s2">&quot;yr&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">q</span> <span class="o">=</span> <span class="mf">0.95</span>
+    <span class="n">btt_quantile_95</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+        <span class="n">dmr</span><span class="o">.</span><span class="n">backward_transit_time_quantiles</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">P0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">),</span> <span class="s2">&quot;yr&quot;</span>
+    <span class="p">)</span>
+    <span class="n">btt_quantile_95_trees_and_soil</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+        <span class="n">dmr_trees_and_soil</span><span class="o">.</span><span class="n">backward_transit_time_quantiles</span><span class="p">(</span>
+            <span class="n">q</span><span class="p">,</span> <span class="n">P0_trees_and_soil</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span>
+        <span class="p">),</span>
+        <span class="s2">&quot;yr&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">btt_quantile_95_inputs_only</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+        <span class="n">dmr_inputs_only</span><span class="o">.</span><span class="n">backward_transit_time_quantiles</span><span class="p">(</span>
+            <span class="n">q</span><span class="p">,</span> <span class="n">P0_inputs_only</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span>
+        <span class="p">),</span>
+        <span class="s2">&quot;yr&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">btt_quantile_95_trees_and_soil_inputs_only</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+        <span class="n">dmr_trees_and_soil_inputs_only</span><span class="o">.</span><span class="n">backward_transit_time_quantiles</span><span class="p">(</span>
+            <span class="n">q</span><span class="p">,</span> <span class="n">P0_trees_and_soil_inputs_only</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span>
+        <span class="p">),</span>
+        <span class="s2">&quot;yr&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># legacy respiration/release</span>
+    <span class="n">P_sv</span> <span class="o">=</span> <span class="n">dmr</span><span class="o">.</span><span class="n">cumulative_pool_age_masses_single_value</span><span class="p">(</span><span class="n">P0</span><span class="p">)</span>
+    <span class="n">rho</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">dmr</span><span class="o">.</span><span class="n">Bs</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">P_btt_sv</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">ai</span><span class="p">,</span> <span class="n">ti</span><span class="p">:</span> <span class="p">(</span><span class="n">rho</span><span class="p">[</span><span class="n">ti</span><span class="p">]</span> <span class="o">*</span> <span class="n">P_sv</span><span class="p">(</span><span class="n">ai</span><span class="p">,</span> <span class="n">ti</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">dmr</span><span class="o">.</span><span class="n">acc_net_external_output_vector</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;gC/yr&quot;</span><span class="p">)</span>
+
+    <span class="n">x_</span> <span class="o">=</span> <span class="n">dmr</span><span class="o">.</span><span class="n">times</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">go_through</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">x_</span><span class="p">)</span> <span class="k">if</span> <span class="n">verbose</span> <span class="k">else</span> <span class="n">x_</span>
+    <span class="c1">#    R_legacy = R - Q_(np.array([P_btt_sv(ti, ti) for ti in dmr.times[:-1]]), &quot;gC/yr&quot;)</span>
+    <span class="n">R_legacy</span> <span class="o">=</span> <span class="n">R</span> <span class="o">-</span> <span class="n">Q_</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">P_btt_sv</span><span class="p">(</span><span class="n">ti</span><span class="p">,</span> <span class="n">ti</span><span class="p">)</span> <span class="k">for</span> <span class="n">ti</span> <span class="ow">in</span> <span class="n">go_through</span><span class="p">]),</span> <span class="s2">&quot;gC/yr&quot;</span><span class="p">)</span>
+
+    <span class="n">stand_data_variables</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;btt_median&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">btt_median</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;btt_median_trees_and_soil&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">btt_median_trees_and_soil</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;btt_median_inputs_only&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">btt_median_inputs_only</span><span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;btt_median_trees_and_soil_inputs_only&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">btt_median_trees_and_soil_inputs_only</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;btt_quantile_05&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">btt_quantile_05</span><span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;btt_quantile_05_trees_and_soil&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">btt_quantile_05_trees_and_soil</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;btt_quantile_05_inputs_only&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">btt_quantile_05_inputs_only</span><span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;btt_quantile_05_trees_and_soil_inputs_only&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">btt_quantile_05_trees_and_soil_inputs_only</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;btt_quantile_95&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">btt_quantile_95</span><span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;btt_quantile_95_trees_and_soil&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">btt_quantile_95_trees_and_soil</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;btt_quantile_95_inputs_only&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">btt_quantile_95_inputs_only</span><span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;btt_quantile_95_trees_and_soil_inputs_only&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">btt_quantile_95_trees_and_soil_inputs_only</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">R</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;R_legacy&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">R_legacy</span><span class="p">},</span>
+    <span class="p">]</span>
+    <span class="n">new_ds</span> <span class="o">=</span> <span class="n">add_simulation_data_to_ds</span><span class="p">(</span><span class="n">new_ds</span><span class="p">,</span> <span class="n">stand_data_variables</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">new_ds</span></div>
+
+
+<div class="viewcode-block" id="compute_C_balance_and_CS_and_add_to_ds"><a class="viewcode-back" href="../../../BFCPM.simulation.utils.html#BFCPM.simulation.utils.compute_C_balance_and_CS_and_add_to_ds">[docs]</a><span class="k">def</span> <span class="nf">compute_C_balance_and_CS_and_add_to_ds</span><span class="p">(</span>
+    <span class="n">ds</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span> <span class="n">dmr</span><span class="p">:</span> <span class="n">DMR</span><span class="p">,</span> <span class="n">cache_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute DMR quantities and add them to the simulation dataset.</span>
+
+<span class="sd">    Quantities to compute:</span>
+<span class="sd">        - C balance (INCB) and CS (IITT)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">new_ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="n">tree_and_soil_pool_nrs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dmr</span><span class="o">.</span><span class="n">tree_pool_nrs</span><span class="p">,</span> <span class="n">dmr</span><span class="o">.</span><span class="n">soil_pool_nrs</span><span class="p">)</span>
+    <span class="n">dmr_trees_and_soil</span> <span class="o">=</span> <span class="n">dmr</span><span class="o">.</span><span class="n">restrict_to_pools</span><span class="p">(</span><span class="n">tree_and_soil_pool_nrs</span><span class="p">)</span>
+
+    <span class="c1"># with cache the CS computation is much faster</span>
+    <span class="k">if</span> <span class="n">cache_size</span><span class="p">:</span>
+        <span class="n">dmr</span><span class="o">.</span><span class="n">initialize_state_transition_operator_matrix_cache</span><span class="p">(</span><span class="n">cache_size</span><span class="p">)</span>
+        <span class="n">dmr_trees_and_soil</span><span class="o">.</span><span class="n">initialize_state_transition_operator_matrix_cache</span><span class="p">(</span><span class="n">cache_size</span><span class="p">)</span>
+
+    <span class="n">CS_through_time</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span><span class="n">dmr</span><span class="o">.</span><span class="n">CS_through_time</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">),</span> <span class="s2">&quot;gC / m^2 * yr&quot;</span><span class="p">)</span>
+    <span class="n">CS_through_time_trees_and_soil</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+        <span class="n">dmr_trees_and_soil</span><span class="o">.</span><span class="n">CS_through_time</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">),</span> <span class="s2">&quot;gC / m^2 * yr&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">C_balance_through_time</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">((</span><span class="n">dmr</span><span class="o">.</span><span class="n">net_Us</span> <span class="o">-</span> <span class="n">dmr</span><span class="o">.</span><span class="n">acc_external_output_vector</span><span class="p">())</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)),</span>
+        <span class="s2">&quot;gC / m^2&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">C_balance_through_time_trees_and_soil</span> <span class="o">=</span> <span class="n">Q_</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span>
+            <span class="p">(</span>
+                <span class="n">dmr_trees_and_soil</span><span class="o">.</span><span class="n">net_Us</span>
+                <span class="o">-</span> <span class="n">dmr_trees_and_soil</span><span class="o">.</span><span class="n">acc_external_output_vector</span><span class="p">()</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">),</span>
+        <span class="s2">&quot;gC / m^2&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># add C_balance and CS to new_ds</span>
+    <span class="n">stand_data_variables</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;CS_through_time&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">CS_through_time</span><span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;CS_through_time_trees_and_soil&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">CS_through_time_trees_and_soil</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;C_balance_through_time&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">C_balance_through_time</span><span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;C_balance_through_time_trees_and_soil&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">C_balance_through_time_trees_and_soil</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">]</span>
+    <span class="n">new_ds</span> <span class="o">=</span> <span class="n">add_simulation_data_to_ds</span><span class="p">(</span><span class="n">new_ds</span><span class="p">,</span> <span class="n">stand_data_variables</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">new_ds</span></div>
+
+
+<div class="viewcode-block" id="get_simulation_record_ds"><a class="viewcode-back" href="../../../BFCPM.simulation.utils.html#BFCPM.simulation.utils.get_simulation_record_ds">[docs]</a><span class="k">def</span> <span class="nf">get_simulation_record_ds</span><span class="p">(</span>
+    <span class="n">simulation</span><span class="p">:</span> <span class="n">Simulation</span><span class="p">,</span> <span class="n">additional_vars</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Collect the basic variables recorded during a simulation.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        simulation: the simulation considered</span>
+<span class="sd">        additional_vars: add the additional variables returned by</span>
+<span class="sd">            :meth:`~.library.run_recorded_simulation`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># collect stocks and fluxes in dataset</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">simulation</span><span class="o">.</span><span class="n">get_stocks_and_fluxes_dataset</span><span class="p">()</span>
+
+    <span class="n">tree_data_variables</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;radius_at_trunk_base&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;rs&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;Hs&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;DBH&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;dbhs&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;R_M_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;R_Ms&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;LA_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;LAs&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;V_T_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;V_Ts&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;V_TH_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;V_THs&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;V_TS_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;V_TSs&quot;</span><span class="p">]},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;LabileC_assimilated_tree&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;LabileCs_assimilated&quot;</span><span class="p">],</span>
+        <span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;LabileC_respired_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;LabileCs_respired&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;GL_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;GLs&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;GR_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;GRs&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;GS_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;GSs&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;ML_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;MLs&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;MR_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;MRs&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;MS_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;MSs&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;f_L_times_E_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;f_L_times_Es&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;f_R_times_E_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;f_R_times_Es&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;f_O_times_E_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;f_O_times_Es&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;f_T_times_E_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;f_T_times_Es&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;f_CS_times_CS_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;f_CS_times_CSs&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;coefficient_sum&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;coefficient_sums&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;R_M_correction_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;R_M_corrections&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;B_S_star_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;B_S_stars&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;C_S_star_tree&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;C_S_stars&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;rho_W&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;rho_Ws&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;delta_W&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;delta_Ws&quot;</span><span class="p">]},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;SW&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;SWs&quot;</span><span class="p">]},</span>
+    <span class="p">]</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">add_simulation_tree_dict_to_ds</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">tree_data_variables</span><span class="p">)</span>
+
+    <span class="n">stand_data_variables</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;stand_basal_area&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;stand_basal_area&quot;</span><span class="p">]},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;dominant_tree_height&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;dominant_tree_height&quot;</span><span class="p">],</span>
+        <span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mean_tree_height&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">additional_vars</span><span class="p">[</span><span class="s2">&quot;mean_tree_height&quot;</span><span class="p">]},</span>
+    <span class="p">]</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">add_simulation_data_to_ds</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">stand_data_variables</span><span class="p">)</span>
+
+    <span class="c1"># add even more sophisticated variables</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">add_additional_simulation_quantities_to_ds</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ds</span></div>
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Holger Metzler, Samuli Launiainen, Giulia Vico
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=359c27e9"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,47 @@
+SingleTreeCModel
+================
+
+Qualified name: ``BFCPM.trees.single\_tree\_C\_model.SingleTreeCModel``
+
+CCCC
+
+.. currentmodule:: BFCPM.trees.single_tree_C_model
+
+.. autoclass:: SingleTreeCModel
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+      ~SingleTreeCModel.get_cutting_fluxes
+      ~SingleTreeCModel.get_stocks_and_fluxes_dataset
+      ~SingleTreeCModel.lad_normed
+      ~SingleTreeCModel.simulate_being_removed
+      ~SingleTreeCModel.simulate_waiting
+      ~SingleTreeCModel.update
+      ~SingleTreeCModel.update_gC_no_unit
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+     
+     ~SingleTreeCModel.B_L
+     ~SingleTreeCModel.Fs
+     ~SingleTreeCModel.H
+     ~SingleTreeCModel.LA
+     ~SingleTreeCModel.Rs
+     ~SingleTreeCModel.SLA
+     ~SingleTreeCModel.Us
+     ~SingleTreeCModel.flux_unit
+     ~SingleTreeCModel.nr_pools
+     ~SingleTreeCModel.pool_names
+     ~SingleTreeCModel.species
+     ~SingleTreeCModel.start_vector
+     ~SingleTreeCModel.stock_unit
+     ~SingleTreeCModel.xs
+   

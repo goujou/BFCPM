@@ -1,0 +1,47 @@
+﻿type\_aliases
+=============
+
+MMMM
+
+.. currentmodule:: BFCPM.type_aliases
+
+
+.. automodule:: BFCPM.type_aliases
+
+    
+    
+    
+
+   
+   
+   .. rubric:: Module Attributes
+
+   
+   .. autodata:: BFCPM.type_aliases::Quantity
+   .. autodata:: BFCPM.type_aliases::TreeSoilInterface
+   .. autodata:: BFCPM.type_aliases::WoodProductInterface
+   .. autodata:: BFCPM.type_aliases::InputFluxes
+   .. autodata:: BFCPM.type_aliases::OutputFluxesInt
+   .. autodata:: BFCPM.type_aliases::TreeExternalOutputFluxes
+   .. autodata:: BFCPM.type_aliases::CuttingFluxes
+   .. autodata:: BFCPM.type_aliases::OneSpeciesParams
+   .. autodata:: BFCPM.type_aliases::SpeciesParams
+   .. autodata:: BFCPM.type_aliases::MSData
+   .. autodata:: BFCPM.type_aliases::MSDataList
+   .. autodata:: BFCPM.type_aliases::SimulationProfile
+   .. autodata:: BFCPM.type_aliases::TreeSetting
+   .. autodata:: BFCPM.type_aliases::SpeciesSettings
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   

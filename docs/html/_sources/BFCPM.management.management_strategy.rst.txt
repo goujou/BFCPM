@@ -1,0 +1,78 @@
+management\_strategy
+====================
+
+MMMM
+
+.. currentmodule:: BFCPM.management.management_strategy
+
+
+.. automodule:: BFCPM.management.management_strategy
+
+    
+    
+    
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+      :template: class.rst
+
+      
+        Cut
+      
+        CutAndReplant
+      
+        CutWaitAndReplant
+      
+        ManagementActionABC
+      
+        ManagementStrategy
+      
+        OnDBHLimit
+      
+        OnDTHLimit
+      
+        OnDelayOneTime
+      
+        OnNLimit
+      
+        OnPeriodically
+      
+        OnSBALimit
+      
+        OnSBAvsDTH
+      
+        OnStandAges
+      
+        OnTimeIntervals
+      
+        PCT
+      
+        Plant
+      
+        Thin
+      
+        ThinStand
+      
+        TriggerABC
+      
+        WaitAndPlant
+      
+   
+   
+
+   
+   
+   
+
+   
+   
+   

@@ -1,0 +1,703 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <!-- Generated with Sphinx 7.1.1 and Furo 2023.07.26 -->
+        <title>BFCPM.simulation_parameters - BFCPM</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=362ab14a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">BFCPM</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">BFCPM</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../BFCPM.prepare_stand.html">prepare_stand</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../BFCPM.stand.html">stand</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of stand</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../BFCPM.stand.Stand.html">Stand</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../BFCPM.type_aliases.html">type_aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../BFCPM.utils.html">utils</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../BFCPM.productivity.html">productivity</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../BFCPM.trees.html">trees</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of trees</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../BFCPM.trees.allometry.html">allometry</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../BFCPM.trees.mean_tree.html">mean_tree</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of mean_tree</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.trees.mean_tree.MeanTree.html">MeanTree</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../BFCPM.trees.single_tree_C_model.html">single_tree_C_model</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of single_tree_C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.trees.single_tree_C_model.SingleTreeCModel.html">SingleTreeCModel</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../BFCPM.trees.single_tree_allocation.html">single_tree_allocation</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of single_tree_allocation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.trees.single_tree_allocation.SingleTree.html">SingleTree</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../BFCPM.trees.single_tree_params.html">single_tree_params</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../BFCPM.trees.single_tree_vars.html">single_tree_vars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../BFCPM.trees.tree_utils.html">tree_utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../BFCPM.soil.html">soil</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of soil</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../BFCPM.soil.dead_wood_classes.html">dead_wood_classes</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of dead_wood_classes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../BFCPM.soil.dead_wood_classes.C_model.html">C_model</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../BFCPM.soil.dead_wood_classes.C_model.SoilCDeadWoodClasses.html">SoilCDeadWoodClasses</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.soil.dead_wood_classes.C_model_parameters.html">C_model_parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../BFCPM.soil.simple_soil_model.html">simple_soil_model</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of simple_soil_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../BFCPM.soil.simple_soil_model.C_model.html">C_model</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../BFCPM.soil.simple_soil_model.C_model.SimpleSoilCModel.html">SimpleSoilCModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.soil.simple_soil_model.C_model_parameters.html">C_model_parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../BFCPM.soil.soil_c_model_abc.html">soil_c_model_abc</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of soil_c_model_abc</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.soil.soil_c_model_abc.SoilCModelABC.html">SoilCModelABC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../BFCPM.wood_products.html">wood_products</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of wood_products</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../BFCPM.wood_products.simple_wood_product_model.html">simple_wood_product_model</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of simple_wood_product_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../BFCPM.wood_products.simple_wood_product_model.C_model.html">C_model</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of C_model</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../BFCPM.wood_products.simple_wood_product_model.C_model.SimpleWoodProductModel.html">SimpleWoodProductModel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.wood_products.simple_wood_product_model.C_model_parameters.html">C_model_parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../BFCPM.wood_products.wood_product_model_abc.html">wood_product_model_abc</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of wood_product_model_abc</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.wood_products.wood_product_model_abc.WoodProductModelABC.html">WoodProductModelABC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../BFCPM.management.html">management</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of management</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../BFCPM.management.library.html">library</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../BFCPM.management.management_strategy.html">management_strategy</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of management_strategy</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.management.management_strategy.Cut.html">Cut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.management.management_strategy.CutAndReplant.html">CutAndReplant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.management.management_strategy.CutWaitAndReplant.html">CutWaitAndReplant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.management.management_strategy.ManagementActionABC.html">ManagementActionABC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.management.management_strategy.ManagementStrategy.html">ManagementStrategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.management.management_strategy.OnDBHLimit.html">OnDBHLimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.management.management_strategy.OnDTHLimit.html">OnDTHLimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.management.management_strategy.OnDelayOneTime.html">OnDelayOneTime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.management.management_strategy.OnNLimit.html">OnNLimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.management.management_strategy.OnPeriodically.html">OnPeriodically</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.management.management_strategy.OnSBALimit.html">OnSBALimit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.management.management_strategy.OnSBAvsDTH.html">OnSBAvsDTH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.management.management_strategy.OnStandAges.html">OnStandAges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.management.management_strategy.OnTimeIntervals.html">OnTimeIntervals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.management.management_strategy.PCT.html">PCT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.management.management_strategy.Plant.html">Plant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.management.management_strategy.Thin.html">Thin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.management.management_strategy.ThinStand.html">ThinStand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.management.management_strategy.TriggerABC.html">TriggerABC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.management.management_strategy.WaitAndPlant.html">WaitAndPlant</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../BFCPM.simulation.html">simulation</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of simulation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../BFCPM.simulation.library.html">library</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../BFCPM.simulation.recorded_simulation.html">recorded_simulation</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of recorded_simulation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.simulation.recorded_simulation.RecordedSimulation.html">RecordedSimulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../BFCPM.simulation.simulation.html">simulation</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of simulation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../BFCPM.simulation.simulation.Simulation.html">Simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../BFCPM.simulation.utils.html">utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../BFCPM.simulation_parameters.html">simulation_parameters</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../notebooks/Untitled.html">Test notebook</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <h1>Source code for BFCPM.simulation_parameters</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Overarching simulation parameters.</span>
+
+<span class="sd">Also the interfaces between the model modules and the tree-cutting matrix.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">DATA_PATH</span><span class="p">,</span> <span class="n">Q_</span>
+<span class="kn">from</span> <span class="nn">.params</span> <span class="kn">import</span> <span class="n">BREAST_HEIGHT</span><span class="p">,</span> <span class="n">soil_p</span><span class="p">,</span> <span class="n">water_p</span>
+<span class="kn">from</span> <span class="nn">.productivity.vegetation</span> <span class="kn">import</span> <span class="n">taper_curve</span>
+<span class="kn">from</span> <span class="nn">.soil.dead_wood_classes.C_model</span> <span class="kn">import</span> <span class="n">SoilCDeadWoodClasses</span>
+<span class="kn">from</span> <span class="nn">.soil.simple_soil_model.C_model</span> <span class="kn">import</span> <span class="n">SimpleSoilCModel</span>
+<span class="kn">from</span> <span class="nn">.soil.soil_c_model_abc</span> <span class="kn">import</span> <span class="n">SoilCModelABC</span>
+<span class="kn">from</span> <span class="nn">.trees.single_tree_allocation</span> <span class="kn">import</span> <span class="n">SingleTree</span>
+<span class="kn">from</span> <span class="nn">.type_aliases</span> <span class="kn">import</span> <span class="n">TreeSoilInterface</span><span class="p">,</span> <span class="n">WoodProductInterface</span>
+<span class="kn">from</span> <span class="nn">.wood_products.simple_wood_product_model.C_model</span> <span class="kn">import</span> \
+    <span class="n">SimpleWoodProductModel</span>
+<span class="kn">from</span> <span class="nn">.wood_products.wood_product_model_abc</span> <span class="kn">import</span> <span class="n">WoodProductModelABC</span>
+
+<span class="c1"># a species dependency could be included here</span>
+<span class="n">tree_soil_interfaces</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span>
+    <span class="n">Tuple</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">SingleTree</span><span class="p">],</span> <span class="n">Type</span><span class="p">[</span><span class="n">SoilCModelABC</span><span class="p">]],</span> <span class="n">TreeSoilInterface</span>
+<span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">(</span><span class="n">SingleTree</span><span class="p">,</span> <span class="n">SimpleSoilCModel</span><span class="p">):</span> <span class="p">{</span>
+        <span class="s2">&quot;B_L&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Litter&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+        <span class="s2">&quot;B_R&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Litter&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+        <span class="s2">&quot;B_OS&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;CWD&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+        <span class="s2">&quot;B_OH&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;CWD&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+    <span class="p">},</span>
+    <span class="p">(</span><span class="n">SingleTree</span><span class="p">,</span> <span class="n">SoilCDeadWoodClasses</span><span class="p">):</span> <span class="p">{</span>
+        <span class="s2">&quot;B_L&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Litter&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+        <span class="s2">&quot;B_R&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Litter&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+        <span class="s2">&quot;B_OS&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;DWC_1&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+        <span class="s2">&quot;B_OH&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;DWC_1&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+<span class="sd">&quot;&quot;&quot;Interface between tree and soil.&quot;&quot;&quot;</span>
+<span class="c1"># Depending on the tree model and the soil model, tree pool contents</span>
+<span class="c1"># are distributed to soil pools due to senescence, where fractions</span>
+<span class="c1"># must sum to one for each listed tree pool. External outputs from tree</span>
+<span class="c1"># pools not mentioned go completely to the atmosphere.</span>
+<span class="c1"># &quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="solve_volume_fractions"><a class="viewcode-back" href="../../BFCPM.simulation_parameters.html#BFCPM.simulation_parameters.solve_volume_fractions">[docs]</a><span class="k">def</span> <span class="nf">solve_volume_fractions</span><span class="p">(</span>
+    <span class="n">d</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">h</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">species</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="c1">#    dlog: float = 18.0, dfibre: float = 8.0, llog: float = 4.0,</span>
+    <span class="n">dlog</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">16.0</span><span class="p">,</span>
+    <span class="n">dfibre</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">8.0</span><span class="p">,</span>
+    <span class="n">llog</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">4.0</span><span class="p">,</span>
+    <span class="n">lfibre</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.0</span><span class="p">,</span>
+    <span class="n">lstump</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">dz</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Approximates volumetric partitioning of a tree to sawlogs, fibre and cutting residues.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        d: diameter at breast height [cm]</span>
+<span class="sd">        h: tree height [m]</span>
+<span class="sd">        species: element of  ``[&#39;pine&#39;, &#39;spruce&#39;, &#39;birch&#39;]``</span>
+<span class="sd">        dlog: minimum log diameter [cm]</span>
+<span class="sd">        dfibre: minimim fibre diameter [cm]</span>
+<span class="sd">        llog: minimim log length [m]</span>
+<span class="sd">        lfibre: minimim fibre length [m]</span>
+<span class="sd">        lstump: stump height [m]</span>
+<span class="sd">        dz: resolution of taper curve [m]</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dictionary</span>
+
+<span class="sd">        - V_stem: stem volume including stump [m3]</span>
+<span class="sd">        - f_log, f_fibre, f_resid, f_stump: volume fractions [-]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">cross_sect_area</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cross-sectional area (m2) at height ``d``.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1e-2</span> <span class="o">*</span> <span class="n">d</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="n">hs</span><span class="p">,</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">taper_curve</span><span class="p">(</span>
+        <span class="n">h</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">species</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="n">BREAST_HEIGHT</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;m&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">magnitude</span><span class="p">,</span> <span class="n">dz</span><span class="o">=</span><span class="n">dz</span>
+    <span class="p">)</span>  <span class="c1"># taper curve</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">cross_sect_area</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+    <span class="n">Vtot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">dz</span><span class="p">)</span>  <span class="c1"># volume including stump</span>
+    <span class="c1">#    print(d, hs[-1], ds[-1], A[-1], Vtot)</span>
+
+    <span class="c1"># remove stump</span>
+    <span class="n">ixs</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">hs</span> <span class="o">-</span> <span class="n">lstump</span><span class="p">))</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+    <span class="n">hs</span> <span class="o">=</span> <span class="n">hs</span><span class="p">[</span><span class="n">ixs</span><span class="p">:]</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="n">ixs</span><span class="p">:]</span>
+
+    <span class="n">ixl</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ds</span> <span class="o">-</span> <span class="n">dlog</span><span class="p">))</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+    <span class="n">ixf</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ds</span> <span class="o">-</span> <span class="n">dfibre</span><span class="p">))</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+
+    <span class="n">A</span> <span class="o">=</span> <span class="n">cross_sect_area</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>  <span class="c1"># m2</span>
+    <span class="n">Vtot_no_stump</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">dz</span><span class="p">)</span>  <span class="c1"># m3, volume without stump</span>
+
+    <span class="n">Vstump</span> <span class="o">=</span> <span class="n">Vtot</span> <span class="o">-</span> <span class="n">Vtot_no_stump</span>
+
+    <span class="c1">#    print(ixl, hs[ixl], llog + lstump)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ixl</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">hs</span><span class="p">[</span><span class="n">ixl</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">llog</span> <span class="o">+</span> <span class="n">lstump</span><span class="p">):</span>
+        <span class="n">Vlog</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">ixs</span><span class="p">:</span><span class="n">ixl</span><span class="p">],</span> <span class="n">dx</span><span class="o">=</span><span class="n">dz</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">Vlog</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">llog</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">ixf</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">hs</span><span class="p">[</span><span class="n">ixf</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">lstump</span> <span class="o">+</span> <span class="n">llog</span> <span class="o">+</span> <span class="n">lfibre</span><span class="p">):</span>
+        <span class="n">Vfibre</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">ixl</span><span class="p">:</span><span class="n">ixf</span><span class="p">],</span> <span class="n">dx</span><span class="o">=</span><span class="n">dz</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">Vfibre</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="n">Vres</span> <span class="o">=</span> <span class="n">Vtot_no_stump</span> <span class="o">-</span> <span class="n">Vlog</span> <span class="o">-</span> <span class="n">Vfibre</span>
+
+    <span class="n">vf_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;V_stem&quot;</span><span class="p">:</span> <span class="n">Vtot</span><span class="p">,</span>
+        <span class="s2">&quot;log&quot;</span><span class="p">:</span> <span class="n">Vlog</span> <span class="o">/</span> <span class="n">Vtot</span><span class="p">,</span>
+        <span class="s2">&quot;fibre&quot;</span><span class="p">:</span> <span class="n">Vfibre</span> <span class="o">/</span> <span class="n">Vtot</span><span class="p">,</span>
+        <span class="s2">&quot;residue&quot;</span><span class="p">:</span> <span class="n">Vres</span> <span class="o">/</span> <span class="n">Vtot</span><span class="p">,</span>
+        <span class="s2">&quot;stump&quot;</span><span class="p">:</span> <span class="n">Vstump</span> <span class="o">/</span> <span class="n">Vtot</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">vf_dict</span></div>
+
+
+<div class="viewcode-block" id="trunk_to_dead_wood_classes_no_harvesting"><a class="viewcode-back" href="../../BFCPM.simulation_parameters.html#BFCPM.simulation_parameters.trunk_to_dead_wood_classes_no_harvesting">[docs]</a><span class="k">def</span> <span class="nf">trunk_to_dead_wood_classes_no_harvesting</span><span class="p">(</span>
+    <span class="n">d</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">h</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">species</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return fractions of the trunk&#39;s C fate.&quot;&quot;&quot;</span>
+    <span class="n">vf_dict</span> <span class="o">=</span> <span class="n">solve_volume_fractions</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">species</span><span class="p">)</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;DWC_1&quot;</span><span class="p">:</span> <span class="n">vf_dict</span><span class="p">[</span><span class="s2">&quot;residue&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;DWC_2&quot;</span><span class="p">:</span> <span class="n">vf_dict</span><span class="p">[</span><span class="s2">&quot;fibre&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;DWC_3&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;DWC_4&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;DWC_5&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;DWC_6&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">bole_dbhs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">13</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">150</span><span class="p">])</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">bole_dbhs</span> <span class="o">-</span> <span class="n">d</span><span class="p">))</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+    <span class="n">result</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;DWC_</span><span class="si">{</span><span class="n">idx</span><span class="o">+</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">vf_dict</span><span class="p">[</span><span class="s2">&quot;log&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">vf_dict</span><span class="p">[</span><span class="s2">&quot;stump&quot;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="trunk_to_dead_wood_classes_default"><a class="viewcode-back" href="../../BFCPM.simulation_parameters.html#BFCPM.simulation_parameters.trunk_to_dead_wood_classes_default">[docs]</a><span class="k">def</span> <span class="nf">trunk_to_dead_wood_classes_default</span><span class="p">(</span>
+    <span class="n">d</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">h</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">species</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return fractions of the trunk&#39;s C fate.&quot;&quot;&quot;</span>
+    <span class="n">vf_dict</span> <span class="o">=</span> <span class="n">solve_volume_fractions</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">species</span><span class="p">)</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;DWC_1&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;DWC_2&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;DWC_3&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;DWC_4&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;DWC_5&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;DWC_6&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="c1"># done then by the interface</span>
+        <span class="s2">&quot;residue&quot;</span><span class="p">:</span> <span class="n">vf_dict</span><span class="p">[</span><span class="s2">&quot;residue&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;fibre&quot;</span><span class="p">:</span> <span class="n">vf_dict</span><span class="p">[</span><span class="s2">&quot;fibre&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;log&quot;</span><span class="p">:</span> <span class="n">vf_dict</span><span class="p">[</span><span class="s2">&quot;log&quot;</span><span class="p">],</span>
+    <span class="p">}</span>
+
+    <span class="c1"># put the stump in the right DWC</span>
+    <span class="n">bole_dbhs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">13</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">150</span><span class="p">])</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">bole_dbhs</span> <span class="o">-</span> <span class="n">d</span><span class="p">))</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+    <span class="n">result</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;DWC_</span><span class="si">{</span><span class="n">idx</span><span class="o">+</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">vf_dict</span><span class="p">[</span><span class="s2">&quot;stump&quot;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<span class="c1"># a species dependency could be included here</span>
+<span class="n">wood_product_interfaces</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span>
+    <span class="n">Tuple</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">SingleTree</span><span class="p">],</span> <span class="n">Type</span><span class="p">[</span><span class="n">SoilCModelABC</span><span class="p">],</span> <span class="n">Type</span><span class="p">[</span><span class="n">WoodProductModelABC</span><span class="p">]],</span>
+    <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">WoodProductInterface</span><span class="p">],</span>
+<span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">(</span><span class="n">SingleTree</span><span class="p">,</span> <span class="n">SimpleSoilCModel</span><span class="p">,</span> <span class="n">SimpleWoodProductModel</span><span class="p">):</span> <span class="p">{</span>
+        <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># pool_from: {pool_to_1: proportion_1, pool_to_2: proportion_2, ...}</span>
+            <span class="c1"># proportions musst add up to 1.0</span>
+            <span class="s2">&quot;B_L&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Litter&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>  <span class="c1"># leaf litter to Litter</span>
+            <span class="s2">&quot;C_L&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Litter&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+            <span class="s2">&quot;B_R&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Litter&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>  <span class="c1"># fine roots litter to Litter</span>
+            <span class="s2">&quot;C_R&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Litter&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+            <span class="c1"># parts of C_S belonging to the stem to Wood-products</span>
+            <span class="c1"># --&gt; slightly different structure</span>
+            <span class="s2">&quot;C_S&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;other&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;CWD&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+                <span class="s2">&quot;trunk&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;log&quot;</span><span class="p">:</span> <span class="s2">&quot;WP_L&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;fibre&quot;</span><span class="p">:</span> <span class="s2">&quot;WP_S&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;residue&quot;</span><span class="p">:</span> <span class="s2">&quot;CWD&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;stump&quot;</span><span class="p">:</span> <span class="s2">&quot;CWD&quot;</span><span class="p">,</span>
+                <span class="p">},</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;B_OS&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;CWD&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>  <span class="c1"># sapwood litter to CWD</span>
+            <span class="s2">&quot;B_OH&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;CWD&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>  <span class="c1"># heartwood litter to CWD</span>
+            <span class="s2">&quot;B_TS&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;log&quot;</span><span class="p">:</span> <span class="s2">&quot;WP_L&quot;</span><span class="p">,</span> <span class="s2">&quot;fibre&quot;</span><span class="p">:</span> <span class="s2">&quot;WP_S&quot;</span><span class="p">,</span> <span class="s2">&quot;residue&quot;</span><span class="p">:</span> <span class="s2">&quot;CWD&quot;</span><span class="p">,</span> <span class="s2">&quot;stump&quot;</span><span class="p">:</span> <span class="s2">&quot;CWD&quot;</span><span class="p">},</span>
+            <span class="s2">&quot;B_TH&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;log&quot;</span><span class="p">:</span> <span class="s2">&quot;WP_L&quot;</span><span class="p">,</span> <span class="s2">&quot;fibre&quot;</span><span class="p">:</span> <span class="s2">&quot;WP_S&quot;</span><span class="p">,</span> <span class="s2">&quot;residue&quot;</span><span class="p">:</span> <span class="s2">&quot;CWD&quot;</span><span class="p">,</span> <span class="s2">&quot;stump&quot;</span><span class="p">:</span> <span class="s2">&quot;CWD&quot;</span><span class="p">},</span>
+            <span class="c1"># what to do with it, it&#39;s a fictional pool</span>
+            <span class="c1"># actually, it stores captured C artifically for one year</span>
+            <span class="s2">&quot;E&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Litter&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+            <span class="c1"># function to distribute trunk biomass to CWD and wood products</span>
+            <span class="s2">&quot;_trunk_fate_func&quot;</span><span class="p">:</span> <span class="n">solve_volume_fractions</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">(</span><span class="n">SingleTree</span><span class="p">,</span> <span class="n">SoilCDeadWoodClasses</span><span class="p">,</span> <span class="n">SimpleWoodProductModel</span><span class="p">):</span> <span class="p">{</span>
+        <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># pool_from: {pool_to_1: proportion_1, pool_to_2: proportion_2, ...}</span>
+            <span class="c1"># proportions musst add up to 1.0</span>
+            <span class="s2">&quot;B_L&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Litter&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>  <span class="c1"># leaf litter to Litter</span>
+            <span class="s2">&quot;C_L&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Litter&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+            <span class="s2">&quot;B_R&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Litter&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>  <span class="c1"># fine roots litter to Litter</span>
+            <span class="s2">&quot;C_R&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Litter&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+            <span class="c1"># parts of C_S belonging to the stem to Wood-products</span>
+            <span class="c1"># --&gt; slightly different structure</span>
+            <span class="s2">&quot;C_S&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;other&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;DWC_1&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+                <span class="s2">&quot;trunk&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;DWC_1&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_1&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;DWC_2&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_2&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;DWC_3&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_3&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;DWC_4&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_4&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;DWC_5&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_5&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;DWC_6&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_6&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;residue&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_1&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;fibre&quot;</span><span class="p">:</span> <span class="s2">&quot;WP_S&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;log&quot;</span><span class="p">:</span> <span class="s2">&quot;WP_L&quot;</span><span class="p">,</span>
+                <span class="p">},</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;B_OS&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;DWC_1&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+            <span class="s2">&quot;B_OH&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;DWC_1&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+            <span class="s2">&quot;B_TS&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;DWC_1&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_1&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DWC_2&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_2&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DWC_3&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_3&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DWC_4&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_4&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DWC_5&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_5&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DWC_6&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_6&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;residue&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_1&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;fibre&quot;</span><span class="p">:</span> <span class="s2">&quot;WP_S&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;log&quot;</span><span class="p">:</span> <span class="s2">&quot;WP_L&quot;</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;B_TH&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;DWC_1&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_1&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DWC_2&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_2&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DWC_3&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_3&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DWC_4&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_4&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DWC_5&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_5&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DWC_6&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_6&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;residue&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_1&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;fibre&quot;</span><span class="p">:</span> <span class="s2">&quot;WP_S&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;log&quot;</span><span class="p">:</span> <span class="s2">&quot;WP_L&quot;</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="c1"># what to do with it, it&#39;s a fictional pool</span>
+            <span class="c1"># actually, it stores captured C artifically for one year</span>
+            <span class="s2">&quot;E&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Litter&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+            <span class="c1"># function to distribute trunk biomass to CWD and wood products</span>
+            <span class="s2">&quot;_trunk_fate_func&quot;</span><span class="p">:</span> <span class="n">trunk_to_dead_wood_classes_default</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;no_harvesting&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># pool_from: {pool_to_1: proportion_1, pool_to_2: proportion_2, ...}</span>
+            <span class="c1"># proportions musst add up to 1.0</span>
+            <span class="s2">&quot;B_L&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Litter&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>  <span class="c1"># leaf litter to Litter</span>
+            <span class="s2">&quot;C_L&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Litter&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+            <span class="s2">&quot;B_R&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Litter&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>  <span class="c1"># fine roots litter to Litter</span>
+            <span class="s2">&quot;C_R&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Litter&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+            <span class="c1"># parts of C_S belonging to the stem to Wood-products</span>
+            <span class="c1"># --&gt; slightly different structure</span>
+            <span class="s2">&quot;C_S&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;other&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;DWC_1&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+                <span class="s2">&quot;trunk&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;DWC_1&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_1&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;DWC_2&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_2&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;DWC_3&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_3&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;DWC_4&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_4&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;DWC_5&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_5&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;DWC_6&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_6&quot;</span><span class="p">,</span>
+                <span class="p">},</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;B_OS&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;DWC_1&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+            <span class="s2">&quot;B_OH&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;DWC_1&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+            <span class="s2">&quot;B_TS&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;DWC_1&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_1&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DWC_2&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_2&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DWC_3&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_3&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DWC_4&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_4&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DWC_5&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_5&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DWC_6&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_6&quot;</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;B_TH&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;DWC_1&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_1&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DWC_2&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_2&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DWC_3&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_3&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DWC_4&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_4&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DWC_5&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_5&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;DWC_6&quot;</span><span class="p">:</span> <span class="s2">&quot;DWC_6&quot;</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="c1"># what to do with it, it&#39;s a fictional pool</span>
+            <span class="c1"># actually, it stores captured C artifically for one year</span>
+            <span class="s2">&quot;E&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Litter&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+            <span class="c1"># function to distribute trunk biomass to CWD and wood products</span>
+            <span class="s2">&quot;_trunk_fate_func&quot;</span><span class="p">:</span> <span class="n">trunk_to_dead_wood_classes_no_harvesting</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+<span class="sd">&quot;&quot;&quot;Interfaces between trees and soil + wood products.</span>
+
+<span class="sd">This interface is used in case of thinning or cutting. All tree pools</span>
+<span class="sd">need to be mentioned and their fractions must sum to 1.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="n">stand_params_library</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># data and forcing files</span>
+        <span class="c1">#   INACTIVE &quot;dpath&quot;: DATA_PATH.joinpath(&#39;forcing/FIHy_data_1997_2019.dat&#39;),</span>
+        <span class="c1">#   PART OF simulation_params &quot;fpath&quot;: DATA_PATH.joinpath(&#39;forcing/FIHy_forcing_1997_2019.dat&#39;),</span>
+        <span class="c1"># stand archive data file</span>
+        <span class="s2">&quot;dbh_path&quot;</span><span class="p">:</span> <span class="n">DATA_PATH</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s2">&quot;forcing/hyde_treedata.txt&quot;</span><span class="p">),</span>
+        <span class="c1"># tree height layer grid</span>
+        <span class="s2">&quot;z&quot;</span><span class="p">:</span> <span class="n">Q_</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">),</span> <span class="s2">&quot;m&quot;</span><span class="p">),</span>
+        <span class="c1"># stand location</span>
+        <span class="s2">&quot;loc&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;lat&quot;</span><span class="p">:</span> <span class="mf">61.51</span><span class="p">,</span> <span class="s2">&quot;lon&quot;</span><span class="p">:</span> <span class="mf">24.0</span><span class="p">},</span>
+        <span class="c1"># controls</span>
+        <span class="s2">&quot;ctr&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1"># &#39;Ags_model&#39;: &#39;MF&#39;, # Medlyn-Farquhar</span>
+            <span class="s2">&quot;phenology&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>  <span class="c1"># include phenology</span>
+            <span class="s2">&quot;leaf_area&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>  <span class="c1"># seasonal LAI cycle</span>
+            <span class="s2">&quot;water_stress&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;water_p&quot;</span><span class="p">:</span> <span class="n">water_p</span><span class="p">,</span>
+        <span class="s2">&quot;soil_p&quot;</span><span class="p">:</span> <span class="n">soil_p</span><span class="p">,</span>
+        <span class="c1"># cumulative relative upper bounds of number of trees to</span>
+        <span class="c1"># build dbh classes</span>
+        <span class="s2">&quot;dbh_quantiles&quot;</span><span class="p">:</span> <span class="n">Q_</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
+        <span class="c1"># single tree class to be used (there&#39;s only one)</span>
+        <span class="s2">&quot;SingleTreeClass&quot;</span><span class="p">:</span> <span class="n">SingleTree</span><span class="p">,</span>
+        <span class="c1"># soil C model to be used</span>
+        <span class="s2">&quot;soil_model&quot;</span><span class="p">:</span> <span class="n">SimpleSoilCModel</span><span class="p">(),</span>
+        <span class="c1"># wood product model to be used</span>
+        <span class="s2">&quot;wood_product_model&quot;</span><span class="p">:</span> <span class="n">SimpleWoodProductModel</span><span class="p">(),</span>
+        <span class="s2">&quot;wood_product_interface_name&quot;</span><span class="p">:</span> <span class="s2">&quot;default&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="sd">&quot;&quot;&quot;Stand parameters.&quot;&quot;&quot;</span>
+
+<span class="n">simulation_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># data and forcing files</span>
+    <span class="c1">#   INACTIVE &quot;dpath&quot;: DATA_PATH.joinpath(&#39;forcing/FIHy_data_1997_2019.dat&#39;),</span>
+    <span class="s2">&quot;fpath&quot;</span><span class="p">:</span> <span class="n">DATA_PATH</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s2">&quot;forcing/FIHy_forcing_1999_2019.dat&quot;</span><span class="p">),</span>
+<span class="p">}</span>
+<span class="sd">&quot;&quot;&quot;Default simulation parameters.&quot;&quot;&quot;</span>
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Holger Metzler, Samuli Launiainen, Giulia Vico
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=359c27e9"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    </body>
+</html>

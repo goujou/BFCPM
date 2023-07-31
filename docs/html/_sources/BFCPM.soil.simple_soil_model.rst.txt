@@ -1,0 +1,40 @@
+simple\_soil\_model
+===================
+
+MMMM
+
+.. currentmodule:: BFCPM.soil.simple_soil_model
+
+
+.. automodule:: BFCPM.soil.simple_soil_model
+
+    
+    
+    .. rubric:: Modules
+    
+    .. autosummary::
+       :toctree:
+       :recursive:
+       :template: module.rst
+
+       
+       ~BFCPM.soil.simple_soil_model.C_model
+       ~BFCPM.soil.simple_soil_model.C_model_parameters
+    
+    
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   

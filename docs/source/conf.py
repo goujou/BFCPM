@@ -54,7 +54,7 @@ autodoc_member_order = "bysource"
 add_module_names = False
 
 templates_path = ["_templates"]
-exclude_patterns = ["BFCP.productivity.*.rst"]
+exclude_patterns = ["BFCPM.productivity.*.rst"]
 
 
 # -- Options for HTML output -------------------------------------------------
@@ -123,11 +123,19 @@ class PrettyPrintDirective(SphinxDirective):
         module_path, member_name = self.arguments[0].rsplit("::", 1)
 
         member_data = getattr(import_module(module_path), member_name)
+
+        #        if isinstance(member_data, dict):
+        #            member_data_ = {str(key): value for key, value in member_data.items()}
+        #            member_data = member_data_
+
         code = pformat(member_data, 2, width=68)
         code = memory_address_re.sub("", code)
 
+        #        code = code.replace("{", "{\n")
+        #        code = code.replace("}", "\n}")
+
         literal = nodes.literal_block(code, code)
-        literal["language"] = "python"
+        literal["language"] = "javascript"  # looks better than "python"
 
         return [
             addnodes.desc_name(text=member_name),

@@ -1,0 +1,23 @@
+Cut
+===
+
+Qualified name: ``BFCPM.management.management\_strategy.Cut``
+
+CCCC
+
+.. currentmodule:: BFCPM.management.management_strategy
+
+.. autoclass:: Cut
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+      ~Cut.do
+
+   
+   

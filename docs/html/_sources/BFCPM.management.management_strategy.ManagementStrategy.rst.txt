@@ -1,0 +1,24 @@
+ManagementStrategy
+==================
+
+Qualified name: ``BFCPM.management.management\_strategy.ManagementStrategy``
+
+CCCC
+
+.. currentmodule:: BFCPM.management.management_strategy
+
+.. autoclass:: ManagementStrategy
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+      ~ManagementStrategy.add
+      ~ManagementStrategy.post_processing_update
+
+   
+   

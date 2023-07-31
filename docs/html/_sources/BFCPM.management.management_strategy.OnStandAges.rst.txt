@@ -1,0 +1,23 @@
+OnStandAges
+===========
+
+Qualified name: ``BFCPM.management.management\_strategy.OnStandAges``
+
+CCCC
+
+.. currentmodule:: BFCPM.management.management_strategy
+
+.. autoclass:: OnStandAges
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+      ~OnStandAges.triggered
+
+   
+   

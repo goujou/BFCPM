@@ -25,22 +25,16 @@ tree_soil_interfaces: Dict[
     Tuple[Type[SingleTree], Type[SoilCModelABC]], TreeSoilInterface
 ] = {
     (SingleTree, SimpleSoilCModel): {
-        # pool_from: {pool_to_1: proportion_1, pool_to_2: proportion_2, ...}
-        # proportions musst add up to 1.0
-        # pool_froms not mentioned have only external output
-        "B_L": {"Litter": 1.0},  # leaf litter to Litter
-        "B_R": {"Litter": 1.0},  # fine roots litter to Litter
-        "B_OS": {"CWD": 1.0},  # sapwood litter to CWD
-        "B_OH": {"CWD": 1.0},  # heartwood litter to CWD
+        "B_L": {"Litter": 1.0},
+        "B_R": {"Litter": 1.0},
+        "B_OS": {"CWD": 1.0},
+        "B_OH": {"CWD": 1.0},
     },
     (SingleTree, SoilCDeadWoodClasses): {
-        # pool_from: {pool_to_1: proportion_1, pool_to_2: proportion_2, ...}
-        # proportions musst add up to 1.0
-        # pool_froms not mentioned have only external output
-        "B_L": {"Litter": 1.0},  # leaf litter to Litter
-        "B_R": {"Litter": 1.0},  # fine roots litter to Litter
-        "B_OS": {"DWC_1": 1.0},  # sapwood litter to CWD
-        "B_OH": {"DWC_1": 1.0},  # heartwood litter to CWD
+        "B_L": {"Litter": 1.0},
+        "B_R": {"Litter": 1.0},
+        "B_OS": {"DWC_1": 1.0},
+        "B_OH": {"DWC_1": 1.0},
     },
 }
 """Interface between tree and soil."""

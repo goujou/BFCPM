@@ -7,7 +7,7 @@ SPHINXOPTS    ?=
 SPHINXBUILD   ?= sphinx-build
 
 # Path base is the source directory
-PKGNAME       = BFMM
+PKGNAME       = BFCPM
 PKGDIR        = ../src/$(PKGNAME)
 SOURCEDIR     = source
 BUILDDIR      = _build
@@ -31,7 +31,7 @@ clean:
 #	sphinx-apidoc --separate -f -o $(SOURCEDIR)/ $(PKGDIR)/
 #	rm $(SOURCEDIR)/modules.rst
 #	cp $(SOURCEDIR)/_static/*.rst $(SOURCEDIR)/ # has no effect
-#	rm $(SOURCEDIR)/BFMM.productivity.rst # has no effect
+#	rm $(SOURCEDIR)/BFCPM.productivity.rst # has no effect
 #	$(SPHINXBUILD) -b html -a "$(SOURCEDIR)" "$(BUILDDIR)"
 #	sphinx-apidoc --separate -f -t $(SOURCEDIR)/_templates/ -o $(SOURCEDIR)/ $(PKGDIR)/
 

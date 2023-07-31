@@ -1,0 +1,23 @@
+ManagementActionABC
+===================
+
+Qualified name: ``BFCPM.management.management\_strategy.ManagementActionABC``
+
+CCCC
+
+.. currentmodule:: BFCPM.management.management_strategy
+
+.. autoclass:: ManagementActionABC
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+      ~ManagementActionABC.do
+
+   
+   

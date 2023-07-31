@@ -1,0 +1,35 @@
+SoilCDeadWoodClasses
+====================
+
+Qualified name: ``BFCPM.soil.dead\_wood\_classes.C\_model.SoilCDeadWoodClasses``
+
+CCCC
+
+.. currentmodule:: BFCPM.soil.dead_wood_classes.C_model
+
+.. autoclass:: SoilCDeadWoodClasses
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+     
+     ~SoilCDeadWoodClasses.Fs
+     ~SoilCDeadWoodClasses.Rs
+     ~SoilCDeadWoodClasses.Us
+     ~SoilCDeadWoodClasses.flux_unit
+     ~SoilCDeadWoodClasses.nr_pools
+     ~SoilCDeadWoodClasses.pool_names
+     ~SoilCDeadWoodClasses.start_vector
+     ~SoilCDeadWoodClasses.stock_unit
+     ~SoilCDeadWoodClasses.xs
+   

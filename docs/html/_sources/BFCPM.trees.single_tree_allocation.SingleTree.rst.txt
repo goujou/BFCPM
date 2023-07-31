@@ -1,0 +1,86 @@
+SingleTree
+==========
+
+Qualified name: ``BFCPM.trees.single\_tree\_allocation.SingleTree``
+
+CCCC
+
+.. currentmodule:: BFCPM.trees.single_tree_allocation
+
+.. autoclass:: SingleTree
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+      ~SingleTree.B_L_func
+      ~SingleTree.B_OH_func
+      ~SingleTree.B_OS_func
+      ~SingleTree.B_R_func
+      ~SingleTree.B_S_func
+      ~SingleTree.B_T_func
+      ~SingleTree.C_S_star_func
+      ~SingleTree.H_TH_func
+      ~SingleTree.H_func
+      ~SingleTree.LA_func
+      ~SingleTree.SLA_func
+      ~SingleTree.SW_func
+      ~SingleTree.V_TH_func
+      ~SingleTree.V_TS_func
+      ~SingleTree.V_T_func
+      ~SingleTree.clear_cache
+      ~SingleTree.compute_delta_W
+      ~SingleTree.compute_f_L_times_E
+      ~SingleTree.compute_f_O_times_E
+      ~SingleTree.compute_f_R_times_E
+      ~SingleTree.compute_f_T_times_E
+      ~SingleTree.compute_rho_W
+      ~SingleTree.compute_rho_from_allometry
+      ~SingleTree.compute_v_O
+      ~SingleTree.compute_v_T
+      ~SingleTree.from_dbh
+      ~SingleTree.from_mleaf
+      ~SingleTree.h_B_func
+      ~SingleTree.h_C_func
+      ~SingleTree.lad_normed
+      ~SingleTree.lambda_H_func
+      ~SingleTree.lambda_S_func
+      ~SingleTree.lambda_func
+      ~SingleTree.minimum_E_to_resolve_C_budget
+      ~SingleTree.mother_func
+      ~SingleTree.mstump_func
+      ~SingleTree.mtrunk_func
+      ~SingleTree.r_B_func
+      ~SingleTree.r_C_func
+      ~SingleTree.solve_glucose_budget
+      ~SingleTree.update
+      ~SingleTree.update_C_S
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+     
+     ~SingleTree.B_L
+     ~SingleTree.B_OH
+     ~SingleTree.B_OS
+     ~SingleTree.B_R
+     ~SingleTree.B_S
+     ~SingleTree.B_S_star
+     ~SingleTree.B_T
+     ~SingleTree.C_S_star
+     ~SingleTree.H
+     ~SingleTree.H_TH
+     ~SingleTree.LA
+     ~SingleTree.R_M
+     ~SingleTree.SLA
+     ~SingleTree.V_T
+     ~SingleTree.V_TH
+     ~SingleTree.V_TS
+     ~SingleTree.dbh
+     ~SingleTree.delta_S
+   

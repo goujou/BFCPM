@@ -1,0 +1,7 @@
+BFCPM.params module
+===================
+
+.. automodule:: BFCPM.params
+   :members:
+   :undoc-members:
+   :show-inheritance:

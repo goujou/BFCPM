@@ -25,7 +25,7 @@ DATA_PATH = BASE_PATH.joinpath("data")
 """Package data folder path."""
 DATA_PATH.mkdir(parents=False, exist_ok=True)
 
-PRE_SPINUPS_PATH = BASE_PATH.joinpath("pre_spinups")
+PRE_SPINUPS_PATH = DATA_PATH.joinpath("pre_spinups")
 """Pre-spinups folder path."""
 PRE_SPINUPS_PATH.mkdir(parents=False, exist_ok=True)
 

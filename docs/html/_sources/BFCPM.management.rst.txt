@@ -1,0 +1,40 @@
+﻿management
+==========
+
+MMMM
+
+.. currentmodule:: BFCPM.management
+
+
+.. automodule:: BFCPM.management
+
+    
+    
+    .. rubric:: Modules
+    
+    .. autosummary::
+       :toctree:
+       :recursive:
+       :template: module.rst
+
+       
+       ~BFCPM.management.library
+       ~BFCPM.management.management_strategy
+    
+    
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   

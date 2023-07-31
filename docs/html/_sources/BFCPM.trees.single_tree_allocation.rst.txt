@@ -1,0 +1,46 @@
+single\_tree\_allocation
+========================
+
+MMMM
+
+.. currentmodule:: BFCPM.trees.single_tree_allocation
+
+
+.. automodule:: BFCPM.trees.single_tree_allocation
+
+    
+    
+    
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+      :template: class.rst
+
+      
+        SingleTree
+      
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Exceptions
+
+   
+   .. autoexception:: BFCPM.trees.single_tree_allocation::GlucoseBudgetError
+   .. autoexception:: BFCPM.trees.single_tree_allocation::TreeShrinkError
+   
+   

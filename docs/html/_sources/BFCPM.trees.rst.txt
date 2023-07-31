@@ -1,0 +1,45 @@
+﻿trees
+=====
+
+MMMM
+
+.. currentmodule:: BFCPM.trees
+
+
+.. automodule:: BFCPM.trees
+
+    
+    
+    .. rubric:: Modules
+    
+    .. autosummary::
+       :toctree:
+       :recursive:
+       :template: module.rst
+
+       
+       ~BFCPM.trees.allometry
+       ~BFCPM.trees.mean_tree
+       ~BFCPM.trees.single_tree_C_model
+       ~BFCPM.trees.single_tree_allocation
+       ~BFCPM.trees.single_tree_params
+       ~BFCPM.trees.single_tree_vars
+       ~BFCPM.trees.tree_utils
+    
+    
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   

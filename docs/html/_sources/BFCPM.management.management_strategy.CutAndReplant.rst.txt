@@ -1,0 +1,23 @@
+CutAndReplant
+=============
+
+Qualified name: ``BFCPM.management.management\_strategy.CutAndReplant``
+
+CCCC
+
+.. currentmodule:: BFCPM.management.management_strategy
+
+.. autoclass:: CutAndReplant
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+      ~CutAndReplant.do
+
+   
+   

@@ -1,0 +1,41 @@
+single\_tree\_params
+====================
+
+MMMM
+
+.. currentmodule:: BFCPM.trees.single_tree_params
+
+
+.. automodule:: BFCPM.trees.single_tree_params
+
+    
+    
+    
+
+   
+   
+   .. rubric:: Module Attributes
+
+   
+   .. autodata:: BFCPM.trees.single_tree_params::species_params
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   
+   .. autofunction:: initialize_params
+   .. autofunction:: params_to_latex_table
+   .. autofunction:: species_params_to_latex_table
+   
+   
+
+   
+   
+   

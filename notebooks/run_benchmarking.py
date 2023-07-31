@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.14.5
+#       jupytext_version: 1.15.0
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -68,7 +68,7 @@ except SystemExit:
 
     pre_spinup_date = "2023-07-25"
 
-    sim_date = "2023-07-25"
+    sim_date = "2023-07-26"
     species = "pine"
 #    species = "spruce"
 
@@ -303,4 +303,3 @@ utils.create_simulation_video(
     cache_size=1_000,
 )
 print(filepath)
-# -
