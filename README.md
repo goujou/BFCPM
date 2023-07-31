@@ -11,7 +11,7 @@ However, mixed-aged forest management is superior to even-aged forest management
 
 ## Reproducing the manuscript results
 
-**Reamrk:** This has been tested for WSL2 on Windows10.
+**Note:** This has been tested for WSL2 on Windows10.
 
 First, create a new conda environment:
 
