@@ -11,21 +11,37 @@ However, mixed-aged forest management is superior to even-aged forest management
 
 ## Reproducing the manuscript results
 
-### Installation of `BFCPM`
+**Reamrk:** This has been tested for WSL2 on Windows10.
+
+First, create a new conda environment:
 
 ```
 conda create --name BFCPM python=3.9
 conda activate BFCPM
+```
 
+Then, it is necessary to install [bcg_md2](https://github.com/MPIBGC-TEE/bgc_md2).
+This package stores the sub-models for the MeanTree, soil and the wood products and allows the computation of transit times of the implemented model.
+
+### Installation of `bgc_md2`
+
+```
 git clone --recurse-submodules https://github.com/MPIBGC-TEE/bgc_md2.git
 cd bgc_md2
 ./install_developer_conda.sh
-
 cd ..
+
+```
+
+### Install `BFCPM`
+
+```
 git clone https://github.com/goujou/BFCPM.git
 cd BFCPM
 ./install_developer_conda.sh
 ```
+
+### After installation
 
 All the data and figures for the manuscript have can be reproduced by two notebooks:
 - notebooks/run_sims_for_paper_serial.ipynb
@@ -33,11 +49,9 @@ All the data and figures for the manuscript have can be reproduced by two notebo
 - notebooks/figures_notebook.ipynb
   - reproduces the figures from simulation data
   - pre-computed simulation data can be found in
-    - data/pre-spinups/2023-07-25/:
-    - simulations/2023-07-26/
+    - data/pre-spinups/2023-07-25/: Pre-spinup for all simulations
+    - data/simulations/2023-07-26/
 
 
-## Model documentation
-
-[Documentation](https://goujou.github.io/BFCPM/)
+[Model documentation](https://goujou.github.io/BFCPM/)
 
