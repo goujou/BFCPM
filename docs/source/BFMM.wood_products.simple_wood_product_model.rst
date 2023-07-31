@@ -5,6 +5,7 @@ MMMM
 
 .. currentmodule:: BFMM.wood_products.simple_wood_product_model
 
+
 .. automodule:: BFMM.wood_products.simple_wood_product_model
 
     

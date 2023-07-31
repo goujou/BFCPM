@@ -2,10 +2,10 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="utils" href="BFMM.utils.html" /><link rel="prev" title="Stand" href="BFMM.stand.Stand.html" />
 
-    <!-- Generated with Sphinx 6.1.3 and Furo 2023.05.20 -->
+    <!-- Generated with Sphinx 7.0.1 and Furo 2023.05.20 -->
         <title>type_aliases - BFMM</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
@@ -135,7 +135,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -156,6 +156,7 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="BFMM.prepare_stand.html">prepare_stand</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="BFMM.stand.html">stand</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of stand</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="BFMM.stand.Stand.html">Stand</a></li>
 </ul>
@@ -264,6 +265,7 @@
 <li class="toctree-l2"><a class="reference internal" href="BFMM.simulation.utils.html">utils</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="BFMM.simulation_parameters.html">simulation_parameters</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Untitled.html">Test notebook</a></li>
@@ -295,7 +297,7 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
@@ -306,123 +308,82 @@
 <p>MMMM</p>
 <span class="target" id="module-BFMM.type_aliases"></span><p>Collection of type aliases used in the project.</p>
 <p class="rubric">Module Attributes</p>
-<dl class="py data">
-<dt class="sig sig-object py" id="BFMM.type_aliases.Quantity">
-<span class="sig-name descname"><span class="pre">Quantity</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;function</span> <span class="pre">NewType.&lt;locals&gt;.new_type&gt;</span></em><a class="headerlink" href="#BFMM.type_aliases.Quantity" title="Permalink to this definition">#</a></dt>
-<dd><p>Pint Quantity type. Displayed as <code class="docutils literal notranslate"><span class="pre">Q_</span></code>.</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="BFMM.type_aliases.TreeSoilInterface">
-<span class="sig-name descname"><span class="pre">TreeSoilInterface</span></span><a class="headerlink" href="#BFMM.type_aliases.TreeSoilInterface" title="Permalink to this definition">#</a></dt>
-<dd><p>Interface between a tree and a soil model.</p>
+<span class="sig-name descname">Quantity</span><dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">function</span> <span class="n">NewType</span><span class="o">.&lt;</span><span class="nb">locals</span><span class="o">&gt;.</span><span class="n">new_type</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</dd><p>Pint Quantity type. Displayed as <code class="docutils literal notranslate"><span class="pre">Q_</span></code>.</p>
+<span class="sig-name descname">TreeSoilInterface</span><dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">typing</span><span class="o">.</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span>
+</pre></div>
+</div>
+</dd><p>Interface between a tree and a soil model.</p>
 <p>Shape: {tree_pool_from: {soil_pool_to_1: frac1}, …}. See also values of
-<a class="reference internal" href="BFMM.simulation_parameters.html#BFMM.simulation_parameters.tree_soil_interfaces" title="BFMM.simulation_parameters.tree_soil_interfaces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tree_soil_interfaces</span></code></a>.</p>
-<p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]]</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="BFMM.type_aliases.WoodProductInterface">
-<span class="sig-name descname"><span class="pre">WoodProductInterface</span></span><a class="headerlink" href="#BFMM.type_aliases.WoodProductInterface" title="Permalink to this definition">#</a></dt>
-<dd><p>Interface between a tree and a wood product model.</p>
-<p>See values of <a class="reference internal" href="BFMM.simulation_parameters.html#BFMM.simulation_parameters.wood_product_interfaces" title="BFMM.simulation_parameters.wood_product_interfaces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wood_product_interfaces</span></code></a>.</p>
-<p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Any</span></code>]</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="BFMM.type_aliases.InputFluxes">
-<span class="sig-name descname"><span class="pre">InputFluxes</span></span><a class="headerlink" href="#BFMM.type_aliases.InputFluxes" title="Permalink to this definition">#</a></dt>
-<dd><p>Fluxes into pools. Key is pool name.</p>
-<p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Q_</span></code>]</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="BFMM.type_aliases.OutputFluxesInt">
-<span class="sig-name descname"><span class="pre">OutputFluxesInt</span></span><a class="headerlink" href="#BFMM.type_aliases.OutputFluxesInt" title="Permalink to this definition">#</a></dt>
-<dd><p>Fluxes out of pools. Key is pool number not name.</p>
-<p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Q_</span></code>]</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="BFMM.type_aliases.TreeExternalOutputFluxes">
-<span class="sig-name descname"><span class="pre">TreeExternalOutputFluxes</span></span><a class="headerlink" href="#BFMM.type_aliases.TreeExternalOutputFluxes" title="Permalink to this definition">#</a></dt>
-<dd><p>External output fluxes from a tree.</p>
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">tree_soil_interfaces</span></code>.</p>
+<span class="sig-name descname">WoodProductInterface</span><dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">typing</span><span class="o">.</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd><p>Interface between a tree and a wood product model.</p>
+<p>See values of <code class="xref py py-attr docutils literal notranslate"><span class="pre">wood_product_interfaces</span></code>.</p>
+<span class="sig-name descname">InputFluxes</span><dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">typing</span><span class="o">.</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Q_</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd><p>Fluxes into pools. Key is pool name.</p>
+<span class="sig-name descname">OutputFluxesInt</span><dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">typing</span><span class="o">.</span><span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Q_</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd><p>Fluxes out of pools. Key is pool number not name.</p>
+<span class="sig-name descname">TreeExternalOutputFluxes</span><dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">typing</span><span class="o">.</span><span class="n">Dict</span><span class="p">[</span><span class="n">typing</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="n">Q_</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd><p>External output fluxes from a tree.</p>
 <p>External output fluxes from
 <a class="reference internal" href="BFMM.trees.single_tree_C_model.SingleTreeCModel.html#BFMM.trees.single_tree_C_model.SingleTreeCModel" title="BFMM.trees.single_tree_C_model.SingleTreeCModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">trees.single_tree_C_model.SingleTreeCModel</span></code></a>.
-According to <a class="reference internal" href="#BFMM.type_aliases.TreeSoilInterface" title="BFMM.type_aliases.TreeSoilInterface"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TreeSoilInterface</span></code></a>,
+According to <code class="xref py py-obj docutils literal notranslate"><span class="pre">TreeSoilInterface</span></code>,
 <a class="reference internal" href="BFMM.stand.Stand.html#BFMM.stand.Stand" title="BFMM.stand.Stand"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stand</span></code></a> distributes them to the atmosphere or
 to the soil or the atmosphere (pool_to=None).</p>
-<p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]], <code class="xref py py-class docutils literal notranslate"><span class="pre">Q_</span></code>]</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="BFMM.type_aliases.CuttingFluxes">
-<span class="sig-name descname"><span class="pre">CuttingFluxes</span></span><a class="headerlink" href="#BFMM.type_aliases.CuttingFluxes" title="Permalink to this definition">#</a></dt>
-<dd><p>Distribution of tree material at cutting or thinning.</p>
+<span class="sig-name descname">CuttingFluxes</span><dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">typing</span><span class="o">.</span><span class="n">Dict</span><span class="p">[</span><span class="n">typing</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">Q_</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd><p>Distribution of tree material at cutting or thinning.</p>
 <ul class="simple">
 <li><p>(pool_from, pool_to): fraction, pool_to = None means output to atmosphere</p></li>
 </ul>
-<p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">Q_</span></code>]</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="BFMM.type_aliases.OneSpeciesParams">
-<span class="sig-name descname"><span class="pre">OneSpeciesParams</span></span><a class="headerlink" href="#BFMM.type_aliases.OneSpeciesParams" title="Permalink to this definition">#</a></dt>
-<dd><p>Parameter dictionary for one species.
+<span class="sig-name descname">OneSpeciesParams</span><dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">typing</span><span class="o">.</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd><p>Parameter dictionary for one species.
 Examples in <code class="xref py py-mod docutils literal notranslate"><span class="pre">single_tree_params</span></code>.</p>
-<p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Any</span></code>]</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="BFMM.type_aliases.SpeciesParams">
-<span class="sig-name descname"><span class="pre">SpeciesParams</span></span><a class="headerlink" href="#BFMM.type_aliases.SpeciesParams" title="Permalink to this definition">#</a></dt>
-<dd><p>Parameter dictionary for all involved tree species.</p>
-<p>Example in <code class="xref py py-mod docutils literal notranslate"><span class="pre">single_tree_params</span></code>.</p>
-<p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Any</span></code>]]</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="BFMM.type_aliases.MSData">
-<span class="sig-name descname"><span class="pre">MSData</span></span><a class="headerlink" href="#BFMM.type_aliases.MSData" title="Permalink to this definition">#</a></dt>
-<dd><p>The tuple is a (Trigger, Action) pair for a MeanTree to plant.</p>
+<span class="sig-name descname">SpeciesParams</span><dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">typing</span><span class="o">.</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">]]</span>
+</pre></div>
+</div>
+</dd><p>Parameter dictionary for all involved tree species.</p>
+<p>Example in <a class="reference internal" href="BFMM.trees.single_tree_params.html#module-BFMM.trees.single_tree_params" title="BFMM.trees.single_tree_params"><code class="xref py py-mod docutils literal notranslate"><span class="pre">single_tree_params</span></code></a>.</p>
+<span class="sig-name descname">MSData</span><dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">typing</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd><p>The tuple is a (Trigger, Action) pair for a MeanTree to plant.</p>
 <p>The strings must be found in <code class="xref py py-mod docutils literal notranslate"><span class="pre">py</span></code>.</p>
-<p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="BFMM.type_aliases.MSDataList">
-<span class="sig-name descname"><span class="pre">MSDataList</span></span><a class="headerlink" href="#BFMM.type_aliases.MSDataList" title="Permalink to this definition">#</a></dt>
-<dd><p>A list of management_strategy_data for a MeanTree to plant.</p>
-<p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="BFMM.type_aliases.SimulationProfile">
-<span class="sig-name descname"><span class="pre">SimulationProfile</span></span><a class="headerlink" href="#BFMM.type_aliases.SimulationProfile" title="Permalink to this definition">#</a></dt>
-<dd><p>Simulation described by a list of trees.</p>
+<span class="sig-name descname">MSDataList</span><dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">typing</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span>
+</pre></div>
+</div>
+</dd><p>A list of management_strategy_data for a MeanTree to plant.</p>
+<span class="sig-name descname">SimulationProfile</span><dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">typing</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">typing</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]</span>
+</pre></div>
+</div>
+</dd><p>Simulation described by a list of trees.</p>
 <p>List[Tuple[tree_species, dbh_in_cm, N_in_m2-1, management_strategy_data, waiting or not]].
 ‘waiting’ means the MeanTree is not immediately planted at the beginning of the simulation.
 So it needs some kind of (trigger, plant_action) in the management_strategy_data.
 It is optional, if omitted, the tree will be planted right away.</p>
-<p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]], <code class="xref py py-obj docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]]</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="BFMM.type_aliases.TreeSetting">
-<span class="sig-name descname"><span class="pre">TreeSetting</span></span><a class="headerlink" href="#BFMM.type_aliases.TreeSetting" title="Permalink to this definition">#</a></dt>
-<dd><p>A setting of a MeanTree to be planted in the stand.
+<span class="sig-name descname">TreeSetting</span><dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">typing</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">pint</span><span class="o">.</span><span class="n">Quantity</span><span class="p">,</span> <span class="n">pint</span><span class="o">.</span><span class="n">Quantity</span><span class="p">,</span> <span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;ManagementStrategy&#39;</span><span class="p">),</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span>
+</pre></div>
+</div>
+</dd><p>A setting of a MeanTree to be planted in the <a class="reference internal" href="BFMM.stand.Stand.html#BFMM.stand.Stand" title="BFMM.stand.Stand"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stand</span></code></a>.
 [nr_of_the_tree, dbh_in_cm, N_in_m2-1, management_strategy, ‘waiting’ or omitted].</p>
-<p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Quantity</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Quantity</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ManagementStrategy</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="BFMM.type_aliases.SpeciesSettings">
-<span class="sig-name descname"><span class="pre">SpeciesSettings</span></span><a class="headerlink" href="#BFMM.type_aliases.SpeciesSettings" title="Permalink to this definition">#</a></dt>
-<dd><p>The species setting of a new <code class="xref py py-class docutils literal notranslate"><span class="pre">Stand</span></code>.</p>
+<span class="sig-name descname">SpeciesSettings</span><dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">typing</span><span class="o">.</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">typing</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">pint</span><span class="o">.</span><span class="n">Quantity</span><span class="p">,</span> <span class="n">pint</span><span class="o">.</span><span class="n">Quantity</span><span class="p">,</span> <span class="n">ForwardRef</span><span class="p">(</span><span class="s1">&#39;ManagementStrategy&#39;</span><span class="p">),</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]]</span>
+</pre></div>
+</div>
+</dd><p>The species setting of a new <a class="reference internal" href="BFMM.stand.Stand.html#BFMM.stand.Stand" title="BFMM.stand.Stand"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stand</span></code></a>.</p>
 <p>The key is supposed to give the tree species.</p>
-<p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Quantity</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Quantity</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ManagementStrategy</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]]]</p>
-</dd></dl>
-
 </section>
 
         </article>
@@ -454,7 +415,7 @@ It is optional, if omitted, the tree will be planted right away.</p>
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2023, Holger Metzler, Samuli Launiainen, Viulia Vico
+                Copyright &#169; 2023, Holger Metzler, Samuli Launiainen, Giulia Vico
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
@@ -468,40 +429,8 @@ It is optional, if omitted, the tree will be planted right away.</p>
         
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            On this page
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">type_aliases</a><ul>
-<li><a class="reference internal" href="#BFMM.type_aliases.Quantity"><code class="docutils literal notranslate"><span class="pre">Quantity</span></code></a></li>
-<li><a class="reference internal" href="#BFMM.type_aliases.TreeSoilInterface"><code class="docutils literal notranslate"><span class="pre">TreeSoilInterface</span></code></a></li>
-<li><a class="reference internal" href="#BFMM.type_aliases.WoodProductInterface"><code class="docutils literal notranslate"><span class="pre">WoodProductInterface</span></code></a></li>
-<li><a class="reference internal" href="#BFMM.type_aliases.InputFluxes"><code class="docutils literal notranslate"><span class="pre">InputFluxes</span></code></a></li>
-<li><a class="reference internal" href="#BFMM.type_aliases.OutputFluxesInt"><code class="docutils literal notranslate"><span class="pre">OutputFluxesInt</span></code></a></li>
-<li><a class="reference internal" href="#BFMM.type_aliases.TreeExternalOutputFluxes"><code class="docutils literal notranslate"><span class="pre">TreeExternalOutputFluxes</span></code></a></li>
-<li><a class="reference internal" href="#BFMM.type_aliases.CuttingFluxes"><code class="docutils literal notranslate"><span class="pre">CuttingFluxes</span></code></a></li>
-<li><a class="reference internal" href="#BFMM.type_aliases.OneSpeciesParams"><code class="docutils literal notranslate"><span class="pre">OneSpeciesParams</span></code></a></li>
-<li><a class="reference internal" href="#BFMM.type_aliases.SpeciesParams"><code class="docutils literal notranslate"><span class="pre">SpeciesParams</span></code></a></li>
-<li><a class="reference internal" href="#BFMM.type_aliases.MSData"><code class="docutils literal notranslate"><span class="pre">MSData</span></code></a></li>
-<li><a class="reference internal" href="#BFMM.type_aliases.MSDataList"><code class="docutils literal notranslate"><span class="pre">MSDataList</span></code></a></li>
-<li><a class="reference internal" href="#BFMM.type_aliases.SimulationProfile"><code class="docutils literal notranslate"><span class="pre">SimulationProfile</span></code></a></li>
-<li><a class="reference internal" href="#BFMM.type_aliases.TreeSetting"><code class="docutils literal notranslate"><span class="pre">TreeSetting</span></code></a></li>
-<li><a class="reference internal" href="#BFMM.type_aliases.SpeciesSettings"><code class="docutils literal notranslate"><span class="pre">SpeciesSettings</span></code></a></li>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>

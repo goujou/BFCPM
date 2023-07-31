@@ -5,6 +5,7 @@ MMMM
 
 .. currentmodule:: BFMM.trees.single_tree_params
 
+
 .. automodule:: BFMM.trees.single_tree_params
 
     

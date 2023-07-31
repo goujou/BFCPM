@@ -2,11 +2,11 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Test notebook" href="notebooks/Untitled.html" /><link rel="prev" title="utils" href="BFMM.simulation.utils.html" />
 
-    <!-- Generated with Sphinx 6.1.3 and Furo 2023.05.20 -->
-        <title>BFMM.simulation_parameters module - BFMM</title>
+    <!-- Generated with Sphinx 7.0.1 and Furo 2023.05.20 -->
+        <title>simulation_parameters - BFMM</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
@@ -156,6 +156,7 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul>
+<li class="toctree-l1"><a class="reference internal" href="BFMM.prepare_stand.html">prepare_stand</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="BFMM.stand.html">stand</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of stand</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="BFMM.stand.Stand.html">Stand</a></li>
 </ul>
@@ -250,7 +251,7 @@
 </ul>
 </li>
 </ul>
-<ul>
+<ul class="current">
 <li class="toctree-l1 has-children"><a class="reference internal" href="BFMM.simulation.html">simulation</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of simulation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="BFMM.simulation.library.html">library</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="BFMM.simulation.recorded_simulation.html">recorded_simulation</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of recorded_simulation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -264,6 +265,7 @@
 <li class="toctree-l2"><a class="reference internal" href="BFMM.simulation.utils.html">utils</a></li>
 </ul>
 </li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">simulation_parameters</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Untitled.html">Test notebook</a></li>
@@ -301,20 +303,157 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-BFMM.simulation_parameters">
-<span id="bfmm-simulation-parameters-module"></span><h1>BFMM.simulation_parameters module<a class="headerlink" href="#module-BFMM.simulation_parameters" title="Permalink to this heading">#</a></h1>
-<p>Overarching simulation parameters.</p>
+          <section id="simulation-parameters">
+<h1>simulation_parameters<a class="headerlink" href="#simulation-parameters" title="Permalink to this heading">#</a></h1>
+<p>MMMM</p>
+<span class="target" id="module-BFMM.simulation_parameters"></span><p>Overarching simulation parameters.</p>
 <p>Also the interfaces between the model modules and the tree-cutting matrix.</p>
-<dl class="py data">
-<dt class="sig sig-object py" id="BFMM.simulation_parameters.tree_soil_interfaces">
-<span class="sig-name descname"><span class="pre">tree_soil_interfaces</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="BFMM.trees.single_tree_allocation.SingleTree.html#BFMM.trees.single_tree_allocation.SingleTree" title="BFMM.trees.single_tree_allocation.SingleTree"><span class="pre">SingleTree</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="BFMM.soil.soil_c_model_abc.SoilCModelABC.html#BFMM.soil.soil_c_model_abc.SoilCModelABC" title="BFMM.soil.soil_c_model_abc.SoilCModelABC"><span class="pre">SoilCModelABC</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{(&lt;class</span> <span class="pre">'BFMM.trees.single_tree_allocation.SingleTree'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'BFMM.soil.simple_soil_model.C_model.SimpleSoilCModel'&gt;):</span> <span class="pre">{'B_L':</span> <span class="pre">{'Litter':</span> <span class="pre">1.0},</span> <span class="pre">'B_R':</span> <span class="pre">{'Litter':</span> <span class="pre">1.0},</span> <span class="pre">'B_OS':</span> <span class="pre">{'CWD':</span> <span class="pre">1.0},</span> <span class="pre">'B_OH':</span> <span class="pre">{'CWD':</span> <span class="pre">1.0}},</span> <span class="pre">(&lt;class</span> <span class="pre">'BFMM.trees.single_tree_allocation.SingleTree'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'BFMM.soil.dead_wood_classes.C_model.SoilCDeadWoodClasses'&gt;):</span> <span class="pre">{'B_L':</span> <span class="pre">{'Litter':</span> <span class="pre">1.0},</span> <span class="pre">'B_R':</span> <span class="pre">{'Litter':</span> <span class="pre">1.0},</span> <span class="pre">'B_OS':</span> <span class="pre">{'DWC_1':</span> <span class="pre">1.0},</span> <span class="pre">'B_OH':</span> <span class="pre">{'DWC_1':</span> <span class="pre">1.0}}}</span></em><a class="headerlink" href="#BFMM.simulation_parameters.tree_soil_interfaces" title="Permalink to this definition">#</a></dt>
-<dd><p>Interface between tree and soil.</p>
-<p>Depending on the tree model and the soil model, tree pool contents
-are distributed to soil pools due to senescence, where fractions
-must sum to one for each listed tree pool. External outputs from tree
-pools not mentioned go completely to the atmosphere.</p>
-</dd></dl>
-
+<p class="rubric">Module Attributes</p>
+<span class="sig-name descname">tree_soil_interfaces</span><dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>{ (&lt;class &#39;BFMM.trees.single_tree_allocation.SingleTree&#39;&gt;, &lt;class &#39;BFMM.soil.simple_soil_model.C_model.SimpleSoilCModel&#39;&gt;): { &#39;B_L&#39;: { &#39;Litter&#39;: 1.0},
+                                                                                                                              &#39;B_OH&#39;: { &#39;CWD&#39;: 1.0},
+                                                                                                                              &#39;B_OS&#39;: { &#39;CWD&#39;: 1.0},
+                                                                                                                              &#39;B_R&#39;: { &#39;Litter&#39;: 1.0}},
+  (&lt;class &#39;BFMM.trees.single_tree_allocation.SingleTree&#39;&gt;, &lt;class &#39;BFMM.soil.dead_wood_classes.C_model.SoilCDeadWoodClasses&#39;&gt;): { &#39;B_L&#39;: { &#39;Litter&#39;: 1.0},
+                                                                                                                                  &#39;B_OH&#39;: { &#39;DWC_1&#39;: 1.0},
+                                                                                                                                  &#39;B_OS&#39;: { &#39;DWC_1&#39;: 1.0},
+                                                                                                                                  &#39;B_R&#39;: { &#39;Litter&#39;: 1.0}}}
+</pre></div>
+</div>
+</dd><p>Interface between tree and soil.</p>
+<span class="sig-name descname">wood_product_interfaces</span><dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>{ (&lt;class &#39;BFMM.trees.single_tree_allocation.SingleTree&#39;&gt;, &lt;class &#39;BFMM.soil.simple_soil_model.C_model.SimpleSoilCModel&#39;&gt;, &lt;class &#39;BFMM.wood_products.simple_wood_product_model.C_model.SimpleWoodProductModel&#39;&gt;): { &#39;default&#39;: { &#39;B_L&#39;: { &#39;Litter&#39;: 1.0},
+                                                                                                                                                                                                                                  &#39;B_OH&#39;: { &#39;CWD&#39;: 1.0},
+                                                                                                                                                                                                                                  &#39;B_OS&#39;: { &#39;CWD&#39;: 1.0},
+                                                                                                                                                                                                                                  &#39;B_R&#39;: { &#39;Litter&#39;: 1.0},
+                                                                                                                                                                                                                                  &#39;B_TH&#39;: { &#39;fibre&#39;: &#39;WP_S&#39;,
+                                                                                                                                                                                                                                            &#39;log&#39;: &#39;WP_L&#39;,
+                                                                                                                                                                                                                                            &#39;residue&#39;: &#39;CWD&#39;,
+                                                                                                                                                                                                                                            &#39;stump&#39;: &#39;CWD&#39;},
+                                                                                                                                                                                                                                  &#39;B_TS&#39;: { &#39;fibre&#39;: &#39;WP_S&#39;,
+                                                                                                                                                                                                                                            &#39;log&#39;: &#39;WP_L&#39;,
+                                                                                                                                                                                                                                            &#39;residue&#39;: &#39;CWD&#39;,
+                                                                                                                                                                                                                                            &#39;stump&#39;: &#39;CWD&#39;},
+                                                                                                                                                                                                                                  &#39;C_L&#39;: { &#39;Litter&#39;: 1.0},
+                                                                                                                                                                                                                                  &#39;C_R&#39;: { &#39;Litter&#39;: 1.0},
+                                                                                                                                                                                                                                  &#39;C_S&#39;: { &#39;other&#39;: { &#39;CWD&#39;: 1.0},
+                                                                                                                                                                                                                                           &#39;trunk&#39;: { &#39;fibre&#39;: &#39;WP_S&#39;,
+                                                                                                                                                                                                                                                      &#39;log&#39;: &#39;WP_L&#39;,
+                                                                                                                                                                                                                                                      &#39;residue&#39;: &#39;CWD&#39;,
+                                                                                                                                                                                                                                                      &#39;stump&#39;: &#39;CWD&#39;}},
+                                                                                                                                                                                                                                  &#39;E&#39;: { &#39;Litter&#39;: 1.0},
+                                                                                                                                                                                                                                  &#39;_trunk_fate_func&#39;: &lt;function solve_volume_fractions&gt;}},
+  (&lt;class &#39;BFMM.trees.single_tree_allocation.SingleTree&#39;&gt;, &lt;class &#39;BFMM.soil.dead_wood_classes.C_model.SoilCDeadWoodClasses&#39;&gt;, &lt;class &#39;BFMM.wood_products.simple_wood_product_model.C_model.SimpleWoodProductModel&#39;&gt;): { &#39;default&#39;: { &#39;B_L&#39;: { &#39;Litter&#39;: 1.0},
+                                                                                                                                                                                                                                      &#39;B_OH&#39;: { &#39;DWC_1&#39;: 1.0},
+                                                                                                                                                                                                                                      &#39;B_OS&#39;: { &#39;DWC_1&#39;: 1.0},
+                                                                                                                                                                                                                                      &#39;B_R&#39;: { &#39;Litter&#39;: 1.0},
+                                                                                                                                                                                                                                      &#39;B_TH&#39;: { &#39;DWC_1&#39;: &#39;DWC_1&#39;,
+                                                                                                                                                                                                                                                &#39;DWC_2&#39;: &#39;DWC_2&#39;,
+                                                                                                                                                                                                                                                &#39;DWC_3&#39;: &#39;DWC_3&#39;,
+                                                                                                                                                                                                                                                &#39;DWC_4&#39;: &#39;DWC_4&#39;,
+                                                                                                                                                                                                                                                &#39;DWC_5&#39;: &#39;DWC_5&#39;,
+                                                                                                                                                                                                                                                &#39;DWC_6&#39;: &#39;DWC_6&#39;,
+                                                                                                                                                                                                                                                &#39;fibre&#39;: &#39;WP_S&#39;,
+                                                                                                                                                                                                                                                &#39;log&#39;: &#39;WP_L&#39;,
+                                                                                                                                                                                                                                                &#39;residue&#39;: &#39;DWC_1&#39;},
+                                                                                                                                                                                                                                      &#39;B_TS&#39;: { &#39;DWC_1&#39;: &#39;DWC_1&#39;,
+                                                                                                                                                                                                                                                &#39;DWC_2&#39;: &#39;DWC_2&#39;,
+                                                                                                                                                                                                                                                &#39;DWC_3&#39;: &#39;DWC_3&#39;,
+                                                                                                                                                                                                                                                &#39;DWC_4&#39;: &#39;DWC_4&#39;,
+                                                                                                                                                                                                                                                &#39;DWC_5&#39;: &#39;DWC_5&#39;,
+                                                                                                                                                                                                                                                &#39;DWC_6&#39;: &#39;DWC_6&#39;,
+                                                                                                                                                                                                                                                &#39;fibre&#39;: &#39;WP_S&#39;,
+                                                                                                                                                                                                                                                &#39;log&#39;: &#39;WP_L&#39;,
+                                                                                                                                                                                                                                                &#39;residue&#39;: &#39;DWC_1&#39;},
+                                                                                                                                                                                                                                      &#39;C_L&#39;: { &#39;Litter&#39;: 1.0},
+                                                                                                                                                                                                                                      &#39;C_R&#39;: { &#39;Litter&#39;: 1.0},
+                                                                                                                                                                                                                                      &#39;C_S&#39;: { &#39;other&#39;: { &#39;DWC_1&#39;: 1.0},
+                                                                                                                                                                                                                                               &#39;trunk&#39;: { &#39;DWC_1&#39;: &#39;DWC_1&#39;,
+                                                                                                                                                                                                                                                          &#39;DWC_2&#39;: &#39;DWC_2&#39;,
+                                                                                                                                                                                                                                                          &#39;DWC_3&#39;: &#39;DWC_3&#39;,
+                                                                                                                                                                                                                                                          &#39;DWC_4&#39;: &#39;DWC_4&#39;,
+                                                                                                                                                                                                                                                          &#39;DWC_5&#39;: &#39;DWC_5&#39;,
+                                                                                                                                                                                                                                                          &#39;DWC_6&#39;: &#39;DWC_6&#39;,
+                                                                                                                                                                                                                                                          &#39;fibre&#39;: &#39;WP_S&#39;,
+                                                                                                                                                                                                                                                          &#39;log&#39;: &#39;WP_L&#39;,
+                                                                                                                                                                                                                                                          &#39;residue&#39;: &#39;DWC_1&#39;}},
+                                                                                                                                                                                                                                      &#39;E&#39;: { &#39;Litter&#39;: 1.0},
+                                                                                                                                                                                                                                      &#39;_trunk_fate_func&#39;: &lt;function trunk_to_dead_wood_classes_default&gt;},
+                                                                                                                                                                                                                         &#39;no_harvesting&#39;: { &#39;B_L&#39;: { &#39;Litter&#39;: 1.0},
+                                                                                                                                                                                                                                            &#39;B_OH&#39;: { &#39;DWC_1&#39;: 1.0},
+                                                                                                                                                                                                                                            &#39;B_OS&#39;: { &#39;DWC_1&#39;: 1.0},
+                                                                                                                                                                                                                                            &#39;B_R&#39;: { &#39;Litter&#39;: 1.0},
+                                                                                                                                                                                                                                            &#39;B_TH&#39;: { &#39;DWC_1&#39;: &#39;DWC_1&#39;,
+                                                                                                                                                                                                                                                      &#39;DWC_2&#39;: &#39;DWC_2&#39;,
+                                                                                                                                                                                                                                                      &#39;DWC_3&#39;: &#39;DWC_3&#39;,
+                                                                                                                                                                                                                                                      &#39;DWC_4&#39;: &#39;DWC_4&#39;,
+                                                                                                                                                                                                                                                      &#39;DWC_5&#39;: &#39;DWC_5&#39;,
+                                                                                                                                                                                                                                                      &#39;DWC_6&#39;: &#39;DWC_6&#39;},
+                                                                                                                                                                                                                                            &#39;B_TS&#39;: { &#39;DWC_1&#39;: &#39;DWC_1&#39;,
+                                                                                                                                                                                                                                                      &#39;DWC_2&#39;: &#39;DWC_2&#39;,
+                                                                                                                                                                                                                                                      &#39;DWC_3&#39;: &#39;DWC_3&#39;,
+                                                                                                                                                                                                                                                      &#39;DWC_4&#39;: &#39;DWC_4&#39;,
+                                                                                                                                                                                                                                                      &#39;DWC_5&#39;: &#39;DWC_5&#39;,
+                                                                                                                                                                                                                                                      &#39;DWC_6&#39;: &#39;DWC_6&#39;},
+                                                                                                                                                                                                                                            &#39;C_L&#39;: { &#39;Litter&#39;: 1.0},
+                                                                                                                                                                                                                                            &#39;C_R&#39;: { &#39;Litter&#39;: 1.0},
+                                                                                                                                                                                                                                            &#39;C_S&#39;: { &#39;other&#39;: { &#39;DWC_1&#39;: 1.0},
+                                                                                                                                                                                                                                                     &#39;trunk&#39;: { &#39;DWC_1&#39;: &#39;DWC_1&#39;,
+                                                                                                                                                                                                                                                                &#39;DWC_2&#39;: &#39;DWC_2&#39;,
+                                                                                                                                                                                                                                                                &#39;DWC_3&#39;: &#39;DWC_3&#39;,
+                                                                                                                                                                                                                                                                &#39;DWC_4&#39;: &#39;DWC_4&#39;,
+                                                                                                                                                                                                                                                                &#39;DWC_5&#39;: &#39;DWC_5&#39;,
+                                                                                                                                                                                                                                                                &#39;DWC_6&#39;: &#39;DWC_6&#39;}},
+                                                                                                                                                                                                                                            &#39;E&#39;: { &#39;Litter&#39;: 1.0},
+                                                                                                                                                                                                                                            &#39;_trunk_fate_func&#39;: &lt;function trunk_to_dead_wood_classes_no_harvesting&gt;}}}
+</pre></div>
+</div>
+</dd><p>Interfaces between trees and soil + wood products.</p>
+<p>This interface is used in case of thinning or cutting. All tree pools
+need to be mentioned and their fractions must sum to 1.</p>
+<span class="sig-name descname">stand_params_library</span><dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>{ &#39;default&#39;: { &#39;SingleTreeClass&#39;: &lt;class &#39;BFMM.trees.single_tree_allocation.SingleTree&#39;&gt;,
+               &#39;ctr&#39;: { &#39;leaf_area&#39;: True,
+                        &#39;phenology&#39;: True,
+                        &#39;water_stress&#39;: True},
+               &#39;dbh_path&#39;: PosixPath(&#39;/mnt/c/Users/hrme0001/GitHub/BFMM/data/forcing/hyde_treedata.txt&#39;),
+               &#39;dbh_quantiles&#39;: &lt;Quantity([0.25 0.5  0.75 1.  ], &#39;dimensionless&#39;)&gt;,
+               &#39;loc&#39;: {&#39;lat&#39;: 61.51, &#39;lon&#39;: 24.0},
+               &#39;soil_model&#39;: &lt;BFMM.soil.simple_soil_model.C_model.SimpleSoilCModel object&gt;,
+               &#39;soil_p&#39;: { &#39;Ksat&#39;: 1e-05,
+                           &#39;MaxPond&#39;: 0.0,
+                           &#39;Wliq&#39;: 0.4,
+                           &#39;depth&#39;: 0.5,
+                           &#39;pF&#39;: { &#39;ThetaR&#39;: 0.03,
+                                   &#39;ThetaS&#39;: 0.5,
+                                   &#39;alpha&#39;: 0.06,
+                                   &#39;n&#39;: 1.35}},
+               &#39;water_p&#39;: { &#39;interception&#39;: { &#39;LAI&#39;: 4.0,
+                                              &#39;alpha&#39;: 1.28,
+                                              &#39;wmax&#39;: 0.2},
+                            &#39;organic_layer&#39;: { &#39;DM&#39;: 0.1,
+                                               &#39;Wcrit&#39;: 4.0,
+                                               &#39;Wliq&#39;: 10.0,
+                                               &#39;Wmax&#39;: 10.0,
+                                               &#39;Wmin&#39;: 0.1,
+                                               &#39;alpha&#39;: 1.28},
+                            &#39;snowpack&#39;: { &#39;Kf&#39;: 5.8e-06,
+                                          &#39;Km&#39;: 2.9e-05,
+                                          &#39;R&#39;: 0.05,
+                                          &#39;Sice&#39;: 0.0,
+                                          &#39;Sliq&#39;: 0.0,
+                                          &#39;Tm&#39;: 0.0,
+                                          &#39;Tmax&#39;: 0.5,
+                                          &#39;Tmin&#39;: -0.5}},
+               &#39;wood_product_interface_name&#39;: &#39;default&#39;,
+               &#39;wood_product_model&#39;: &lt;BFMM.wood_products.simple_wood_product_model.C_model.SimpleWoodProductModel object&gt;,
+               &#39;z&#39;: &lt;Quantity([ 0.  1.  2.  3.  4.  5.  6.  7.  8.  9. 10. 11. 12. 13. 14. 15. 16. 17.
+ 18. 19. 20. 21. 22. 23. 24. 25. 26. 27. 28. 29. 30.], &#39;meter&#39;)&gt;}}
+</pre></div>
+</div>
+</dd><p>Stand parameters.</p>
+<span class="sig-name descname">simulation_params</span><dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="s1">&#39;fpath&#39;</span><span class="p">:</span> <span class="n">PosixPath</span><span class="p">(</span><span class="s1">&#39;/mnt/c/Users/hrme0001/GitHub/BFMM/data/forcing/FIHy_forcing_1999_2019.dat&#39;</span><span class="p">)}</span>
+</pre></div>
+</div>
+</dd><p>Default simulation parameters.</p>
+<p class="rubric">Functions</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="BFMM.simulation_parameters.solve_volume_fractions">
 <span class="sig-name descname"><span class="pre">solve_volume_fractions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">species</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dlog</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfibre</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">llog</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lfibre</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lstump</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/simulation_parameters.html#solve_volume_fractions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.simulation_parameters.solve_volume_fractions" title="Permalink to this definition">#</a></dt>
@@ -348,24 +487,6 @@ pools not mentioned go completely to the atmosphere.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="BFMM.simulation_parameters.trunk_to_dead_wood_classes_no_harvesting">
-<span class="sig-name descname"><span class="pre">trunk_to_dead_wood_classes_no_harvesting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">species</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/simulation_parameters.html#trunk_to_dead_wood_classes_no_harvesting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.simulation_parameters.trunk_to_dead_wood_classes_no_harvesting" title="Permalink to this definition">#</a></dt>
-<dd><p>Return fractions of the trunk’s C fate.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</p>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>d</strong> (<em>float</em>) – </p></li>
-<li><p><strong>h</strong> (<em>float</em>) – </p></li>
-<li><p><strong>species</strong> (<em>str</em>) – </p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="BFMM.simulation_parameters.trunk_to_dead_wood_classes_default">
 <span class="sig-name descname"><span class="pre">trunk_to_dead_wood_classes_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">species</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/simulation_parameters.html#trunk_to_dead_wood_classes_default"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.simulation_parameters.trunk_to_dead_wood_classes_default" title="Permalink to this definition">#</a></dt>
 <dd><p>Return fractions of the trunk’s C fate.</p>
@@ -383,24 +504,22 @@ pools not mentioned go completely to the atmosphere.</p>
 </dl>
 </dd></dl>
 
-<dl class="py data">
-<dt class="sig sig-object py" id="BFMM.simulation_parameters.wood_product_interfaces">
-<span class="sig-name descname"><span class="pre">wood_product_interfaces</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="BFMM.trees.single_tree_allocation.SingleTree.html#BFMM.trees.single_tree_allocation.SingleTree" title="BFMM.trees.single_tree_allocation.SingleTree"><span class="pre">SingleTree</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="BFMM.soil.soil_c_model_abc.SoilCModelABC.html#BFMM.soil.soil_c_model_abc.SoilCModelABC" title="BFMM.soil.soil_c_model_abc.SoilCModelABC"><span class="pre">SoilCModelABC</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="BFMM.wood_products.wood_product_model_abc.WoodProductModelABC.html#BFMM.wood_products.wood_product_model_abc.WoodProductModelABC" title="BFMM.wood_products.wood_product_model_abc.WoodProductModelABC"><span class="pre">WoodProductModelABC</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{(&lt;class</span> <span class="pre">'BFMM.trees.single_tree_allocation.SingleTree'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'BFMM.soil.simple_soil_model.C_model.SimpleSoilCModel'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'BFMM.wood_products.simple_wood_product_model.C_model.SimpleWoodProductModel'&gt;):</span> <span class="pre">{'default':</span> <span class="pre">{'B_L':</span> <span class="pre">{'Litter':</span> <span class="pre">1.0},</span> <span class="pre">'C_L':</span> <span class="pre">{'Litter':</span> <span class="pre">1.0},</span> <span class="pre">'B_R':</span> <span class="pre">{'Litter':</span> <span class="pre">1.0},</span> <span class="pre">'C_R':</span> <span class="pre">{'Litter':</span> <span class="pre">1.0},</span> <span class="pre">'C_S':</span> <span class="pre">{'other':</span> <span class="pre">{'CWD':</span> <span class="pre">1.0},</span> <span class="pre">'trunk':</span> <span class="pre">{'log':</span> <span class="pre">'WP_L',</span> <span class="pre">'fibre':</span> <span class="pre">'WP_S',</span> <span class="pre">'residue':</span> <span class="pre">'CWD',</span> <span class="pre">'stump':</span> <span class="pre">'CWD'}},</span> <span class="pre">'B_OS':</span> <span class="pre">{'CWD':</span> <span class="pre">1.0},</span> <span class="pre">'B_OH':</span> <span class="pre">{'CWD':</span> <span class="pre">1.0},</span> <span class="pre">'B_TS':</span> <span class="pre">{'log':</span> <span class="pre">'WP_L',</span> <span class="pre">'fibre':</span> <span class="pre">'WP_S',</span> <span class="pre">'residue':</span> <span class="pre">'CWD',</span> <span class="pre">'stump':</span> <span class="pre">'CWD'},</span> <span class="pre">'B_TH':</span> <span class="pre">{'log':</span> <span class="pre">'WP_L',</span> <span class="pre">'fibre':</span> <span class="pre">'WP_S',</span> <span class="pre">'residue':</span> <span class="pre">'CWD',</span> <span class="pre">'stump':</span> <span class="pre">'CWD'},</span> <span class="pre">'E':</span> <span class="pre">{'Litter':</span> <span class="pre">1.0},</span> <span class="pre">'_trunk_fate_func':</span> <span class="pre">&lt;function</span> <span class="pre">solve_volume_fractions&gt;}},</span> <span class="pre">(&lt;class</span> <span class="pre">'BFMM.trees.single_tree_allocation.SingleTree'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'BFMM.soil.dead_wood_classes.C_model.SoilCDeadWoodClasses'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'BFMM.wood_products.simple_wood_product_model.C_model.SimpleWoodProductModel'&gt;):</span> <span class="pre">{'default':</span> <span class="pre">{'B_L':</span> <span class="pre">{'Litter':</span> <span class="pre">1.0},</span> <span class="pre">'C_L':</span> <span class="pre">{'Litter':</span> <span class="pre">1.0},</span> <span class="pre">'B_R':</span> <span class="pre">{'Litter':</span> <span class="pre">1.0},</span> <span class="pre">'C_R':</span> <span class="pre">{'Litter':</span> <span class="pre">1.0},</span> <span class="pre">'C_S':</span> <span class="pre">{'other':</span> <span class="pre">{'DWC_1':</span> <span class="pre">1.0},</span> <span class="pre">'trunk':</span> <span class="pre">{'DWC_1':</span> <span class="pre">'DWC_1',</span> <span class="pre">'DWC_2':</span> <span class="pre">'DWC_2',</span> <span class="pre">'DWC_3':</span> <span class="pre">'DWC_3',</span> <span class="pre">'DWC_4':</span> <span class="pre">'DWC_4',</span> <span class="pre">'DWC_5':</span> <span class="pre">'DWC_5',</span> <span class="pre">'DWC_6':</span> <span class="pre">'DWC_6',</span> <span class="pre">'residue':</span> <span class="pre">'DWC_1',</span> <span class="pre">'fibre':</span> <span class="pre">'WP_S',</span> <span class="pre">'log':</span> <span class="pre">'WP_L'}},</span> <span class="pre">'B_OS':</span> <span class="pre">{'DWC_1':</span> <span class="pre">1.0},</span> <span class="pre">'B_OH':</span> <span class="pre">{'DWC_1':</span> <span class="pre">1.0},</span> <span class="pre">'B_TS':</span> <span class="pre">{'DWC_1':</span> <span class="pre">'DWC_1',</span> <span class="pre">'DWC_2':</span> <span class="pre">'DWC_2',</span> <span class="pre">'DWC_3':</span> <span class="pre">'DWC_3',</span> <span class="pre">'DWC_4':</span> <span class="pre">'DWC_4',</span> <span class="pre">'DWC_5':</span> <span class="pre">'DWC_5',</span> <span class="pre">'DWC_6':</span> <span class="pre">'DWC_6',</span> <span class="pre">'residue':</span> <span class="pre">'DWC_1',</span> <span class="pre">'fibre':</span> <span class="pre">'WP_S',</span> <span class="pre">'log':</span> <span class="pre">'WP_L'},</span> <span class="pre">'B_TH':</span> <span class="pre">{'DWC_1':</span> <span class="pre">'DWC_1',</span> <span class="pre">'DWC_2':</span> <span class="pre">'DWC_2',</span> <span class="pre">'DWC_3':</span> <span class="pre">'DWC_3',</span> <span class="pre">'DWC_4':</span> <span class="pre">'DWC_4',</span> <span class="pre">'DWC_5':</span> <span class="pre">'DWC_5',</span> <span class="pre">'DWC_6':</span> <span class="pre">'DWC_6',</span> <span class="pre">'residue':</span> <span class="pre">'DWC_1',</span> <span class="pre">'fibre':</span> <span class="pre">'WP_S',</span> <span class="pre">'log':</span> <span class="pre">'WP_L'},</span> <span class="pre">'E':</span> <span class="pre">{'Litter':</span> <span class="pre">1.0},</span> <span class="pre">'_trunk_fate_func':</span> <span class="pre">&lt;function</span> <span class="pre">trunk_to_dead_wood_classes_default&gt;},</span> <span class="pre">'no_harvesting':</span> <span class="pre">{'B_L':</span> <span class="pre">{'Litter':</span> <span class="pre">1.0},</span> <span class="pre">'C_L':</span> <span class="pre">{'Litter':</span> <span class="pre">1.0},</span> <span class="pre">'B_R':</span> <span class="pre">{'Litter':</span> <span class="pre">1.0},</span> <span class="pre">'C_R':</span> <span class="pre">{'Litter':</span> <span class="pre">1.0},</span> <span class="pre">'C_S':</span> <span class="pre">{'other':</span> <span class="pre">{'DWC_1':</span> <span class="pre">1.0},</span> <span class="pre">'trunk':</span> <span class="pre">{'DWC_1':</span> <span class="pre">'DWC_1',</span> <span class="pre">'DWC_2':</span> <span class="pre">'DWC_2',</span> <span class="pre">'DWC_3':</span> <span class="pre">'DWC_3',</span> <span class="pre">'DWC_4':</span> <span class="pre">'DWC_4',</span> <span class="pre">'DWC_5':</span> <span class="pre">'DWC_5',</span> <span class="pre">'DWC_6':</span> <span class="pre">'DWC_6'}},</span> <span class="pre">'B_OS':</span> <span class="pre">{'DWC_1':</span> <span class="pre">1.0},</span> <span class="pre">'B_OH':</span> <span class="pre">{'DWC_1':</span> <span class="pre">1.0},</span> <span class="pre">'B_TS':</span> <span class="pre">{'DWC_1':</span> <span class="pre">'DWC_1',</span> <span class="pre">'DWC_2':</span> <span class="pre">'DWC_2',</span> <span class="pre">'DWC_3':</span> <span class="pre">'DWC_3',</span> <span class="pre">'DWC_4':</span> <span class="pre">'DWC_4',</span> <span class="pre">'DWC_5':</span> <span class="pre">'DWC_5',</span> <span class="pre">'DWC_6':</span> <span class="pre">'DWC_6'},</span> <span class="pre">'B_TH':</span> <span class="pre">{'DWC_1':</span> <span class="pre">'DWC_1',</span> <span class="pre">'DWC_2':</span> <span class="pre">'DWC_2',</span> <span class="pre">'DWC_3':</span> <span class="pre">'DWC_3',</span> <span class="pre">'DWC_4':</span> <span class="pre">'DWC_4',</span> <span class="pre">'DWC_5':</span> <span class="pre">'DWC_5',</span> <span class="pre">'DWC_6':</span> <span class="pre">'DWC_6'},</span> <span class="pre">'E':</span> <span class="pre">{'Litter':</span> <span class="pre">1.0},</span> <span class="pre">'_trunk_fate_func':</span> <span class="pre">&lt;function</span> <span class="pre">trunk_to_dead_wood_classes_no_harvesting&gt;}}}</span></em><a class="headerlink" href="#BFMM.simulation_parameters.wood_product_interfaces" title="Permalink to this definition">#</a></dt>
-<dd><p>Interfaces between trees and soil + wood products.</p>
-<p>This interface is used in case of thinning or cutting. All tree pools
-need to be mentioned and their fractions must sum to 1.</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="BFMM.simulation_parameters.stand_params_library">
-<span class="sig-name descname"><span class="pre">stand_params_library</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'default':</span> <span class="pre">{'SingleTreeClass':</span> <span class="pre">&lt;class</span> <span class="pre">'BFMM.trees.single_tree_allocation.SingleTree'&gt;,</span> <span class="pre">'ctr':</span> <span class="pre">{'leaf_area':</span> <span class="pre">True,</span> <span class="pre">'phenology':</span> <span class="pre">True,</span> <span class="pre">'water_stress':</span> <span class="pre">True},</span> <span class="pre">'dbh_path':</span> <span class="pre">PosixPath('/mnt/c/Users/hrme0001/GitHub/BFMM/data/forcing/hyde_treedata.txt'),</span> <span class="pre">'dbh_quantiles':</span> <span class="pre">&lt;Quantity([0.25</span> <span class="pre">0.5</span>&#160; <span class="pre">0.75</span> <span class="pre">1.</span>&#160; <span class="pre">],</span> <span class="pre">'dimensionless')&gt;,</span> <span class="pre">'loc':</span> <span class="pre">{'lat':</span> <span class="pre">61.51,</span> <span class="pre">'lon':</span> <span class="pre">24.0},</span> <span class="pre">'soil_model':</span> <span class="pre">&lt;BFMM.soil.simple_soil_model.C_model.SimpleSoilCModel</span> <span class="pre">object&gt;,</span> <span class="pre">'soil_p':</span> <span class="pre">{'Ksat':</span> <span class="pre">1e-05,</span> <span class="pre">'MaxPond':</span> <span class="pre">0.0,</span> <span class="pre">'Wliq':</span> <span class="pre">0.4,</span> <span class="pre">'depth':</span> <span class="pre">0.5,</span> <span class="pre">'pF':</span> <span class="pre">{'ThetaR':</span> <span class="pre">0.03,</span> <span class="pre">'ThetaS':</span> <span class="pre">0.5,</span> <span class="pre">'alpha':</span> <span class="pre">0.06,</span> <span class="pre">'n':</span> <span class="pre">1.35}},</span> <span class="pre">'water_p':</span> <span class="pre">{'interception':</span> <span class="pre">{'LAI':</span> <span class="pre">4.0,</span> <span class="pre">'alpha':</span> <span class="pre">1.28,</span> <span class="pre">'wmax':</span> <span class="pre">0.2},</span> <span class="pre">'organic_layer':</span> <span class="pre">{'DM':</span> <span class="pre">0.1,</span> <span class="pre">'Wcrit':</span> <span class="pre">4.0,</span> <span class="pre">'Wliq':</span> <span class="pre">10.0,</span> <span class="pre">'Wmax':</span> <span class="pre">10.0,</span> <span class="pre">'Wmin':</span> <span class="pre">0.1,</span> <span class="pre">'alpha':</span> <span class="pre">1.28},</span> <span class="pre">'snowpack':</span> <span class="pre">{'Kf':</span> <span class="pre">5.8e-06,</span> <span class="pre">'Km':</span> <span class="pre">2.9e-05,</span> <span class="pre">'R':</span> <span class="pre">0.05,</span> <span class="pre">'Sice':</span> <span class="pre">0.0,</span> <span class="pre">'Sliq':</span> <span class="pre">0.0,</span> <span class="pre">'Tm':</span> <span class="pre">0.0,</span> <span class="pre">'Tmax':</span> <span class="pre">0.5,</span> <span class="pre">'Tmin':</span> <span class="pre">-0.5}},</span> <span class="pre">'wood_product_interface_name':</span> <span class="pre">'default',</span> <span class="pre">'wood_product_model':</span> <span class="pre">&lt;BFMM.wood_products.simple_wood_product_model.C_model.SimpleWoodProductModel</span> <span class="pre">object&gt;,</span> <span class="pre">'z':</span> <span class="pre">&lt;Quantity([</span> <span class="pre">0.</span>&#160; <span class="pre">1.</span>&#160; <span class="pre">2.</span>&#160; <span class="pre">3.</span>&#160; <span class="pre">4.</span>&#160; <span class="pre">5.</span>&#160; <span class="pre">6.</span>&#160; <span class="pre">7.</span>&#160; <span class="pre">8.</span>&#160; <span class="pre">9.</span> <span class="pre">10.</span> <span class="pre">11.</span> <span class="pre">12.</span> <span class="pre">13.</span> <span class="pre">14.</span> <span class="pre">15.</span> <span class="pre">16.</span> <span class="pre">17.</span>&#160; <span class="pre">18.</span> <span class="pre">19.</span> <span class="pre">20.</span> <span class="pre">21.</span> <span class="pre">22.</span> <span class="pre">23.</span> <span class="pre">24.</span> <span class="pre">25.</span> <span class="pre">26.</span> <span class="pre">27.</span> <span class="pre">28.</span> <span class="pre">29.</span> <span class="pre">30.],</span> <span class="pre">'meter')&gt;}}</span></em><a class="headerlink" href="#BFMM.simulation_parameters.stand_params_library" title="Permalink to this definition">#</a></dt>
-<dd><p>Stand parameters.</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="BFMM.simulation_parameters.simulation_params">
-<span class="sig-name descname"><span class="pre">simulation_params</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'fpath':</span> <span class="pre">PosixPath('/mnt/c/Users/hrme0001/GitHub/BFMM/data/forcing/FIHy_forcing_1997_2019.dat')}</span></em><a class="headerlink" href="#BFMM.simulation_parameters.simulation_params" title="Permalink to this definition">#</a></dt>
-<dd><p>Default simulation parameters.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="BFMM.simulation_parameters.trunk_to_dead_wood_classes_no_harvesting">
+<span class="sig-name descname"><span class="pre">trunk_to_dead_wood_classes_no_harvesting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">species</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/BFMM/simulation_parameters.html#trunk_to_dead_wood_classes_no_harvesting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#BFMM.simulation_parameters.trunk_to_dead_wood_classes_no_harvesting" title="Permalink to this definition">#</a></dt>
+<dd><p>Return fractions of the trunk’s C fate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>d</strong> (<em>float</em>) – </p></li>
+<li><p><strong>h</strong> (<em>float</em>) – </p></li>
+<li><p><strong>species</strong> (<em>str</em>) – </p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -410,13 +529,31 @@ need to be mentioned and their fractions must sum to 1.</p>
       <footer>
         
         <div class="related-pages">
-          
-          
+          <a class="next-page" href="notebooks/Untitled.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Test notebook</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="BFMM.simulation.utils.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">utils</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2023, Holger Metzler, Samuli Launiainen, Viulia Vico
+                Copyright &#169; 2023, Holger Metzler, Samuli Launiainen, Giulia Vico
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
@@ -442,14 +579,10 @@ need to be mentioned and their fractions must sum to 1.</p>
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">BFMM.simulation_parameters module</a><ul>
-<li><a class="reference internal" href="#BFMM.simulation_parameters.tree_soil_interfaces"><code class="docutils literal notranslate"><span class="pre">tree_soil_interfaces</span></code></a></li>
+<li><a class="reference internal" href="#">simulation_parameters</a><ul>
 <li><a class="reference internal" href="#BFMM.simulation_parameters.solve_volume_fractions"><code class="docutils literal notranslate"><span class="pre">solve_volume_fractions()</span></code></a></li>
-<li><a class="reference internal" href="#BFMM.simulation_parameters.trunk_to_dead_wood_classes_no_harvesting"><code class="docutils literal notranslate"><span class="pre">trunk_to_dead_wood_classes_no_harvesting()</span></code></a></li>
 <li><a class="reference internal" href="#BFMM.simulation_parameters.trunk_to_dead_wood_classes_default"><code class="docutils literal notranslate"><span class="pre">trunk_to_dead_wood_classes_default()</span></code></a></li>
-<li><a class="reference internal" href="#BFMM.simulation_parameters.wood_product_interfaces"><code class="docutils literal notranslate"><span class="pre">wood_product_interfaces</span></code></a></li>
-<li><a class="reference internal" href="#BFMM.simulation_parameters.stand_params_library"><code class="docutils literal notranslate"><span class="pre">stand_params_library</span></code></a></li>
-<li><a class="reference internal" href="#BFMM.simulation_parameters.simulation_params"><code class="docutils literal notranslate"><span class="pre">simulation_params</span></code></a></li>
+<li><a class="reference internal" href="#BFMM.simulation_parameters.trunk_to_dead_wood_classes_no_harvesting"><code class="docutils literal notranslate"><span class="pre">trunk_to_dead_wood_classes_no_harvesting()</span></code></a></li>
 </ul>
 </li>
 </ul>

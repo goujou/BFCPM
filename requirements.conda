@@ -7,6 +7,7 @@ pint
 sympy
 ffmpeg
 openh264
+dill
 
 # doc
 graphviz

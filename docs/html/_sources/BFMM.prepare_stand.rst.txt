@@ -1,7 +1,36 @@
-BFMM.prepare\_stand module
-==========================
+﻿prepare\_stand
+==============
+
+MMMM
+
+.. currentmodule:: BFMM.prepare_stand
+
 
 .. automodule:: BFMM.prepare_stand
-   :members:
-   :undoc-members:
-   :show-inheritance:
+
+    
+    
+    
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   
+   .. autofunction:: load_data_from_dbh_file
+   .. autofunction:: load_tree_soil_interface
+   .. autofunction:: load_wood_product_interface
+   
+   
+
+   
+   
+   

@@ -5,6 +5,7 @@ MMMM
 
 .. currentmodule:: BFMM.soil.dead_wood_classes
 
+
 .. automodule:: BFMM.soil.dead_wood_classes
 
     

@@ -21,30 +21,28 @@
 
 # %load_ext autoreload
 
-# +
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.linalg import inv
-import xarray as xr
 import argparse
 
+import matplotlib.pyplot as plt
+# +
+import numpy as np
+import xarray as xr
+from BFCPM import DATA_PATH, PRE_SPINUPS_PATH, Q_, utils
+from BFCPM.management.library import species_setting_from_sim_profile
+from BFCPM.simulation import utils as sim_utils
+from BFCPM.simulation.library import prepare_forcing
+from BFCPM.simulation.recorded_simulation import RecordedSimulation
+from BFCPM.simulation_parameters import stand_params_library
+from BFCPM.soil.simple_soil_model.C_model import SimpleSoilCModel
+from BFCPM.stand import Stand
+from BFCPM.trees.single_tree_params import species_params
+from BFCPM.wood_products.simple_wood_product_model.C_model import \
+    SimpleWoodProductModel
 from bgc_md2.notebook_helpers import write_to_logfile
 from CompartmentalSystems.discrete_model_run import DiscreteModelRun as DMR
-from LAPM.discrete_linear_autonomous_pool_model import DiscreteLinearAutonomousPoolModel as DLAPM
-
-from BFMM import utils
-from BFMM import DATA_PATH, Q_, PRE_SPINUPS_PATH
-from BFMM.simulation_parameters import stand_params_library
-from BFMM.simulation import utils as sim_utils
-from BFMM.management.library import (
-    species_setting_from_sim_profile,
-)
-from BFMM.soil.simple_soil_model.C_model import SimpleSoilCModel
-from BFMM.wood_products.simple_wood_product_model.C_model import SimpleWoodProductModel
-from BFMM.stand import Stand
-from BFMM.simulation.library import prepare_forcing
-from BFMM.simulation.recorded_simulation import RecordedSimulation
-from BFMM.trees.single_tree_params import species_params
+from LAPM.discrete_linear_autonomous_pool_model import \
+    DiscreteLinearAutonomousPoolModel as DLAPM
+from scipy.linalg import inv
 
 # %autoreload 2
 
@@ -61,7 +59,7 @@ try:
 except SystemExit:
     print("Default pre-spinup settings")
     pre_spinup_date = "2023-07-25"
-    
+
 print(pre_spinup_date)
 
 # +
@@ -70,10 +68,10 @@ pre_spinups_path.mkdir(exist_ok=True, parents=True)
 
 # filename for the current spinup dmr
 species = "pine"
-#species = "spruce"
-#species = "birch"
-#light_model = "Zhao" # Zhao or Spitters
-light_model = "Spitters" # Zhao or Spitters
+# species = "spruce"
+# species = "birch"
+light_model = "Zhao"  # Zhao or Spitters
+# light_model = "Spitters" # Zhao or Spitters
 pre_spinup_name = f"basic_{light_model}_{species}"
 
 # output files
@@ -100,19 +98,29 @@ forcing = prepare_forcing(nr_copies=8, year_offset=-160)
 # +
 management_strategy = [
     ("StandAge3", "Plant"),
-    ("PCT", "T0.75"), # pre-commercial thinning
-    ("SBA25-80-160", "ThinStandToSBA18"), # SBA dependent thinning, not between 70 and 80, 150 and 160 yrs of sim
-#    ("SBAvsDTHBrownLower80-160", "ThinningStandGreenLower"), # SBA and DTH dependent thinning
-    ("StandAge79", "CutWait3AndReplant"), # clear cut with replanting after 80 yrs (Triggered after 79 years, cut next year)
+    ("PCT", "T0.75"),  # pre-commercial thinning
+    (
+        "SBA25-80-160",
+        "ThinStandToSBA18",
+    ),  # SBA dependent thinning, not between 70 and 80, 150 and 160 yrs of sim
+    #    ("SBAvsDTHBrownLower80-160", "ThinningStandGreenLower"), # SBA and DTH dependent thinning
+    (
+        "StandAge79",
+        "CutWait3AndReplant",
+    ),  # clear cut with replanting after 80 yrs (Triggered after 79 years, cut next year)
     ("DBH35-80-160", "CutWait3AndReplant"),
 ]
 
-sim_profile = [(species, 1.0, 0.20,  management_strategy, "waiting")]
+sim_profile = [(species, 1.0, 0.20, management_strategy, "waiting")]
 sim_name = pre_spinup_name
 
-emergency_action_str, emergency_direction, emergency_stand_action_str = "Die", "below", ""
-#emergency_action_str, emergency_direction = "Thin", "below"
-#emergency_action_str, emergency_direction = "CutWait3AndReplant", "above"
+emergency_action_str, emergency_direction, emergency_stand_action_str = (
+    "Die",
+    "below",
+    "",
+)
+# emergency_action_str, emergency_direction = "Thin", "below"
+# emergency_action_str, emergency_direction = "CutWait3AndReplant", "above"
 emergency_q = 0.75
 
 species_setting = species_setting_from_sim_profile(sim_profile)
@@ -130,7 +138,9 @@ stand_params["soil_model"] = empty_soil_model
 stand_params["wood_product_model"] = empty_wood_product_model
 
 stand = Stand.create_empty(stand_params)
-stand.add_trees_from_setting(species_setting, custom_species_params=custom_species_params)
+stand.add_trees_from_setting(
+    species_setting, custom_species_params=custom_species_params
+)
 print(stand)
 
 # +
@@ -139,7 +149,7 @@ final_felling = True
 if final_felling:
     total_length = 160
     stand.add_final_felling(Q_(total_length, "yr"))
-    
+
 print(stand)
 # -
 
@@ -153,11 +163,11 @@ recorded_simulation = RecordedSimulation.from_simulation_run(
     forcing,
     custom_species_params,
     stand,
-#    final_felling,
+    #    final_felling,
     emergency_action_str,
     emergency_direction,
-    emergency_q, # fraction to keep
-    emergency_stand_action_str
+    emergency_q,  # fraction to keep
+    emergency_stand_action_str,
 )
 
 # ### Save recorded simulation
@@ -176,7 +186,7 @@ ds = xr.load_dataset(nc_path)
 # ## Show spinup
 
 # +
-fig, axes = plt.subplots(figsize=(12, 4*2), nrows=2)
+fig, axes = plt.subplots(figsize=(12, 4 * 2), nrows=2)
 axes = iter(axes)
 
 ax = next(axes)
@@ -189,7 +199,7 @@ fig.tight_layout()
 
 
 # +
-fig, axes = plt.subplots(figsize=(12, 4*3), nrows=3)
+fig, axes = plt.subplots(figsize=(12, 4 * 3), nrows=3)
 axes = iter(axes)
 
 ax = next(axes)
@@ -214,21 +224,16 @@ fig.tight_layout()
 # +
 # create discrete model run from stocks and fluxes
 # shorten the data time step artificially to be able to create DMR
-#nr_all_pools = stand.nr_trees * stand.nr_tree_pools + stand.nr_soil_pools
+# nr_all_pools = stand.nr_trees * stand.nr_tree_pools + stand.nr_soil_pools
 dmr = utils.create_dmr_from_stocks_and_fluxes(ds)
 
 dmr.tree_pool_nrs = utils.get_global_pool_nrs_from_entity_nrs(
-    ds.tree_entity_nrs.data,
-    ds
+    ds.tree_entity_nrs.data, ds
 )
 
-dmr.soil_pool_nrs = utils.get_global_pool_nrs_from_entity_nrs(
-    [ds.soil_entity_nr],
-    ds
-)
+dmr.soil_pool_nrs = utils.get_global_pool_nrs_from_entity_nrs([ds.soil_entity_nr], ds)
 dmr.wood_product_pool_nrs = utils.get_global_pool_nrs_from_entity_nrs(
-    [ds.wood_product_entity_nr],
-    ds
+    [ds.wood_product_entity_nr], ds
 )
 
 dmr.save_to_file(dmr_path)
@@ -239,14 +244,14 @@ dmr_path
 
 xs = dmr.solve()
 mean_B = dmr.Bs[-nr_timesteps:].mean(axis=0)
-mean_U = dmr.net_Us[-nr_timesteps:].mean(axis=0) # last nr_timesteps elements
+mean_U = dmr.net_Us[-nr_timesteps:].mean(axis=0)  # last nr_timesteps elements
 mean_x = xs[-nr_timesteps:].mean(axis=0)
 
 # -
 
 
 Id = np.identity(dmr.nr_pools)
-xss = inv(Id-mean_B) @ mean_U
+xss = inv(Id - mean_B) @ mean_U
 
 # +
 # scale mean_U to better meet mean_x
@@ -257,21 +262,18 @@ dmr_eq = DLAPM(mean_U, mean_B, check_col_sums=False)
 
 # add pool number descriptions to dmr_eq
 dmr_eq.tree_pool_nrs = utils.get_global_pool_nrs_from_entity_nrs(
-    ds.tree_entity_nrs.data,
-    ds
+    ds.tree_entity_nrs.data, ds
 )
 
 dmr_eq.soil_pool_nrs = utils.get_global_pool_nrs_from_entity_nrs(
-    [ds.soil_entity_nr],
-    ds
+    [ds.soil_entity_nr], ds
 )
 dmr_eq.wood_product_pool_nrs = utils.get_global_pool_nrs_from_entity_nrs(
-    [ds.wood_product_entity_nr],
-    ds
+    [ds.wood_product_entity_nr], ds
 )
 
-#mean_GPP = ds.GPP_total[:-nr_timesteps:].mean(dim="time")
-#dmr_eq.GPP = mean_GPP
+# mean_GPP = ds.GPP_total[:-nr_timesteps:].mean(dim="time")
+# dmr_eq.GPP = mean_GPP
 
 dmr_eq.save_to_file(dmr_eq_path)
 dmr_eq_path
@@ -287,20 +289,28 @@ dmr_eq_path
 dmr_eq = DLAPM.load_from_file(dmr_eq_path)
 
 # initialize soil and wood product models with spinup stocks
-soil_model = SimpleSoilCModel(initial_stocks=Q_(dmr_eq.xss[dmr_eq.soil_pool_nrs], "gC/m^2"))
-wood_product_model = SimpleWoodProductModel(initial_stocks=Q_(dmr_eq.xss[dmr_eq.wood_product_pool_nrs], "gC/m^2"))
+soil_model = SimpleSoilCModel(
+    initial_stocks=Q_(dmr_eq.xss[dmr_eq.soil_pool_nrs], "gC/m^2")
+)
+wood_product_model = SimpleWoodProductModel(
+    initial_stocks=Q_(dmr_eq.xss[dmr_eq.wood_product_pool_nrs], "gC/m^2")
+)
 stand_params["soil_model"] = soil_model
 stand_params["wood_product_model"] = wood_product_model
 
 # output files
-dmr_eq_2nd_round_path = pre_spinups_path.joinpath(pre_spinup_name + "_2nd_round" + ".dmr_eq")
+dmr_eq_2nd_round_path = pre_spinups_path.joinpath(
+    pre_spinup_name + "_2nd_round" + ".dmr_eq"
+)
 dmr_2nd_round_path = pre_spinups_path.joinpath(pre_spinup_name + "_2nd_round" + ".dmr")
 nc_path = pre_spinups_path.joinpath(pre_spinup_name + "_2nd_round" + ".nc")
 dmp_path = pre_spinups_path.joinpath(pre_spinup_name + "_2nd_round" + ".dmp")
 logfile_path = pre_spinups_path.joinpath(pre_spinup_name + "_2nd_round.log")
 
 stand = Stand.create_empty(stand_params)
-stand.add_trees_from_setting(species_setting, custom_species_params=custom_species_params)
+stand.add_trees_from_setting(
+    species_setting, custom_species_params=custom_species_params
+)
 
 
 # +
@@ -309,7 +319,7 @@ final_felling = True
 if final_felling:
     total_length = 160
     stand.add_final_felling(Q_(total_length, "yr"))
-    
+
 print(stand)
 # -
 
@@ -323,11 +333,11 @@ recorded_simulation = RecordedSimulation.from_simulation_run(
     forcing,
     custom_species_params,
     stand,
-#    final_felling,
+    #    final_felling,
     emergency_action_str,
     emergency_direction,
-    emergency_q, # fraction to keep
-    emergency_stand_action_str
+    emergency_q,  # fraction to keep
+    emergency_stand_action_str,
 )
 
 # ### Save recorded simulation
@@ -339,12 +349,12 @@ ds = recorded_simulation.ds
 ds
 
 ds.to_netcdf(str(nc_path))
-nc_path    
+nc_path
 
 # ## Show spinup
 
 # +
-fig, axes = plt.subplots(figsize=(12, 4*2), nrows=2)
+fig, axes = plt.subplots(figsize=(12, 4 * 2), nrows=2)
 axes = iter(axes)
 
 ax = next(axes)
@@ -357,7 +367,7 @@ fig.tight_layout()
 
 
 # +
-fig, axes = plt.subplots(figsize=(12, 4*3), nrows=3)
+fig, axes = plt.subplots(figsize=(12, 4 * 3), nrows=3)
 axes = iter(axes)
 
 ax = next(axes)
@@ -383,21 +393,16 @@ fig.tight_layout()
 # +
 # create discrete model run from stocks and fluxes
 # shorten the data time step artificially to be able to create DMR
-#nr_all_pools = stand.nr_trees * stand.nr_tree_pools + stand.nr_soil_pools
+# nr_all_pools = stand.nr_trees * stand.nr_tree_pools + stand.nr_soil_pools
 dmr = utils.create_dmr_from_stocks_and_fluxes(ds)
 
 dmr.tree_pool_nrs = utils.get_global_pool_nrs_from_entity_nrs(
-    ds.tree_entity_nrs.data,
-    ds
+    ds.tree_entity_nrs.data, ds
 )
 
-dmr.soil_pool_nrs = utils.get_global_pool_nrs_from_entity_nrs(
-    [ds.soil_entity_nr],
-    ds
-)
+dmr.soil_pool_nrs = utils.get_global_pool_nrs_from_entity_nrs([ds.soil_entity_nr], ds)
 dmr.wood_product_pool_nrs = utils.get_global_pool_nrs_from_entity_nrs(
-    [ds.wood_product_entity_nr],
-    ds
+    [ds.wood_product_entity_nr], ds
 )
 
 dmr.save_to_file(dmr_2nd_round_path)
@@ -407,33 +412,27 @@ dmr.save_to_file(dmr_2nd_round_path)
 
 xs = dmr.solve()
 mean_B = dmr.Bs[-nr_timesteps:].mean(axis=0)
-mean_U = dmr.net_Us[-nr_timesteps:].mean(axis=0) # last nr_timesteps elements
+mean_U = dmr.net_Us[-nr_timesteps:].mean(axis=0)  # last nr_timesteps elements
 
 # scale mean_U to better meet mean_x
 mean_x = xs[-nr_timesteps:].mean(axis=0)
 Id = np.identity(dmr.nr_pools)
-xss = inv(Id-mean_B) @ mean_U
+xss = inv(Id - mean_B) @ mean_U
 mean_U = mean_U * mean_x / xss
 
 dmr_eq = DLAPM(mean_U, mean_B, check_col_sums=False)
 
 dmr_eq.tree_pool_nrs = utils.get_global_pool_nrs_from_entity_nrs(
-    ds.tree_entity_nrs.data,
-    ds
+    ds.tree_entity_nrs.data, ds
 )
 
 dmr_eq.soil_pool_nrs = utils.get_global_pool_nrs_from_entity_nrs(
-    [ds.soil_entity_nr],
-    ds
+    [ds.soil_entity_nr], ds
 )
 dmr_eq.wood_product_pool_nrs = utils.get_global_pool_nrs_from_entity_nrs(
-    [ds.wood_product_entity_nr],
-    ds
+    [ds.wood_product_entity_nr], ds
 )
 
 dmr_eq.save_to_file(dmr_eq_2nd_round_path)
 dmr_eq_2nd_round_path
 # -
-
-
-

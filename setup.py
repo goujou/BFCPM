@@ -1,9 +1,10 @@
-from setuptools import setup, find_packages
 from pathlib import Path
 
+from setuptools import find_packages, setup
+
 setup(
-    name='BFMM',
-    version='1.0.0',
+    name="BFCPM",
+    version="1.0.0",
     packages=find_packages("src"),
-    package_dir={'': 'src'}
+    package_dir={"": "src"},
 )

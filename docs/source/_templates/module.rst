@@ -4,6 +4,7 @@ MMMM
 
 .. currentmodule:: {{ fullname }}
 
+
 .. automodule:: {{ fullname }}
 
     {% block modules %}

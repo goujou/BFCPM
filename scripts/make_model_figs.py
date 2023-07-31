@@ -7,15 +7,16 @@ import bgc_md2.models.ACGCA as tree_model
 import bgc_md2.models.ACGCA.source  # pylint: disable=unused-import
 import bgc_md2.models.ACGCAWoodProductModel.source  # pylint: disable=unused-import
 import matplotlib.pyplot as plt
-from BFMM import FIGS_PATH
-from BFMM.soil.dead_wood_classes.C_model import srm as SoilCDeadWoodClasses_srm
-from BFMM.soil.simple_soil_model.C_model import srm as SimpleSoilCModel_srm
-from BFMM.wood_products.simple_wood_product_model.C_model import \
+from BFCPM import FIGS_PATH
+from BFCPM.soil.dead_wood_classes.C_model import \
+    srm as SoilCDeadWoodClasses_srm
+from BFCPM.soil.simple_soil_model.C_model import srm as SimpleSoilCModel_srm
+from BFCPM.wood_products.simple_wood_product_model.C_model import \
     srm as SimpleWoodProductModel_srm
 
 
 def main(black_and_white: bool):  # pylint: disable=redefined-outer-name
-    """Create model figures and store them in :data:`~BFMM.FIGS_PATH`.
+    """Create model figures and store them in :data:`~BFCPM.FIGS_PATH`.
 
     Args:
         black_and_white: if False then produce colored figures

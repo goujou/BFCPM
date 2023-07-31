@@ -19,26 +19,26 @@
 
 # %load_ext autoreload
 
+import argparse
+
 # +
 import numpy as np
 import xarray as xr
-import argparse
-
+from BFCPM import DATA_PATH, PRE_SPINUPS_PATH, Q_, utils
+from BFCPM.management.library import species_setting_from_sim_profile
+from BFCPM.simulation import utils as sim_utils
+from BFCPM.simulation.library import prepare_forcing
+from BFCPM.simulation.recorded_simulation import RecordedSimulation
+from BFCPM.simulation_parameters import stand_params_library
+from BFCPM.soil.simple_soil_model.C_model import SimpleSoilCModel
+from BFCPM.stand import Stand
+from BFCPM.trees.single_tree_params import species_params
+from BFCPM.wood_products.simple_wood_product_model.C_model import \
+    SimpleWoodProductModel
 from bgc_md2.notebook_helpers import write_to_logfile
 from CompartmentalSystems.discrete_model_run import DiscreteModelRun as DMR
-from LAPM.discrete_linear_autonomous_pool_model import DiscreteLinearAutonomousPoolModel as DLAPM
-
-from BFMM import utils
-from BFMM import DATA_PATH, Q_, PRE_SPINUPS_PATH
-from BFMM.simulation_parameters import stand_params_library
-from BFMM.simulation import utils as sim_utils
-from BFMM.soil.simple_soil_model.C_model import SimpleSoilCModel
-from BFMM.wood_products.simple_wood_product_model.C_model import SimpleWoodProductModel
-from BFMM.management.library import species_setting_from_sim_profile
-
-from BFMM.stand import Stand
-from BFMM.simulation.library import run_recorded_simulation, prepare_forcing
-from BFMM.trees.single_tree_params import species_params
+from LAPM.discrete_linear_autonomous_pool_model import \
+    DiscreteLinearAutonomousPoolModel as DLAPM
 
 # %autoreload 2
 # -
@@ -71,13 +71,13 @@ except SystemExit:
     sim_date = "2023-07-25"
     species = "pine"
 #    species = "spruce"
-    
+
 sim_dict = {
     "pre_spinup_date": pre_spinup_date,
     "sim_date": sim_date,
     "species": species,
     "sim_length": 4 * 20,
-    "N": 2_000
+    "N": 2_000,
 }
 
 print(sim_dict)
@@ -89,9 +89,9 @@ print(sim_dict)
 # tree species parameter changes can be made here
 custom_species_params = species_params.copy()
 
-#alpha = 1.00
-#custom_species_params["pine"]["alpha"]["value"] = alpha
-#custom_species_params["spruce"]["alpha"]["value"] = alpha
+# alpha = 1.00
+# custom_species_params["pine"]["alpha"]["value"] = alpha
+# custom_species_params["spruce"]["alpha"]["value"] = alpha
 # -
 
 # ## Set up forcing and simulation length
@@ -116,21 +116,25 @@ print(sim_cohort_path)
 # +
 spinups_path = PRE_SPINUPS_PATH.joinpath(sim_dict["pre_spinup_date"])
 
-#light_model = "Zhao" # Zhao or Spitters
-light_model = "Spitters" # Zhao or Spitters
+light_model = "Zhao"  # Zhao or Spitters
+# light_model = "Spitters" # Zhao or Spitters
 
 spinup_species = "pine"
-#spinup_name = "basic"
+# spinup_name = "basic"
 spinup_name = f"basic_{light_model}_{spinup_species}_2nd_round"
-#spinup_name = f"basic_{light_model}_{spinup_species}_pure_SBA_2nd_round"
+# spinup_name = f"basic_{light_model}_{spinup_species}_pure_SBA_2nd_round"
 dmr_path = spinups_path.joinpath(spinup_name + ".dmr_eq")
 
 # load fake equilibrium dmr
 dmr_eq = DLAPM.load_from_file(dmr_path)
 
 # initialize soil and wood product models with spinup stocks
-soil_model = SimpleSoilCModel(initial_stocks=Q_(dmr_eq.xss[dmr_eq.soil_pool_nrs], "gC/m^2"))
-wood_product_model = SimpleWoodProductModel(initial_stocks=Q_(dmr_eq.xss[dmr_eq.wood_product_pool_nrs], "gC/m^2"))
+soil_model = SimpleSoilCModel(
+    initial_stocks=Q_(dmr_eq.xss[dmr_eq.soil_pool_nrs], "gC/m^2")
+)
+wood_product_model = SimpleWoodProductModel(
+    initial_stocks=Q_(dmr_eq.xss[dmr_eq.wood_product_pool_nrs], "gC/m^2")
+)
 stand_params = stand_params_library["default"]
 stand_params["soil_model"] = soil_model
 stand_params["wood_product_model"] = wood_product_model
@@ -143,20 +147,23 @@ species = sim_dict["species"]
 
 management_strategy = [
     ("StandAge3", "Plant"),
-    ("PCT", "T0.75"), # pre-commercial thinning
+    ("PCT", "T0.75"),  # pre-commercial thinning
     ("DBH35-80", "CutWait3AndReplant"),
-#    # needs to be lower priority than any cutting, otherwise cutting might be delayed
-#    ("SBA25", "ThinStandToSBA18"), # SBA dependent thinning
+    #    # needs to be lower priority than any cutting, otherwise cutting might be delayed
+    #    ("SBA25", "ThinStandToSBA18"), # SBA dependent thinning
 ]
-
 
 sim_profile, sim_name = [
     (species, 1.0, sim_dict["N"] / 10_000, management_strategy, "waiting"),
 ], f"single_{species}"
 
-emergency_action_str, emergency_direction = "Die", "below"
-#emergency_action_str, emergency_direction = "Thin", "below"
-#emergency_action_str, emergency_direction = "CutWait3AndReplant", "above"
+emergency_action_str, emergency_direction, emergency_stand_action_str = (
+    "Die",
+    "below",
+    "",
+)
+# emergency_action_str, emergency_direction = "Thin", "below"
+# emergency_action_str, emergency_direction = "CutWait3AndReplant", "above"
 emergency_q = 0.75
 
 print(sim_name)
@@ -169,12 +176,14 @@ print(f"log file: {logfile_path}")
 # +
 # %%time
 
-#import warnings
-#with warnings.catch_warnings():
+# import warnings
+# with warnings.catch_warnings():
 #    warnings.simplefilter("error")
-    
+
 stand = Stand.create_empty(stand_params)
-stand.add_trees_from_setting(species_setting, custom_species_params=custom_species_params)
+stand.add_trees_from_setting(
+    species_setting, custom_species_params=custom_species_params
+)
 
 print(stand)
 
@@ -184,48 +193,67 @@ final_felling = True
 if final_felling:
     total_length = 80
     stand.add_final_felling(Q_(total_length, "yr"))
-    
+
 print(stand)
 # -
 
 # ## Run simulation
 
-simulation, additional_vars = run_recorded_simulation(
+recorded_simulation = RecordedSimulation.from_simulation_run(
     sim_name,
+    logfile_path,
     sim_profile,
     light_model,
     forcing,
     custom_species_params,
     stand,
-#    final_felling,
+    #    final_felling,
     emergency_action_str,
     emergency_direction,
-    emergency_q, # fraction to keep
-    logfile_path
+    emergency_q,  # fraction to keep
+    emergency_stand_action_str,  # in case of emergency, also do this
 )
 
-ds = sim_utils.get_simulation_record_ds(simulation, additional_vars)
+# ### Save recorded simulation
 
-filepath = sim_cohort_path.joinpath(sim_name + ".nc")
+filepath = sim_cohort_path.joinpath(sim_name + ".dmp")
 filepath
 
+recorded_simulation.save_to_file(filepath)
+print(filepath)
+
+# +
+# recorded_simulation = RecordedSimulation.from_file(filepath)
+# -
+
+ds = recorded_simulation.ds
+ds
+
+filepath = sim_cohort_path.joinpath(sim_name + ".nc")
 ds.to_netcdf(str(filepath))
 print(filepath)
 
-#ds = xr.open_dataset(str(filepath))
-ds
-
-# ## Create discrete model run, load initial age data
-
-# create discrete model run from stocks and fluxes
-# shorten the data time step artificially to be able to create DMR
-#nr_all_pools = stand.nr_trees * stand.nr_tree_pools + stand.nr_soil_pools
-dmr = utils.create_dmr_from_stocks_and_fluxes(ds) #, GPP_total_prepend=ds_long.GPP_total[-(nr_years+1)])
-
 # ## Compute transit time variables, carbon sequestration, add to dataset
 
-ds = sim_utils.compute_BTT_vars_and_CS_and_add_to_ds(ds, dmr, dmr_eq, up_to_order=2)
+cache_size = 30_000
+verbose = True
+
+# +
+# %%time
+
+# create discrete model run from stocks and fluxes
+dmr = utils.create_dmr_from_stocks_and_fluxes(
+    ds
+)  # , GPP_total_prepend=ds_long.GPP_total[-(nr_years+1)])
+
+ds = sim_utils.compute_BTT_vars_and_add_to_ds(
+    ds, dmr, dmr_eq, up_to_order=2, cache_size=cache_size, verbose=verbose
+)
+ds = sim_utils.compute_C_balance_and_CS_and_add_to_ds(
+    ds, dmr, cache_size=cache_size, verbose=verbose
+)
 ds
+# -
 
 # ## Save simulation dataset, discrete model run, and spinup (fake equilibrium) model run
 
@@ -259,22 +287,20 @@ print(filepath)
 # +
 # %%time
 
-print("\nCreating simulation section video")
+print("\nCreating simulation video")
 filepath = sim_cohort_path.joinpath(sim_name + "_sim.mp4")
 
 utils.create_simulation_video(
     ds,
     dmr_eq,
     np.array([dmr.soil_pool_nrs[-1]]),
-    filepath, 
-    resolution=10,
+    filepath,
+    resolution=5,
     time_index_start=0,
     clearcut_index=None,
-    time_index_stop=len(ds.time)-2,
+    time_index_stop=len(ds.time) - 2,
     year_shift=0,
-    cache_size=1_000
+    cache_size=1_000,
 )
 print(filepath)
 # -
-
-

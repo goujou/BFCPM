@@ -1,7 +1,44 @@
-BFMM.simulation\_parameters module
-==================================
+﻿simulation\_parameters
+======================
+
+MMMM
+
+.. currentmodule:: BFMM.simulation_parameters
+
 
 .. automodule:: BFMM.simulation_parameters
-   :members:
-   :undoc-members:
-   :show-inheritance:
+
+    
+    
+    
+
+   
+   
+   .. rubric:: Module Attributes
+
+   
+   .. autodata:: BFMM.simulation_parameters::tree_soil_interfaces
+   .. autodata:: BFMM.simulation_parameters::wood_product_interfaces
+   .. autodata:: BFMM.simulation_parameters::stand_params_library
+   .. autodata:: BFMM.simulation_parameters::simulation_params
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   
+   .. autofunction:: solve_volume_fractions
+   .. autofunction:: trunk_to_dead_wood_classes_default
+   .. autofunction:: trunk_to_dead_wood_classes_no_harvesting
+   
+   
+
+   
+   
+   

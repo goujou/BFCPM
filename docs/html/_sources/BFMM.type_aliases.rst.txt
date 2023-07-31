@@ -5,6 +5,7 @@ MMMM
 
 .. currentmodule:: BFMM.type_aliases
 
+
 .. automodule:: BFMM.type_aliases
 
     

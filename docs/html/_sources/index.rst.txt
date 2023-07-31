@@ -19,6 +19,7 @@ Top-level modules
     :recursive:
     :template: module.rst
 
+    ~BFMM.prepare_stand
     ~BFMM.stand
     ~BFMM.type_aliases
     ~BFMM.utils
@@ -49,6 +50,7 @@ Run a simulation
     :template: module.rst
 
     ~BFMM.simulation
+    ~BFMM.simulation_parameters
 
 
 Notebooks

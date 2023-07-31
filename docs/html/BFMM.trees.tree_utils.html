@@ -2,10 +2,10 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="soil" href="BFMM.soil.html" /><link rel="prev" title="single_tree_vars" href="BFMM.trees.single_tree_vars.html" />
 
-    <!-- Generated with Sphinx 6.1.3 and Furo 2023.05.20 -->
+    <!-- Generated with Sphinx 7.0.1 and Furo 2023.05.20 -->
         <title>tree_utils - BFMM</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
@@ -156,6 +156,7 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul>
+<li class="toctree-l1"><a class="reference internal" href="BFMM.prepare_stand.html">prepare_stand</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="BFMM.stand.html">stand</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of stand</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="BFMM.stand.Stand.html">Stand</a></li>
 </ul>
@@ -264,6 +265,7 @@
 <li class="toctree-l2"><a class="reference internal" href="BFMM.simulation.utils.html">utils</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="BFMM.simulation_parameters.html">simulation_parameters</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Untitled.html">Test notebook</a></li>
@@ -307,53 +309,63 @@
 <span class="target" id="module-BFMM.trees.tree_utils"></span><p>Helper functions for tree properties.</p>
 <p>Source:</p>
 <blockquote>
-<div><aside class="footnote brackets" id="id1" role="note">
+<div><aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id1" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
 <span class="backrefs">(<a role="doc-backlink" href="#id8">1</a>,<a role="doc-backlink" href="#id16">2</a>)</span>
 <p>Näslund (1936), “Skogsförsöksanstaltens gallringsförsök i
 tallskog”, Meddelanden från Statens Skogsförsöksanstalt 29. 169</p>
 </aside>
-<aside class="footnote brackets" id="id2" role="note">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">2</a><span class="fn-bracket">]</span></span>
 <p>Siipilehto J. (2000). A comparison of two parameter
 prediction methods for stand structure in Finland.
 Silva Fennica vol. 34 no. 4 article id 617.</p>
 </aside>
-<aside class="footnote brackets" id="id3" role="note">
+<aside class="footnote brackets" id="id3" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id10">3</a><span class="fn-bracket">]</span></span>
 <p>Tavahnainen &amp; Forss (2008), For. Ecol. Manag., Fig. 4
 <a class="reference external" href="https://doi.org/10.14214/sf.617">https://doi.org/10.14214/sf.617</a></p>
 </aside>
-<aside class="footnote brackets" id="id4" role="note">
+<aside class="footnote brackets" id="id4" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></span>
 <span class="backrefs">(<a role="doc-backlink" href="#id11">1</a>,<a role="doc-backlink" href="#id12">2</a>,<a role="doc-backlink" href="#id13">3</a>,<a role="doc-backlink" href="#id14">4</a>,<a role="doc-backlink" href="#id17">5</a>)</span>
 <p>Ogle and Pacala (2009), Tree Physiology</p>
 </aside>
-<aside class="footnote brackets" id="id5" role="note">
+<aside class="footnote brackets" id="id5" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id15">5</a><span class="fn-bracket">]</span></span>
 <p>Laasenaho (1988)</p>
 </aside>
-<aside class="footnote brackets" id="id6" role="note">
+<aside class="footnote brackets" id="id6" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id18">6</a><span class="fn-bracket">]</span></span>
 <p>Vanninen and Mäkelä (2005), Tree Physiology</p>
 </aside>
-<aside class="footnote brackets" id="id7" role="note">
+<aside class="footnote brackets" id="id7" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id19">7</a><span class="fn-bracket">]</span></span>
 <p>Sellin (1994), Canadian Journal of Forest Research</p>
 </aside>
 </aside>
 </div></blockquote>
 <p class="rubric">Module Attributes</p>
-<dl class="py data">
-<dt class="sig sig-object py" id="BFMM.trees.tree_utils.params_crown">
-<span class="sig-name descname"><span class="pre">params_crown</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'pine':</span> <span class="pre">{'a':</span> <span class="pre">0.894,</span> <span class="pre">'b':</span> <span class="pre">0.185,</span> <span class="pre">'c':</span> <span class="pre">3.0,</span> <span class="pre">'d':</span> <span class="pre">0.76,</span> <span class="pre">'e':</span> <span class="pre">0,</span> <span class="pre">'k':</span> <span class="pre">2.0},</span> <span class="pre">'spruce':</span> <span class="pre">{'a':</span> <span class="pre">1.811,</span> <span class="pre">'b':</span> <span class="pre">0.308,</span> <span class="pre">'c':</span> <span class="pre">1.99,</span> <span class="pre">'d':</span> <span class="pre">0.51,</span> <span class="pre">'e':</span> <span class="pre">-0.0077,</span> <span class="pre">'k':</span> <span class="pre">3.0}}</span></em><a class="headerlink" href="#BFMM.trees.tree_utils.params_crown" title="Permalink to this definition">#</a></dt>
-<dd><p>Tree height (Näslund height curve, <a class="footnote-reference brackets" href="#id1" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>) and crown base height parameters:</p>
+<span class="sig-name descname">params_crown</span><dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="s1">&#39;pine&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mf">0.894</span><span class="p">,</span>
+            <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mf">0.185</span><span class="p">,</span>
+            <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span>
+            <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="mf">0.76</span><span class="p">,</span>
+            <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s1">&#39;k&#39;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">},</span>
+  <span class="s1">&#39;spruce&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mf">1.811</span><span class="p">,</span>
+              <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mf">0.308</span><span class="p">,</span>
+              <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mf">1.99</span><span class="p">,</span>
+              <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="mf">0.51</span><span class="p">,</span>
+              <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.0077</span><span class="p">,</span>
+              <span class="s1">&#39;k&#39;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">}}</span>
+</pre></div>
+</div>
+</dd><p>Tree height (Näslund height curve, <a class="footnote-reference brackets" href="#id1" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>) and crown base height parameters:</p>
 <ul class="simple">
 <li><p>tree height (k, a, b): <a class="footnote-reference brackets" href="#id2" id="id9" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p></li>
 <li><p>crown base height (c, d, e): <a class="footnote-reference brackets" href="#id3" id="id10" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p></li>
 </ul>
-</dd></dl>
-
 <p class="rubric">Functions</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="BFMM.trees.tree_utils.H_TH_func">
@@ -822,7 +834,7 @@ a paraboloid to a cone [-]</p></li>
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2023, Holger Metzler, Samuli Launiainen, Viulia Vico
+                Copyright &#169; 2023, Holger Metzler, Samuli Launiainen, Giulia Vico
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
@@ -849,7 +861,6 @@ a paraboloid to a cone [-]</p></li>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">tree_utils</a><ul>
-<li><a class="reference internal" href="#BFMM.trees.tree_utils.params_crown"><code class="docutils literal notranslate"><span class="pre">params_crown</span></code></a></li>
 <li><a class="reference internal" href="#BFMM.trees.tree_utils.H_TH_func"><code class="docutils literal notranslate"><span class="pre">H_TH_func()</span></code></a></li>
 <li><a class="reference internal" href="#BFMM.trees.tree_utils.H_crown"><code class="docutils literal notranslate"><span class="pre">H_crown()</span></code></a></li>
 <li><a class="reference internal" href="#BFMM.trees.tree_utils.H_func"><code class="docutils literal notranslate"><span class="pre">H_func()</span></code></a></li>

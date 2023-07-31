@@ -1,10 +1,10 @@
-.. BFMM documentation master file, created by
+.. BFCPM documentation master file, created by
    sphinx-quickstart on Wed Jul 19 17:29:59 2023.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Boreal Forest Management Model (BFMM)
-=====================================
+Boreal Forest Carbon Path Model (BFCPM)
+=======================================
 
 ... by Holger Metzler, Samuli Launiainen, and Giulia Vico
 
@@ -19,9 +19,10 @@ Top-level modules
     :recursive:
     :template: module.rst
 
-    ~BFMM.stand
-    ~BFMM.type_aliases
-    ~BFMM.utils
+    ~BFCPM.prepare_stand
+    ~BFCPM.stand
+    ~BFCPM.type_aliases
+    ~BFCPM.utils
 
 
 Global model components
@@ -32,12 +33,12 @@ Global model components
     :recursive:
     :template: module.rst
 
-    ~BFMM.productivity
-    ~BFMM.trees
-    ~BFMM.soil
-    ~BFMM.wood_products
+    ~BFCPM.productivity
+    ~BFCPM.trees
+    ~BFCPM.soil
+    ~BFCPM.wood_products
 
-    ~BFMM.management
+    ~BFCPM.management
 
 
 Run a simulation
@@ -48,7 +49,8 @@ Run a simulation
     :recursive:
     :template: module.rst
 
-    ~BFMM.simulation
+    ~BFCPM.simulation
+    ~BFCPM.simulation_parameters
 
 
 Notebooks

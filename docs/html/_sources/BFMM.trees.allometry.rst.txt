@@ -5,6 +5,7 @@ MMMM
 
 .. currentmodule:: BFMM.trees.allometry
 
+
 .. automodule:: BFMM.trees.allometry
 
     
