@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Test notebook" href="notebooks/Untitled.html" /><link rel="prev" title="utils" href="BFCPM.simulation.utils.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="utils" href="BFCPM.simulation.utils.html" />
 
     <!-- Generated with Sphinx 7.1.1 and Furo 2023.07.26 -->
         <title>simulation_parameters - BFCPM</title>
@@ -267,9 +267,6 @@
 </li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">simulation_parameters</a></li>
 </ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/Untitled.html">Test notebook</a></li>
-</ul>
 
 </div>
 </div>
@@ -309,14 +306,14 @@
 <span class="target" id="module-BFCPM.simulation_parameters"></span><p>Overarching simulation parameters.</p>
 <p>Also the interfaces between the model modules and the tree-cutting matrix.</p>
 <p class="rubric">Module Attributes</p>
-<span class="sig-name descname">tree_soil_interfaces</span><dd><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;</span><span class="kd">class</span><span class="w"> </span><span class="s1">&#39;BFCPM.trees.single_tree_allocation.SingleTree&#39;</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="kd">class</span><span class="w"> </span><span class="s1">&#39;BFCPM.soil.simple_soil_model.C_model.SimpleSoilCModel&#39;</span><span class="o">&gt;</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;B_L&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;Litter&#39;</span><span class="o">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">},</span>
-<span class="w">                                                                                                                                </span><span class="s1">&#39;B_OH&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;CWD&#39;</span><span class="o">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">},</span>
-<span class="w">                                                                                                                                </span><span class="s1">&#39;B_OS&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;CWD&#39;</span><span class="o">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">},</span>
-<span class="w">                                                                                                                                </span><span class="s1">&#39;B_R&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;Litter&#39;</span><span class="o">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">}},</span>
-<span class="w">  </span><span class="p">(</span><span class="o">&lt;</span><span class="kd">class</span><span class="w"> </span><span class="s1">&#39;BFCPM.trees.single_tree_allocation.SingleTree&#39;</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="kd">class</span><span class="w"> </span><span class="s1">&#39;BFCPM.soil.dead_wood_classes.C_model.SoilCDeadWoodClasses&#39;</span><span class="o">&gt;</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;B_L&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;Litter&#39;</span><span class="o">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">},</span>
+<span class="sig-name descname">tree_soil_interfaces</span><dd><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;</span><span class="kd">class</span><span class="w"> </span><span class="s1">&#39;BFCPM.trees.single_tree_allocation.SingleTree&#39;</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="kd">class</span><span class="w"> </span><span class="s1">&#39;BFCPM.soil.dead_wood_classes.C_model.SoilCDeadWoodClasses&#39;</span><span class="o">&gt;</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;B_L&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;Litter&#39;</span><span class="o">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">},</span>
 <span class="w">                                                                                                                                    </span><span class="s1">&#39;B_OH&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;DWC_1&#39;</span><span class="o">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">},</span>
 <span class="w">                                                                                                                                    </span><span class="s1">&#39;B_OS&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;DWC_1&#39;</span><span class="o">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">},</span>
-<span class="w">                                                                                                                                    </span><span class="s1">&#39;B_R&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;Litter&#39;</span><span class="o">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">}}}</span>
+<span class="w">                                                                                                                                    </span><span class="s1">&#39;B_R&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;Litter&#39;</span><span class="o">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">}},</span>
+<span class="w">  </span><span class="p">(</span><span class="o">&lt;</span><span class="kd">class</span><span class="w"> </span><span class="s1">&#39;BFCPM.trees.single_tree_allocation.SingleTree&#39;</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="kd">class</span><span class="w"> </span><span class="s1">&#39;BFCPM.soil.simple_soil_model.C_model.SimpleSoilCModel&#39;</span><span class="o">&gt;</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;B_L&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;Litter&#39;</span><span class="o">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">},</span>
+<span class="w">                                                                                                                                </span><span class="s1">&#39;B_OH&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;CWD&#39;</span><span class="o">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">},</span>
+<span class="w">                                                                                                                                </span><span class="s1">&#39;B_OS&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;CWD&#39;</span><span class="o">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">},</span>
+<span class="w">                                                                                                                                </span><span class="s1">&#39;B_R&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;Litter&#39;</span><span class="o">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">}}}</span>
 </pre></div>
 </div>
 </dd><p>Interface between tree and soil.</p>
@@ -529,15 +526,7 @@ need to be mentioned and their fractions must sum to 1.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="notebooks/Untitled.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title">Test notebook</div>
-              </div>
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
-            </a>
+          
           <a class="prev-page" href="BFCPM.simulation.utils.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">

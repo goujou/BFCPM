@@ -53,16 +53,10 @@ Run a simulation
     ~BFCPM.simulation_parameters
 
 
-Notebooks
-=========
-
-.. toctree:: notebooks/Untitled.ipynb
-
-
 Notes
 =====
 
-    .. [1] Launiainen, Samuli, et al. "Coupling boreal forest :math:`\mathrm{CO}_2`, :math:`\mathrm{H}_{2}\mathrm{O}` 
+    .. [1] Launiainen, Samuli, et al. "Coupling boreal forest CO\ :sub:`2`, H\ :sub:`2`\ O 
         and energy flows by a vertically structured forest canopy–soil 
         model with separate bryophyte layer." Ecological modelling 312 
         (2015): 385-405.

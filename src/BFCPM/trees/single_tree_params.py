@@ -130,7 +130,7 @@ species_params["pine"] = {
         "value": 0.67,
         "unit": "",
         "info": {
-            "descr": "fine root to foliage biomass ratio",
+            "descr": "fine root-to-leaf biomass ratio",
             "source": r"\citet[Table~2]{Pukkala2014FPE}",
         },
     },
@@ -461,7 +461,7 @@ species_params["spruce"] = {
         "value": 0.25,
         "unit": "",
         "info": {
-            "descr": "fine root to foliage biomass ratio",
+            "descr": "fine root-to-leaf biomass ratio",
             "source": r"\citet[Table~2]{Pukkala2014FPE}",
         },
     },
@@ -781,7 +781,7 @@ species_params["spruce"].update(
 ##        "value": 4.0,
 ##        "unit": "",
 ##        "info": {
-##            "descr": "fine root to leaf area ratio",
+##            "descr": "fine root-to-leaf area ratio",
 ##            "source": "Ogle2009TP, Table 2"
 ##        }
 ##    },
