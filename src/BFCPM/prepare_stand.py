@@ -1,5 +1,5 @@
 """
-Helper functions to prepare a :class:`~stand.Stand`.
+Helper functions to prepare a :class:`~.stand.Stand`.
 """
 from __future__ import annotations
 

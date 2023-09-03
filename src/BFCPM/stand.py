@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-This module contains the :class:`~stand.Stand` class, the central part of the model.
+This module contains the :class:`~.stand.Stand` class, the central part of the model.
 """
 from __future__ import annotations
 
