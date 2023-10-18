@@ -165,4 +165,5 @@ cython_debug/
 *.swo
 
 # notebooks
-notebooks/*.ipynb
+#notebooks/*.ipynb
+*.ipynb

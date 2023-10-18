@@ -140,10 +140,10 @@ class SingleTree:
 
             # make sure C_S_star >= 0, multiply with 0.5 to have at leas some C_S at the beginning
             rho_W0 = assign("rho_W", (1 - params["gamma_X"]) / params["gamma_W"] * 0.5)
-            print(rho_W0)
-            print(rho_W0.__repr__())
-            print(self.V_TS)
-            print(self.V_TS.__repr__())
+            #            print(rho_W0)
+            #            print(rho_W0.__repr__())
+            #            print(self.V_TS)
+            #            print(self.V_TS.__repr__())
 
             self.B_TS = assign("B_TS", rho_W0 * self.V_TS)
         else:
