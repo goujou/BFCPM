@@ -928,21 +928,12 @@ class SingleTree:
         # Eq. (1D)
         self.update_C_S(E, delta_W, f_T_times_E, f_O_times_E, v_T, v_O, f_CS_times_CS)
 
-        # check if C_S is depleted in unhealthy state
-        #        if (self.tree_status in ["static", "shrinking"]) and (
-        #            self.delta_S < 0.02 * zeta_dw / zeta_gluc
-        #        ):
-        #        if (self.tree_status in ["static", "shrinking"]) and (
-        #            self.C_S < 0.5 * self.C_S_star
-        #        ):
-        #            self.delta_S < 0.5 * delta_W
-        #        ):
-        if (self.tree_status in ["static", "shrinking"]) and (self.C_S < 0 * self.C_S):
-            msg = f"delta_S = {self.delta_S} < {0.02*zeta_dw/zeta_gluc}, emergency"
-            print(msg)
+        # new death barrier: depletion reaches half of optimum level
+        if (self.tree_status in ["static", "shrinking"]) and (
+            self.C_S < 0.5 * self.C_S_star
+        ):
+            print("Tree is dying.")
             print(self.C_S, self.C_S_star, self.C_S / self.C_S_star)
-            print("951, old barrier", self.delta_S, 0.02 * zeta_dw / zeta_gluc)
-            print("new_barrier", delta_W, self.delta_S, 0.5 * delta_W)
             raise TreeShrinkError()
 
         self.B_TH = self.B_TH + Delta_B_TH
