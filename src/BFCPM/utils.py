@@ -462,7 +462,9 @@ def create_dmr_from_stocks_and_fluxes(
         valid_tis = np.delete(tis, to_ignore)
 
         assert_accuracy(
-            ds.stocks.isel(entity=entity_nr, time=valid_tis)[:, tree_pool_nrs.data],
+            ds.stocks.isel(entity=entity_nr, time=valid_tis)[
+                :, tree_pool_nrs.data
+            ].data,
             soln[valid_tis, :][:, pools],
             tol=1e-07,
         )
@@ -471,7 +473,7 @@ def create_dmr_from_stocks_and_fluxes(
     entity_nr = ds.soil_entity_nr
     pools = get_global_pool_nrs_from_entity_nrs([entity_nr], ds)
     assert_accuracy(
-        ds.stocks.isel(entity=entity_nr)[:, soil_pool_nrs],
+        ds.stocks.isel(entity=entity_nr)[:, soil_pool_nrs].data,
         soln[:, pools],
         #        tol=1e-07
         tol=1e-03,
@@ -481,7 +483,7 @@ def create_dmr_from_stocks_and_fluxes(
     entity_nr = ds.wood_product_entity_nr
     pools = get_global_pool_nrs_from_entity_nrs([entity_nr], ds)
     assert_accuracy(
-        ds.stocks.isel(entity=entity_nr)[:, wood_product_pool_nrs],
+        ds.stocks.isel(entity=entity_nr)[:, wood_product_pool_nrs].data,
         soln[:, pools],
         tol=1e-08,
     )

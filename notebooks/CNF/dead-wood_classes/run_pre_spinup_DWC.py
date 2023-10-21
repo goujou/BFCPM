@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.15.0
+#       jupytext_version: 1.15.2
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -164,6 +164,12 @@ recorded_simulation = RecordedSimulation.from_simulation_run(
     emergency_q, # fraction to keep
     emergency_stand_action_str
 )
+
+# +
+#import dill
+#dill.detect.trace(True)
+#dill.detect.errors(recorded_simulation)
+# -
 
 # ### Save recorded simulation
 
@@ -421,7 +427,7 @@ xss = pinv(Id-mean_B) @ mean_U
 mean_U = mean_U * mean_x / xss
 mean_U[np.isnan(mean_U)] = 0
 
-dmr_eq = DLAPM(mean_U, mean_B, check_row_sums=False)
+dmr_eq = DLAPM(mean_U, mean_B, check_col_sums=False)
 
 dmr_eq.tree_pool_nrs = utils.get_global_pool_nrs_from_entity_nrs(
     ds.tree_entity_nrs.data,
