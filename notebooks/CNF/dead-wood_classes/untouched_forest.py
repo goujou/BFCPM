@@ -1,7 +1,7 @@
 # ---
 # jupyter:
 #   jupytext:
-#     formats: ipynb,py
+#     formats: ipynb,py:light
 #     text_representation:
 #       extension: .py
 #       format_name: light
@@ -80,13 +80,15 @@ try:
 except SystemExit:
     print("Standard simulation settings")
 
-    pre_spinup_date = "2023-06-22"
+#    pre_spinup_date = "2023-06-22"
+    pre_spinup_date = "2023-10-18"
     
     # "common" means used by all simulations
     common_spinup_dmp_filepath = f"DWC_common_spinup_pine_clear_cut"
 
 #    sim_date = "2023-06-29"
-    sim_date = "2023-07-05" # tree deatht at C_S <= 0.5 C_S_star
+#    sim_date = "2023-07-05" # tree deatht at C_S <= 0.5 C_S_star
+    sim_date = "2023-10-19"
     sim_name = "DWC_untouched_forest_320"
     
 sim_dict = {
@@ -128,7 +130,7 @@ total_length
 sim_name = sim_dict["sim_name"]
 sim_name
 
-wood_product_interface = load_wood_product_interface("no_harvesting", ACGCAMarklundTree, stand.soil_model, stand.wood_product_model)
+wood_product_interface = load_wood_product_interface("no_harvesting", SingleTree, stand.soil_model, stand.wood_product_model)
 stand.wood_product_interface = wood_product_interface
 
 # +

@@ -1,12 +1,12 @@
 # ---
 # jupyter:
 #   jupytext:
-#     formats: ipynb,py
+#     formats: ipynb,py:light
 #     text_representation:
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.14.5
+#       jupytext_version: 1.15.0
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -26,19 +26,19 @@ from bgc_md2.notebook_helpers import write_to_logfile
 from CompartmentalSystems.discrete_model_run import DiscreteModelRun as DMR
 from LAPM.discrete_linear_autonomous_pool_model import DiscreteLinearAutonomousPoolModel as DLAPM
 
-from ACGCA import utils
-from ACGCA.__init__ import DATA_PATH, Q_
-from ACGCA.simulation_parameters import stand_params_library
-from ACGCA.simulation import utils as sim_utils
-from ACGCA.soil.dead_wood_classes.C_model import SoilCDeadWoodClasses
-from ACGCA.wood_products.simple_wood_product_model import SimpleWoodProductModel
-from ACGCA.management.library import species_setting_from_sim_profile
+from BFCPM import utils
+from BFCPM.__init__ import DATA_PATH, Q_
+from BFCPM.simulation_parameters import stand_params_library
+from BFCPM.simulation import utils as sim_utils
+from BFCPM.soil.dead_wood_classes.C_model import SoilCDeadWoodClasses
+from BFCPM.wood_products.simple_wood_product_model.C_model import SimpleWoodProductModel
+from BFCPM.management.library import species_setting_from_sim_profile
 
-from ACGCA.productivity.stand import Stand
-from ACGCA.simulation.library import prepare_forcing
+from BFCPM.stand import Stand
+from BFCPM.simulation.library import prepare_forcing
 
-from ACGCA.simulation.recorded_simulation import RecordedSimulation
-from ACGCA.alloc.ACGCA_marklund_tree_params import species_params
+from BFCPM.simulation.recorded_simulation import RecordedSimulation
+from BFCPM.trees.single_tree_params import species_params
 
 # %autoreload 2
 # -
@@ -74,14 +74,16 @@ try:
 except SystemExit:
     print("Standard simulation settings")
 
-    pre_spinup_date = "2023-06-22"
+#    pre_spinup_date = "2023-06-22"
+    pre_spinup_date = "2023-10-18"
 
     # "common" means used by all simulations
     common_spinup_species = "pine"
     common_spinup_length = 8 * 20
     common_spinup_N = 2_000
 
-    sim_date = "2023-06-23"
+#    sim_date = "2023-06-23"
+    sim_date = "2023-10-19"
 #    sim_name = "mixed-aged_pine_long"
 #    sim_name = "even-aged_pine_long"
 #    sim_name = "even-aged_spruce_long"
@@ -262,7 +264,9 @@ print(filepath)
 
 # ## Load recorded simulation and all the objects
 
-filepath = sim_cohort_path.joinpath(sim_name + ".dmp")
-recorded_simulation = RecordedSimulation.from_file(filepath)
+# +
+#filepath = sim_cohort_path.joinpath(sim_name + ".dmp")
+#recorded_simulation = RecordedSimulation.from_file(filepath)
+# -
 
 

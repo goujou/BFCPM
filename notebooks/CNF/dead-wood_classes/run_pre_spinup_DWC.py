@@ -133,6 +133,7 @@ stand_params = stand_params_library["default"]
 stand_params["soil_model"] = empty_soil_model
 stand_params["wood_product_model"] = empty_wood_product_model
 stand_params["wood_product_interface_name"] = "no_harvesting"
+# -
 
 stand = Stand.create_empty(stand_params)
 stand.add_trees_from_setting(species_setting, custom_species_params=custom_species_params)
@@ -169,6 +170,8 @@ recorded_simulation = RecordedSimulation.from_simulation_run(
 
 recorded_simulation.save_to_file(dmp_path)
 print(dmp_path)
+
+recorded_simulation = RecordedSimulation.from_file(dmp_path)
 
 ds = recorded_simulation.ds
 ds
@@ -302,6 +305,8 @@ dmr_2nd_round_path = pre_spinups_path.joinpath(pre_spinup_name + "_2nd_round" + 
 nc_path = pre_spinups_path.joinpath(pre_spinup_name + "_2nd_round" + ".nc")
 dmp_path = pre_spinups_path.joinpath(pre_spinup_name + "_2nd_round" + ".dmp")
 logfile_path = pre_spinups_path.joinpath(pre_spinup_name + "_2nd_round.log")
+# -
+
 
 stand = Stand.create_empty(stand_params)
 stand.add_trees_from_setting(species_setting, custom_species_params=custom_species_params)
@@ -421,7 +426,7 @@ xss = pinv(Id-mean_B) @ mean_U
 mean_U = mean_U * mean_x / xss
 mean_U[np.isnan(mean_U)] = 0
 
-dmr_eq = DLAPM(mean_U, mean_B, check_row_sums=False)
+dmr_eq = DLAPM(mean_U, mean_B, check_col_sums=False)
 
 dmr_eq.tree_pool_nrs = utils.get_global_pool_nrs_from_entity_nrs(
     ds.tree_entity_nrs.data,
@@ -440,4 +445,101 @@ dmr_eq.wood_product_pool_nrs = utils.get_global_pool_nrs_from_entity_nrs(
 dmr_eq.save_to_file(dmr_eq_2nd_round_path)
 dmr_eq_2nd_round_path
 # -
+
+
+
+
+
+
+ds.pool
+
+xs = ds.stocks.isel(entity=0).sel(pool="B_TS")
+rxs = ds.internal_fluxes.isel(entity_from=0, entity_to=0).sel(pool_from="B_TS", pool_to="B_TH")
+
+rs = rxs / xs
+rs[np.isinf(rs)] = np.nan
+rs
+
+np.nanmean(rs)
+
+xs
+
+xs[:80].plot()
+hs = np.arange(0, 80, 0.1)
+plt.plot(hs, 5600 / (1 + np.exp(-0.095 * (hs - 45))))
+
+ds.stocks.isel(entity=0).sel(pool="B_TH").plot()
+
+rs[:80].plot()
+
+(rs[:80] * xs[:80]).plot()
+
+rs[:80].plot()
+ts = np.arange(0, 80, 0.1)
+a = 0.00004
+plt.plot(ts, a * (ts-80)**2 + 0.25 - 80**2 * a)
+
+plt.plot(rs[:80] * B_TS_age)
+plt.plot(rs[:80] * C_S_age)
+
+plt.plot(rs[:80])
+plt.plot(ts, 0.4 * np.exp(-0.1 * (ts-1)) + 0.01)
+plt.ylim([0, 0.3])
+
+plt.plot(np.diff(rs[:80]))
+plt.axhline(0)
+
+dmr_eq = DLAPM.load_from_file(dmr_eq_path)
+
+# + jupyter={"outputs_hidden": true}
+# %%time
+
+cache_size = 10_000
+verbose = True
+
+dmr = utils.create_dmr_from_stocks_and_fluxes(ds)
+
+ds = sim_utils.compute_BTT_vars_and_add_to_ds(ds, dmr, dmr_eq, up_to_order=2, cache_size=cache_size, verbose=verbose)
+ds = sim_utils.compute_C_balance_and_CS_and_add_to_ds(ds, dmr, cache_size=cache_size, verbose=verbose)
+# -
+
+start_age_moments = np.zeros((1, dmr.nr_pools))
+B_TS_age = dmr.age_moment_vector(1, start_age_moments)[:80, 7]
+C_S_age = dmr.age_moment_vector(1, start_age_moments)[:80, 5]
+
+plt.plot(B_TS_age, label="B_TS")
+plt.plot(C_S_age, label="C_S")
+plt.legend()
+
+plt.plot(np.diff(B_TS_age), label="B_TS_age'")
+plt.plot(np.diff(C_S_age), label="C_S_age'")
+plt.legend()
+
+B_TH = ds.stocks.isel(entity=0).sel(pool="B_TH")
+
+xs.plot()
+B_TH.plot()
+
+
+GPP = ds.input_fluxes.isel(entity_to=0).sum(dim="pool_to")[:80]
+B_L = ds.stocks.isel(entity=0).sel(pool="B_L")[:80]
+
+(GPP / B_L).plot()
+
+(GPP / xs).plot()
+
+I = ds.internal_fluxes.isel(entity_to=0).sel(pool_to="B_TS").sum(dim=["entity_from", "pool_from"])[:80]
+
+(I / xs).plot()
+ts = ds.time[:80]
+plt.plot(ts, 0.95 * np.exp(-0.14*(ts-6)) + 0.02)
+plt.plot(rs[:80])
+
+plt.plot(I/xs - rs)# - rs)
+
+plt.plot(xs[:80], (I / xs / rs[:80]).rolling(time=20).mean())
+#plt.plot(xs[:80], rs[:80])
+
+
+
 

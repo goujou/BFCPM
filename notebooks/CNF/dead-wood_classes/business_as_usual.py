@@ -1,12 +1,12 @@
 # ---
 # jupyter:
 #   jupytext:
-#     formats: ipynb,py
+#     formats: ipynb,py:light
 #     text_representation:
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.14.5
+#       jupytext_version: 1.15.0
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -28,21 +28,21 @@ from bgc_md2.notebook_helpers import write_to_logfile
 from CompartmentalSystems.discrete_model_run import DiscreteModelRun as DMR
 from LAPM.discrete_linear_autonomous_pool_model import DiscreteLinearAutonomousPoolModel as DLAPM
 
-from ACGCA import utils
-from ACGCA.__init__ import DATA_PATH, Q_
-from ACGCA.simulation import utils as sim_utils
-from ACGCA.management.library import species_setting_from_sim_profile
-from ACGCA.management.management_strategy import (
+from BFCPM import utils
+from BFCPM.__init__ import DATA_PATH, Q_
+from BFCPM.simulation import utils as sim_utils
+from BFCPM.management.library import species_setting_from_sim_profile
+from BFCPM.management.management_strategy import (
     ManagementStrategy,
     OnStandAges, OnSBALimit, PCT,
     Cut, CutWaitAndReplant, ThinStand, Thin
 )
 
-from ACGCA.productivity.stand import Stand
-from ACGCA.simulation.library import prepare_forcing
+from BFCPM.stand import Stand
+from BFCPM.simulation.library import prepare_forcing
 
-from ACGCA.simulation.recorded_simulation import RecordedSimulation
-from ACGCA.alloc.ACGCA_marklund_tree_params import species_params
+from BFCPM.simulation.recorded_simulation import RecordedSimulation
+from BFCPM.trees.single_tree_params import species_params
 
 # %autoreload 2
 # -
@@ -78,13 +78,15 @@ try:
 except SystemExit:
     print("Standard simulation settings")
 
-    pre_spinup_date = "2023-06-22"
+#    pre_spinup_date = "2023-06-22"
+    pre_spinup_date = "2023-10-18"
     
     # "common" means used by all simulations
     common_spinup_dmp_filepath = f"DWC_common_spinup_pine_clear_cut"
 
 #    sim_date = "2023-06-23"
-    sim_date = "2023-06-29"
+#    sim_date = "2023-06-29"
+    sim_date = "2023-10-19"
     sim_name = "DWC_BAU_320"
     
 sim_dict = {
