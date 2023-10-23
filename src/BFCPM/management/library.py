@@ -15,126 +15,6 @@ from .management_strategy import (ManagementActionABC, ManagementStrategy,
 triggers: Dict[str, Dict[str, Union[str, Any]]] = {
     # pre-commercial thinning
     "PCT": {"cls_name": "PCT", "kwargs": {"mth_lim": Q_(3.0, "m")}},
-    "StandAge3": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("3 yr")]},
-    },
-    "StandAge9": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("9 yr")]},
-    },
-    "StandAge19": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("19 yr")]},
-    },
-    "StandAge39": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("39 yr")]},
-    },
-    "StandAge59": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("59 yr")]},
-    },
-    "StandAge79": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("79 yr")]},
-    },
-    "StandAge99": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("99 yr")]},
-    },
-    "StandAge119": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("119 yr")]},
-    },
-    "StandAge139": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("139 yr")]},
-    },
-    "StandAge159": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("159 yr")]},
-    },
-    "StandAge179": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("179 yr")]},
-    },
-    "StandAge199": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("199 yr")]},
-    },
-    "StandAge219": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("219 yr")]},
-    },
-    "StandAge239": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("239 yr")]},
-    },
-    "StandAge259": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("259 yr")]},
-    },
-    "StandAge279": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("279 yr")]},
-    },
-    "StandAge299": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("299 yr")]},
-    },
-    "StandAge319": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("319 yr")]},
-    },
-    "StandAge339": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("339 yr")]},
-    },
-    "StandAge359": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("359 yr")]},
-    },
-    "StandAge379": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("379 yr")]},
-    },
-    "StandAge399": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("399 yr")]},
-    },
-    "StandAge419": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("419 yr")]},
-    },
-    "StandAge439": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("439 yr")]},
-    },
-    "StandAge459": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("459 yr")]},
-    },
-    "StandAge479": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("479 yr")]},
-    },
-    "StandAge160": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("160 yr")]},
-    },
-    "StandAge180": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("180 yr")]},
-    },
-    "StandAge200": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("200 yr")]},
-    },
-    "StandAge220": {
-        "cls_name": "OnStandAges",
-        "kwargs": {"stand_ages": [Q_("220 yr")]},
-    },
     #####
     "OnDelayOneTime1": {
         "cls_name": "OnDelayOneTime",
@@ -537,8 +417,14 @@ def ma_data_to_ma(ma_data: str) -> ManagementActionABC:
 
 def ms_data_to_ms_item(ms_data: MSData) -> Tuple[TriggerABC, ManagementActionABC]:
     """Return a (trigger, action) tuple."""
-    trigger_dict = triggers[ms_data[0]]
-    trigger = getattr(ms_module, trigger_dict["cls_name"])(**trigger_dict["kwargs"])
+    trigger_name = ms_data[0]
+    key = "StandAge"
+    if trigger_name[: len(key)] == key:
+        stand_age = int(trigger_name[len(key) :])
+        trigger = ms_module.OnStandAges(stand_ages=[Q_(stand_age, "yr")])
+    else:
+        trigger_dict = triggers[trigger_name]
+        trigger = getattr(ms_module, trigger_dict["cls_name"])(**trigger_dict["kwargs"])
 
     #    action_dict = actions[ms_data[1]]
     #    action_cls = getattr(ms_module, action_dict["cls_name"])

@@ -39,7 +39,8 @@ LOGS_PATH.mkdir(parents=False, exist_ok=True)
 
 
 # define new units and their relations
-ureg = pint.UnitRegistry()
+# ureg = pint.UnitRegistry()
+ureg = pint.get_application_registry()
 ureg.setup_matplotlib()
 Q_ = ureg.Quantity
 """Pint Quantity with custom units and additional methods.
@@ -48,9 +49,12 @@ Custom units are ``gC``, ``g_gluc``, and ``g_dw``. Custom methods
 are defined below in this module.
 """
 
-ureg.define("g_carbon = [mass_carbon] = gC")
-ureg.define("g_gluc = [mass_glucose]")
-ureg.define("g_dw = [mass_dryweight]")
+try:
+    ureg.define("g_carbon = [mass_carbon] = gC")
+    ureg.define("g_gluc = [mass_glucose]")
+    ureg.define("g_dw = [mass_dryweight]")
+except pint.RedefinitionError:
+    pass
 
 zeta_gluc = Q_(6 * 12 / 180.15, "gC/g_gluc")
 """Grams of carbon per grams glucose."""

@@ -13,28 +13,28 @@
 #     name: python3
 # ---
 
-# # Figures for the manuscript
+# # Compare two simulations
 
 # %load_ext autoreload
 
 # +
-import string
+#import string
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-from matplotlib.lines import Line2D
-import numpy as np
-import xarray as xr
-from tqdm import tqdm
+#from matplotlib.lines import Line2D
+#import numpy as np
+#import xarray as xr
+#from tqdm import tqdm
 from pathlib import Path
 
-from LAPM.discrete_linear_autonomous_pool_model import DiscreteLinearAutonomousPoolModel as DLAPM
-from CompartmentalSystems.discrete_model_run import DiscreteModelRun as DMR
-import CompartmentalSystems.helpers_reservoir as hr
+#from LAPM.discrete_linear_autonomous_pool_model import DiscreteLinearAutonomousPoolModel as DLAPM
+#from CompartmentalSystems.discrete_model_run import DiscreteModelRun as DMR
+#import CompartmentalSystems.helpers_reservoir as hr
 
-from ACGCA import utils
-from ACGCA.__init__ import DATA_PATH, Q_, zeta_dw
-from ACGCA.alloc.ACGCA_marklund_tree import allometries
-from ACGCA.alloc.ACGCA_marklund_tree_params import species_params
+#from ACGCA import utils
+from BFCPM.__init__ import PRE_SPINUPS_PATH as all_sims_path
+#from ACGCA.alloc.ACGCA_marklund_tree import allometries
+#from ACGCA.alloc.ACGCA_marklund_tree_params import species_params
 
 # %autoreload 2
 
@@ -60,72 +60,44 @@ plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
 # ## Load available simulations
 
 # +
-all_sims_path = DATA_PATH.joinpath("simulations")
-
-#sim_date = "2023-06-23"
-#sim_date = "2023-06-29" # sim_length = 320
-sim_date = "2023-07-05" # earlier tree death
-
-# path to place the figures for the publication
-#pub_figs_path = Path().absolute().joinpath(f"pub_figs_{sim_date}")
-#pub_figs_path.mkdir(exist_ok=True, parents=True)
-
-#print(pub_figs_path)
-
-spinup_length = 160
-#sim_length = 160
-sim_length = 320
-
+sim_date = "2023-10-18" # earlier tree death
 sim_cohort_path = all_sims_path.joinpath(sim_date)
+sim_names = ["DWC_Zhao_pine", "DWC_Zhao_pine_12"]
 
 sim_cohort_path
 # -
 
 
 dss = dict()
-dmrs = dict()
-dmrs_eq = dict()
-dss_sim = dict()
-dmrs_sim = dict()
+#dmrs = dict()
+#dmrs_eq = dict()
+#dss_sim = dict()
+#dmrs_sim = dict()
+
+for sim_name in sim_names:
+    nc_path = sim_cohort_path.joinpath(sim_name + ".nc")
+    ds = xr.open_dataset(str(nc_path))
+    dss[sim_name] = ds
+
+ds = dss[sim_names[0]]
+ds
+
+# ## State after spinup
 
 # +
-sim_names = list()
-for p in sim_cohort_path.iterdir():
-    if (p.suffix == ".nc") and (str(p).find("_sim") == -1):
-        sim_name = p.stem.replace("DWC_", "").replace("_", " ")
-        print(len(sim_names), sim_name)
-        sim_names.append(sim_name)
+var_names = ["GPP_year", "GPP_total", "NPP", "stand_basal_area", "mean_tree_height", "dominant_tree_height", "total_C_stock", "tree_biomass"]
+fig, axes = plt.subplots(figsize=(12, 4*len(var_names)), nrows=len(var_names))
 
-        ds = xr.open_dataset(str(p))
-        dss[sim_name] = ds
-        
-        dmr_path = sim_cohort_path.joinpath(p.stem + ".dmr")
-        dmr = DMR.load_from_file(dmr_path)
-        dmr.initialize_state_transition_operator_matrix_cache(20_000)
-        dmrs[sim_name] = dmr
-    
-        dmr_eq_path = sim_cohort_path.joinpath(p.stem + ".dmr_eq")
-        dmrs_eq[sim_name] = DLAPM.load_from_file(dmr_eq_path)
+for var_name, ax in zip(var_names, axes):
+    for sim_name in sim_names:
+        ds = dss[sim_name]
+        ds[var_name].plot(ax=ax, label=sim_name)
 
-#        start_year = spinup_length
-#        ds_sim = ds.sel(time=ds.time[start_year:])
-        ds_sim = xr.open_dataset(str(sim_cohort_path.joinpath(p.stem + "_sim.nc")))
-        dss_sim[sim_name] = ds_sim
-
-#        dmr_sim = utils.create_dmr_from_stocks_and_fluxes(ds_sim, GPP_total_prepend=ds.GPP_total[start_year-1])
-        dmr_sim = DMR.load_from_file(sim_cohort_path.joinpath(p.stem + "_sim.dmr"))
-        dmr_sim.initialize_state_transition_operator_matrix_cache(20_000)
-        dmrs_sim[sim_name] = dmr_sim
-
-# +
-#sim_names = [sim_names[k] for k in [1, 0, 2]]
-
-nr_spinup_trees = 4
-[print(f"{k}: {sim_name}") for k, sim_name in enumerate(sim_names)];
+axes[0].legend()
+fig.tight_layout();
 
 
 # -
-# ## State after spinup
 
 def round_arr(arr: np.ndarray, decimals: int) -> np.ndarray:
     """Round array to `decimals` decimals."""

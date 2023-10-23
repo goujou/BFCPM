@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.15.0
+#       jupytext_version: 1.15.2
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -59,43 +59,47 @@ try:
     parser = argparse.ArgumentParser()
 
     parser.add_argument("pre_spinup_date", type=str)
+    parser.add_argument("pre_spinup_species", type=str)
     parser.add_argument("common_spinup_dmp_filepath", type=str) # continuous-cover (age-distributed) spinup
-#    parser.add_argument("cc_spinup_length", type=int)
-#    parser.add_argument("cc_spinup_N", type=int)
  
     parser.add_argument("sim_date", type=str)
     parser.add_argument("sim_name", type=str)
+    parser.add_argument("coarseness", type=int)
 
     args = parser.parse_args()
 
     pre_spinup_date = args.pre_spinup_date
+    pre_spinup_species = args.pre_spinup_species
+    
     common_spinup_dmp_filepath = args.common_spinup_dmp_filepath
-#    cc_spinup_length = args.cc_spinup_length
-#    cc_spinup_N = args.cc_spinup_N
+
     sim_date = args.sim_date
     sim_name = args.sim_name
+    coarseness = args.coarseness
+
     print("Simulation settings from command line")
 except SystemExit:
     print("Standard simulation settings")
 
-#    pre_spinup_date = "2023-06-22"
     pre_spinup_date = "2023-10-18"
+    pre_spinup_species = "pine"
     
     # "common" means used by all simulations
-    common_spinup_dmp_filepath = f"DWC_common_spinup_pine_clear_cut"
+    coarseness = 1
+    common_spinup_dmp_filepath = f"DWC_common_spinup_clear_cut_{pre_spinup_species}_{coarseness:2d}"
 
-#    sim_date = "2023-06-23"
-#    sim_date = "2023-06-29"
     sim_date = "2023-10-19"
-    sim_name = "DWC_BAU_320"
+    sim_name = f"DWC_BAU_320_{pre_spinup_species}_{coarseness:2d}"
     
 sim_dict = {
     "pre_spinup_date": pre_spinup_date,
+    "pre_spinup_species": pre_spinup_species,
     
     "common_spinup_dmp_filepath": common_spinup_dmp_filepath,
 
     "sim_date": sim_date,
     "sim_name": sim_name,
+    "coarseness": coarseness,
 
     "sim_length": 8 * 20 * 2,
     "N": 2_000
@@ -111,7 +115,7 @@ light_model = "Zhao" # Zhao or Spitters
 
 # start `spinup_length` years earlier so as to have the true start again at 2000
 nr_copies = sim_dict["sim_length"] // 20
-forcing = prepare_forcing(nr_copies=nr_copies, year_offset=0)
+forcing = prepare_forcing(nr_copies=nr_copies, year_offset=0, coarseness=sim_dict["coarseness"])
 
 sim_cohort_name = ""
 sim_cohort_path = all_sims_path.joinpath(sim_cohort_name)
@@ -264,10 +268,10 @@ ds
 
 # +
 # load fake equilibrium dmr
-pre_spinup_species = "pine"
+pre_spinup_species = sim_dict["pre_spinup_species"]
 
 spinups_path = DATA_PATH.joinpath("pre_spinups").joinpath(sim_dict["pre_spinup_date"])
-pre_spinup_name = f"DWC_{light_model}_{pre_spinup_species}_2nd_round"
+pre_spinup_name = f"DWC_{light_model}_{pre_spinup_species}_{coarseness:2d}_2nd_round"
 dmr_path = spinups_path.joinpath(pre_spinup_name + ".dmr_eq")
 dmr_eq = DLAPM.load_from_file(dmr_path)
 # -

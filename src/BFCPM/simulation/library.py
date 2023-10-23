@@ -10,7 +10,9 @@ from ..simulation_parameters import simulation_params
 from ..type_aliases import SimulationProfile
 
 
-def prepare_forcing(nr_copies: int, year_offset: int = 0) -> pd.Dataframe:
+def prepare_forcing(
+    nr_copies: int, year_offset: int = 0, coarseness: int = 1
+) -> pd.Dataframe:
     """Prepare a detrended forcing for a simulation.
 
     Args:
@@ -18,6 +20,8 @@ def prepare_forcing(nr_copies: int, year_offset: int = 0) -> pd.Dataframe:
         year_offset: add this number to the year 2000, it can be helpful if part of
             the simulation is a spinup or if the simulation would end later than
             what ´pd.Datetime´ supports
+        coarseness: 1: use every entry, 2: use every other entry, ...
+            Can be used to use hourly instead of half-hourly, or half-daily, daily, ...
 
     Returns:
         A detrended forcing dataset.
@@ -33,6 +37,9 @@ def prepare_forcing(nr_copies: int, year_offset: int = 0) -> pd.Dataframe:
         start_date="2000-01-01",
         end_date="2019-12-31",
     )
+
+    # thin out forcing
+    forcing_base = forcing_base[::coarseness]
 
     forcing_base.index = forcing_base.index + pd.DateOffset(years=year_offset)
 
