@@ -98,7 +98,7 @@ except SystemExit:
 #    sim_name = "even-aged_pine_long"
 #    sim_name = "even-aged_spruce_long"
 #    sim_name = "even-aged_mixed_long"
-    sim_name = f"DWC_common_spinup_clear_cut_{common_spinup_species}_{coarseness:2d}"
+    sim_name = f"DWC_common_spinup_clear_cut_{common_spinup_species}_{coarseness:02d}"
     
 sim_dict = {
     "pre_spinup_date": pre_spinup_date,
@@ -148,7 +148,7 @@ light_model = "Zhao" # Zhao or Spitters
 pre_spinup_species = sim_dict["pre_spinup_species"]
 coarseness = sim_dict["coarseness"]
 
-pre_spinup_name = f"DWC_{light_model}_{pre_spinup_species}_{coarseness:2d}_2nd_round"
+pre_spinup_name = f"DWC_{light_model}_{pre_spinup_species}_{coarseness:02d}_2nd_round"
 dmr_path = spinups_path.joinpath(pre_spinup_name + ".dmr_eq")
 
 # load fake equilibrium dmr
