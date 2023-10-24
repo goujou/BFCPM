@@ -13,7 +13,7 @@
 #     name: python3
 # ---
 
-# # Compare two simulations
+# # Analyse a simulation
 
 # %load_ext autoreload
 
@@ -22,8 +22,8 @@
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 #from matplotlib.lines import Line2D
-#import numpy as np
-#import xarray as xr
+import numpy as np
+import xarray as xr
 #from tqdm import tqdm
 from pathlib import Path
 
@@ -62,7 +62,7 @@ plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
 # +
 sim_date = "2023-10-18" # earlier tree death
 sim_cohort_path = all_sims_path.joinpath(sim_date)
-sim_names = ["DWC_Zhao_pine", "DWC_Zhao_pine_12"]
+sim_names = ["DWC_Zhao_pine"]#, "DWC_Zhao_pine_12"]
 
 sim_cohort_path
 # -
@@ -96,8 +96,118 @@ for var_name, ax in zip(var_names, axes):
 axes[0].legend()
 fig.tight_layout();
 
+# +
+n = 80
+B_TS = ds.stocks.isel(entity=0).sel(pool="B_TS")[:n]
+B_TH = ds.stocks.isel(entity=0).sel(pool="B_TH")[:n]
+B_T = B_TS + B_TS
+
 
 # -
+
+B_TS.plot(label="B_TS")
+B_TH.plot(label="B_TH")
+B_T.plot(label="B_T")
+plt.legend()
+
+B_TS.diff(dim="time").rolling(time=10).mean().plot(label="B_TS")
+B_TH.diff(dim="time").rolling(time=10).mean().plot(label="B_TH")
+B_T.diff(dim="time").rolling(time=10).mean().plot(label="B_T")
+plt.legend()
+
+# +
+us = ds.internal_fluxes.isel(entity_to=0, entity_from=0).sel(pool_to="B_TS").sum(dim="pool_from")[:n]
+phis = us / B_TS
+phis[np.isnan(phis)] = 0
+phis[np.isinf(phis)] = 0
+
+B_TS_to_B_TH = ds.internal_fluxes.isel(entity_to=0, entity_from=0).sel(pool_to="B_TH", pool_from="B_TS")[:n]
+rs = B_TS_to_B_TH / B_TS
+rs[np.isnan(rs)] = 0
+rs[np.isinf(rs)] = 0
+# -
+
+phis.plot(label="u")
+rs.plot(label="r")
+plt.legend()
+
+# +
+(phis-rs).plot()
+ts = ds.time[:n]
+def _f(t):
+    if t < 6:
+        res = 0.0
+    else: 
+        res = np.exp(-0.059*(t+11))
+
+    return res
+    
+f = np.vectorize(_f)
+plt.plot(ts, f(ts))
+
+# -
+
+x_dot_interp = interp1d((phis - rs).data, ts.data, bounds_error=False, fill_value=((phis-rs)[0], (phis-rs)[-1]), kind="previous")
+x_dot_interp(ts)
+
+phis - rs
+
+
+# +
+def deviation(y):
+    a, k, x0 = y
+    f_ = lambda a*np.exp(-k*(x-x0))
+
+    # careful with t and x!!!
+    return sum(np.abs(f_(ts) - x_dot_interp(ts)
+
+def g_min(x):
+    a, k, x0 = x
+    return np.abs(a*np.exp(-k*(x-x0)) - x_dot_interp(x))
+
+print(g_min(2000))
+# -
+
+plt.plot(B_TS, phis - rs)
+def f_x(x):
+    return np.exp(-0.001*(x+1500))
+plt.plot(B_TS, f_x(B_TS))
+plt.axhline(0)
+
+
+
+from scipy.integrate import solve_ivp
+from scipy.interpolate import interp1d
+
+# +
+_f_phi_t = interp1d(ts, phis, bounds_error=False, fill_value=(phis[0], phis[-1]))
+f_phi_t = lambda t: _f_phi_t(t+6)
+_f_r_t = interp1d(ts, rs, bounds_error=False, fill_value=(rs[0], rs[-1]))
+f_r_t = lambda t: _f_r_t(t+6)
+
+def g(t, x):      
+    return f_x(x)
+    return f(t) * x
+
+    val = (f_phi_t(t) - f_r_t(t)) * x
+    if np.isnan(val):
+        print(t, f_phi_t(t))
+        print(t, f_r_t(t))
+        raise
+
+    return val
+
+res = solve_ivp(g, t_span=(ts[0], ts[-1]), y0=np.array(B_TS[5]).reshape(-1), dense_output=True)
+f_t = lambda t: res.sol(t).reshape(-1)
+# -
+
+B_TS.plot(label="B_TS")
+plt.plot(ts, f_t(ts))
+plt.legend()
+
+
+
+
 
 def round_arr(arr: np.ndarray, decimals: int) -> np.ndarray:
     """Round array to `decimals` decimals."""
