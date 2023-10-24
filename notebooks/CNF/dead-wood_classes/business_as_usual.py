@@ -86,10 +86,10 @@ except SystemExit:
     
     # "common" means used by all simulations
     coarseness = 1
-    common_spinup_dmp_filepath = f"DWC_common_spinup_clear_cut_{pre_spinup_species}_{coarseness:2d}"
+    common_spinup_dmp_filepath = f"DWC_common_spinup_clear_cut_{pre_spinup_species}_{coarseness:02d}"
 
     sim_date = "2023-10-19"
-    sim_name = f"DWC_BAU_320_{pre_spinup_species}_{coarseness:2d}"
+    sim_name = f"DWC_BAU_320_{pre_spinup_species}_{coarseness:02d}"
     
 sim_dict = {
     "pre_spinup_date": pre_spinup_date,
@@ -271,7 +271,7 @@ ds
 pre_spinup_species = sim_dict["pre_spinup_species"]
 
 spinups_path = DATA_PATH.joinpath("pre_spinups").joinpath(sim_dict["pre_spinup_date"])
-pre_spinup_name = f"DWC_{light_model}_{pre_spinup_species}_{coarseness:2d}_2nd_round"
+pre_spinup_name = f"DWC_{light_model}_{pre_spinup_species}_{coarseness:02d}_2nd_round"
 dmr_path = spinups_path.joinpath(pre_spinup_name + ".dmr_eq")
 dmr_eq = DLAPM.load_from_file(dmr_path)
 # -
