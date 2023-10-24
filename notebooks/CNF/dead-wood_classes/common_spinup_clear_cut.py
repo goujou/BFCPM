@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.15.2
+#       jupytext_version: 1.15.0
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -89,8 +89,8 @@ except SystemExit:
     common_spinup_species = "pine"
     common_spinup_length = 8 * 20
     common_spinup_N = 2_000
-#    coarseness = 1
-    coarseness = 12
+    coarseness = 1
+#    coarseness = 12
 
 #    sim_date = "2023-06-23"
     sim_date = "2023-10-19"
