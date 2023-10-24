@@ -324,22 +324,47 @@ class Stand:
         l = [(tree, tree.H) for tree in self.living_trees]
         l.sort(reverse=True, key=lambda x: x[1])
 
+        #        if len(l) > 0:
+        #            if l[0][0].N_per_m2 * 10_000 < 100:
+        #                # need to combine more MeanTrees
+        #                Ns = [el[0].N_per_m2 * 10_000 for el in l]
+        #                if sum(Ns) < 100:
+        #                    # less than 100 trees ha-1 in stand
+        #                    return l[0][1]
+        #
+        #                Hs = [el[1] for el in l]
+        #                nr = np.argmax(np.cumsum(Ns) >= 100)
+        #                return np.average(Hs[: nr + 1], weights=Ns[: nr + 1])
+        #
+        #            return l[0][1]
         if len(l) > 0:
             if l[0][0].N_per_m2 * 10_000 < 100:
-                # need to combine more MeanTrees
+                # tallest MeanTree has less than 100 trees per ha
                 Ns = [el[0].N_per_m2 * 10_000 for el in l]
-                if sum(Ns) < 100:
-                    # less than 100 trees ha-1 in stand
-                    return l[0][1]
-
                 Hs = [el[1] for el in l]
-                nr = np.argmax(np.cumsum(Ns) >= 100)
-                return np.average(Hs[: nr + 1], weights=Ns[: nr + 1])
-            #                raise NotImplementedError("We would need to combine some MeanTrees.")
 
-            return l[0][1]
-
-        return Q_(np.nan, "m")
+                if sum(Ns) < 100:
+                    # whole stand has less than 100 trees per ha
+                    # take weighted average of all trees in stand
+                    nr = len(l) - 1
+                    return sum([Hs[i] * Ns[i] for i in range(nr + 1)]) / sum(
+                        Ns[: nr + 1]
+                    )
+                else:
+                    # there are more than 100 trees per ha in the stand
+                    # nr of MeanTrees needed to reach 100 trees per ha
+                    nr = np.argmax(np.cumsum(Ns) >= 100)
+                    # number of trees in MeanTrees to stay under 100
+                    s = sum(Ns[:nr])
+                    # number of trees to fill up
+                    missing = 100 - s
+                    return (
+                        sum(Hs[i] * Ns[i] for i in range(nr)) + Hs[nr] * missing
+                    ) / 100
+            else:
+                print(l[0][1])
+        else:
+            return Q_(np.nan, "m")
 
     @cached_property("_yearly_cache")
     def mean_tree_height(self) -> Q_[float]:
