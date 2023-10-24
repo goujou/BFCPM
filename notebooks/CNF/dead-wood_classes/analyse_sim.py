@@ -82,8 +82,6 @@ for sim_name in sim_names:
 ds = dss[sim_names[0]]
 ds
 
-# ## State after spinup
-
 # +
 var_names = ["GPP_year", "GPP_total", "NPP", "stand_basal_area", "mean_tree_height", "dominant_tree_height", "total_C_stock", "tree_biomass"]
 fig, axes = plt.subplots(figsize=(12, 4*len(var_names)), nrows=len(var_names))
@@ -95,15 +93,12 @@ for var_name, ax in zip(var_names, axes):
 
 axes[0].legend()
 fig.tight_layout();
+# -
 
-# +
 n = 80
 B_TS = ds.stocks.isel(entity=0).sel(pool="B_TS")[:n]
 B_TH = ds.stocks.isel(entity=0).sel(pool="B_TH")[:n]
 B_T = B_TS + B_TS
-
-
-# -
 
 B_TS.plot(label="B_TS")
 B_TH.plot(label="B_TH")
@@ -131,79 +126,191 @@ phis.plot(label="u")
 rs.plot(label="r")
 plt.legend()
 
-# +
 (phis-rs).plot()
-ts = ds.time[:n]
-def _f(t):
-    if t < 6:
-        res = 0.0
-    else: 
-        res = np.exp(-0.059*(t+11))
 
-    return res
-    
-f = np.vectorize(_f)
-plt.plot(ts, f(ts))
+plt.plot(B_TS, phis-rs)
 
-# -
+x_min, x_max = np.min(B_TS.data), np.max(B_TS.data)
+x_min, x_max
 
-x_dot_interp = interp1d((phis - rs).data, ts.data, bounds_error=False, fill_value=((phis-rs)[0], (phis-rs)[-1]), kind="previous")
-x_dot_interp(ts)
-
-phis - rs
-
-
-# +
-def deviation(y):
-    a, k, x0 = y
-    f_ = lambda a*np.exp(-k*(x-x0))
-
-    # careful with t and x!!!
-    return sum(np.abs(f_(ts) - x_dot_interp(ts)
-
-def g_min(x):
-    a, k, x0 = x
-    return np.abs(a*np.exp(-k*(x-x0)) - x_dot_interp(x))
-
-print(g_min(2000))
-# -
-
-plt.plot(B_TS, phis - rs)
-def f_x(x):
-    return np.exp(-0.001*(x+1500))
-plt.plot(B_TS, f_x(B_TS))
-plt.axhline(0)
-
-
-
-from scipy.integrate import solve_ivp
 from scipy.interpolate import interp1d
+from scipy.optimize import minimize
+from scipy.integrate import solve_ivp
+
+ts = ds.time.data[:n]
+phi_x = interp1d(B_TS.data, phis.data, bounds_error=False, fill_value=(phis[0], phis[-1]))#, kind="previous")
+r_x = interp1d(B_TS.data, rs.data, bounds_error=False, fill_value=(rs[0], rs[-1]))#, kind="previous")
+f_x_phi_minus_r = interp1d(B_TS.data, (phis - rs).data, bounds_error=False, fill_value=((phis-rs)[0], (phis-rs)[-1]))#, kind="previous")
+
+plt.plot(B_TS, phis-rs)
+plt.plot(B_TS, f_x_phi_minus_r(B_TS.data), ls="--")
+plt.plot(B_TS, phi_x(B_TS) - r_x(B_TS), ls="-.")
+
+
+def interp(f_x_template, f_source, distance, tup0, bounds, constraints=None):
+    def deviation(*args):
+        f_ = f_x_template(*args)
+        return np.sum(distance(f_(B_TS.data), f_source(B_TS.data)))
+
+    def g(tup):
+        return deviation(*tup)
+        
+    res = minimize(g, x0=tup0, bounds=bounds, constraints=constraints)
+
+    def func_maker(x):
+        return f_x_template(*x)
+    
+    f = func_maker(res.x)
+    return f
+
 
 # +
-_f_phi_t = interp1d(ts, phis, bounds_error=False, fill_value=(phis[0], phis[-1]))
-f_phi_t = lambda t: _f_phi_t(t+6)
-_f_r_t = interp1d(ts, rs, bounds_error=False, fill_value=(rs[0], rs[-1]))
-f_r_t = lambda t: _f_r_t(t+6)
+f_x_template = lambda a, k, x0: lambda x: a * np.exp(-k*(x-x0))
+tup0 = np.array([0.5, 0.0001, 0.0])
+bounds = [(0, 1), (0, 1), (-x_max, x_max)]
+f_x_exp = interp(f_x_template, f_x_phi_minus_r, lambda x, y: np.abs(x-y), tup0, bounds)
 
-def g(t, x):      
-    return f_x(x)
-    return f(t) * x
-
-    val = (f_phi_t(t) - f_r_t(t)) * x
-    if np.isnan(val):
-        print(t, f_phi_t(t))
-        print(t, f_r_t(t))
-        raise
-
-    return val
-
-res = solve_ivp(g, t_span=(ts[0], ts[-1]), y0=np.array(B_TS[5]).reshape(-1), dense_output=True)
-f_t = lambda t: res.sol(t).reshape(-1)
+f_x_template = lambda a, b: lambda x: a - b*x
+tup0 = np.array([0.3, 0.3*1/5_000])
+bounds = [(0, 1), (0, 1)]
+constraints = [{"type": "ineq", "fun": lambda x: x[0] - x_max * x[1]}]
+f_x_lin = interp(f_x_template, f_x_phi_minus_r, lambda x, y: np.abs(x-y)**2, tup0, bounds=bounds, constraints=constraints)
 # -
 
-B_TS.plot(label="B_TS")
-plt.plot(ts, f_t(ts))
+plt.plot(B_TS, phis - rs, label=r"$\varphi(x)-r(x)$")
+plt.plot(B_TS, f_x_exp(B_TS), ls="--", label="exponential approximation")
+plt.plot(B_TS, f_x_lin(B_TS), ls="-.", label="linear approximation")
 plt.legend()
+
+
+# +
+def make_f_t(f_x):
+    def g(t, x):
+        return f_x(x) * x   
+
+    res = solve_ivp(g, t_span=(ts[0], ts[-1]), y0=np.array(B_TS[5]).reshape(-1), dense_output=True)
+    return lambda t: res.sol(t-5).reshape(-1)
+
+f_t = make_f_t(f_x_phi_minus_r)
+f_t_exp = make_f_t(f_x_exp)
+f_t_lin = make_f_t(f_x_lin)
+
+
+# +
+#B_TS.plot(label="B_TS")
+plt.plot(ts, B_TS, label="B_TS")
+plt.plot(ts, f_t(ts), label="original")
+#if x0 >= 0:
+#    label = r"$\varphi(x)-r(x) \approx " + f"{round(a, 1)}" + r"\cdot\mathrm{exp}^{-" + f"{round(k, 4)}" + r"\,(x-" + f"{round(x0, 4)})" + r"}$"
+#else:
+#    label = r"$\varphi(x)-r(x) \approx " + f"{round(a, 1)}" + r"\cdot\mathrm{exp}^{-" + f"{round(k, 4)}" + r"\,(x+" + f"{-round(x0, 4)})" + r"}$"
+label = "exponential approximation"
+plt.plot(ts, f_t_exp(ts), ls="--", label=label)
+
+#label = r"$\varphi(x)-r(x) \approx" + f"{round(n,2)}" + r"-" + f"{round(m,5):2f}" + "\cdot x$"
+label = "linear approximation"
+plt.plot(ts, f_t_lin(ts), ls="-.", label=label)
+plt.legend()
+
+# +
+phi_x_template = lambda a, k, x0: lambda x: a * np.exp(-k*(x-x0))
+tup0 = np.array([0.5, 0.0001, 0.0])
+bounds = [(0, 1), (0, 1), (-x_max, x_max)]
+phi_x_exp = interp(phi_x_template, phi_x, lambda x, y: np.abs(x-y), tup0, bounds)
+
+phi_x_template = lambda a, b: lambda x: a - b*x
+tup0 = np.array([0.3, 0.3*1/5_000])
+bounds = [(0, 1), (0, 1)]
+constraints = [{"type": "ineq", "fun": lambda x: x[0] - x_max * x[1]}]
+phi_x_lin = interp(phi_x_template, phi_x, lambda x, y: np.abs(x-y)**2, tup0, bounds=bounds, constraints=constraints)
+# -
+
+plt.plot(B_TS, phi_x(B_TS), label=r"$\varphi(x)$")
+plt.plot(B_TS, phi_x_exp(B_TS), ls="--", label="exponential approximation")
+plt.plot(B_TS, phi_x_lin(B_TS), ls="-.", label="linear approximation")
+plt.legend()
+
+# +
+r_x_template = lambda a, k, x0: lambda x: a * np.exp(-k*(x-x0))
+tup0 = np.array([0.2, 0.001, 0.0])
+bounds = [(0, 1), (0, 1), (-x_max, x_max)]
+r_x_exp = interp(r_x_template, r_x, lambda x, y: np.abs(x-y), tup0, bounds)
+
+r_x_template = lambda a, b: lambda x: a - b*x
+tup0 = np.array([0.15, 0.15*1/5_000])
+bounds = [(0, 1), (0, 1)]
+constraints = [{"type": "ineq", "fun": lambda x: x[0] - x_max * x[1]}]
+r_x_lin = interp(r_x_template, r_x, lambda x, y: np.abs(x-y)**2, tup0, bounds=bounds, constraints=constraints)
+# -
+
+plt.plot(B_TS, rs, label=r"$r(x)$")
+plt.plot(B_TS, r_x_exp(B_TS), ls="--", label="exponential approximation")
+plt.plot(B_TS, r_x_lin(B_TS), ls="-.", label="linear approximation")
+plt.axhline(0, c="black", lw=1)
+plt.legend()
+
+
+# +
+def make_f_t(phi_x, r_x):
+    def g(t, x):
+        return (phi_x(x) - r_x(x)) * x   
+
+    res = solve_ivp(g, t_span=(ts[0], ts[-1]), y0=np.array(B_TS[5]).reshape(-1), dense_output=True)
+    return lambda t: res.sol(t-5).reshape(-1)
+
+f_t = make_f_t(phi_x, r_x)
+f_t_exp = make_f_t(phi_x_exp, r_x_exp)
+f_t_lin = make_f_t(phi_x_lin, r_x_lin)
+
+
+# +
+#B_TS.plot(label="B_TS")
+plt.plot(ts, B_TS, label="B_TS")
+plt.plot(ts, f_t(ts), label="numerical original")
+#if x0 >= 0:
+#    label = r"$\varphi(x)-r(x) \approx " + f"{round(a, 1)}" + r"\cdot\mathrm{exp}^{-" + f"{round(k, 4)}" + r"\,(x-" + f"{round(x0, 4)})" + r"}$"
+#else:
+#    label = r"$\varphi(x)-r(x) \approx " + f"{round(a, 1)}" + r"\cdot\mathrm{exp}^{-" + f"{round(k, 4)}" + r"\,(x+" + f"{-round(x0, 4)})" + r"}$"
+label = "exponential approximation"
+plt.plot(ts, f_t_exp(ts), ls="--", label=label)
+
+#label = r"$\varphi(x)-r(x) \approx" + f"{round(n,2)}" + r"-" + f"{round(m,5):2f}" + "\cdot x$"
+label = "linear approximation"
+plt.plot(ts, f_t_lin(ts), ls="-.", label=label)
+plt.legend()
+# -
+
+
+
+def make_f_a_t(f_t, phi_x):
+    def g_a(t, a):
+        x = f_t(t)
+        return 1 - a * phi_x(x) 
+
+    a0 = 0.
+    a0 = np.array(a0).reshape((1,))
+    res = solve_ivp(g_a, t_span=(0, ts[-1]), y0=a0, dense_output=True)
+
+    return lambda t: res.sol(t).reshape(-1)
+
+
+f_a_t = make_f_a_t(f_t, phi_x)
+f_a_t_exp = make_f_a_t(f_t_exp, phi_x_exp)
+f_a_t_lin = make_f_a_t(f_t_lin, phi_x_lin)
+
+plt.plot(ts, f_a_t(ts), label=r"$a(t)$")
+plt.plot(ts, f_a_t_exp(ts), label="exponential approximation")
+plt.plot(ts, f_a_t_lin(ts), label="linear approximation")
+plt.legend()
+
+ts_ = ts[1:]
+
+plt.plot(ts_, np.diff(f_a_t(ts)), label=r"$\dot{a}(t)$")
+plt.plot(ts_, np.diff(f_a_t_exp(ts)), label="exponential approximation")
+plt.plot(ts_, np.diff(f_a_t_lin(ts)), label="linear approximation")
+plt.legend()
+
+
 
 
 
