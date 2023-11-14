@@ -362,7 +362,7 @@ class Stand:
                         sum(Hs[i] * Ns[i] for i in range(nr)) + Hs[nr] * missing
                     ) / 100
             else:
-                print(l[0][1])
+                return l[0][1]
         else:
             return Q_(np.nan, "m")
 
