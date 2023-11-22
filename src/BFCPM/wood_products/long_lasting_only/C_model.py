@@ -1,15 +1,15 @@
 """
-This module contains a simple wood-product model.
+This module contains a very simple wood-product model.
 
-Two pools: short- (:math:`\\mathrm{WP}_S`) and long-lasting (:math:`{\mathrm{WP}_L`) material.
+One pool: long-lasting (:math:`\\mathrm{WP}_L`) material.
 """
 from __future__ import annotations
 
 from typing import Callable, Dict, List
 
 import numpy as np
-from bgc_md2.models.BFCPMSimpleWoodProductModel.source import (WP_L_input,
-                                                               WP_S_input, srm)
+from bgc_md2.models.BFCPMLongLastingOnlyWoodProductModel.source import (
+    WP_L_input, srm)
 from CompartmentalSystems.helpers_reservoir import \
     numerical_function_from_expression
 
@@ -18,7 +18,7 @@ from ..wood_product_model_abc import WoodProductModelABC
 from .C_model_parameters import initialize_params
 
 
-class SimpleWoodProductModel(WoodProductModelABC):
+class LongLastingOnlyWoodProductModel(WoodProductModelABC):
     """Simple wood-product model with a fast and a slow pool."""
 
     def __init__(self, *args, **kwargs):
@@ -41,7 +41,7 @@ class SimpleWoodProductModel(WoodProductModelABC):
     # required by asbtract base class
     def _create_U_func(self) -> Callable:
         return numerical_function_from_expression(
-            self.srm.external_inputs, (WP_S_input, WP_L_input), {}, {}
+            self.srm.external_inputs, (WP_L_input,), {}, {}
         )
 
     # required by asbtract base class
@@ -49,10 +49,9 @@ class SimpleWoodProductModel(WoodProductModelABC):
         nr_pools = self.srm.nr_pools
 
         flux_unit = self.flux_unit
-        _WP_S_input = input_fluxes.get("WP_S", Q_(0, flux_unit)).to(flux_unit)
         _WP_L_input = input_fluxes.get("WP_L", Q_(0, flux_unit)).to(flux_unit)
 
         # U, external inputs
-        U = self._U_func(_WP_S_input.magnitude, _WP_L_input.magnitude).reshape(nr_pools)
+        U = self._U_func(_WP_L_input.magnitude).reshape(nr_pools)
 
         return U

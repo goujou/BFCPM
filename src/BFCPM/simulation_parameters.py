@@ -16,6 +16,10 @@ from .soil.simple_soil_model.C_model import SimpleSoilCModel
 from .soil.soil_c_model_abc import SoilCModelABC
 from .trees.single_tree_allocation import SingleTree
 from .type_aliases import TreeSoilInterface, WoodProductInterface
+from .wood_products.long_lasting_only.C_model import \
+    LongLastingOnlyWoodProductModel
+from .wood_products.short_lasting_only.C_model import \
+    ShortLastingOnlyWoodProductModel
 from .wood_products.simple_wood_product_model.C_model import \
     SimpleWoodProductModel
 from .wood_products.wood_product_model_abc import WoodProductModelABC
@@ -204,6 +208,66 @@ wood_product_interfaces: Dict[
             "B_OH": {"CWD": 1.0},  # heartwood litter to CWD
             "B_TS": {"log": "WP_L", "fibre": "WP_S", "residue": "CWD", "stump": "CWD"},
             "B_TH": {"log": "WP_L", "fibre": "WP_S", "residue": "CWD", "stump": "CWD"},
+            # what to do with it, it's a fictional pool
+            # actually, it stores captured C artifically for one year
+            "E": {"Litter": 1.0},
+            # function to distribute trunk biomass to CWD and wood products
+            "_trunk_fate_func": solve_volume_fractions,
+        }
+    },
+    (SingleTree, SimpleSoilCModel, ShortLastingOnlyWoodProductModel): {
+        "default": {
+            # pool_from: {pool_to_1: proportion_1, pool_to_2: proportion_2, ...}
+            # proportions musst add up to 1.0
+            "B_L": {"Litter": 1.0},  # leaf litter to Litter
+            "C_L": {"Litter": 1.0},
+            "B_R": {"Litter": 1.0},  # fine roots litter to Litter
+            "C_R": {"Litter": 1.0},
+            # parts of C_S belonging to the stem to Wood-products
+            # --> slightly different structure
+            "C_S": {
+                "other": {"CWD": 1.0},
+                "trunk": {
+                    "log": "WP_S",
+                    "fibre": "WP_S",
+                    "residue": "CWD",
+                    "stump": "CWD",
+                },
+            },
+            "B_OS": {"CWD": 1.0},  # sapwood litter to CWD
+            "B_OH": {"CWD": 1.0},  # heartwood litter to CWD
+            "B_TS": {"log": "WP_S", "fibre": "WP_S", "residue": "CWD", "stump": "CWD"},
+            "B_TH": {"log": "WP_S", "fibre": "WP_S", "residue": "CWD", "stump": "CWD"},
+            # what to do with it, it's a fictional pool
+            # actually, it stores captured C artifically for one year
+            "E": {"Litter": 1.0},
+            # function to distribute trunk biomass to CWD and wood products
+            "_trunk_fate_func": solve_volume_fractions,
+        }
+    },
+    (SingleTree, SimpleSoilCModel, LongLastingOnlyWoodProductModel): {
+        "default": {
+            # pool_from: {pool_to_1: proportion_1, pool_to_2: proportion_2, ...}
+            # proportions musst add up to 1.0
+            "B_L": {"Litter": 1.0},  # leaf litter to Litter
+            "C_L": {"Litter": 1.0},
+            "B_R": {"Litter": 1.0},  # fine roots litter to Litter
+            "C_R": {"Litter": 1.0},
+            # parts of C_S belonging to the stem to Wood-products
+            # --> slightly different structure
+            "C_S": {
+                "other": {"CWD": 1.0},
+                "trunk": {
+                    "log": "WP_L",
+                    "fibre": "WP_L",
+                    "residue": "CWD",
+                    "stump": "CWD",
+                },
+            },
+            "B_OS": {"CWD": 1.0},  # sapwood litter to CWD
+            "B_OH": {"CWD": 1.0},  # heartwood litter to CWD
+            "B_TS": {"log": "WP_L", "fibre": "WP_L", "residue": "CWD", "stump": "CWD"},
+            "B_TH": {"log": "WP_L", "fibre": "WP_L", "residue": "CWD", "stump": "CWD"},
             # what to do with it, it's a fictional pool
             # actually, it stores captured C artifically for one year
             "E": {"Litter": 1.0},
