@@ -35,7 +35,7 @@ from BFCPM.simulation_parameters import stand_params_library
 from BFCPM.soil.simple_soil_model.C_model import SimpleSoilCModel
 from BFCPM.stand import Stand
 from BFCPM.trees.single_tree_params import species_params
-from BFCPM.wood_products.short_lasting_only_wood_product_model.C_model import \
+from BFCPM.wood_products.short_lasting_only.C_model import \
     ShortLastingOnlyWoodProductModel as WoodProductModel
 from bgc_md2.notebook_helpers import write_to_logfile
 from CompartmentalSystems.discrete_model_run import DiscreteModelRun as DMR

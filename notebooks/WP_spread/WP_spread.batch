@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#SBATCH -A naiss2023-22-831
+#SBATCH --job-name=WP_spread      # create a short name for your job
+#SBATCH --error=WP_spread.%J.err
+#SBATCH --output=WP_spread.%J.out
+#SBATCH --nodes=1                # node count
+#SBATCH --ntasks=2               # total number of tasks across all nodes
+#SBATCH --cpus-per-task=1        # cpu-cores per task (>1 if multi-threaded tasks)
+#SBATCH --time=72:00:00          # total run time limit (HH:MM:SS)
+#SBATCH --mail-type=begin        # send email when job begins
+#SBATCH --mail-type=end          # send email when job ends
+#SBATCH --mail-type=fail          # send email when job fails
+#SBATCH --mail-user=holger.metzler@slu.se
+
+module load conda
+# conda activate Formas
+#source activate_conda_env.sh
+source activate /proj/bfcpm_data/nobackup/conda-envs/Formas
+
+# run several jobs in parallel
+srun -n 1 python run_sims_for_paper_serial_WP_short_only.py &
+srun -n 1 python run_sims_for_paper_serial_WP_long_only.py &
+wait

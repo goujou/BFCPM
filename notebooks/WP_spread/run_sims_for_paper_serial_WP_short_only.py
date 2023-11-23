@@ -28,7 +28,7 @@ from tqdm import tqdm
 # +
 # pre_spinup_date = "2023-06-07" # corrected wood density
 #pre_spinup_date = "2023-07-25"  # publication
-pre_spinup_date = "2023-11-22"  # Revision 1, wood products short and long separeted
+pre_spinup_date = "2023-11-23_WP_short_only"  # Revision 1, wood products short and long separeted
 
 # continuous-cover spinup
 cc_spinup_species = "pine"
@@ -43,7 +43,7 @@ cc_spinup_N = 1_500
 # sim_date = "2023-06-19" # at emergency automatically thin stand to SBA = 18
 # sim_date = "2023-07-11" # mixed-aged_pine
 #sim_date = "2023-07-26"  # publication
-sim_date = "2023-11-23"  # Revision 1, wood products short and long separeted
+sim_date = "2023-11-23_WP_short_only"  # Revision 1, wood products short and long separeted
 
 sim_names = [
     "mixed-aged_pine_long",

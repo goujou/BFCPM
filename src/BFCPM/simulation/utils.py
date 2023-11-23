@@ -89,27 +89,35 @@ def add_simulation_data_to_ds(
 def add_additional_simulation_quantities_to_ds(ds: xr.Dataset) -> xr.Dataset:
     """Based on a simulation dataset, compute more data and add it."""
     # divisions of zero by zero make warnings, but the result is nan
-    # nan is okaym but the warnings look pretty disgusting
+    # nan is okay but the warnings look pretty disgusting
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
 
         new_ds = ds.copy()
 
         total_C_stock = Q_(ds.stocks.sum(dim=["entity", "pool"]).data, "gC/m^2")
-        cum_WP_S_input = Q_(
-            ds.internal_fluxes.sel(entity_to="wood_product", pool_to="WP_S")
-            .sum(dim=["entity_from", "pool_from"])
-            .cumsum(dim="time")
-            .data,
-            "gC/m^2",
-        )
-        cum_WP_L_input = Q_(
-            ds.internal_fluxes.sel(entity_to="wood_product", pool_to="WP_L")
-            .sum(dim=["entity_from", "pool_from"])
-            .cumsum(dim="time")
-            .data,
-            "gC/m^2",
-        )
+        try:
+            cum_WP_S_input = Q_(
+                ds.internal_fluxes.sel(entity_to="wood_product", pool_to="WP_S")
+                .sum(dim=["entity_from", "pool_from"])
+                .cumsum(dim="time")
+                .data,
+                "gC/m^2",
+            )
+        except KeyError:
+            cum_WP_S_input = np.nan * total_C_stock
+
+        try:
+            cum_WP_L_input = Q_(
+                ds.internal_fluxes.sel(entity_to="wood_product", pool_to="WP_L")
+                .sum(dim=["entity_from", "pool_from"])
+                .cumsum(dim="time")
+                .data,
+                "gC/m^2",
+            )
+        except KeyError:
+            cum_WP_L_input = np.nan * total_C_stock
+    
         cum_R = Q_(
             ds.output_fluxes.sum(dim=["entity_from", "pool_from"])
             .cumsum(dim="time")

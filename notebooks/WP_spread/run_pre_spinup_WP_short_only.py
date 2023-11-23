@@ -58,7 +58,7 @@ try:
     print("Pre-spinup settings from command line")
 except SystemExit:
     print("Default pre-spinup settings")
-    pre_spinup_date = "2023-11-22"
+    pre_spinup_date = "2023-11-23"
 
 print(pre_spinup_date)
 
