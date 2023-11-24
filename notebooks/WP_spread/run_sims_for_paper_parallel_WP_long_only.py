@@ -131,12 +131,9 @@ import os
 import dask
 from dask.distributed import Client, LocalCluster
 
-# +
-#dask.config.set({"distributed.nanny.environ.MALLOC_TRIM_THRESHOLD_": 0})
+dask.config.set({"distributed.nanny.environ.MALLOC_TRIM_THRESHOLD_": 0})
 
-# +
-#os.environ["MALLOC_TRIM_THRESHOLD_"] = str(dask.config.get("distributed.nanny.environ.MALLOC_TRIM_THRESHOLD_"))
-# -
+os.environ["MALLOC_TRIM_THRESHOLD_"] = str(dask.config.get("distributed.nanny.environ.MALLOC_TRIM_THRESHOLD_"))
 
 cluster = LocalCluster(n_workers = 4, threads_per_worker=1)
 c = Client(cluster)
@@ -161,25 +158,18 @@ def run_nb(filename, params, logs_path, nr):
     return "Done"
 
 
-# +
 results = list()
-for nr, nb_data in tqdm(enumerate(four_scenarios_data)):
+for nr, nb_data in enumerate(four_scenarios_data):
     filename = nb_data["filename"]
     params = nb_data["params"]
 
     result = dask.delayed(run_nb)(filename, params, logs_path, nr)
     results.append(result)
 
-
-
 # +
 # %%time
 
 dask.compute(results)
 # -
-
-import pandas as pd
-
-import xarray as xr
 
 

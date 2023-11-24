@@ -8,6 +8,7 @@ sympy
 ffmpeg
 openh264
 dill
+dask[complete]
 
 # doc
 graphviz
