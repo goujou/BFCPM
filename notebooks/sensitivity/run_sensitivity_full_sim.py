@@ -56,7 +56,7 @@ all_sims_path.mkdir(exist_ok=True)
 #sensitivity_str = "S_L,0.9 rho_RL,1.1 Vcmax,0.95"
 #sim_cohort_name = "sensitivity_full_sim"
 
-sensitivity_str = ""
+sensitivity_str = list()
 sim_cohort_name = ""
 
 try:
@@ -77,6 +77,7 @@ try:
     parser.add_argument("emergency_direction", type=str)
     parser.add_argument("emergency_stand_action_str", type=str)
 
+    # actually, it's a list of str
     parser.add_argument("sensitivity_str", type=str, nargs=argparse.REMAINDER, default="")
 
     args = parser.parse_args()
@@ -161,10 +162,11 @@ custom_global_tree_params = global_tree_params.copy()
 
 # here we change the parameters according to the sensitivity_str
 # "S_L,0.9 rho_RL,1.1" will multiply S_L by 0.9 and rho_RL by 1.1
+sensitivity_str = sim_dict["sensitivity_str"]
 if sensitivity_str:
     print()
-    print("Changing parameters for sensitivity analyisis:")
-    for par_str in sim_dict["sensitivity_str"].split(" "):
+    print("Changing parameters for sensitivity analysis:")
+    for par_str in sensitivity_str:
         par_str = par_str.strip()
         par_name, par_q = par_str.split(",")
         par_name = par_name.strip()
@@ -181,8 +183,7 @@ if sensitivity_str:
         else:
             raise KeyError(f"Unknown parameter name: {par_name}")
 
-    print()
-            
+    print()         
 # -
 
 # ## Set up forcing and simulation length
@@ -194,7 +195,7 @@ sim_cohort_path.mkdir(exist_ok=True)
 
 sensitivity_str = sim_dict["sensitivity_str"]
 if sensitivity_str:
-    sim_cohort_path = sim_cohort_path.joinpath(sensitivity_str.replace(" ", "-").replace(",", "_").replace(".", "").strip())
+    sim_cohort_path = sim_cohort_path.joinpath("-".join(sensitivity_str).replace(",", "_").replace(".", ""))
     sim_cohort_path.mkdir(exist_ok=True)
 
 sim_cohort_path = sim_cohort_path.joinpath(f"{sim_dict['sim_date']}")

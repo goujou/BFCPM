@@ -120,7 +120,7 @@ dask.config.set({"distributed.nanny.environ.MALLOC_TRIM_THRESHOLD_": 0})
 
 os.environ["MALLOC_TRIM_THRESHOLD_"] = str(dask.config.get("distributed.nanny.environ.MALLOC_TRIM_THRESHOLD_"))
 
-cluster = LocalCluster(n_workers = 4, threads_per_worker=1)
+cluster = LocalCluster(n_workers = 16, threads_per_worker=1)
 c = Client(cluster)
 c
 
