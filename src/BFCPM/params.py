@@ -11,6 +11,7 @@ in (at least):
 from typing import Any, Dict
 
 from . import Q_
+from .type_aliases import GlobalTreeParams
 
 BREAST_HEIGHT = Q_("1.3 m")
 """Height in which diameter in breast height is measured."""
@@ -60,7 +61,7 @@ Soil model parameters (non-carbon).
 """
 
 
-global_tree_params: Dict[str, Dict[str, Any]] = {
+global_tree_params: GlobalTreeParams = {
     "pine": {
         "leaf": {
             "length": 0.01,

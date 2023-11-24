@@ -101,3 +101,9 @@ SpeciesSettings = Dict[str, List[TreeSetting]]
 
 The key is supposed to give the tree species.
 """
+
+GlobalTreeParams = Dict[str, Dict[str, Any]]
+"""Parameters for photosynthesis and so on.
+
+See :mod:`~params.py`.
+"""

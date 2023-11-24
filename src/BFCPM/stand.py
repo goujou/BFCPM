@@ -26,9 +26,9 @@ from .soil.soil_c_model_abc import SoilCModelABC
 from .trees.mean_tree import MeanTree
 from .trees.single_tree_allocation import SingleTree, TreeShrinkError
 from .trees.single_tree_C_model import SingleTreeCModel
-from .type_aliases import (CuttingFluxes, SpeciesParams, SpeciesSettings,
-                           TreeExternalOutputFluxes, TreeSoilInterface,
-                           WoodProductInterface)
+from .type_aliases import (CuttingFluxes, GlobalTreeParams, SpeciesParams,
+                           SpeciesSettings, TreeExternalOutputFluxes,
+                           TreeSoilInterface, WoodProductInterface)
 from .utils import assert_accuracy, cached_property
 from .wood_products.wood_product_model_abc import WoodProductModelABC
 
@@ -356,13 +356,17 @@ class Stand:
         return (num / denom).to("m")
 
     def add_trees_from_setting(
-        self, species_settings: SpeciesSettings, custom_species_params: SpeciesParams
+        self,
+        species_settings: SpeciesSettings,
+        custom_species_params: SpeciesParams,
+        custom_global_tree_params: GlobalTreeParams,
     ):
         """Add a prescribed collection of trees to the stand.
 
         Args:
             species_settings: settings for different tree species
             custom_species_params: tree species parameters (for all species)
+            custom_global_tree_params: PH parameters and more (for all species)
         """
         tree_nrs = list()
         trees = list()
@@ -409,6 +413,7 @@ class Stand:
                     cutting_fluxes_list=[{}] * stand_age,
                     newly_planted_biomass_list=[Q_(np.zeros(nr_pools), "gC/m^2")]
                     * stand_age,
+                    custom_global_tree_params=custom_global_tree_params,
                 )
                 trees.append(tree_in_stand)
 
@@ -976,6 +981,7 @@ class Stand:
                     tree_in_stand.output_fluxes_list,
                     tree_in_stand.cutting_fluxes_list,
                     tree_in_stand.newly_planted_biomass_list,
+                    tree_in_stand._custom_global_tree_params,
                 )
 
                 del tree_in_stand._new_N_per_m2  # type: ignore[attr-defined]

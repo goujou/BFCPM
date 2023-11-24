@@ -35,6 +35,7 @@ from BFCPM.simulation_parameters import stand_params_library
 from BFCPM.soil.simple_soil_model.C_model import SimpleSoilCModel
 from BFCPM.stand import Stand
 from BFCPM.trees.single_tree_params import species_params
+from BFCPM.params import global_tree_params
 from BFCPM.wood_products.simple_wood_product_model.C_model import \
     SimpleWoodProductModel
 from bgc_md2.notebook_helpers import write_to_logfile
@@ -48,18 +49,23 @@ from LAPM.discrete_linear_autonomous_pool_model import \
 all_sims_path = DATA_PATH.joinpath("simulations")
 all_sims_path.mkdir(exist_ok=True)
 
-# ### Custom species parameters?
-
 # +
 # #%tb
+
+# examples
+#sensitivity_str = "S_L,0.9 rho_RL,1.1 Vcmax,0.95"
+#sim_cohort_name = "sensitivity_full_sim"
+
+sensitivity_str = ""
+sim_cohort_name = ""
 
 try:
     parser = argparse.ArgumentParser()
     parser.add_argument("pre_spinup_date", type=str)
 
-    parser.add_argument(
-        "cc_spinup_species", type=str
-    )  # continuous-cover (age-distributed) spinup
+    parser.add_argument("sim_cohort_name", type=str)
+    
+    parser.add_argument("cc_spinup_species", type=str)  # continuous-cover (age-distributed) spinup
     parser.add_argument("cc_spinup_length", type=int)
     parser.add_argument("cc_spinup_N", type=int)
 
@@ -71,12 +77,18 @@ try:
     parser.add_argument("emergency_direction", type=str)
     parser.add_argument("emergency_stand_action_str", type=str)
 
+    parser.add_argument("sensitivity_str", type=str, nargs=argparse.REMAINDER, default="")
+
     args = parser.parse_args()
 
     pre_spinup_date = args.pre_spinup_date
+
+    sim_cohort_name = args.sim_cohort_name
+    
     cc_spinup_species = args.cc_spinup_species
     cc_spinup_length = args.cc_spinup_length
     cc_spinup_N = args.cc_spinup_N
+    
     sim_date = args.sim_date
     sim_name = args.sim_name
     sim_N = args.sim_N
@@ -84,11 +96,15 @@ try:
     emergency_action_str = args.emergency_action_str
     emergency_direction = args.emergency_direction
     emergency_stand_action_str = args.emergency_stand_action_str
+
+    sensitivity_str = args.sensitivity_str
+    
     print("Simulation settings from command line")
 except SystemExit:
     print("Standard simulation settings")
 
-    pre_spinup_date = "2023-07-25"
+#    pre_spinup_date = "2023-07-25"
+    pre_spinup_date = "2023-11-24"
 
     # cc stand for continuous-cover
     cc_spinup_species = "pine"
@@ -96,7 +112,9 @@ except SystemExit:
 
     cc_spinup_N = 1_500
 
-    sim_date = "2023-07-26"
+#    sim_date = "2023-07-26"
+    sim_date = "2023-11-24"
+
     sim_name = "mixed-aged_pine_long"
     #    sim_name = "even-aged_pine_long"
     #    sim_name = "even-aged_spruce_long"
@@ -120,6 +138,8 @@ sim_dict = {
     "emergency_action_str": emergency_action_str,
     "emergency_direction": emergency_direction,
     "emergency_stand_action_str": emergency_stand_action_str,
+    "sensitivity_str": sensitivity_str,
+    "sim_cohort_name": sim_cohort_name,
 }
 
 print(sim_dict)
@@ -130,24 +150,56 @@ print(sim_dict)
 
 # sim_dict["N"] = 1_500
 print(sim_dict)
+# -
+
+# ### Custom species parameters?
 
 # +
 # tree species parameter changes can be made here
 custom_species_params = species_params.copy()
+custom_global_tree_params = global_tree_params.copy()
 
-alpha = 1.00
-custom_species_params["pine"]["alpha"]["value"] = alpha
-custom_species_params["spruce"]["alpha"]["value"] = alpha
+# here we change the parameters according to the sensitivity_str
+# "S_L,0.9 rho_RL,1.1" will multiply S_L by 0.9 and rho_RL by 1.1
+if sensitivity_str:
+    print()
+    print("Changing parameters for sensitivity analyisis:")
+    for par_str in sim_dict["sensitivity_str"].split(" "):
+        par_str = par_str.strip()
+        par_name, par_q = par_str.split(",")
+        par_name = par_name.strip()
+        par_q = float(par_q.strip())
+
+        print(f"{par_name} by factor {par_q}")
+
+        if par_name in custom_species_params["pine"].keys():
+            custom_species_params["pine"][par_name]["value"] *= par_q
+            custom_species_params["spruce"][par_name]["value"] *= par_q
+        elif par_name == "Vcmax":
+            custom_global_tree_params["pine"]["photop"][par_name] *= par_q
+            custom_global_tree_params["spruce"]["photop"][par_name] *= par_q
+        else:
+            raise KeyError(f"Unknown parameter name: {par_name}")
+
+    print()
+            
 # -
 
 # ## Set up forcing and simulation length
 
 # +
-sim_cohort_name = ""
+sim_cohort_name = sim_dict["sim_cohort_name"]
 sim_cohort_path = all_sims_path.joinpath(sim_cohort_name)
-sim_cohort_path = sim_cohort_path.joinpath(f"{sim_dict['sim_date']}")
-
 sim_cohort_path.mkdir(exist_ok=True)
+
+sensitivity_str = sim_dict["sensitivity_str"]
+if sensitivity_str:
+    sim_cohort_path = sim_cohort_path.joinpath(sensitivity_str.replace(" ", "-").replace(",", "_").replace(".", "").strip())
+    sim_cohort_path.mkdir(exist_ok=True)
+
+sim_cohort_path = sim_cohort_path.joinpath(f"{sim_dict['sim_date']}")
+sim_cohort_path.mkdir(exist_ok=True)
+
 print(sim_cohort_path)
 # -
 
@@ -234,7 +286,9 @@ print(f"log file: {logfile_path}")
 
 stand = Stand.create_empty(stand_params)
 stand.add_trees_from_setting(
-    species_setting, custom_species_params=custom_species_params
+    species_setting, 
+    custom_species_params=custom_species_params,
+    custom_global_tree_params=custom_global_tree_params,
 )
 
 print(stand)
