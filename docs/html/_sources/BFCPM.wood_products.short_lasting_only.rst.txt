@@ -1,0 +1,40 @@
+short\_lasting\_only
+====================
+
+MMMM
+
+.. currentmodule:: BFCPM.wood_products.short_lasting_only
+
+
+.. automodule:: BFCPM.wood_products.short_lasting_only
+
+    
+    
+    .. rubric:: Modules
+    
+    .. autosummary::
+       :toctree:
+       :recursive:
+       :template: module.rst
+
+       
+       ~BFCPM.wood_products.short_lasting_only.C_model
+       ~BFCPM.wood_products.short_lasting_only.C_model_parameters
+    
+    
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   

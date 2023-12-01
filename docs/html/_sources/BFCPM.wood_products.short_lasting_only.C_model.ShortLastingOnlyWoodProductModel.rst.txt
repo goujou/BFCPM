@@ -1,0 +1,35 @@
+ShortLastingOnlyWoodProductModel
+================================
+
+Qualified name: ``BFCPM.wood\_products.short\_lasting\_only.C\_model.ShortLastingOnlyWoodProductModel``
+
+CCCC
+
+.. currentmodule:: BFCPM.wood_products.short_lasting_only.C_model
+
+.. autoclass:: ShortLastingOnlyWoodProductModel
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+     
+     ~ShortLastingOnlyWoodProductModel.Fs
+     ~ShortLastingOnlyWoodProductModel.Rs
+     ~ShortLastingOnlyWoodProductModel.Us
+     ~ShortLastingOnlyWoodProductModel.flux_unit
+     ~ShortLastingOnlyWoodProductModel.nr_pools
+     ~ShortLastingOnlyWoodProductModel.pool_names
+     ~ShortLastingOnlyWoodProductModel.start_vector
+     ~ShortLastingOnlyWoodProductModel.stock_unit
+     ~ShortLastingOnlyWoodProductModel.xs
+   
