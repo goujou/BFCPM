@@ -31,6 +31,7 @@ MMMM
    .. autodata:: BFCPM.type_aliases::SimulationProfile
    .. autodata:: BFCPM.type_aliases::TreeSetting
    .. autodata:: BFCPM.type_aliases::SpeciesSettings
+   .. autodata:: BFCPM.type_aliases::GlobalTreeParams
    
    
 

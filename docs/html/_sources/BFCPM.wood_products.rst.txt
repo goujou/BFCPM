@@ -18,6 +18,8 @@ MMMM
        :template: module.rst
 
        
+       ~BFCPM.wood_products.long_lasting_only
+       ~BFCPM.wood_products.short_lasting_only
        ~BFCPM.wood_products.simple_wood_product_model
        ~BFCPM.wood_products.wood_product_model_abc
     

@@ -13,7 +13,7 @@
 #     name: python3
 # ---
 
-# # Figures for the manuscript
+# # Figures for WP spread
 
 # %load_ext autoreload
 
@@ -69,10 +69,10 @@ all_sims_path = DATA_PATH.joinpath("simulations")
 sim_date = "2023-11-23" # WP spread
 
 # path to place the figures for the publication
-#pub_figs_path = FIGS_PATH.joinpath(f"{sim_date}")
-#pub_figs_path.mkdir(exist_ok=True, parents=True)
+pub_figs_path = FIGS_PATH.joinpath(f"{sim_date}")
+pub_figs_path.mkdir(exist_ok=True, parents=True)
 
-#print(pub_figs_path)
+print(pub_figs_path)
 
 spinup_length = 160
 # -
@@ -88,13 +88,9 @@ eligible_sim_names = {
     "even-aged_mixed": "even-aged_mixed",
 }
 
-# +
 sims_data = dict()
 for WP_type in WP_types:
     dss = dict()
-    dmrs = dict()
-    dmrs_eq = dict()
-    dss_long = dict()
 
     sim_cohort_path = all_sims_path.joinpath(f"{sim_date}_{WP_type}")
     sim_names = list()
@@ -108,24 +104,8 @@ for WP_type in WP_types:
                 sim_names.append(sim_name)
                 dss[sim_name] = xr.open_dataset(str(p))
         
-                dmr_path = sim_cohort_path.joinpath(p.stem + ".dmr")
-                dmrs[sim_name] = DMR.load_from_file(dmr_path)
-    
-                dmr_eq_path = sim_cohort_path.joinpath(p.stem + ".dmr_eq")
-                dmrs_eq[sim_name] = DLAPM.load_from_file(dmr_eq_path)
-        
-                ds_long_path = sim_cohort_path.joinpath(p.stem + "_long.nc")
-                dss_long[sim_name] = xr.open_dataset(str(ds_long_path))
-
-#                print(dss[sim_name].stocks.sel(entity="wood_product").sum(dim="pool").data[-1])
-#                print(dss[sim_name].stocks.sum(dim=["entity", "pool"]).data[0])
-#                print(dss[sim_name].stocks.sum(dim=["entity", "pool"]).data[-1])
-
     sim_data = dict()
     sim_data["dss"] = dss
-#    sim_data["dmrs"] = dmrs
-#    sim_data["dmrs_eq"] = dmrs_eq
-#    sim_data["dss_long"] = dss_long
 
     sims_data[WP_type] = sim_data
 
@@ -202,11 +182,27 @@ yield_datas = Q_(np.array(yield_datas).transpose(), "gC/m^2").to("kgC/m^2")
 yield_datas.shape
 
 # +
-fig, axes_ = plt.subplots(figsize=(8, 4*4), nrows=4)
-panel_names = iter(string.ascii_uppercase[:len(axes_)])
-axes = iter(axes_)
+# identify the color codes:
+
+#colors = dict()
+#for sim_name in sim_names:
+#    l = plt.plot([0, 1], [0, 1])
+#    colors[sim_name] = l[0].get_c()
+#
+#print(colors)
+
+# +
+fig, axes_ = plt.subplots(figsize=(4*2, 4*2), ncols=2, nrows=2)
+panel_names = iter(string.ascii_uppercase[:4])
+axes = iter(axes_.flatten())
 
 labels = [sim_name.replace("_", " ") for sim_name in sim_names]
+colors = {
+    'mixed-aged_pine': '#1f77b4',
+    'even-aged_pine': '#ff7f0e',
+    'even-aged_spruce': '#2ca02c',
+    'even-aged_mixed': '#d62728'
+}
 hatches = ["/", "x", "\\"]
 width = 0.25
 x = np.arange(len(sim_names))
@@ -231,7 +227,8 @@ ax.set_ylabel(r"kgC$\,$m$^{-2}$")
 ax.set_ylim([0, 16])
 ax.legend(loc=4)
 ax.text(-0.05, 1.1, panel_name+")", transform=ax.transAxes, size=20, weight='bold')
-ax.set_title("Total cumulative wood-product yield C ($Y_S+Y_L$)")
+#ax.set_title("Total cumulative wood-product yield C ($Y_S+Y_L$)")
+ax.set_title("$Y_S+Y_L$")
 ax.set_xticks([])
 ax.set_xticklabels("")
 
@@ -252,9 +249,11 @@ for WP_nr, WP_type in enumerate(WP_types):
     )
     multiplier += 1
 
-ax.set_ylabel(r"kgC$\,$m$^{-2}$")
+#ax.set_ylabel(r"kgC$\,$m$^{-2}$")
+ax.set_ylabel("")
 ax.set_ylim([-2, 6])
-ax.set_title("Integrated Net Carbon Balance (INCB)")
+#ax.set_title("Integrated Net Carbon Balance (INCB)")
+ax.set_title("INCB")
 ax.axhline(0, c="black", lw=1)
 ax.set_xticks([])
 ax.set_xticklabels("")
@@ -279,7 +278,8 @@ for WP_nr, WP_type in enumerate(WP_types):
 
 ax.set_ylabel(r"kgC$\,$m$^{-2}\,$yr")
 ax.set_ylim([0, 800])
-ax.set_title("Integrated Inputs Transit Time (IITT)")
+#ax.set_title("Integrated Inputs Transit Time (IITT)")
+ax.set_title("IITT")
 ax.set_xticks([])
 ax.set_xticklabels("")
 ax.text(-0.05, 1.1, panel_name+")", transform=ax.transAxes, size=20, weight='bold')
@@ -301,22 +301,33 @@ for WP_nr, WP_type in enumerate(WP_types):
     )
     multiplier += 1
 
-ax.set_ylabel(r"kgC$\,$m$^{-2}\,$yr")
+#ax.set_ylabel(r"kgC$\,$m$^{-2}\,$yr")
+ax.set_ylabel("")
 ax.set_ylim([0, 1500])
-ax.set_title("Integrated Carbon Stocks (ICS)")
+#ax.set_title("Integrated Carbon Stocks (ICS)")
+ax.set_title("ICS")
 ax.set_xticklabels("")
 ax.text(-0.05, 1.1, panel_name+")", transform=ax.transAxes, size=20, weight='bold')
 
-for tick in ax.get_xticklabels():
-    tick.set_rotation(60)
 
-ax.set_xticks(x + width, [sim_name.replace("_", " ") for sim_name in sim_names])
-fig.tight_layout()
+for ax in axes_[1, :]:
+    xlabels = [sim_name.replace("_", " ") for sim_name in sim_names]
+    xlabels = ["mixed-aged\npine", "even-aged\npine", "even-aged\nspruce", "even-aged\nmixed"]
+    ax.set_xticks(x + width, xlabels)
 
-leg = axes_[0].get_legend()
+    for tick in ax.get_xticklabels():
+        tick.set_rotation(60)
+
+leg = axes_[0, 0].get_legend()
 for lh in leg.legend_handles:
     lh.set_color("white")
     lh.set_edgecolor("black")
+
+fig.tight_layout()
+
+filepath = pub_figs_path.joinpath("WP_spread_1.jpg")
+fig.savefig(filepath, dpi=500)
+filepath
 
 
 # +
@@ -366,6 +377,10 @@ ax.text(-0.05, 1.1, panel_name+")", transform=ax.transAxes, size=20, weight='bol
 ax.set_xticks([])
 
 fig.tight_layout()
+
+filepath = pub_figs_path.joinpath("WP_spread_2.jpg")
+fig.savefig(filepath, dpi=500)
+filepath
 # -
 
 
