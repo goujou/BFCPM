@@ -374,7 +374,7 @@ print("\nCreating simulation video")
 filepath = sim_cohort_path.joinpath(sim_name + "_sim.mp4")
 
 utils.create_simulation_video(
-    ds_long,
+    ds,
     dmr_eq,
     np.array([dmr.soil_pool_nrs[-1]]),
     filepath,
