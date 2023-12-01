@@ -1,0 +1,35 @@
+LongLastingOnlyWoodProductModel
+===============================
+
+Qualified name: ``BFCPM.wood\_products.long\_lasting\_only.C\_model.LongLastingOnlyWoodProductModel``
+
+CCCC
+
+.. currentmodule:: BFCPM.wood_products.long_lasting_only.C_model
+
+.. autoclass:: LongLastingOnlyWoodProductModel
+   :show-inheritance:
+   :members:
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+      
+
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+     
+     ~LongLastingOnlyWoodProductModel.Fs
+     ~LongLastingOnlyWoodProductModel.Rs
+     ~LongLastingOnlyWoodProductModel.Us
+     ~LongLastingOnlyWoodProductModel.flux_unit
+     ~LongLastingOnlyWoodProductModel.nr_pools
+     ~LongLastingOnlyWoodProductModel.pool_names
+     ~LongLastingOnlyWoodProductModel.start_vector
+     ~LongLastingOnlyWoodProductModel.stock_unit
+     ~LongLastingOnlyWoodProductModel.xs
+   

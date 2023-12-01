@@ -15,8 +15,6 @@
 
 # ## Script to run several python files (from notebooks) one after another and store their output
 #
-# - check that the ipython file (``run_pre_spinup.ipynb``, ``run_simulation.ipynb``, ``run_benchmarking.ipynb``) is synchronized with its python file (via ``jupytext --set-formats ipynb,py --sync yourNotebook.ipynb``)
-# - add the python file with its parameters to ``notebook_datas``
 
 # +
 import subprocess

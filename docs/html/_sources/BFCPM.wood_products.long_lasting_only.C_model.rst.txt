@@ -1,0 +1,40 @@
+C\_model
+========
+
+MMMM
+
+.. currentmodule:: BFCPM.wood_products.long_lasting_only.C_model
+
+
+.. automodule:: BFCPM.wood_products.long_lasting_only.C_model
+
+    
+    
+    
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+      :template: class.rst
+
+      
+        LongLastingOnlyWoodProductModel
+      
+   
+   
+
+   
+   
+   
+
+   
+   
+   

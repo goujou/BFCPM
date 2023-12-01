@@ -1,0 +1,40 @@
+C\_model\_parameters
+====================
+
+MMMM
+
+.. currentmodule:: BFCPM.wood_products.long_lasting_only.C_model_parameters
+
+
+.. automodule:: BFCPM.wood_products.long_lasting_only.C_model_parameters
+
+    
+    
+    
+
+   
+   
+   .. rubric:: Module Attributes
+
+   
+   .. autodata:: BFCPM.wood_products.long_lasting_only.C_model_parameters::params
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   
+   .. autofunction:: initialize_params
+   .. autofunction:: params_to_latex_table
+   
+   
+
+   
+   
+   
