@@ -40,16 +40,52 @@ cd BFCPM
 
 ### After installation
 
+In the following, we explain how to reproduce all the data and figures used in the manuscript.
+Note that the data used in the figure notebooks (if they remain unchanged) are part of the repository.
+So there is no need to rerun the simulations to analyze or plot the data hat was used for the manuscript.
+
+#### Main simulations
+
 All the data and figures for the manuscript can be reproduced by two notebooks:
 - notebooks/run_sims_for_paper_serial.ipynb
   - reproduces all the simulation data, can take hours to days
     - **NOTE:** If the variables `pre_spinup_date` and `sim_data` are not changed, then pre-computed (and provided) data as presented in the manuscript will be overwritten.
 - notebooks/figures_notebook.ipynb
-  - reproduces the figures from simulation data
+  - **reproduces the figures from simulation data**
   - pre-computed simulation data can be found in
     - data/pre-spinups/2023-07-25/: Pre-spinup for all simulations
     - data/simulations/2023-07-26/
 
+#### Wood production spread
+We ran additional simulations to see the effects of different wood-product categorizations on carbon sequestration and climate change mitigation potential.
+
+The data can and figures can be reproduced by several notebooks:
+- compute pre-spinup data:
+  - notebooks/WP_spread/run_pre_spinup_WP_short_only.ipynb
+  - notebooks/WP_spread/run_pre_spinup_WP_long_only.ipynb
+  - pre-computed data can be found in data/pre-spinups/2023-11-23/
+- short- or long-lasting wood product simulations only (parallel computations on an HPC cluster or serial computations):
+  - parallel:
+    - notebooks/WP_spread/run_sims_for_paper_parallel_WP_short_only.ipynb
+    - notebooks/WP_spread/run_sims_for_paper_parallel_WP_long_only.ipynb
+  - serial:
+    - notebooks/WP_spread/run_sims_for_paper_serial_WP_short_only.ipynb
+    - notebooks/WP_spread/run_sims_for_paper_serial_WP_short_only.ipynb
+  - **show figures associated with the WP spread analysis:**
+    - notebooks/WP_spread/WP_spread_figures.ipynb
+    - pre-computed data can be found in:
+      - data/simulations/2023-11-23-WP_short_only/
+      - data/simulations/2023-11-23-WP_long_only/
+      - data/simulations/2023-11-23-WP_both/ (a copy of the original simulation data)
+
+ #### Sensitivity analysis
+ We ran additional simulations with selected parameters separately changed to 90, 95, (100,) 105, and 110% of their original value and investigated the effect on total carbon stocks, carbon sequestration, and climate change mitigation potential.
+
+The data and the associated table can be reproduced by two notebooks:
+- notebooks/sensitivity/full_sim/run_sensitivity_full_sim_parallel.ipynb: parallel computation on an HPC cluster
+- notebooks/sensitivity/full_sim/figures_notebook.ipynb:
+  - **produce the sensitivity analysis table from the manuscript**
+  - pre-computed data can be found in data/simulations/sensitivity/full_sim/
 
 [Model documentation](https://goujou.github.io/BFCPM/)
 
