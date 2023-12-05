@@ -14,3 +14,4 @@ dask[complete]
 graphviz
 nbsphinx
 # furo # pip, documentation style
+# sphinx_autodoc_typehints # pip

@@ -649,22 +649,47 @@
         <span class="n">l</span> <span class="o">=</span> <span class="p">[(</span><span class="n">tree</span><span class="p">,</span> <span class="n">tree</span><span class="o">.</span><span class="n">H</span><span class="p">)</span> <span class="k">for</span> <span class="n">tree</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">living_trees</span><span class="p">]</span>
         <span class="n">l</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
+        <span class="c1">#        if len(l) &gt; 0:</span>
+        <span class="c1">#            if l[0][0].N_per_m2 * 10_000 &lt; 100:</span>
+        <span class="c1">#                # need to combine more MeanTrees</span>
+        <span class="c1">#                Ns = [el[0].N_per_m2 * 10_000 for el in l]</span>
+        <span class="c1">#                if sum(Ns) &lt; 100:</span>
+        <span class="c1">#                    # less than 100 trees ha-1 in stand</span>
+        <span class="c1">#                    return l[0][1]</span>
+        <span class="c1">#</span>
+        <span class="c1">#                Hs = [el[1] for el in l]</span>
+        <span class="c1">#                nr = np.argmax(np.cumsum(Ns) &gt;= 100)</span>
+        <span class="c1">#                return np.average(Hs[: nr + 1], weights=Ns[: nr + 1])</span>
+        <span class="c1">#</span>
+        <span class="c1">#            return l[0][1]</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">N_per_m2</span> <span class="o">*</span> <span class="mi">10_000</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
-                <span class="c1"># need to combine more MeanTrees</span>
+                <span class="c1"># tallest MeanTree has less than 100 trees per ha</span>
                 <span class="n">Ns</span> <span class="o">=</span> <span class="p">[</span><span class="n">el</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">N_per_m2</span> <span class="o">*</span> <span class="mi">10_000</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">l</span><span class="p">]</span>
-                <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">Ns</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
-                    <span class="c1"># less than 100 trees ha-1 in stand</span>
-                    <span class="k">return</span> <span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-
                 <span class="n">Hs</span> <span class="o">=</span> <span class="p">[</span><span class="n">el</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">l</span><span class="p">]</span>
-                <span class="n">nr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">Ns</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">100</span><span class="p">)</span>
-                <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">Hs</span><span class="p">[:</span> <span class="n">nr</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">weights</span><span class="o">=</span><span class="n">Ns</span><span class="p">[:</span> <span class="n">nr</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
-            <span class="c1">#                raise NotImplementedError(&quot;We would need to combine some MeanTrees.&quot;)</span>
 
-            <span class="k">return</span> <span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-
-        <span class="k">return</span> <span class="n">Q_</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">Ns</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+                    <span class="c1"># whole stand has less than 100 trees per ha</span>
+                    <span class="c1"># take weighted average of all trees in stand</span>
+                    <span class="n">nr</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+                    <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">Hs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">Ns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nr</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)])</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span>
+                        <span class="n">Ns</span><span class="p">[:</span> <span class="n">nr</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+                    <span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># there are more than 100 trees per ha in the stand</span>
+                    <span class="c1"># nr of MeanTrees needed to reach 100 trees per ha</span>
+                    <span class="n">nr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">Ns</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">100</span><span class="p">)</span>
+                    <span class="c1"># number of trees in MeanTrees to stay under 100</span>
+                    <span class="n">s</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">Ns</span><span class="p">[:</span><span class="n">nr</span><span class="p">])</span>
+                    <span class="c1"># number of trees to fill up</span>
+                    <span class="n">missing</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">-</span> <span class="n">s</span>
+                    <span class="k">return</span> <span class="p">(</span>
+                        <span class="nb">sum</span><span class="p">(</span><span class="n">Hs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">Ns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nr</span><span class="p">))</span> <span class="o">+</span> <span class="n">Hs</span><span class="p">[</span><span class="n">nr</span><span class="p">]</span> <span class="o">*</span> <span class="n">missing</span>
+                    <span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">l</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Q_</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">)</span>
 
     <span class="nd">@cached_property</span><span class="p">(</span><span class="s2">&quot;_yearly_cache&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">mean_tree_height</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Q_</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
