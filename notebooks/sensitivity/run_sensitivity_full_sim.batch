@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#SBATCH -A naiss2023-22-831
+#SBATCH --job-name=sensitivity_full_sim      # create a short name for your job
+#SBATCH --error=sensitivity_full_sim.%J.err
+#SBATCH --output=sensitivity_full_sim.%J.out
+#SBATCH --nodes=1                # node count
+#SBATCH --ntasks=1              # total number of tasks across all nodes
+#SBATCH --cpus-per-task=2        # cpu-cores per task (>1 if multi-threaded tasks)
+#SBATCH --time=24:00:00          # total run time limit (HH:MM:SS)
+#SBATCH --mail-type=begin        # send email when job begins
+#SBATCH --mail-type=end          # send email when job ends
+#SBATCH --mail-type=fail          # send email when job fails
+#SBATCH --mail-user=holger.metzler@slu.se
+
+# activate conda env
+module load conda
+source activate /proj/bfcpm_data/nobackup/conda-envs/Formas
+
+# load MPI
+module load gcc/9.3.0 openmpi/3.1.5
+
+# run parallel sensitivity notebook
+#mpirun -np 2 dask-mpi --scheduler-file ~/dask-scheduler.json
+#mpirun -np 2 dask-mpi python run_sensitivity_full_sim_parallel.py
+srun python run_sensitivity_full_sim_parallel.py

@@ -19,6 +19,43 @@
 # - add the python file with its parameters to ``notebook_datas``
 
 # +
+import os
+import dask
+
+dask.config.set({"distributed.nanny.environ.MALLOC_TRIM_THRESHOLD_": 0})
+os.environ["MALLOC_TRIM_THRESHOLD_"] = str(dask.config.get("distributed.nanny.environ.MALLOC_TRIM_THRESHOLD_"))
+
+# +
+#from dask_mpi import initialize
+#initialize()
+
+
+# +
+from dask.distributed import Client
+import socket
+
+print("running client")
+#client = Client()  # Connect this local process to remote workers
+
+from dask.distributed import LocalCluster
+cluster = LocalCluster(n_workers=16, threads_per_worker=1)
+client = Client(cluster)
+print("client running")
+
+host = client.run_on_scheduler(socket.gethostname)
+port = client.scheduler_info()['services']['dashboard']
+login_node_address = "hrme0001@rackham.uppmax.uu.se" # Change this to the address/domain of your login node
+
+subhost = host.split(".")[0]
+s = f"ssh -L {8891}:{subhost}:{port} {login_node_address}"
+print()
+print("Dashboard SSH command")
+print(s)
+print()
+client
+
+
+# +
 import subprocess
 from pathlib import Path
 
@@ -44,7 +81,7 @@ cc_spinup_N = 1_500
 # sim_date = "2023-06-19" # at emergency automatically thin stand to SBA = 18
 # sim_date = "2023-07-11" # mixed-aged_pine
 #sim_date = "2023-07-26"  # publication
-sim_date = "2023-11-24"
+sim_date = "2023-11-26"
 
 sim_names = [
     "mixed-aged_pine_long",
@@ -70,16 +107,15 @@ emergency_action_str, emergency_direction, emergency_stand_action_str = (
 
 # +
 sensitivity_param_names = ["R_mL", "S_R", "rho_RL", "Vcmax"]
+sensitivity_qs = [0.95, 1.00, 1.05]
 #sensitivity_qs = [0.95, 1.05]
-sensitivity_qs = [0.9, 1.1]
+#sensitivity_qs = [0.9, 1.0, 1.1]
 
 sensitivity_strs = list()
 for param_name in sensitivity_param_names:
     for q in sensitivity_qs:
         s = f"{param_name},{q}"
         sensitivity_strs.append(s)
-
-print(sensitivity_strs)
 # -
 
 logs_path = LOGS_PATH.joinpath(f"{sim_cohort_name}").joinpath(f"{sim_date}")
@@ -108,22 +144,9 @@ four_scenarios_data = [
     for sim_name in sim_names
     for sensitivity_str in sensitivity_strs
 ]
-len(four_scenarios_data)
+print(len(four_scenarios_data))
 
 # ## Run scenarios in parallel
-
-import os
-import dask
-from dask.distributed import Client, LocalCluster
-
-dask.config.set({"distributed.nanny.environ.MALLOC_TRIM_THRESHOLD_": 0})
-
-os.environ["MALLOC_TRIM_THRESHOLD_"] = str(dask.config.get("distributed.nanny.environ.MALLOC_TRIM_THRESHOLD_"))
-
-cluster = LocalCluster(n_workers = 16, threads_per_worker=1)
-c = Client(cluster)
-c
-
 
 def run_nb(filename, params, logs_path, nr):
     print("Starting:", filename)
@@ -156,5 +179,14 @@ for nr, nb_data in enumerate(four_scenarios_data):
 
 dask.compute(results)
 # -
+
+print("closing client")
+client.close()
+print("client closed")
+
+
+print("closing cluster")
+cluster.close()
+print("cluster closed")
 
 
