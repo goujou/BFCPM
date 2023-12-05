@@ -40,7 +40,7 @@ cd BFCPM
 
 ### After installation
 
-All the data and figures for the manuscript have can be reproduced by two notebooks:
+All the data and figures for the manuscript can be reproduced by two notebooks:
 - notebooks/run_sims_for_paper_serial.ipynb
   - reproduces all the simulation data, can take hours to days
     - **NOTE:** If the variables `pre_spinup_date` and `sim_data` are not changed, then pre-computed (and provided) data as presented in the manuscript will be overwritten.
