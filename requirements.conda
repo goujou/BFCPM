@@ -13,3 +13,4 @@ dask[complete]
 # doc
 graphviz
 nbsphinx
+# furo # pip, documentation style

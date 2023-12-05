@@ -88,7 +88,7 @@ try:
 except SystemExit:
     print("Standard simulation settings")
 
-    pre_spinup_date = "2023-11-22"
+    pre_spinup_date = "2023-11-23"
 
     # cc stand for continuous-cover
     cc_spinup_species = "pine"
