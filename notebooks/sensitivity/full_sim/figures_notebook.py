@@ -15,7 +15,7 @@
 
 # # Sensitivity data table to copy to latex file
 #
-# Needs slight adaptation only.
+# The table printed at the end needs slight formatting adaptations only.
 
 # %load_ext autoreload
 
@@ -185,7 +185,7 @@ df_sens#.columns
 s = df_sens.to_latex(float_format=lambda x: '%10.2f' % x)
 s = s.replace("par_name", r"\thead{Parameter}").replace("sim_name", r"\thead{Scenario}")
 s = s.replace("\\toprule", "").replace("\\midrule", "").replace("\\bottomrule", "")
-s = s.replace("total_C", r"\thead{total stock}").replace("WP_cum", r"\thead{cum. WP}")
+s = s.replace("total_C", r"\thead{total stock}").replace("WP_cum", r"\thead{$\boldsymbol{Y}_{\boldsymbol{S}}+\boldsymbol{Y}_{\boldsymbol{L}}}")
 s = s.replace("IITT", r"\thead{IITT}").replace("ICS", r"\thead{ICS}")
 s = s.replace("R_mL", r"$R_{\text{mL}}$").replace("S_R", r"$S_R$").replace("Vcmax", r"$V_{cmax,25}$").replace("rho_RL", r"$\rho_{\text{RL}}$")
 s = s.replace("aged_", "aged ")
