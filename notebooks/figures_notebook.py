@@ -483,7 +483,7 @@ rects2 = ax.bar(x + width/2, yield_datas[-1, 1, :], width, label=r'long-lasting 
 ax.set_ylabel(r"kgC$\,$m$^{-2}$")
 ax.legend(loc=4)
 ax.text(-0.05, 1.1, panel_name+")", transform=ax.transAxes, size=20, weight='bold')
-ax.set_title("Cumulative wood-product yield")
+ax.set_title("Wood-product yield")
 ax.set_xticklabels("")
 ax.set_ylim([0, 9])
 
@@ -555,7 +555,7 @@ filename
 
 
 # +
-print("\nCWPY")
+print("\nWPY")
 for nr, sim_name in enumerate(sim_names):
     x = yield_datas[-1, :, nr]
     print(sim_name, round_arr(x.magnitude, 1), x.units)
@@ -589,7 +589,7 @@ base_nr = 0
 
 ax = next(axes)
 panel_name = next(panel_names)
-ax.set_title(r"Total cumulative wood-product yield C ($Y_S+Y_L$) relative to base")
+ax.set_title(r"Total wood-product yield C ($Y_S+Y_L$) relative to base")
 combined_yield_datas = yield_datas[:, 0, :] + yield_datas[:, 1, :]
 for nr, sim_name in enumerate(sim_names):
     if nr == base_nr:
@@ -1410,7 +1410,7 @@ labels = {sim_name: r"$N$ = " + f"{sim_name[-4:]}" + r"$\,$ha$^{-1}$" for sim_na
 
 ax = next(axes)
 panel_name = next(panel_names)
-ax.set_title(r"Cumulative short-lasting wood-product yield carbon ($Y_S$)")
+ax.set_title(r"Short-lasting wood-product yield carbon ($Y_S$)")
 for nr, sim_name in enumerate(sim_names):
     l, = ax.plot(yield_datas[:, 0, nr], label=labels[sim_name], c=colors[sim_name])
     
@@ -1423,7 +1423,7 @@ ax.text(-0.05, 1.1, panel_name+")", transform=ax.transAxes, size=20, weight='bol
 
 ax = next(axes)
 panel_name = next(panel_names)
-ax.set_title(r"Cumulative long-lasting wood-product yield carbon ($Y_L$)")
+ax.set_title(r"Long-lasting wood-product yield carbon ($Y_L$)")
 for nr, sim_name in enumerate(sim_names):
     l, = ax.plot(yield_datas[:, 1, nr], c=colors[sim_name])
     
