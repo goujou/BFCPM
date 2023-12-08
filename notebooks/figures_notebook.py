@@ -270,7 +270,7 @@ ax.set_xlabel("time [yr]")
 fig.tight_layout()
 
 # save the figure for the publication
-filename = str(pub_figs_path.joinpath("dbh_sba_and_C_stocks.jpg"))
+filename = str(pub_figs_path.joinpath("dbh_sba_and_C_stocks.png"))
 fig.savefig(filename, dpi=500)
 filename
 # -
@@ -549,7 +549,7 @@ for tick in ax.get_xticklabels():
 fig.tight_layout()
 
 # save the figure for the publication
-filename = str(pub_figs_path.joinpath("bars.jpg"))
+filename = str(pub_figs_path.joinpath("bars.png"))
 fig.savefig(filename, dpi=500)
 filename
 
@@ -654,7 +654,7 @@ ax.text(-0.05, 1.1, panel_name+")", transform=ax.transAxes, size=20, weight='bol
 fig.tight_layout()
 
 # save the figure for the publication
-filename = str(pub_figs_path.joinpath("yield_seq_and_ccmp.jpg"))
+filename = str(pub_figs_path.joinpath("yield_seq_and_ccmp.png"))
 fig.savefig(filename, dpi=500)
 filename
 # -
@@ -737,7 +737,7 @@ axes[0].set_ylabel("trees per ha")
 fig.tight_layout()
 
 # save the figure for the publication
-filename = str(pub_figs_path.joinpath("self_thinning.jpg"))
+filename = str(pub_figs_path.joinpath("self_thinning.png"))
 fig.savefig(filename, dpi=500)
 filename
 # -
@@ -781,7 +781,7 @@ axes_list[-1].set_xlabel("time [yr]")
 fig.tight_layout()
 
 # save the figure for the publication
-filename = str(pub_figs_path.joinpath("tree_C.jpg"))
+filename = str(pub_figs_path.joinpath("tree_C.png"))
 fig.savefig(filename, dpi=500)
 filename
 # -
@@ -874,7 +874,7 @@ for sim_name, ax, title, panel_name in zip(sim_names_tmp, axes, titles, string.a
 fig.tight_layout()
 
 # save the figure for the publication
-filename = str(pub_figs_path.joinpath("benchmarking_radial_growth.jpg"))
+filename = str(pub_figs_path.joinpath("benchmarking_radial_growth.png"))
 fig.savefig(filename, dpi=500)
 filename
 # -
@@ -1028,7 +1028,7 @@ ax.text(-0.05, 1.1, panel_name+")", transform=ax.transAxes, size=20, weight='bol
 fig.tight_layout()
 
 # save the figure for the publication
-filename = str(pub_figs_path.joinpath("benchmarking_allometries.jpg"))
+filename = str(pub_figs_path.joinpath("benchmarking_allometries.png"))
 fig.savefig(filename, dpi=500)
 filename
 # -
@@ -1462,7 +1462,7 @@ ax.text(-0.05, 1.1, panel_name+")", transform=ax.transAxes, size=20, weight='bol
 fig.tight_layout()
 
 # save the figure for the publication
-filename = str(pub_figs_path.joinpath("mixed-aged_pines.jpg"))
+filename = str(pub_figs_path.joinpath("mixed-aged_pines.png"))
 fig.savefig(filename, dpi=500)
 filename
 # -

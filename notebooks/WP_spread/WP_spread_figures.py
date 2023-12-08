@@ -325,7 +325,7 @@ for lh in leg.legend_handles:
 
 fig.tight_layout()
 
-filepath = pub_figs_path.joinpath("WP_spread_1.jpg")
+filepath = pub_figs_path.joinpath("WP_spread_1.png")
 fig.savefig(filepath, dpi=500)
 filepath
 
@@ -378,7 +378,7 @@ ax.set_xticks([])
 
 fig.tight_layout()
 
-filepath = pub_figs_path.joinpath("WP_spread_2.jpg")
+filepath = pub_figs_path.joinpath("WP_spread_2.png")
 fig.savefig(filepath, dpi=500)
 filepath
 # -
