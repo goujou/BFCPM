@@ -331,6 +331,62 @@ filepath
 
 
 # +
+fig, ax = plt.subplots(figsize=(4*2, 4*2))
+
+labels = [sim_name.replace("_", " ") for sim_name in sim_names]
+colors = {
+    'mixed-aged_pine': '#1f77b4',
+    'even-aged_pine': '#ff7f0e',
+    'even-aged_spruce': '#2ca02c',
+    'even-aged_mixed': '#d62728'
+}
+hatches = ["//", "xx", "\\\\"]
+width = 0.25
+x = np.arange(len(sim_names))
+
+multiplier = 0
+
+for WP_nr, WP_type in enumerate(WP_types):
+    offset = width * multiplier
+#    rects = ax.bar(x + offset, cum_stocks_datas[-1, WP_nr, :], width, label=WP_type.replace("_", " "))
+    rects = ax.bar(
+        x + offset,
+        cum_stocks_datas[-1, WP_nr, :], 
+        width,
+        color=[colors[sim_name] for sim_name in sim_names],
+        edgecolor="black", hatch=hatches[WP_nr],
+        label=WP_type.replace("_", " ")
+    )
+    multiplier += 1
+
+#ax.set_ylabel(r"kgC$\,$m$^{-2}\,$yr")
+ax.set_ylabel(r"kgC$\,$m$^{-2}\,$yr")
+ax.set_ylim([0, 1500])
+ax.set_title("Integrated Carbon Stocks (ICS)")
+#ax.set_title("ICS")
+ax.set_xticklabels("")
+ax.legend(loc=4)
+
+xlabels = [sim_name.replace("_", " ") for sim_name in sim_names]
+xlabels = ["mixed-aged\npine", "even-aged\npine", "even-aged\nspruce", "even-aged\nmixed"]
+ax.set_xticks(x + width, xlabels)
+
+for tick in ax.get_xticklabels():
+    tick.set_rotation(60)
+
+leg = ax.get_legend()
+for lh in leg.legend_handles:
+    lh.set_color("white")
+    lh.set_edgecolor("black")
+
+fig.tight_layout()
+
+filepath = pub_figs_path.joinpath("WP_spread_1_v2.png")
+fig.savefig(filepath, dpi=500)
+filepath
+
+
+# +
 fig, axes = plt.subplots(figsize=(8, 4), ncols=2)
 panel_names = iter(string.ascii_uppercase[:len(axes)])
 axes = iter(axes)
