@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.15.0
+#       jupytext_version: 1.15.2
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -27,7 +27,7 @@ from CompartmentalSystems.discrete_model_run import DiscreteModelRun as DMR
 from LAPM.discrete_linear_autonomous_pool_model import DiscreteLinearAutonomousPoolModel as DLAPM
 
 from BFCPM import utils
-from BFCPM.__init__ import DATA_PATH, Q_
+from BFCPM.__init__ import PRE_SPINUPS_PATH, SIMULATIONS_PATH, Q_
 from BFCPM.simulation_parameters import stand_params_library
 from BFCPM.simulation import utils as sim_utils
 from BFCPM.soil.dead_wood_classes.C_model import SoilCDeadWoodClasses
@@ -42,9 +42,6 @@ from BFCPM.trees.single_tree_params import species_params
 
 # %autoreload 2
 # -
-
-all_sims_path = DATA_PATH.joinpath("simulations")
-all_sims_path.mkdir(exist_ok=True)
 
 # ### Custom species parameters?
 
@@ -89,8 +86,8 @@ except SystemExit:
     common_spinup_species = "pine"
     common_spinup_length = 8 * 20
     common_spinup_N = 2_000
-    coarseness = 1
-#    coarseness = 12
+#    coarseness = 1
+    coarseness = 12
 
 #    sim_date = "2023-06-23"
     sim_date = "2023-10-19"
@@ -131,7 +128,7 @@ forcing = prepare_forcing(
 )
 
 sim_cohort_name = ""
-sim_cohort_path = all_sims_path.joinpath(sim_cohort_name)
+sim_cohort_path = SIMULATIONS_PATH.joinpath(sim_cohort_name)
 sim_cohort_path = sim_cohort_path.joinpath(f"{sim_dict['sim_date']}")
 
 sim_cohort_path.mkdir(exist_ok=True)
@@ -141,7 +138,7 @@ print(sim_cohort_path)
 # ## Load pre-spinup data: soil and wood product stocks and age structure
 
 # +
-spinups_path = DATA_PATH.joinpath("pre_spinups").joinpath(sim_dict["pre_spinup_date"])
+spinups_path = PRE_SPINUPS_PATH.joinpath(sim_dict["pre_spinup_date"])
 
 light_model = "Zhao" # Zhao or Spitters
 

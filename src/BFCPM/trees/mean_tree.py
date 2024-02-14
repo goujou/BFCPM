@@ -76,13 +76,22 @@ class MeanTree:
         output_fluxes_list: List[TreeExternalOutputFluxes] = None,
         cutting_fluxes_list: List[CuttingFluxes] = None,
         newly_planted_biomass_list: List[Q_] = None,
+        custom_global_tree_params: Dict[str, Any] = None,
     ):
         self._cache: Dict[str, Any] = dict()
         self.daily_cache: Dict[str, Any] = dict()
 
         self.name = name
         self.C_only_tree = C_only_tree
-        self.params = global_tree_params[self.species]
+        #        self.params = global_tree_params[self.species]
+
+        self._custom_global_tree_params = custom_global_tree_params
+
+        if custom_global_tree_params is None:
+            self.params = global_tree_params[self.species]
+        else:
+            self.params = custom_global_tree_params[self.species]
+
         self.clear_cache()
 
         self.z = z

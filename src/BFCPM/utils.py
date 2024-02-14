@@ -735,7 +735,7 @@ def assert_accuracy(x: Q_, y: Q_, tol: float):
             error are greater than or equal to ``tol``
     """
     abs_err = np.abs(x - y)
-    with np.errstate(invalid="ignore"):
+    with np.errstate(invalid="ignore", divide="ignore"):
         rel_err = abs_err / np.abs(x) * 100
         rel_err = np.nan_to_num(rel_err)
 

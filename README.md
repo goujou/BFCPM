@@ -53,3 +53,9 @@ All the data and figures for the manuscript have can be reproduced by two notebo
 
 [Model documentation](https://goujou.github.io/BFCPM/)
 
+### Changes to submitted manuscript version
+
+- new death condition: C_S <= 1/2 C_S^*
+- soil model
+- repaired stand.dominant_tree_height method
+

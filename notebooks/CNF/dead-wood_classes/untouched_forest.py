@@ -29,7 +29,7 @@ from CompartmentalSystems.discrete_model_run import DiscreteModelRun as DMR
 from LAPM.discrete_linear_autonomous_pool_model import DiscreteLinearAutonomousPoolModel as DLAPM
 
 from BFCPM import utils
-from BFCPM.__init__ import DATA_PATH, Q_
+from BFCPM.__init__ import PRE_SPINUPS_PATH, SIMULATIONS_PATH, Q_
 from BFCPM.simulation import utils as sim_utils
 from BFCPM.management.library import species_setting_from_sim_profile
 from BFCPM.management.management_strategy import (
@@ -48,9 +48,6 @@ from BFCPM.trees.single_tree_params import species_params
 
 # %autoreload 2
 # -
-
-all_sims_path = DATA_PATH.joinpath("simulations")
-all_sims_path.mkdir(exist_ok=True)
 
 # ### Custom species parameters?
 
@@ -117,7 +114,7 @@ print(sim_dict)
 
 # +
 sim_cohort_name = ""
-sim_cohort_path = all_sims_path.joinpath(sim_cohort_name)
+sim_cohort_path = SIMULATIONS_PATH.joinpath(sim_cohort_name)
 sim_cohort_path = sim_cohort_path.joinpath(f"{sim_dict['sim_date']}")
 
 sim_cohort_path.mkdir(exist_ok=True)
@@ -223,7 +220,7 @@ ds
 pre_spinup_species = sim_dict["pre_spinup_species"]
 coarseness = sim_dict["coarseness"]
 
-spinups_path = DATA_PATH.joinpath("pre_spinups").joinpath(sim_dict["pre_spinup_date"])
+spinups_path = PRE_SPINUPS_PATH.joinpath(sim_dict["pre_spinup_date"])
 pre_spinup_name = f"DWC_{light_model}_{pre_spinup_species}_{coarseness:02d}_2nd_round"
 dmr_path = spinups_path.joinpath(pre_spinup_name + ".dmr_eq")
 dmr_eq = DLAPM.load_from_file(dmr_path)
