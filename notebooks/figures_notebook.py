@@ -657,6 +657,55 @@ fig.tight_layout()
 filename = str(pub_figs_path.joinpath("yield_seq_and_ccmp.png"))
 fig.savefig(filename, dpi=500)
 filename
+
+# +
+fig, axes = plt.subplots(figsize=(12, 4*2), nrows=2)
+panel_names = iter(string.ascii_uppercase[:len(axes)])
+axes = iter(axes)
+
+base_nr = 0
+
+labels = ["mixed-aged pine", "even-aged scenarios"]
+colors_ = [colors["mixed-aged_pine"], "purple"]
+           
+ax = next(axes)
+panel_name = next(panel_names)
+ax.set_title("Difference between ICS and IITT")
+for nr, sim_name in enumerate(sim_names[:2]):
+#    if nr == base_nr:
+#        continue
+    
+    ax.plot(cum_stocks_datas[:, 0, nr] - CS_datas[:, 0, nr], label=labels[nr], c=colors_[nr])
+    
+#ax.axhline(0, c="black", ls="--")
+#ax.set_ylim([ax.get_ylim()[0], 60])
+ax.set_xlim([0, 80])
+ax.set_ylabel(r"kgC$\,$m$^{-2}\,$yr")
+ax.text(-0.05, 1.1, panel_name+")", transform=ax.transAxes, size=20, weight='bold')
+ax.legend()
+
+ax = next(axes)
+panel_name = next(panel_names)
+ax.set_title("Difference between ICS and IITT relative to base")
+for nr, sim_name in enumerate(sim_names[:2]):
+    if nr == base_nr:
+        continue
+    
+    ax.plot((cum_stocks_datas[:, 0, nr] - cum_stocks_datas[:, 0, base_nr]) - (CS_datas[:, 0, nr] - CS_datas[:, 0, base_nr]), label=labels[nr], c=colors_[nr])
+
+ax.axhline(0, c="black", ls="--")
+ax.set_xlim([0, 80])
+#ax.set_ylim([ax.get_ylim()[0], 60])
+ax.set_ylabel(r"kgC$\,$m$^{-2}\,$yr")
+ax.set_xlabel("time [yr]")
+ax.text(-0.05, 1.1, panel_name+")", transform=ax.transAxes, size=20, weight='bold')
+
+fig.tight_layout()
+
+# save the figure for the publication
+filename = str(pub_figs_path.joinpath("legacy_effect.png"))
+fig.savefig(filename, dpi=500)
+filename
 # -
 
 # ## Ordering according to different CS metrics (entire system = 0 in the middle, stand only = 1)
