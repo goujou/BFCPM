@@ -1434,6 +1434,7 @@ class SingleTree:
 
             # if we end up here, then we need too much C_S for regrowth of "other"
             # we call emergency
+            print("Tree shrinking in update_C_S")
             raise TreeShrinkError()
 
         Delta_C_S = Delta_C_S_positive_part - Delta_C_S_negative_part

@@ -607,6 +607,9 @@ class Cut(ManagementActionABC):
 
     def do(self, stand: "Stand", tree_in_stand: "MeanTree") -> List[str]:
         if not tree_in_stand.is_alive:
+            print("Management 610, tree to do action on is not alive")
+            print(tree_in_stand.current_status)
+            print(tree_in_stand.status_list)
             return list()
 
         actions = ["cut"]

@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.15.2
+#       jupytext_version: 1.15.0
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -43,6 +43,7 @@ from BFCPM.simulation.library import prepare_forcing
 
 from BFCPM.simulation.recorded_simulation import RecordedSimulation
 from BFCPM.trees.single_tree_params import species_params
+from BFCPM.params import global_tree_params
 
 # %autoreload 2
 # -
@@ -51,6 +52,9 @@ from BFCPM.trees.single_tree_params import species_params
 
 # +
 # #%tb
+
+custom_species_params = species_params.copy()
+custom_global_tree_params = global_tree_params.copy()
 
 try:
     parser = argparse.ArgumentParser()
@@ -82,11 +86,12 @@ except SystemExit:
     pre_spinup_species = "pine"
     
     # "common" means used by all simulations
-    coarseness = 1
+    coarseness = 12 # 6-hourly
     common_spinup_dmp_filepath = f"DWC_common_spinup_clear_cut_{pre_spinup_species}_{coarseness:02d}"
 
-    sim_date = "2023-10-19"
-    sim_name = f"DWC_BAU_320_{pre_spinup_species}_{coarseness:02d}"
+#    sim_date = "2023-10-19"
+    sim_date = "2024-02-14"
+    sim_name = f"DWC_BAU_160_{pre_spinup_species}_{coarseness:02d}"
     
 sim_dict = {
     "pre_spinup_date": pre_spinup_date,
@@ -98,7 +103,7 @@ sim_dict = {
     "sim_name": sim_name,
     "coarseness": coarseness,
 
-    "sim_length": 8 * 20 * 2,
+    "sim_length": 8 * 20 * 1, # excluding common spinup
     "N": 2_000
 }
 
@@ -129,10 +134,11 @@ recorded_spinup_simulation = RecordedSimulation.from_file(filepath)
 spinup_simulation = recorded_spinup_simulation.simulation
 
 stand = deepcopy(spinup_simulation.stand)
+print(stand.age)
 
 common_spinup_length = stand.age.to("year").magnitude
 total_length = common_spinup_length + sim_dict["sim_length"]
-total_length
+common_spinup_length, total_length
 
 sim_name = sim_dict["sim_name"]
 sim_name
@@ -156,7 +162,7 @@ for tree_in_stand in stand.trees:
 
 # +
 # remove all management actions from the spinup first
-# then add clear cut after 80 years with replanting
+# then add clear cut every 80 years with replanting
 
 for tree_in_stand in stand.trees:
     ms = list()
@@ -168,7 +174,7 @@ for tree_in_stand in stand.trees:
     
     tree_in_stand.management_strategy = ManagementStrategy(ms)
         
-#print(stand)
+# print(stand)
 # -
 
 # ## Add PCT and SBA-dependent thinning fom 25 to 18
@@ -235,10 +241,8 @@ recorded_simulation = RecordedSimulation.from_simulation_run(
     logfile_path,
     sim_profile,
     light_model,
-#    "Spitters",
     forcing,
-#    custom_species_params,
-    species_params,
+    custom_species_params,
     stand,
     emergency_action_str,
     emergency_direction,
@@ -268,7 +272,8 @@ ds
 pre_spinup_species = sim_dict["pre_spinup_species"]
 
 spinups_path = PRE_SPINUPS_PATH.joinpath(sim_dict["pre_spinup_date"])
-pre_spinup_name = f"DWC_{light_model}_{pre_spinup_species}_{coarseness:02d}_2nd_round"
+#pre_spinup_name = f"DWC_{light_model}_{pre_spinup_species}_{coarseness:02d}_2nd_round"
+pre_spinup_name = f"DWC_{light_model}_{pre_spinup_species}_2nd_round"
 dmr_path = spinups_path.joinpath(pre_spinup_name + ".dmr_eq")
 dmr_eq = DLAPM.load_from_file(dmr_path)
 # -
@@ -370,4 +375,6 @@ dmr_sim.save_to_file(filepath)
 print("Simulation discrete model run")
 print(filepath)
 print()
+
+
 

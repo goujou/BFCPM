@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.15.2
+#       jupytext_version: 1.15.0
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -29,7 +29,7 @@ sim_name = "DWC_untouched_forest_320_pine_12"
 sim_path = SIMULATIONS_PATH.joinpath(sim_date).joinpath(sim_name + ".nc")
 
 ds = xr.open_dataset(str(sim_path))
-
+ds
 # -
 
 start_index = 160
@@ -122,4 +122,47 @@ fig.tight_layout()
 #fig.savefig(filename)
 #filename
 # -
+
+
+
+
+# +
+sim_date = "2024-02-14"
+sim_name = "single_pine_160_1000_12_q75"
+sim_path = SIMULATIONS_PATH.joinpath(sim_date).joinpath(sim_name + ".nc")
+
+ds = xr.open_dataset(str(sim_path))
+ds
+# -
+
+fig, ax = plt.subplots(figsize=(7,2))
+ds.tree_biomass[:120].plot(ax=ax, lw=2)
+ax.set_ylabel("")
+#ax.set_yticks([])
+#ax.set_yticklabels([""])
+#ax.set_xlabel("Time [yr]", fontsize=24)
+ax.set_xlabel("")
+ax.axvline(80, color="black", lw=2, ls="--")
+ax.set_xlim([0, 120])
+
+
+fig, ax = plt.subplots(figsize=(7,2))
+(ds.tree_biomass + ds.stocks.sel(entity="soil").sum(dim="pool"))[:120].plot(ax=ax, lw=2)
+ax.set_ylabel("")
+#ax.set_yticks([])
+#ax.set_yticklabels([""])
+#ax.set_xlabel("Time [yr]", fontsize=24)
+ax.set_xlabel("")
+ax.axvline(80, color="black", lw=2, ls="--")
+ax.set_xlim([0, 120])
+
+
+(ds.N_per_m2 * 10_000).plot()
+
+(ds.tree_biomass / ds.N_per_m2.isel(tree=0)).plot()
+
+ds.N_per_m2.isel(tree=0).plot()
+
+ds.stocks.isel(entity=3).sum(dim="pool")[80:160].plot()
+
 

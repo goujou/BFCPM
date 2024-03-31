@@ -1271,14 +1271,14 @@ def create_simulation_video(
     # density function, interpolated to make it smooth (via resolution parameter)
     mean_age_density_pools = sim_mean_age_density_pools
     max_age_density_pools = 3 * mean_age_density_pools
-    ages_density_pools = np.arange(0, int(np.max(max_age_density_pools)), 1)
+    ages_density_pools = np.arange(0, int(np.nanmax(max_age_density_pools)), 1)
     z = np.array([p_density_pools(ai, ti) for ai in ages_density_pools for ti in tis])
     f_p_density_pools = interp2d(ages_density_pools, tis, z.transpose())
 
     # compute x and y axis limits for density plot
-    maxx_density = 2 * np.max(sim_mean_age_density_pools)
+    maxx_density = 2 * np.nanmax(sim_mean_age_density_pools)
     xlim_density = [0, maxx_density]
-    maxy_density = np.max(
+    maxy_density = np.nanmax(
         [p_density_pools(ai, ti) for ai in ages_density_pools for ti in tis]
     )
     ylim_density = [0, maxy_density * 1.5 / 1000]

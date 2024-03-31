@@ -6,14 +6,14 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.15.2
+#       jupytext_version: 1.15.0
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 # ---
 
-# # Just continue clear-cutting every 80 years
+# # Try to establish a continuous-cover forest
 
 # %load_ext autoreload
 
@@ -43,6 +43,7 @@ from BFCPM.simulation.library import prepare_forcing
 
 from BFCPM.simulation.recorded_simulation import RecordedSimulation
 from BFCPM.trees.single_tree_params import species_params
+from BFCPM.params import global_tree_params
 
 # %autoreload 2
 # -
@@ -51,6 +52,9 @@ from BFCPM.trees.single_tree_params import species_params
 
 # +
 # #%tb
+
+custom_species_params = species_params.copy()
+custom_global_tree_params = global_tree_params.copy()
 
 try:
     parser = argparse.ArgumentParser()
@@ -84,12 +88,13 @@ except SystemExit:
     pre_spinup_species = "pine"
     
     # "common" means used by all simulations
-    coarseness = 1
+    coarseness = 12
     common_spinup_dmp_filepath = f"DWC_common_spinup_clear_cut_{pre_spinup_species}_{coarseness:02d}"
 
-    sim_date = "2023-10-19"
+#    sim_date = "2023-10-19"
+    sim_date = "2024-02-14"
     species = "pine"
-    sim_name = f"DWC_continuous_cover_320_{species}_{coarseness:02d}"
+    sim_name = f"DWC_continuous_cover_160_{species}_{coarseness:02d}"
     
 sim_dict = {
     "pre_spinup_date": pre_spinup_date,
@@ -102,8 +107,8 @@ sim_dict = {
     "species": species,
     "coarseness": coarseness,
 
-    "sim_length": 8 * 20 * 2,
-    "N": 2_000
+    "sim_length": 8 * 20 * 1,
+    "N": 1_500
 }
 
 print(sim_dict)
@@ -136,7 +141,7 @@ stand = deepcopy(spinup_simulation.stand)
 
 common_spinup_length = stand.age.to("year").magnitude
 total_length = common_spinup_length + sim_dict["sim_length"]
-total_length
+common_spinup_length, total_length
 
 sim_name = sim_dict["sim_name"]
 sim_name
@@ -161,10 +166,11 @@ for tree_in_stand in stand.trees:
 print(stand)
 # -
 
-# ## Plant new trees every 20 years
+# ## Plant new trees, replant one every 20 years
 
 # +
 # old version coming from cc-spinup
+# works in creating a cc (I hope)
 
 management_strategies = [
    [
@@ -188,51 +194,53 @@ else:
 
 
 # +
-# Oskar's version (Email 2023-07-05)
-
-management_strategies = [
-    [
-        (f"StandAge{160-1}", "Wait3AndPlant"),
-        (f"StandAge{160-1+50}", "CutWait3AndReplant"),   
-        (f"StandAge{160-1+50+1*80}", "CutWait3AndReplant"),   
-        (f"StandAge{160-1+50+2*80}", "CutWait3AndReplant"),   
-        (f"StandAge{160-1+50+3*80}", "CutWait3AndReplant"),   
-    ],
-
-    [
-        (f"StandAge{160-1}", "Wait3AndPlant"),
-        (f"StandAge{160-1+70}", "CutWait3AndReplant"),   
-        (f"StandAge{160-1+70+1*80}", "CutWait3AndReplant"),   
-        (f"StandAge{160-1+70+2*80}", "CutWait3AndReplant"),   
-        (f"StandAge{160-1+70+3*80}", "CutWait3AndReplant"),   
-    ],
-
-    [
-        (f"StandAge{160-1}", "Wait3AndPlant"),
-        (f"StandAge{160-1+90}", "CutWait3AndReplant"),   
-        (f"StandAge{160-1+90+1*80}", "CutWait3AndReplant"),   
-        (f"StandAge{160-1+90+2*80}", "CutWait3AndReplant"),   
-    ],
-
-    [
-        (f"StandAge{160-1}", "Wait3AndPlant"),
-        (f"StandAge{160-1+110}", "CutWait3AndReplant"),   
-        (f"StandAge{160-1+110+1*80}", "CutWait3AndReplant"),   
-        (f"StandAge{160-1+110+2*80}", "CutWait3AndReplant"),   
-    ],
-]
-
-species = sim_dict["species"]
-N = sim_dict["N"]
-if species in ["pine", "spruce"]:
-    sim_profile =  [
-        (species, 1.0, N / 10_000 / 4, management_strategies[k], "waiting")
-        for k in range(4)
-    ]
-else:
-    raise ValueError(f"Unknown patch species: {species}")
-
+## Oskar's version (Email 2023-07-05)
+##
+## Unfortunately, after the first replanting the other trees are too big, no regrowth possible
+#
+#management_strategies = [
+#   [
+#       (f"StandAge{160-1}", "Wait3AndPlant"),
+#       (f"StandAge{160-1+50}", "CutWait3AndReplant"),   
+#       (f"StandAge{160-1+50+1*80}", "CutWait3AndReplant"),   
+#       (f"StandAge{160-1+50+2*80}", "CutWait3AndReplant"),   
+#       (f"StandAge{160-1+50+3*80}", "CutWait3AndReplant"),   
+#   ],
+#
+#   [
+#       (f"StandAge{160-1}", "Wait3AndPlant"),
+#       (f"StandAge{160-1+70}", "CutWait3AndReplant"),   
+#       (f"StandAge{160-1+70+1*80}", "CutWait3AndReplant"),   
+#       (f"StandAge{160-1+70+2*80}", "CutWait3AndReplant"),   
+#       (f"StandAge{160-1+70+3*80}", "CutWait3AndReplant"),   
+#   ],
+#
+#   [
+#       (f"StandAge{160-1}", "Wait3AndPlant"),
+#       (f"StandAge{160-1+90}", "CutWait3AndReplant"),   
+#       (f"StandAge{160-1+90+1*80}", "CutWait3AndReplant"),   
+#       (f"StandAge{160-1+90+2*80}", "CutWait3AndReplant"),   
+#   ],
+#
+#   [
+#       (f"StandAge{160-1}", "Wait3AndPlant"),
+#       (f"StandAge{160-1+110}", "CutWait3AndReplant"),   
+#       (f"StandAge{160-1+110+1*80}", "CutWait3AndReplant"),   
+#       (f"StandAge{160-1+110+2*80}", "CutWait3AndReplant"),   
+#   ],
+#]
+#
+#species = sim_dict["species"]
+#N = sim_dict["N"]
+#if species in ["pine", "spruce"]:
+#   sim_profile =  [
+#       (species, 1.0, N / 10_000 / 4, management_strategies[k], "waiting")
+#       for k in range(4)
+#   ]
+#else:
+#   raise ValueError(f"Unknown patch species: {species}")
 # -
+
 
 species_setting = species_setting_from_sim_profile(sim_profile)
 species_setting
@@ -240,7 +248,11 @@ species_setting
 # +
 # %%time
 
-stand.add_trees_from_setting(species_setting, custom_species_params=species_params)
+stand.add_trees_from_setting(
+    species_setting,
+    custom_species_params=custom_species_params,
+    custom_global_tree_params=custom_global_tree_params
+)
 
 for tree in stand.trees[-4:]:
     tree.name = "cc_" + tree.name
@@ -275,12 +287,13 @@ if final_felling:
 print(stand)
 # -
 
-sim_profile = "continuous_cover_320" # dummy, currently used for logging only
+sim_profile = sim_dict["sim_name"] # dummy, currently used for logging only
 
 # +
 sim_name = sim_dict["sim_name"]
 
-emergency_action_str, emergency_direction, emergency_stand_action_str = "Die", "below", "ThinStandToSBA18"
+#emergency_action_str, emergency_direction, emergency_stand_action_str = "Die", "below", "ThinStandToSBA18"
+emergency_action_str, emergency_direction, emergency_stand_action_str = "Die", "below", ""
 #emergency_action_str, emergency_direction = "Thin", "below"
 #emergency_action_str, emergency_direction = "CutWait3AndReplant", "above"
 
@@ -295,10 +308,8 @@ recorded_simulation = RecordedSimulation.from_simulation_run(
     logfile_path,
     sim_profile,
     light_model,
-#    "Spitters",
     forcing,
-#    custom_species_params,
-    species_params,
+    custom_species_params,
     stand,
     emergency_action_str,
     emergency_direction,
@@ -328,7 +339,8 @@ ds
 pre_spinup_species = sim_dict["pre_spinup_species"]
 
 spinups_path = PRE_SPINUPS_PATH.joinpath(sim_dict["pre_spinup_date"])
-pre_spinup_name = f"DWC_{light_model}_{pre_spinup_species}_{coarseness:02d}_2nd_round"
+#pre_spinup_name = f"DWC_{light_model}_{pre_spinup_species}_{coarseness:02d}_2nd_round"
+pre_spinup_name = f"DWC_{light_model}_{pre_spinup_species}_2nd_round"
 dmr_path = spinups_path.joinpath(pre_spinup_name + ".dmr_eq")
 dmr_eq = DLAPM.load_from_file(dmr_path)
 # -

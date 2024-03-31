@@ -36,7 +36,10 @@ def prepare_forcing(
         #    start_date="1997-01-01",
         start_date="2000-01-01",
         end_date="2019-12-31",
+#        end_date="2009-12-31",
+#        end_date="2000-12-31",
     )
+#    print(forcing_base)
 
     # thin out forcing
     forcing_base = forcing_base[::coarseness]

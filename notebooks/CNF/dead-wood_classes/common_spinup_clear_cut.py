@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.15.2
+#       jupytext_version: 1.15.0
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -39,6 +39,7 @@ from BFCPM.simulation.library import prepare_forcing
 
 from BFCPM.simulation.recorded_simulation import RecordedSimulation
 from BFCPM.trees.single_tree_params import species_params
+from BFCPM.params import global_tree_params
 
 # %autoreload 2
 # -
@@ -47,6 +48,9 @@ from BFCPM.trees.single_tree_params import species_params
 
 # +
 # #%tb
+
+custom_species_params = species_params.copy()
+custom_global_tree_params = global_tree_params.copy()
 
 try:
     parser = argparse.ArgumentParser()
@@ -85,12 +89,15 @@ except SystemExit:
     # "common" means used by all simulations
     common_spinup_species = "pine"
     common_spinup_length = 8 * 20
-    common_spinup_N = 2_000
+    common_spinup_N = 2_000 # for clear-cut spinups (including PCT)
+#    common_spinup_N = 1_500 # for cc spinups
+
 #    coarseness = 1
-    coarseness = 12
+    coarseness = 12 # every 12th half-hourly entry (6-hourly)
 
 #    sim_date = "2023-06-23"
-    sim_date = "2023-10-19"
+#    sim_date = "2023-10-19"
+    sim_date = "2024-02-14"
 #    sim_name = "mixed-aged_pine_long"
 #    sim_name = "even-aged_pine_long"
 #    sim_name = "even-aged_spruce_long"
@@ -118,7 +125,6 @@ print(sim_dict)
 # +
 # simulation data
 
-
 # start `spinup_length` years earlier so as to have the true start again at 2000
 nr_copies = sim_dict["common_spinup_length"] // 20
 forcing = prepare_forcing(
@@ -145,7 +151,8 @@ light_model = "Zhao" # Zhao or Spitters
 pre_spinup_species = sim_dict["pre_spinup_species"]
 coarseness = sim_dict["coarseness"]
 
-pre_spinup_name = f"DWC_{light_model}_{pre_spinup_species}_{coarseness:02d}_2nd_round"
+#pre_spinup_name = f"DWC_{light_model}_{pre_spinup_species}_{coarseness:02d}_2nd_round"
+pre_spinup_name = f"DWC_{light_model}_{pre_spinup_species}_2nd_round"
 dmr_path = spinups_path.joinpath(pre_spinup_name + ".dmr_eq")
 
 # load fake equilibrium dmr
@@ -231,7 +238,7 @@ else:
 
 
 # +
-emergency_action_str, emergency_direction, emergency_stand_action_str = "Die", "below", ""
+emergency_action_str, emergency_direction, emergency_stand_action_str = "Die", "below", "ThinStandToSBA18"
 #emergency_action_str, emergency_direction = "Thin", "below"
 #emergency_action_str, emergency_direction = "CutWait3AndReplant", "above"
 
@@ -246,7 +253,11 @@ print(f"log file: {logfile_path}")
 # %%time
   
 stand = Stand.create_empty(stand_params)
-stand.add_trees_from_setting(species_setting, custom_species_params=species_params)
+stand.add_trees_from_setting(
+    species_setting,
+    custom_species_params=custom_species_params,
+    custom_global_tree_params=custom_global_tree_params
+)
 
 print(stand)
 # -
@@ -258,12 +269,9 @@ recorded_simulation = RecordedSimulation.from_simulation_run(
     logfile_path,
     sim_profile,
     light_model,
-#    "Spitters",
     forcing,
-#    custom_species_params,
-    species_params,
+    custom_species_params,
     stand,
-#    final_felling,
     emergency_action_str,
     emergency_direction,
     emergency_q, # fraction to keep

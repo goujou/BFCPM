@@ -134,6 +134,7 @@ print(sim_dict)
 # +
 # tree species parameter changes can be made here
 custom_species_params = species_params.copy()
+custom_global_tree_params = global_tree_params.copy()
 
 alpha = 1.00
 custom_species_params["pine"]["alpha"]["value"] = alpha
@@ -234,7 +235,8 @@ print(f"log file: {logfile_path}")
 
 stand = Stand.create_empty(stand_params)
 stand.add_trees_from_setting(
-    species_setting, custom_species_params=custom_species_params
+    species_setting, custom_species_params=custom_species_params,   
+    custom_global_tree_params=custom_global_tree_params,
 )
 
 print(stand)

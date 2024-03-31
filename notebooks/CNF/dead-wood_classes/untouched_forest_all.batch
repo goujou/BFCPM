@@ -1,0 +1,39 @@
+#!/bin/bash
+
+
+#SBATCH -A naiss2023-22-831
+#SBATCH --job-name=untouched_forest_all # create a short name for your job
+#SBATCH --error=untouched_forest_all.%J.err
+#SBATCH --output=untouched_forest_all.%J.out
+#SBATCH --nodes=1                # node count
+#SBATCH --ntasks=18              # total number of tasks across all nodes
+#SBATCH --cpus-per-task=1        # cpu-cores per task (>1 if multi-threaded tasks)
+#SBATCH --time=10:00:00          # total run time limit (HH:MM:SS)
+#SBATCH --mail-type=begin        # send email when job begins
+#SBATCH --mail-type=end          # send email when job ends
+#SBATCH --mail-type=fail          # send email when job fails
+#SBATCH --mail-user=holger.metzler@slu.se
+
+# conda activate BFCPM
+source activate_conda_env.sh
+srun -n 1 python untouched_forest.py 2023-10-23 pine DWC_common_spinup_clear_cut_pine_24 2023-10-24 DWC_untouched_forest_320_pine_24 24 &
+srun -n 1 python untouched_forest.py 2023-10-23 pine DWC_common_spinup_clear_cut_pine_16 2023-10-24 DWC_untouched_forest_320_pine_16 16 &
+srun -n 1 python untouched_forest.py 2023-10-23 pine DWC_common_spinup_clear_cut_pine_12 2023-10-24 DWC_untouched_forest_320_pine_12 12 &
+srun -n 1 python untouched_forest.py 2023-10-23 pine DWC_common_spinup_clear_cut_pine_08 2023-10-24 DWC_untouched_forest_320_pine_08 8 &
+srun -n 1 python untouched_forest.py 2023-10-23 pine DWC_common_spinup_clear_cut_pine_06 2023-10-24 DWC_untouched_forest_320_pine_06 6 &
+srun -n 1 python untouched_forest.py 2023-10-23 pine DWC_common_spinup_clear_cut_pine_04 2023-10-24 DWC_untouched_forest_320_pine_04 4 &
+srun -n 1 python untouched_forest.py 2023-10-23 pine DWC_common_spinup_clear_cut_pine_03 2023-10-24 DWC_untouched_forest_320_pine_03 3 &
+srun -n 1 python untouched_forest.py 2023-10-23 pine DWC_common_spinup_clear_cut_pine_02 2023-10-24 DWC_untouched_forest_320_pine_02 2 &
+srun -n 1 python untouched_forest.py 2023-10-23 pine DWC_common_spinup_clear_cut_pine_01 2023-10-24 DWC_untouched_forest_320_pine_01 1 &
+
+srun -n 1 python untouched_forest.py 2023-10-23 spruce DWC_common_spinup_clear_cut_spruce_24 2023-10-24 DWC_untouched_forest_320_spruce_24 24 &
+srun -n 1 python untouched_forest.py 2023-10-23 spruce DWC_common_spinup_clear_cut_spruce_16 2023-10-24 DWC_untouched_forest_320_spruce_16 16 &
+srun -n 1 python untouched_forest.py 2023-10-23 spruce DWC_common_spinup_clear_cut_spruce_12 2023-10-24 DWC_untouched_forest_320_spruce_12 12 &
+srun -n 1 python untouched_forest.py 2023-10-23 spruce DWC_common_spinup_clear_cut_spruce_08 2023-10-24 DWC_untouched_forest_320_spruce_08 8 &
+srun -n 1 python untouched_forest.py 2023-10-23 spruce DWC_common_spinup_clear_cut_spruce_06 2023-10-24 DWC_untouched_forest_320_spruce_06 6 &
+srun -n 1 python untouched_forest.py 2023-10-23 spruce DWC_common_spinup_clear_cut_spruce_04 2023-10-24 DWC_untouched_forest_320_spruce_04 4 &
+srun -n 1 python untouched_forest.py 2023-10-23 spruce DWC_common_spinup_clear_cut_spruce_03 2023-10-24 DWC_untouched_forest_320_spruce_03 3 &
+srun -n 1 python untouched_forest.py 2023-10-23 spruce DWC_common_spinup_clear_cut_spruce_02 2023-10-24 DWC_untouched_forest_320_spruce_02 2 &
+srun -n 1 python untouched_forest.py 2023-10-23 spruce DWC_common_spinup_clear_cut_spruce_01 2023-10-24 DWC_untouched_forest_320_spruce_01 1 &
+
+wait 

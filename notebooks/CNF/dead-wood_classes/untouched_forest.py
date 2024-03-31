@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.15.2
+#       jupytext_version: 1.15.0
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -45,6 +45,7 @@ from BFCPM.trees.single_tree_allocation import SingleTree
 
 from BFCPM.simulation.recorded_simulation import RecordedSimulation
 from BFCPM.trees.single_tree_params import species_params
+from BFCPM.params import global_tree_params
 
 # %autoreload 2
 # -
@@ -53,6 +54,9 @@ from BFCPM.trees.single_tree_params import species_params
 
 # +
 # #%tb
+
+custom_species_params = species_params.copy()
+custom_global_tree_params = global_tree_params.copy()
 
 try:
     parser = argparse.ArgumentParser()
@@ -91,6 +95,7 @@ except SystemExit:
     common_spinup_dmp_filepath = f"DWC_common_spinup_clear_cut_{pre_spinup_species}_{coarseness:02d}"
 
     sim_date = "2023-10-19"
+    sim_date = "2023-04-14"
     sim_name = f"DWC_untouched_forest_320_{pre_spinup_species}_{coarseness:02d}"
     
 sim_dict = {
@@ -187,10 +192,8 @@ recorded_simulation = RecordedSimulation.from_simulation_run(
     logfile_path,
     sim_profile,
     light_model,
-#    "Spitters",
     forcing,
-#    custom_species_params,
-    species_params,
+    custom_species_params,
     stand,
     emergency_action_str,
     emergency_direction,
